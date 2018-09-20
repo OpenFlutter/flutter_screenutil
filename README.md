@@ -67,5 +67,5 @@ import 'package:flutter_app/ScreenUtil.dart';  //导入
 效果:
 上面的205.xxx 是dp的单位,
 下面的单位是px
-![在这里插入图片描述](https://img-blog.csdn.net/2018092100063965?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTEyNzI3OTU=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![效果](微信图片_20180921000611.png)
 
