@@ -1,6 +1,8 @@
 # flutter_ScreenUtil
 flutter 屏幕适配方案
 
+csdn博客本工具介绍:https://blog.csdn.net/u011272795/article/details/82795477
+
 # 前言:
 
 现在的手机品牌和型号越来越多，导致我们平时写布局的时候会在个不同的移动设备上显示的效果不同，
