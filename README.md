@@ -2,7 +2,7 @@
 # flutter_ScreenUtil
 flutter 屏幕适配方案
 
-github: https://github.com/lizhuoyuan/flutter_ScreenUtil
+github: https://github.com/lizhuoyuan/flutter_ScreenUtil </br>
 csdn博客本工具介绍:https://blog.csdn.net/u011272795/article/details/82795477
 
 # 前言:
