@@ -1,12 +1,9 @@
+
 # flutter_ScreenUtil
 flutter 屏幕适配方案
 
-
+github: https://github.com/lizhuoyuan/flutter_ScreenUtil
 csdn博客本工具介绍:https://blog.csdn.net/u011272795/article/details/82795477
-
-更新日志:
-
-2018/9/23 修改一处拼写错误
 
 # 前言:
 
@@ -19,13 +16,38 @@ csdn博客本工具介绍:https://blog.csdn.net/u011272795/article/details/82795
 
 
 使用方法:
+
 ```
+导入包：
+
 import 'package:flutter_app/ScreenUtil.dart';  //导入
 
+在使用之前请设置好设计稿的宽度和高度，如果不设置则使用默认尺寸
+传入设计稿的宽度和高度(单位px)，默认为1080*1920
+推荐在main.dart中设置，以保证在使用之前设置好了适配尺寸:
+
+ScreenUtil.instance = new ScreenUtil(width: 360, height: 720);
+
+
+使用：
+
 ....
-//传入设计稿的px尺寸
+//传入设计稿的px尺寸：
+
+适配尺寸：
 width: ScreenUtil().setWidth(540),
 height: ScreenUtil().setHeight(200),
+
+其他相关api：
+
+	print(ScreenUtil.pixelRatio);       //设备的像素密度
+    print(ScreenUtil.screenWidth);     //设备宽度
+    print(ScreenUtil.screenHeight);    //设备高度      
+    print(ScreenUtil.bottomBarHeight); //底部安全区距离，适用于全面屏下面有按键的
+    print(ScreenUtil.statusBarHeight); //状态栏高度 刘海屏会更高
+
+    print(ScreenUtil().scaleWidth); //宽度相对于设计稿放大的倍数
+    print(ScreenUtil().scaleHeight); //高度相对于设计稿放大的倍数
 
 ```
 
@@ -33,15 +55,20 @@ height: ScreenUtil().setHeight(200),
 import 'package:flutter_app/ScreenUtil.dart';  //导入
 
 @override
-  Widget build(BuildContext context) {
-    print(ScreenUtil.screenWidth); //设备宽度
-    print(ScreenUtil.screenHeight); //设备高度
+  Widget build(BuildContext context) { 
+   
+ print(ScreenUtil().setWidth(180));
+    print(ScreenUtil().setWidth(540));
+    print(ScreenUtil.screenWidth / ScreenUtil.pixelRatio);
 
-    print(ScreenUtil.pixelRatio); //设备的像素密度
+    print(ScreenUtil.pixelRatio);       //设备的像素密度
+    print(ScreenUtil.screenWidth);     //设备宽度
+    print(ScreenUtil.screenHeight);    //设备高度      
+    print(ScreenUtil.bottomBarHeight); //底部安全区距离，适用于全面屏下面有按键的
+    print(ScreenUtil.statusBarHeight); //状态栏高度 刘海屏会更高
 
-    print(ScreenUtil.StatusBarHeight); //状态栏高度 刘海屏会更高
-    print(ScreenUtil.BottomBarHeight); //底部安全区距离
-
+    print(ScreenUtil().scaleWidth); //宽度相对于设计稿放大的倍数
+    print(ScreenUtil().scaleHeight); //高度相对于设计稿放大的倍数
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.title),
