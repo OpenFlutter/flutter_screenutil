@@ -17,20 +17,20 @@ csdn博客本工具介绍:https://blog.csdn.net/u011272795/article/details/82795
 
 使用方法:
 
-```
 导入包：
-
+```
 import 'package:flutter_app/ScreenUtil.dart';  //导入
+```
 
 在使用之前请设置好设计稿的宽度和高度，如果不设置则使用默认尺寸
 传入设计稿的宽度和高度(单位px)，默认为1080*1920
 推荐在main.dart中设置，以保证在使用之前设置好了适配尺寸:
-
+```
 ScreenUtil.instance = new ScreenUtil(width: 360, height: 720);
-
+```
 
 使用：
-
+```
 ....
 //传入设计稿的px尺寸：
 
@@ -40,7 +40,7 @@ height: ScreenUtil().setHeight(200),
 
 其他相关api：
 
-	print(ScreenUtil.pixelRatio);       //设备的像素密度
+    print(ScreenUtil.pixelRatio);       //设备的像素密度
     print(ScreenUtil.screenWidth);     //设备宽度
     print(ScreenUtil.screenHeight);    //设备高度      
     print(ScreenUtil.bottomBarHeight); //底部安全区距离，适用于全面屏下面有按键的
