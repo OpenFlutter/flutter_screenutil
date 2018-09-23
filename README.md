@@ -1,7 +1,12 @@
 # flutter_ScreenUtil
 flutter 屏幕适配方案
 
+
 csdn博客本工具介绍:https://blog.csdn.net/u011272795/article/details/82795477
+
+更新日志:
+
+2018/9/23 修改一处拼写错误
 
 # 前言:
 
