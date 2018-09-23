@@ -30,7 +30,7 @@ class ScreenUtil {
 
   //相对于设计稿放大的倍数
   var scaleWidth = screenWidth / designWidth / pixelRatio;
-  var scaleHeight = screenHeight / designWidth / pixelRatio;
+  var scaleHeight = screenHeight / designHeight / pixelRatio;
 
   static ScreenUtil getInstance() {
     if (instance == null) {
