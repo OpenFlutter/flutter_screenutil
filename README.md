@@ -39,8 +39,14 @@ ScreenUtil.instance = new ScreenUtil(width: 360, height: 720);
 适配尺寸：
 ```
 //传入设计稿的px尺寸：
-width: ScreenUtil().setWidth(540),
-height: ScreenUtil().setHeight(200),
+适配后的宽度width: ScreenUtil().setWidth(540),
+适配后的高度height: ScreenUtil().setHeight(200),
+
+例如:
+Container(
+           width: ScreenUtil().setWidth(375),
+           height: ScreenUtil().setHeight(200),
+            ),
 ```
 
 其他相关api：
