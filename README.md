@@ -101,7 +101,10 @@ import 'package:flutter_app/ScreenUtil.dart';  //导入
     );
   }
 ```
-  [example demo](/example)
+
+### 使用示例:
+
+[example demo](/example)
  
 效果:
 上面的205.xxx 是dp的单位,
