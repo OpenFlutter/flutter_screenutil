@@ -17,14 +17,26 @@ csdn博客本工具介绍:https://blog.csdn.net/u011272795/article/details/82795
 
 使用方法:
 
-导入包：
+安装依赖：
 ```
-import 'package:flutter_app/ScreenUtil.dart';  //导入
+dependencies:
+  flutter:
+    sdk: flutter
+  # 添加依赖
+  flutter_screenutil:
+    git:
+      url: git://github.com/lizhuoyuan/flutter_ScreenUtil
+```
+
+在每个使用的地方导入包：
+```
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 ```
 
 在使用之前请设置好设计稿的宽度和高度，如果不设置则使用默认尺寸
 传入设计稿的宽度和高度(单位px)，默认为1080*1920
-推荐在main.dart中设置，以保证在使用之前设置好了适配尺寸:
+推荐在项目入口中设置，以保证在每次使用之前设置好了适配尺寸:
 ```
 ScreenUtil.instance = new ScreenUtil(width: 360, height: 720);
 ```
