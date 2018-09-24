@@ -25,9 +25,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ```
 
-### 设置尺寸
-在使用之前请设置好设计稿的宽度和高度，如果不设置则使用默认尺寸
-传入设计稿的宽度和高度(单位px)，默认为1080*1920
+### 初始化设置尺寸
+在使用之前请设置好设计稿的宽度和高度，传入设计稿的宽度和高度(单位px)
+如果不设置则使用默认尺寸，默认为1080*1920
 推荐在项目入口中设置，以保证在每次使用之前设置好了适配尺寸:
 
 ```
@@ -49,7 +49,7 @@ height: ScreenUtil().setHeight(200),
     ScreenUtil.screenWidth    //设备宽度
     ScreenUtil.screenHeight    //设备高度
     ScreenUtil.bottomBarHeight //底部安全区距离，适用于全面屏下面有按键的
-    ScreenUtil.statusBarHeight //状态栏高度 刘海屏会更高
+    ScreenUtil.statusBarHeight //状态栏高度 刘海屏会更高  单位px
 
     ScreenUtil().scaleWidth //宽度相对于设计稿放大的倍数
     ScreenUtil().scaleHeight //高度相对于设计稿放大的倍数
@@ -101,6 +101,9 @@ import 'package:flutter_app/ScreenUtil.dart';  //导入
     );
   }
 ```
+
+example demo: (./example)` 
+
 效果:
 上面的205.xxx 是dp的单位,
 下面的单位是px
