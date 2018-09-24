@@ -15,9 +15,9 @@ csdn博客本工具介绍:https://blog.csdn.net/u011272795/article/details/82795
 
 
 
-使用方法:
+## 使用方法:
 
-安装依赖：
+### 安装依赖：
 ```
 dependencies:
   flutter:
@@ -28,12 +28,13 @@ dependencies:
       url: git://github.com/lizhuoyuan/flutter_ScreenUtil
 ```
 
-在每个使用的地方导入包：
+### 在每个使用的地方导入包：
 ```
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ```
 
+### 设置尺寸
 在使用之前请设置好设计稿的宽度和高度，如果不设置则使用默认尺寸
 传入设计稿的宽度和高度(单位px)，默认为1080*1920
 推荐在项目入口中设置，以保证在每次使用之前设置好了适配尺寸:
@@ -41,7 +42,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 ScreenUtil.instance = new ScreenUtil(width: 360, height: 720);
 ```
 
-使用：
+### 使用：
 ```
 ....
 //传入设计稿的px尺寸：
@@ -70,39 +71,40 @@ import 'package:flutter_app/ScreenUtil.dart';  //导入
   Widget build(BuildContext context) { 
    
  print(ScreenUtil().setWidth(180));
-     print('设备的像素密度:${ScreenUtil.pixelRatio}'); //设备的像素密度
-        print('设备宽度:${ScreenUtil.screenWidth}'); //设备宽度
-        print('设备高度:${ScreenUtil.screenHeight}'); //设备高度
-        print('底部安全区距离:${ScreenUtil.bottomBarHeight}'); //底部安全区距离，适用于全面屏下面有按键的
-        print('状态栏高度:${ScreenUtil.statusBarHeight}px'); //状态栏高度 刘海屏会更高
+    print('设备的像素密度:${ScreenUtil.pixelRatio}'); //设备的像素密度
+    print('设备宽度:${ScreenUtil.screenWidth}'); //设备宽度
+    print('设备高度:${ScreenUtil.screenHeight}'); //设备高度
+    print('底部安全区距离:${ScreenUtil.bottomBarHeight}'); //底部安全区距离，适用于全面屏下面有按键的
+    print('状态栏高度:${ScreenUtil.statusBarHeight}px'); //状态栏高度 刘海屏会更高
 
-        print('宽度相对于设计稿放大的倍数:${ScreenUtil().scaleWidth}'); //宽度相对于设计稿放大的倍数
-        print('高度相对于设计稿放大的倍数:${ScreenUtil().scaleHeight}'); //高度相对于设计稿放大的倍数
+    print('宽度相对于设计稿放大的倍数:${ScreenUtil().scaleWidth}'); //宽度相对于设计稿放大的倍数
+    print('高度相对于设计稿放大的倍数:${ScreenUtil().scaleHeight}'); //高度相对于设计稿放大的倍数
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.title),
       ),
-      body: Column(
-        children: <Widget>[
-          Row(
-            children: <Widget>[
-              Container(
-                width: ScreenUtil().setWidth(540),
-                height: ScreenUtil().setHeight(200),
-                color: Colors.red,
-                child: Text(ScreenUtil().setWidth(540).toString()),
-              ),
-              Container(
-                width: ScreenUtil().setWidth(540),
-                height: ScreenUtil().setHeight(200),
-                color: Colors.blue,
-                child: Text(ScreenUtil().setWidth(540).toString()),
-              ),
-            ],
-          ),
-          Text(ScreenUtil.screenWidth.toString()),
-          Text(ScreenUtil.screenHeight.toString()),
-        ],
+     body: new Center(
+        child: Column(
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Container(
+                  width: ScreenUtil().setWidth(375),
+                  height: ScreenUtil().setHeight(200),
+                  color: Colors.red,
+                  child: Text(ScreenUtil().setWidth(375).toString()),
+                ),
+                Container(
+                  width: ScreenUtil().setWidth(375),
+                  height: ScreenUtil().setHeight(200),
+                  color: Colors.blue,
+                  child: Text(ScreenUtil().setWidth(375).toString()),
+                ),
+              ],
+            ),
+            Text(ScreenUtil.screenWidth.toString()),
+            Text(ScreenUtil.screenHeight.toString()),
+          ],
       ),
     );
   }
