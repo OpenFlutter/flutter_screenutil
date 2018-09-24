@@ -52,14 +52,14 @@ height: ScreenUtil().setHeight(200),
 
 其他相关api：
 
-    print(ScreenUtil.pixelRatio);       //设备的像素密度
-    print(ScreenUtil.screenWidth);     //设备宽度
-    print(ScreenUtil.screenHeight);    //设备高度      
-    print(ScreenUtil.bottomBarHeight); //底部安全区距离，适用于全面屏下面有按键的
-    print(ScreenUtil.statusBarHeight); //状态栏高度 刘海屏会更高
+    ScreenUtil.pixelRatio       //设备的像素密度
+    ScreenUtil.screenWidth    //设备宽度
+    ScreenUtil.screenHeight    //设备高度
+    ScreenUtil.bottomBarHeight //底部安全区距离，适用于全面屏下面有按键的
+    ScreenUtil.statusBarHeight //状态栏高度 刘海屏会更高
 
-    print(ScreenUtil().scaleWidth); //宽度相对于设计稿放大的倍数
-    print(ScreenUtil().scaleHeight); //高度相对于设计稿放大的倍数
+    ScreenUtil().scaleWidth //宽度相对于设计稿放大的倍数
+    ScreenUtil().scaleHeight //高度相对于设计稿放大的倍数
 
 ```
 
@@ -70,17 +70,14 @@ import 'package:flutter_app/ScreenUtil.dart';  //导入
   Widget build(BuildContext context) { 
    
  print(ScreenUtil().setWidth(180));
-    print(ScreenUtil().setWidth(540));
-    print(ScreenUtil.screenWidth / ScreenUtil.pixelRatio);
+     print('设备的像素密度:${ScreenUtil.pixelRatio}'); //设备的像素密度
+        print('设备宽度:${ScreenUtil.screenWidth}'); //设备宽度
+        print('设备高度:${ScreenUtil.screenHeight}'); //设备高度
+        print('底部安全区距离:${ScreenUtil.bottomBarHeight}'); //底部安全区距离，适用于全面屏下面有按键的
+        print('状态栏高度:${ScreenUtil.statusBarHeight}px'); //状态栏高度 刘海屏会更高
 
-    print(ScreenUtil.pixelRatio);       //设备的像素密度
-    print(ScreenUtil.screenWidth);     //设备宽度
-    print(ScreenUtil.screenHeight);    //设备高度      
-    print(ScreenUtil.bottomBarHeight); //底部安全区距离，适用于全面屏下面有按键的
-    print(ScreenUtil.statusBarHeight); //状态栏高度 刘海屏会更高
-
-    print(ScreenUtil().scaleWidth); //宽度相对于设计稿放大的倍数
-    print(ScreenUtil().scaleHeight); //高度相对于设计稿放大的倍数
+        print('宽度相对于设计稿放大的倍数:${ScreenUtil().scaleWidth}'); //宽度相对于设计稿放大的倍数
+        print('高度相对于设计稿放大的倍数:${ScreenUtil().scaleHeight}'); //高度相对于设计稿放大的倍数
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.title),
