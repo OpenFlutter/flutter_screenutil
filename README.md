@@ -16,7 +16,7 @@ dependencies:
   # 添加依赖
   flutter_screenutil:
     git:
-      url: git://github.com/OpenFlutter/flutter_ScreenUtil
+      url: git://github.com/openflutter/flutter_screenutil
 ```
 
 ### 在每个使用的地方导入包：
