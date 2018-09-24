@@ -44,12 +44,14 @@ ScreenUtil.instance = new ScreenUtil(width: 360, height: 720);
 
 ### 使用：
 ```
-....
-//传入设计稿的px尺寸：
 
-适配尺寸：
+
+### 适配尺寸：
+```
+//传入设计稿的px尺寸：
 width: ScreenUtil().setWidth(540),
 height: ScreenUtil().setHeight(200),
+```
 
 其他相关api：
 
