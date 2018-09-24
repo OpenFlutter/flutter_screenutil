@@ -1,5 +1,5 @@
-﻿/*
- * Created by 李卓原 on 2018/9/24.
+/*
+ * Created by 李卓原 on 2018/9/20.
  * email: zhuoyuan93@gmail.com
  * 设计稿设备尺寸默认为 1080 * 1920 px
  */
@@ -7,10 +7,12 @@
 import 'dart:ui';
 
 class ScreenUtil {
-  //设计稿的设备尺寸修改  (请修改成你的设计稿的尺寸)
+  //请修改成你的设计稿的尺寸
+  static ScreenUtil instance = new ScreenUtil(width: 1080, height: 1920);
+
+  //设计稿的设备尺寸修改
   int designWidth;
   int designHeight;
-  static ScreenUtil instance;
 
   ScreenUtil({int width, int height}) {
     designWidth = width;
@@ -18,9 +20,6 @@ class ScreenUtil {
   }
 
   static ScreenUtil getInstance() {
-    if (instance == null) {
-      instance = new ScreenUtil(width: 1080, height: 1920);
-    }
     return instance;
   }
 
@@ -40,11 +39,9 @@ class ScreenUtil {
   static double bottomBarHeight = window.padding.bottom;
 
   //相对于设计稿放大的倍数
-  double get scaleWidth =>
-      screenWidth / ScreenUtil.getInstance().designWidth / pixelRatio;
+  double get scaleWidth => screenWidth / instance.designWidth / pixelRatio;
 
-  double get scaleHeight =>
-      screenHeight / ScreenUtil.getInstance().designHeight / pixelRatio;
+  double get scaleHeight => screenHeight / instance.designHeight / pixelRatio;
 
   /**
    * 根据设计稿的设备宽度适配
