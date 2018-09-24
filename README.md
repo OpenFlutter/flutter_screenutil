@@ -31,7 +31,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 推荐在项目入口中设置，以保证在每次使用之前设置好了适配尺寸:
 
 ```
-ScreenUtil.instance = new ScreenUtil(width: 360, height: 720);
+    ScreenUtil.instance = new ScreenUtil(width: 750, height: 1334);
 ```
 
 ### 使用：
