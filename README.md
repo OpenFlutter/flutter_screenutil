@@ -59,23 +59,16 @@ height: ScreenUtil().setHeight(200),
 ```
 import 'package:flutter_app/ScreenUtil.dart';  //导入
 
-@override
-  Widget build(BuildContext context) { 
-   
- print(ScreenUtil().setWidth(180));
-    print('设备的像素密度:${ScreenUtil.pixelRatio}'); //设备的像素密度
-    print('设备宽度:${ScreenUtil.screenWidth}'); //设备宽度
-    print('设备高度:${ScreenUtil.screenHeight}'); //设备高度
-    print('底部安全区距离:${ScreenUtil.bottomBarHeight}'); //底部安全区距离，适用于全面屏下面有按键的
-    print('状态栏高度:${ScreenUtil.statusBarHeight}px'); //状态栏高度 刘海屏会更高
+...
 
-    print('宽度相对于设计稿放大的倍数:${ScreenUtil().scaleWidth}'); //宽度相对于设计稿放大的倍数
-    print('高度相对于设计稿放大的倍数:${ScreenUtil().scaleHeight}'); //高度相对于设计稿放大的倍数
+
+  @override
+  Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.title),
       ),
-     body: new Center(
+      body: new Center(
         child: Column(
           children: <Widget>[
             Row(
@@ -84,19 +77,29 @@ import 'package:flutter_app/ScreenUtil.dart';  //导入
                   width: ScreenUtil().setWidth(375),
                   height: ScreenUtil().setHeight(200),
                   color: Colors.red,
-                  child: Text(ScreenUtil().setWidth(375).toString()),
+                  child: Text(
+                    '我的宽度${ScreenUtil().setWidth(375)}dp',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
                 Container(
                   width: ScreenUtil().setWidth(375),
                   height: ScreenUtil().setHeight(200),
                   color: Colors.blue,
-                  child: Text(ScreenUtil().setWidth(375).toString()),
+                  child: Text('我的宽度${ScreenUtil().setWidth(375)}dp',
+                      style: TextStyle(color: Colors.white)),
                 ),
               ],
             ),
-            Text(ScreenUtil.screenWidth.toString()),
-            Text(ScreenUtil.screenHeight.toString()),
+            Text('设备的屏幕宽度：${ScreenUtil.screenWidth}px'),
+            Text('设备的屏幕高度:${ScreenUtil.screenHeight}px'),
+            Text('设备的像素密度:${ScreenUtil.pixelRatio}'),
+            Text('底部安全区距离:${ScreenUtil.bottomBarHeight}px'),
+            Text('状态栏高度:${ScreenUtil.statusBarHeight}px'),
+            Text('宽度相对于设计稿放大的倍数:${ScreenUtil().scaleWidth}'),
+            Text('高度相对于设计稿放大的倍数:${ScreenUtil().scaleHeight}'),
           ],
+        ),
       ),
     );
   }
