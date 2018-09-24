@@ -38,15 +38,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 在使用之前请设置好设计稿的宽度和高度，如果不设置则使用默认尺寸
 传入设计稿的宽度和高度(单位px)，默认为1080*1920
 推荐在项目入口中设置，以保证在每次使用之前设置好了适配尺寸:
+
 ```
 ScreenUtil.instance = new ScreenUtil(width: 360, height: 720);
 ```
 
 ### 使用：
-```
 
-
-### 适配尺寸：
+适配尺寸：
 ```
 //传入设计稿的px尺寸：
 width: ScreenUtil().setWidth(540),
@@ -54,7 +53,7 @@ height: ScreenUtil().setHeight(200),
 ```
 
 其他相关api：
-
+```
     ScreenUtil.pixelRatio       //设备的像素密度
     ScreenUtil.screenWidth    //设备宽度
     ScreenUtil.screenHeight    //设备高度
