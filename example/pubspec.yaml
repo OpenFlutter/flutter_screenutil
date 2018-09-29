@@ -22,6 +22,7 @@ dependencies:
   flutter_screenutil:
     git:
       url: git://github.com/lizhuoyuan/flutter_screenUtil
+  common_utils: ^1.0.2
 dev_dependencies:
   flutter_test:
     sdk: flutter
