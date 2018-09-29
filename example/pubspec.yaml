@@ -21,8 +21,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   flutter_screenutil:
     git:
-      url: git://github.com/lizhuoyuan/flutter_screenUtil
-  common_utils: ^1.0.2
+      url: git://github.com/openflutter/flutter_screenutil
 dev_dependencies:
   flutter_test:
     sdk: flutter

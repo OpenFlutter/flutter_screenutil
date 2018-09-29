@@ -2,7 +2,7 @@
 # flutter_ScreenUtil
 **flutter 屏幕适配方案**
 
-github: https://github.com/lizhuoyuan/flutter_ScreenUtil </br>
+github: https://github.com/OpenFlutter/flutter_ScreenUtil </br>
 csdn博客工具介绍:https://blog.csdn.net/u011272795/article/details/82795477
 
 
@@ -16,7 +16,7 @@ dependencies:
   # 添加依赖
   flutter_screenutil:
     git:
-      url: git://github.com/lizhuoyuan/flutter_ScreenUtil
+      url: git://github.com/openflutter/flutter_screenutil
 ```
 
 ### 在每个使用的地方导入包：
@@ -40,8 +40,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 适配尺寸：
 ```
 //传入设计稿的px尺寸：
-width: ScreenUtil().setWidth(540),
-height: ScreenUtil().setHeight(200),
+适配后的宽度width: ScreenUtil().setWidth(540),
+适配后的高度height: ScreenUtil().setHeight(200),
+
+例如:
+Container(
+           width: ScreenUtil().setWidth(375),
+           height: ScreenUtil().setHeight(200),
+            ),
 ```
 
 其他相关api：
@@ -107,6 +113,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
             Text('设备的像素密度:${ScreenUtil.pixelRatio}'),
             Text('底部安全区距离:${ScreenUtil.bottomBarHeight}px'),
             Text('状态栏高度:${ScreenUtil.statusBarHeight}px'),
+            Text('宽度相对于设计稿放大的倍数:${ScreenUtil().scaleWidth}'),
+            Text('高度相对于设计稿放大的倍数:${ScreenUtil().scaleHeight}'),
           ],
         ),
       ),
