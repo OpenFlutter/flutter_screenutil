@@ -43,13 +43,6 @@ packages:
       url: "https://pub.flutter-io.cn"
     source: hosted
     version: "1.14.11"
-  common_utils:
-    dependency: "direct main"
-    description:
-      name: common_utils
-      url: "https://pub.flutter-io.cn"
-    source: hosted
-    version: "1.0.2"
   convert:
     dependency: transitive
     description:
@@ -88,8 +81,8 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "62d8b7d3a3cc4323eca1682166d7aee2890b1468"
-      url: "git://github.com/lizhuoyuan/flutter_screenUtil"
+      resolved-ref: d3a81e8015a4ac3281cd4e335a5c54e91183e743
+      url: "git://github.com/openflutter/flutter_screenutil"
     source: git
     version: "0.1.0"
   flutter_test:
