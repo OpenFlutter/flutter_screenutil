@@ -2,6 +2,8 @@
 # flutter_ScreenUtil
 **flutter Screen adaptation scheme**
 
+[中文文档](/README.md)
+
 github: https://github.com/OpenFlutter/flutter_ScreenUtil </br>
 csdn博客工具介绍:https://blog.csdn.net/u011272795/article/details/82795477
 
