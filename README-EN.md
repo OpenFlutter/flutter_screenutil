@@ -66,7 +66,7 @@ Other related apis：
 ```
 
 ```
-//导入
+//import
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ...
