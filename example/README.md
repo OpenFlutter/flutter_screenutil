@@ -3,6 +3,7 @@
 flutter_screenutil的使用示例
 
 ![效果](../demo.PNG)
+![effect](../effect.png)
 
 ## Getting Started
 
