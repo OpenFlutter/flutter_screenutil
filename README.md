@@ -1,87 +1,88 @@
 
 # flutter_ScreenUtil
-**flutter 屏幕适配方案**
+**flutter Screen adaptation scheme**
 
-[README of English](/README-EN.md)
+[中文文档](/README_CN.md)
 
 github: https://github.com/OpenFlutter/flutter_ScreenUtil </br>
 csdn博客工具介绍:https://blog.csdn.net/u011272795/article/details/82795477
 
 
-## 使用方法:
+## Usege:
 
-### 安装依赖：
-
-安装之前请查看最新版本
+### Add dependency：
+Please check the latest version before installation.
 ```
 dependencies:
   flutter:
     sdk: flutter
-  # 添加依赖
+  # add flutter_ScreenUtil
   flutter_screenutil: ^0.2.0
 ```
 
-### 在每个使用的地方导入包：
+### Add the following imports to your Dart code:
 ```
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 ```
 
-### 初始化设置尺寸
-在使用之前请设置好设计稿的宽度和高度，传入设计稿的宽度和高度(单位px)
-如果不设置则使用默认尺寸，默认为1080*1920
-一定在MaterialApp的home中的页面设置，以保证在每次使用之前设置好了适配尺寸:
+### Initialize the setup size
+Please set the width and height of the design draft before use, the width and height of the design draft (unit px).
+If not set, the default size is used. The default is 1080*1920.
+Be sure to set the page in the MaterialApp's home to ensure that the fit size is set before each use:
 
 ```
-//设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
-    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
+//Set the fit size (fill in the screen size of the device in the design)
+//If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
 ```
 
-### 使用：
+### Use：
 
-适配尺寸：
+Fit size：
 ```
-//传入设计稿的px尺寸：
-适配后的宽度width: ScreenUtil().setWidth(540),
-适配后的高度height: ScreenUtil().setHeight(200),
+Pass the px size of the design draft：
 
-例如:
+Width after adaptation: ScreenUtil().setWidth(540),
+Height after adaptation: ScreenUtil().setHeight(200),
+
+//for example:
 Container(
            width: ScreenUtil().setWidth(375),
            height: ScreenUtil().setHeight(200),
+           ...
             ),
 ```
 
-其他相关api：
+Other related apis：
 ```
-    ScreenUtil.pixelRatio       //设备的像素密度
-    ScreenUtil.screenWidth    //设备宽度
-    ScreenUtil.screenHeight    //设备高度
-    ScreenUtil.bottomBarHeight //底部安全区距离，适用于全面屏下面有按键的
-    ScreenUtil.statusBarHeight //状态栏高度 刘海屏会更高  单位px
+    ScreenUtil.pixelRatio       //Device pixel density
+    ScreenUtil.screenWidth      //Device width
+    ScreenUtil.screenHeight     //Device height
+    ScreenUtil.bottomBarHeight  //Bottom safe zone distance, suitable for buttons with full screen
+    ScreenUtil.statusBarHeight  //Status bar height , Notch will be higher Unit px
 
-    ScreenUtil().scaleWidth //宽度相对于设计稿放大的倍数
-    ScreenUtil().scaleHeight //高度相对于设计稿放大的倍数
-
-```
+    ScreenUtil().scaleWidth //The width is enlarged relative to the design draft
+    ScreenUtil().scaleHeight //Height relative to the magnification of the design draft
 
 ```
-//导入
+
+```
+//import
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ...
 
  @override
   Widget build(BuildContext context) {
-    //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
+    //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
     ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
-    print('设备宽度:${ScreenUtil.screenWidth}'); //设备宽度
-    print('设备高度:${ScreenUtil.screenHeight}'); //设备高度
-    print('设备的像素密度:${ScreenUtil.pixelRatio}'); //设备的像素密度
-    print('底部安全区距离:${ScreenUtil.bottomBarHeight}'); //底部安全区距离，适用于全面屏下面有按键的
-    print('状态栏高度:${ScreenUtil.statusBarHeight}px'); //状态栏高度 刘海屏会更高
-    print('宽度相对于设计稿放大的倍数:${ScreenUtil().scaleWidth}'); //宽度相对于设计稿放大的倍数
-    print('高度相对于设计稿放大的倍数:${ScreenUtil().scaleHeight}'); //高度相对于设计稿放大的倍数
+    print('Device width:${ScreenUtil.screenWidth}'); //Device width
+    print('Device height:${ScreenUtil.screenHeight}'); //Device height
+    print('Device pixel density:${ScreenUtil.pixelRatio}'); //Device pixel density
+    print('Bottom safe zone distance:${ScreenUtil.bottomBarHeight}'); //Bottom safe zone distance，suitable for buttons with full screen
+    print('Status bar height:${ScreenUtil.statusBarHeight}px'); //Status bar height , Notch will be higher Unit px
+    print('The width is enlarged relative to the design draft:${ScreenUtil().scaleWidth}'); //The width is enlarged relative to the design draft
+    print('Height relative to the magnification of the design draft:${ScreenUtil().scaleHeight}'); //Height relative to the magnification of the design draft
 
     return new Scaffold(
       appBar: new AppBar(
@@ -97,7 +98,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                   height: ScreenUtil().setHeight(200),
                   color: Colors.red,
                   child: Text(
-                    '我的宽度${ScreenUtil().setWidth(375)}dp',
+                    'My width:${ScreenUtil().setWidth(375)}dp',
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
@@ -105,18 +106,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                   width: ScreenUtil().setWidth(375),
                   height: ScreenUtil().setHeight(200),
                   color: Colors.blue,
-                  child: Text('我的宽度${ScreenUtil().setWidth(375)}dp',
+                  child: Text('My width:${ScreenUtil().setWidth(375)}dp',
                       style: TextStyle(color: Colors.white)),
                 ),
               ],
             ),
-            Text('设备的屏幕宽度：${ScreenUtil.screenWidth}px'),
-            Text('设备的屏幕高度:${ScreenUtil.screenHeight}px'),
-            Text('设备的像素密度:${ScreenUtil.pixelRatio}'),
-            Text('底部安全区距离:${ScreenUtil.bottomBarHeight}px'),
-            Text('状态栏高度:${ScreenUtil.statusBarHeight}px'),
-            Text('宽度相对于设计稿放大的倍数:${ScreenUtil().scaleWidth}'),
-            Text('高度相对于设计稿放大的倍数:${ScreenUtil().scaleHeight}'),
+            Text('Device width：${ScreenUtil.screenWidth}px'),
+            Text('Device height:${ScreenUtil.screenHeight}px'),
+            Text('Device pixel density:${ScreenUtil.pixelRatio}'),
+            Text('Bottom safe zone distance:${ScreenUtil.bottomBarHeight}px'),
+            Text('Status bar height:${ScreenUtil.statusBarHeight}px'),
+            Text('The width is enlarged relative to the design draft:${ScreenUtil().scaleWidth}'),
+            Text('Height relative to the magnification of the design draft:${ScreenUtil().scaleHeight}'),
           ],
         ),
       ),
@@ -124,11 +125,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
   }
 ```
 
-### 使用示例:
+### example:
 
 [example demo](/example)
  
-效果:
+effect:
 
-![效果](demo.PNG)
+![效果](effect.png)
 
