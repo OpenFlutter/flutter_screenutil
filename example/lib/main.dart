@@ -79,10 +79,12 @@ class _MyHomePageState extends State<MyHomePage> {
             Text('Status bar height:${ScreenUtil.statusBarHeight}px'),
             Text(
               'Width is enlarged relative to the design draft:${ScreenUtil().scaleWidth}',
-              style: TextStyle(),
+              textAlign: TextAlign.center,
             ),
             Text(
-                'Height is enlarged relative to the design draft:${ScreenUtil().scaleHeight}'),
+              'Height is enlarged relative to the design draft:${ScreenUtil().scaleHeight}',
+              textAlign: TextAlign.center,
+            ),
           ],
           crossAxisAlignment: CrossAxisAlignment.center,
         ),
