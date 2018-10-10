@@ -11,14 +11,14 @@ csdn博客工具介绍:https://blog.csdn.net/u011272795/article/details/82795477
 ## 使用方法:
 
 ### 安装依赖：
+
+安装之前请查看最新版本
 ```
 dependencies:
   flutter:
     sdk: flutter
   # 添加依赖
-  flutter_screenutil:
-    git:
-      url: git://github.com/openflutter/flutter_screenutil
+  flutter_screenutil: ^0.2.0
 ```
 
 ### 在每个使用的地方导入包：

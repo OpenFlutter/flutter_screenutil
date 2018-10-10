@@ -11,14 +11,13 @@ csdn博客工具介绍:https://blog.csdn.net/u011272795/article/details/82795477
 ## Usege:
 
 ### Add dependency：
+Please check the latest version before installation.
 ```
 dependencies:
   flutter:
     sdk: flutter
   # add flutter_ScreenUtil
-  flutter_screenutil:
-    git:
-      url: git://github.com/openflutter/flutter_screenutil
+  flutter_screenutil: ^0.2.0
 ```
 
 ### Add the following imports to your Dart code:
