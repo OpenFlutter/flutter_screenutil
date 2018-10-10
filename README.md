@@ -1,6 +1,6 @@
 
 # flutter_ScreenUtil
-**flutter Screen adaptation scheme**
+**A flutter plugin for screen adaptation**
 
 [中文文档](/README_CN.md)
 
