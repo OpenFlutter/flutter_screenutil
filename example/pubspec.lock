@@ -79,12 +79,10 @@ packages:
   flutter_screenutil:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: d3a81e8015a4ac3281cd4e335a5c54e91183e743
-      url: "git://github.com/openflutter/flutter_screenutil"
-    source: git
-    version: "0.1.0"
+      path: ".."
+      relative: true
+    source: path
+    version: "0.2.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
