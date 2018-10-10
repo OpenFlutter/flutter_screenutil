@@ -1,5 +1,5 @@
 name: flutter_screenutil
-description: A new flutter package project in order to adapt the screen.
+description: A screen adaptation tool.
 version: 0.2.0
 author: LiZhuoyuan <zhuoyuan93@gmail.com>
 homepage: https://github.com/OpenFlutter/flutter_ScreenUtil
