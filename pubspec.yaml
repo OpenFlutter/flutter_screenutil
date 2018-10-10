@@ -1,5 +1,5 @@
 name: flutter_screenutil
-description: A screen adaptation tool.
+description: A flutter plugin for screen adaptation
 version: 0.2.2
 author: LiZhuoyuan <zhuoyuan93@gmail.com>
 homepage: https://github.com/OpenFlutter/flutter_ScreenUtil
