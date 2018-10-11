@@ -2,7 +2,7 @@
 # flutter_ScreenUtil
 **flutter 屏幕适配方案**
 
-[README of English](/README.md)
+[README of English](https://github.com/OpenFlutter/flutter_ScreenUtil/blob/master/README.md)
 
 github: https://github.com/OpenFlutter/flutter_ScreenUtil
 
