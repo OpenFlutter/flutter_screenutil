@@ -2,10 +2,9 @@
 # flutter_ScreenUtil
 **A flutter plugin for screen adaptation**
 
-[中文文档](/README_CN.md)
+[中文文档](https://github.com/OpenFlutter/flutter_ScreenUtil/blob/master/README_CN.md)
 
-github: https://github.com/OpenFlutter/flutter_ScreenUtil </br>
-csdn博客工具介绍:https://blog.csdn.net/u011272795/article/details/82795477
+github: https://github.com/OpenFlutter/flutter_ScreenUtil
 
 
 ## Usege:

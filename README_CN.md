@@ -4,7 +4,8 @@
 
 [README of English](/README.md)
 
-github: https://github.com/OpenFlutter/flutter_ScreenUtil </br>
+github: https://github.com/OpenFlutter/flutter_ScreenUtil
+
 csdn博客工具介绍:https://blog.csdn.net/u011272795/article/details/82795477
 
 
