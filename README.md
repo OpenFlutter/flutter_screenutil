@@ -126,7 +126,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ### example:
 
-[example demo](/example)
+[example demo](https://github.com/OpenFlutter/flutter_ScreenUtil/blob/master/example)
  
 effect:
 
