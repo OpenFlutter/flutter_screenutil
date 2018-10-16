@@ -29,7 +29,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ### 初始化设置尺寸
 在使用之前请设置好设计稿的宽度和高度，传入设计稿的宽度和高度(单位px)
-如果不设置则使用默认尺寸，默认为1080*1920
 一定在MaterialApp的home中的页面设置，以保证在每次使用之前设置好了适配尺寸:
 
 ```
