@@ -25,7 +25,6 @@ dependencies:
 ### 在每个使用的地方导入包：
 ```
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 ```
 
 ### 初始化设置尺寸
