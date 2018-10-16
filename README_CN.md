@@ -1,6 +1,6 @@
 
 # flutter_ScreenUtil
-**flutter 屏幕适配方案**
+**flutter 屏幕适配方案，让你的UI不会因为在不同设备上变得难看**
 
 [README of English](https://github.com/OpenFlutter/flutter_ScreenUtil/blob/master/README.md)
 

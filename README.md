@@ -1,6 +1,6 @@
 
 # flutter_ScreenUtil
-**A flutter plugin for screen adaptation**
+**A flutter plugin for adapting screen and font size.Guaranteed to look good on different models**
 
 [中文文档](https://github.com/OpenFlutter/flutter_ScreenUtil/blob/master/README_CN.md)
 
