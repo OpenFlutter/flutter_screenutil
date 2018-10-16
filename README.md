@@ -7,7 +7,7 @@
 github: https://github.com/OpenFlutter/flutter_ScreenUtil
 
 
-## Usege:
+## Usage:
 
 ### Add dependency：
 Please check the latest version before installation.
