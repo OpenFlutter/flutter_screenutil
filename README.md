@@ -75,6 +75,7 @@ Other related apis：
     ScreenUtil.screenHeight     //Device height
     ScreenUtil.bottomBarHeight  //Bottom safe zone distance, suitable for buttons with full screen
     ScreenUtil.statusBarHeight  //Status bar height , Notch will be higher Unit px
+    ScreenUtil.textScaleFactory //System font scaling factor
 
     ScreenUtil().scaleWidth //The width is enlarged relative to the design draft
     ScreenUtil().scaleHeight //Height relative to the magnification of the design draft
@@ -153,7 +154,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
             SizedBox(
               height: ScreenUtil().setHeight(200),
             ),
-            Text('System font scaling:${ScreenUtil.textScaleFactory}'),
+            Text('System font scaling factor:${ScreenUtil.textScaleFactory}'),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

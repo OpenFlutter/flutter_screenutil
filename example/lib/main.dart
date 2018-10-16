@@ -43,7 +43,7 @@ class _MyHomePageState extends State<MyHomePage> {
         'Width is enlarged relative to the design draft:${ScreenUtil().scaleWidth}'); //The width is enlarged relative to the design draft
     print(
         'Height is enlarged relative to the design draft:${ScreenUtil().scaleHeight}'); //The height is enlarged relative to the design draft
-    print('System font scaling:${ScreenUtil.textScaleFactory}');
+    print('System font scaling factor:${ScreenUtil.textScaleFactory}');
 
     return new Scaffold(
       appBar: new AppBar(
@@ -93,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: ScreenUtil().setHeight(200),
             ),
-            Text('System font scaling:${ScreenUtil.textScaleFactory}'),
+            Text('System font scaling factor:${ScreenUtil.textScaleFactory}'),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
