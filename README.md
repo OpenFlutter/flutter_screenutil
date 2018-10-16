@@ -26,7 +26,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ### Initialize the setup size
 Please set the width and height of the design draft before use, the width and height of the design draft (unit px).
-If not set, the default size is used. The default is 1080*1920.
 Be sure to set the page in the MaterialApp's home to ensure that the fit size is set before each use:
 
 ```
