@@ -7,7 +7,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4b1e7c8a-90e5-4705-b34f-bcaa595e12fe" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example/lib/main_zh.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main_zh.dart" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,8 +23,8 @@
       <file leaf-file-name="main.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="258">
-              <caret line="28" column="50" lean-forward="true" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+            <state relative-caret-position="378">
+              <caret line="14" column="58" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="58" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -39,11 +41,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main_zh.dart" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main_zh.dart" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/example/lib/main_zh.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="28" column="50" lean-forward="true" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+            <state relative-caret-position="378">
+              <caret line="14" column="58" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -60,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="54">
-              <caret line="2" column="96" selection-start-line="2" selection-start-column="96" selection-end-line="2" selection-end-column="96" />
+            <state relative-caret-position="107">
+              <caret line="90" column="10" lean-forward="true" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -72,8 +74,8 @@
       <file leaf-file-name="README_CN.md" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/README_CN.md">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="81">
-              <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+            <state relative-caret-position="270">
+              <caret line="79" column="35" lean-forward="true" selection-start-line="79" selection-end-line="80" />
             </state>
           </provider>
         </entry>
@@ -131,11 +133,11 @@
         <option value="$PROJECT_DIR$/lib/flutter_screenutil.dart" />
         <option value="$PROJECT_DIR$/example/lib/main_en.dart" />
         <option value="$PROJECT_DIR$/example/README.md" />
-        <option value="$PROJECT_DIR$/README_CN.md" />
         <option value="$PROJECT_DIR$/pubspec.yaml" />
+        <option value="$PROJECT_DIR$/README_CN.md" />
+        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/example/lib/main.dart" />
         <option value="$PROJECT_DIR$/example/lib/main_zh.dart" />
-        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -479,7 +481,35 @@
       <option name="project" value="LOCAL" />
       <updated>1539677763871</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="添加文字适配">
+      <created>1539677905972</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1539677905972</updated>
+    </task>
+    <task id="LOCAL-00027" summary="0.3.0">
+      <created>1539677946217</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1539677946217</updated>
+    </task>
+    <task id="LOCAL-00028" summary="0.3.0文档">
+      <created>1539678078537</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1539678078537</updated>
+    </task>
+    <task id="LOCAL-00029" summary="0.3.0文档">
+      <created>1539678155975</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1539678155975</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -546,7 +576,9 @@
     <MESSAGE value="readme" />
     <MESSAGE value="example" />
     <MESSAGE value="添加文字适配" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加文字适配" />
+    <MESSAGE value="0.3.0" />
+    <MESSAGE value="0.3.0文档" />
+    <option name="LAST_COMMIT_MESSAGE" value="0.3.0文档" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -837,37 +869,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="258">
-          <caret line="28" column="50" lean-forward="true" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/lib/main_zh.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="28" column="50" lean-forward="true" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/example/README.md">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="297">
           <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README_CN.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
@@ -878,10 +883,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README_CN.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="79" column="35" lean-forward="true" selection-start-line="79" selection-end-line="80" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="2" column="96" selection-start-line="2" selection-start-column="96" selection-end-line="2" selection-end-column="96" />
+        <state relative-caret-position="107">
+          <caret line="90" column="10" lean-forward="true" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="14" column="58" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/lib/main_zh.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="14" column="58" selection-start-line="14" selection-start-column="58" selection-end-line="14" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
