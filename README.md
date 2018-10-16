@@ -177,7 +177,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ### example:
 
-[example demo](https://github.com/OpenFlutter/flutter_ScreenUtil/blob/master/example/lib/main_zh.dart)
+[example demo](/example/lib/main_zh.dart)
  
 effect:
 

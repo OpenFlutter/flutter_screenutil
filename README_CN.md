@@ -178,7 +178,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ### 使用示例:
 
-[example demo](/example/lib/main_zh.dart)
+[example demo](https://github.com/OpenFlutter/flutter_ScreenUtil/blob/master/example/lib/main_zh.dart)
  
 效果:
 
