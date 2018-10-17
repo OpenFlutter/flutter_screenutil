@@ -41,9 +41,13 @@ class _MyHomePageState extends State<MyHomePage> {
     print(
         'Status bar height:${ScreenUtil.statusBarHeight}px'); //Status bar height , Notch will be higher Unit px
     print(
-        'Ratio of actual width dp to design draft px:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}'); //The width is enlarged relative to the design draft
+        'Ratio of actual width dp to design draft px:${ScreenUtil().scaleWidth}');
     print(
-        'Ratio of actual height dp to design draft px:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}'); //The height is enlarged relative to the design draft
+        'Ratio of actual height dp to design draft px:${ScreenUtil().scaleHeight}');
+    print(
+        'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}');
+    print(
+        'The ratio of  height width to the size of the design:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}');
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.title),
@@ -82,6 +86,14 @@ class _MyHomePageState extends State<MyHomePage> {
             Text('Bottom safe zone distance:${ScreenUtil.bottomBarHeight}px'),
             Text('Status bar height:${ScreenUtil.statusBarHeight}px'),
             Text(
+              'Ratio of actual width dp to design draft px:${ScreenUtil().scaleWidth}',
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              'Ratio of actual height dp to design draft px:${ScreenUtil().scaleHeight}',
+              textAlign: TextAlign.center,
+            ),
+            Text(
               'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}',
               textAlign: TextAlign.center,
             ),
@@ -90,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
               textAlign: TextAlign.center,
             ),
             SizedBox(
-              height: ScreenUtil().setHeight(200),
+              height: ScreenUtil().setHeight(100),
             ),
             Text('System font scaling factor:${ScreenUtil.textScaleFactory}'),
             Column(
