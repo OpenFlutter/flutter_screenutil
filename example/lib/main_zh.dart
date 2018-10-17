@@ -83,11 +83,11 @@ class _MyHomePageState extends State<MyHomePage> {
             Text('底部安全区距离:${ScreenUtil.bottomBarHeight}px'),
             Text('状态栏高度:${ScreenUtil.statusBarHeight}px'),
             Text(
-              '宽度相对于设计稿放大的倍数:${ScreenUtil().scaleWidth}',
+              '字体和宽度相对设计稿放大的比例:${ScreenUtil().scaleWidth}',
               textAlign: TextAlign.center,
             ),
             Text(
-              '高度相对于设计稿放大的倍数:${ScreenUtil().scaleHeight}',
+              '高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight}',
               textAlign: TextAlign.center,
             ),
             SizedBox(

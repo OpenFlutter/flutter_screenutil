@@ -83,11 +83,11 @@ class _MyHomePageState extends State<MyHomePage> {
             Text('Bottom safe zone distance:${ScreenUtil.bottomBarHeight}px'),
             Text('Status bar height:${ScreenUtil.statusBarHeight}px'),
             Text(
-              'Width is enlarged relative to the design draft:${ScreenUtil().scaleWidth}',
+              'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth}',
               textAlign: TextAlign.center,
             ),
             Text(
-              'Height is enlarged relative to the design draft:${ScreenUtil().scaleHeight}',
+              'The ratio of  height width to the size of the design:${ScreenUtil().scaleHeight}',
               textAlign: TextAlign.center,
             ),
             SizedBox(

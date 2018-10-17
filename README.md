@@ -1,6 +1,6 @@
 
 # flutter_ScreenUtil
-**A flutter plugin for adapting screen and font size.Guaranteed to look good on different models**
+**A flutter plugin for adapting screen and font size.Let your UI display a reasonable layout on different screen sizes!**
 
 [中文文档](https://github.com/OpenFlutter/flutter_ScreenUtil/blob/master/README_CN.md)
 
@@ -76,8 +76,8 @@ Other related apis：
     ScreenUtil.statusBarHeight  //Status bar height , Notch will be higher Unit px
     ScreenUtil.textScaleFactory //System font scaling factor
 
-    ScreenUtil().scaleWidth //The width is enlarged relative to the design draft
-    ScreenUtil().scaleHeight //Height relative to the magnification of the design draft
+    ScreenUtil().scaleWidth //The ratio of font and width to the size of the design
+    ScreenUtil().scaleHeight //The ratio of  height width to the size of the design
 
 ```
 
@@ -87,7 +87,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ...
 
- @override
+  @override
   Widget build(BuildContext context) {
     ///Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
     ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
@@ -100,10 +100,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
     print(
         'Status bar height:${ScreenUtil.statusBarHeight}px'); //Status bar height , Notch will be higher Unit px
     print(
-        'Width is enlarged relative to the design draft:${ScreenUtil().scaleWidth}'); //The width is enlarged relative to the design draft
+        'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth}'); //The width is enlarged relative to the design draft
     print(
-        'Height is enlarged relative to the design draft:${ScreenUtil().scaleHeight}'); //The height is enlarged relative to the design draft
-    print('System font scaling:${ScreenUtil.textScaleFactory}');
+        'The ratio of  height width to the size of the design:${ScreenUtil().scaleHeight}'); //The height is enlarged relative to the design draft
 
     return new Scaffold(
       appBar: new AppBar(
@@ -143,11 +142,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
             Text('Bottom safe zone distance:${ScreenUtil.bottomBarHeight}px'),
             Text('Status bar height:${ScreenUtil.statusBarHeight}px'),
             Text(
-              'Width is enlarged relative to the design draft:${ScreenUtil().scaleWidth}',
+              'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth}',
               textAlign: TextAlign.center,
             ),
             Text(
-              'Height is enlarged relative to the design draft:${ScreenUtil().scaleHeight}',
+              'The ratio of  height width to the size of the design:${ScreenUtil().scaleHeight}',
               textAlign: TextAlign.center,
             ),
             SizedBox(
