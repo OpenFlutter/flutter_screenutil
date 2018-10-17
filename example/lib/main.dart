@@ -77,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-            Text('Device width：${ScreenUtil.screenWidth}px'),
+            Text('Device width:${ScreenUtil.screenWidth}px'),
             Text('Device height:${ScreenUtil.screenHeight}px'),
             Text('Device pixel density:${ScreenUtil.pixelRatio}'),
             Text('Bottom safe zone distance:${ScreenUtil.bottomBarHeight}px'),

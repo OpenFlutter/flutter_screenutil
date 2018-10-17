@@ -137,7 +137,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                 ),
               ],
             ),
-            Text('设备宽度：${ScreenUtil.screenWidth}px'),
+            Text('设备宽度:${ScreenUtil.screenWidth}px'),
             Text('设备高度:${ScreenUtil.screenHeight}px'),
             Text('设备的像素密度:${ScreenUtil.pixelRatio}'),
             Text('底部安全区距离:${ScreenUtil.bottomBarHeight}px'),

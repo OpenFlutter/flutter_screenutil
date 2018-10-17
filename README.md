@@ -136,7 +136,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                 ),
               ],
             ),
-            Text('Device width：${ScreenUtil.screenWidth}px'),
+            Text('Device width:${ScreenUtil.screenWidth}px'),
             Text('Device height:${ScreenUtil.screenHeight}px'),
             Text('Device pixel density:${ScreenUtil.pixelRatio}'),
             Text('Bottom safe zone distance:${ScreenUtil.bottomBarHeight}px'),
