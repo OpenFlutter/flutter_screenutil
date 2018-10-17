@@ -43,7 +43,6 @@ class _MyHomePageState extends State<MyHomePage> {
         'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth}'); //The width is enlarged relative to the design draft
     print(
         'The ratio of  height width to the size of the design:${ScreenUtil().scaleHeight}'); //The height is enlarged relative to the design draft
-    print('System font scaling factor:${ScreenUtil.textScaleFactory}');
 
     return new Scaffold(
       appBar: new AppBar(
@@ -105,10 +104,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 Text('My font size is 28px and will change with the system.',
                     style: TextStyle(
                         color: Colors.black, fontSize: ScreenUtil().setSp(28))),
-                Text('My font size is default.',
-                    style: TextStyle(
-                      color: Colors.black,
-                    )),
               ],
             )
           ],
