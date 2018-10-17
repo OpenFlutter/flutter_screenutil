@@ -5,3 +5,7 @@
 ## [0.2.2] - Optimize documentation
 
 ## [0.3.0] - Add font size adaptation
+
+## [0.3.0] - Perfect documentation
+Width is enlarged relative to the design draft => The ratio of font and width to the size of the design
+Height is enlarged relative to the design draft => The ratio of  height width to the size of the design

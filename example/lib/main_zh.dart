@@ -39,9 +39,9 @@ class _MyHomePageState extends State<MyHomePage> {
     print(
         '状态栏高度:${ScreenUtil.statusBarHeight}px'); //Status bar height , Notch will be higher Unit px
     print(
-        '宽度相对于设计稿放大的倍数:${ScreenUtil().scaleWidth}'); //The width is enlarged relative to the design draft
+        '字体和宽度相对设计稿放大的比例:${ScreenUtil().scaleWidth}'); //The width is enlarged relative to the design draft
     print(
-        '高度相对于设计稿放大的倍数:${ScreenUtil().scaleHeight}'); //The height is enlarged relative to the design draft
+        '高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight}'); //The height is enlarged relative to the design draft
     print('系统的字体缩放比例:${ScreenUtil.textScaleFactory}');
 
     return new Scaffold(
