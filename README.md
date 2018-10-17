@@ -26,7 +26,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ### Initialize the setup size
 Please set the width and height of the design draft before use, the width and height of the design draft (unit px).
-Be sure to set the page in the MaterialApp's home to ensure that the fit size is set before each use:
+Be sure to set the page in the MaterialApp's home(ie the entry file, just set it once) to ensure that the fit size is set before each use:
 
 ```
 //Set the fit size (fill in the screen size of the device in the design)

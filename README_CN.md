@@ -29,7 +29,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ### 初始化设置尺寸
 在使用之前请设置好设计稿的宽度和高度，传入设计稿的宽度和高度(单位px)
-一定在MaterialApp的home中的页面设置，以保证在每次使用之前设置好了适配尺寸:
+一定在MaterialApp的home中的页面设置(即入口文件，只需设置一次),以保证在每次使用之前设置好了适配尺寸:
 
 ```
 //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
