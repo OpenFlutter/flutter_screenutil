@@ -62,7 +62,7 @@ class ScreenUtil {
   ///底部安全区距离
   static double get bottomBarHeight => _bottomBarHeight * _pixelRatio;
 
-  ///相对于设计稿放大的倍数
+  ///实际的dp与设计稿px的比例
   get scaleWidth => _screenWidth / instance._designWidth;
 
   get scaleHeight => _screenHeight / instance._designHeight;
@@ -82,6 +82,6 @@ class ScreenUtil {
   ///@param allowFontScaling 控制字体是否要根据系统的“字体大小”辅助选项来进行缩放。默认值为true。
   ///@param allowFontScaling Specifies whether fonts should scale to respect Text Size accessibility settings. The default is true.
   setSp(int fontSize, [allowFontScaling = true]) => allowFontScaling
-      ? setWidth(fontSize) * _textScaleFactor
-      : setWidth(fontSize);
+      ? setWidth(fontSize) * _pixelRatio * _textScaleFactor
+      : setWidth(fontSize) * _pixelRatio;
 }

@@ -41,10 +41,9 @@ class _MyHomePageState extends State<MyHomePage> {
     print(
         'Status bar height:${ScreenUtil.statusBarHeight}px'); //Status bar height , Notch will be higher Unit px
     print(
-        'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth}'); //The width is enlarged relative to the design draft
+        'Ratio of actual width dp to design draft px:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}'); //The width is enlarged relative to the design draft
     print(
-        'The ratio of  height width to the size of the design:${ScreenUtil().scaleHeight}'); //The height is enlarged relative to the design draft
-
+        'Ratio of actual height dp to design draft px:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}'); //The height is enlarged relative to the design draft
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.title),
@@ -63,7 +62,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     'My width:${ScreenUtil().setWidth(375)}dp',
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: ScreenUtil().setSp(28, false)),
+                        fontSize: ScreenUtil().setSp(12, false)),
                   ),
                 ),
                 Container(
@@ -73,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('My width:${ScreenUtil().setWidth(375)}dp',
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: ScreenUtil().setSp(28, false))),
+                          fontSize: ScreenUtil().setSp(12, false))),
                 ),
               ],
             ),
@@ -83,11 +82,11 @@ class _MyHomePageState extends State<MyHomePage> {
             Text('Bottom safe zone distance:${ScreenUtil.bottomBarHeight}px'),
             Text('Status bar height:${ScreenUtil.statusBarHeight}px'),
             Text(
-              'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth}',
+              'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}',
               textAlign: TextAlign.center,
             ),
             Text(
-              'The ratio of  height width to the size of the design:${ScreenUtil().scaleHeight}',
+              'The ratio of  height width to the size of the design:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}',
               textAlign: TextAlign.center,
             ),
             SizedBox(
@@ -98,13 +97,17 @@ class _MyHomePageState extends State<MyHomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                    'My font size is 28px and will not change with the system.',
+                    'My font size is 14px on the design draft and will not change with the system.',
                     style: TextStyle(
-                        color: Colors.black,
-                        fontSize: ScreenUtil().setSp(28, false))),
-                Text('My font size is 28px and will change with the system.',
+                      color: Colors.black,
+                      fontSize: ScreenUtil().setSp(14, false),
+                    )),
+                Text(
+                    'My font size is 14px on the design draft and will change with the system.',
                     style: TextStyle(
-                        color: Colors.black, fontSize: ScreenUtil().setSp(28))),
+                      color: Colors.black,
+                      fontSize: ScreenUtil().setSp(14),
+                    )),
               ],
             )
           ],

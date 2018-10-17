@@ -16,7 +16,7 @@ dependencies:
   flutter:
     sdk: flutter
   # add flutter_ScreenUtil
-  flutter_screenutil: ^0.3.1
+  flutter_screenutil: ^0.4.0
 ```
 
 ### Add the following imports to your Dart code:
@@ -76,8 +76,8 @@ Other related apis：
     ScreenUtil.statusBarHeight  //Status bar height , Notch will be higher Unit px
     ScreenUtil.textScaleFactory //System font scaling factor
 
-    ScreenUtil().scaleWidth //The ratio of font and width to the size of the design
-    ScreenUtil().scaleHeight //The ratio of  height width to the size of the design
+    ScreenUtil().scaleWidth //Ratio of actual width dp to design draft px
+    ScreenUtil().scaleHeight //Ratio of actual height dp to design draft px
 
 ```
 
@@ -100,9 +100,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
     print(
         'Status bar height:${ScreenUtil.statusBarHeight}px'); //Status bar height , Notch will be higher Unit px
     print(
-        'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth}'); //The width is enlarged relative to the design draft
+        'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}'); //The width is enlarged relative to the design draft
     print(
-        'The ratio of  height width to the size of the design:${ScreenUtil().scaleHeight}'); //The height is enlarged relative to the design draft
+        'The ratio of  height width to the size of the design:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}'); //The height is enlarged relative to the design draft
 
     return new Scaffold(
       appBar: new AppBar(
@@ -122,7 +122,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                     'My width:${ScreenUtil().setWidth(375)}dp',
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: ScreenUtil().setSp(28, false)),
+                        fontSize: ScreenUtil().setSp(12, false)),
                   ),
                 ),
                 Container(
@@ -132,7 +132,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                   child: Text('My width:${ScreenUtil().setWidth(375)}dp',
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: ScreenUtil().setSp(28, false))),
+                          fontSize: ScreenUtil().setSp(12, false))),
                 ),
               ],
             ),
@@ -142,11 +142,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
             Text('Bottom safe zone distance:${ScreenUtil.bottomBarHeight}px'),
             Text('Status bar height:${ScreenUtil.statusBarHeight}px'),
             Text(
-              'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth}',
+              'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}',
               textAlign: TextAlign.center,
             ),
             Text(
-              'The ratio of  height width to the size of the design:${ScreenUtil().scaleHeight}',
+              'The ratio of  height width to the size of the design:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}',
               textAlign: TextAlign.center,
             ),
             SizedBox(
@@ -157,13 +157,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                    'My font size is 28px and will not change with the system.',
+                    'My font size is 14px on the design draft and will not change with the system.',
                     style: TextStyle(
-                        color: Colors.black,
-                        fontSize: ScreenUtil().setSp(28, false))),
-                Text('My font size is 28px and will change with the system.',
+                      color: Colors.black,
+                      fontSize: ScreenUtil().setSp(14, false),
+                    )),
+                Text(
+                    'My font size is 14px on the design draft and will change with the system.',
                     style: TextStyle(
-                        color: Colors.black, fontSize: ScreenUtil().setSp(28))),
+                      color: Colors.black,
+                      fontSize: ScreenUtil().setSp(14),
+                    )),
               ],
             )
           ],

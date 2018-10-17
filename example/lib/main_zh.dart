@@ -40,9 +40,9 @@ class _MyHomePageState extends State<MyHomePage> {
     print(
         '状态栏高度:${ScreenUtil.statusBarHeight}px'); //Status bar height , Notch will be higher Unit px
     print(
-        '字体和宽度相对设计稿放大的比例:${ScreenUtil().scaleWidth}'); //The width is enlarged relative to the design draft
+        '实际宽度的dp与设计稿px的比例:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}'); //The width is enlarged relative to the design draft
     print(
-        '高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight}'); //The height is enlarged relative to the design draft
+        '实际高度的dp与设计稿px的比例:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}'); //The height is enlarged relative to the design draft
     print('系统的字体缩放比例:${ScreenUtil.textScaleFactory}');
 
     return new Scaffold(
@@ -83,11 +83,11 @@ class _MyHomePageState extends State<MyHomePage> {
             Text('底部安全区距离:${ScreenUtil.bottomBarHeight}px'),
             Text('状态栏高度:${ScreenUtil.statusBarHeight}px'),
             Text(
-              '字体和宽度相对设计稿放大的比例:${ScreenUtil().scaleWidth}',
+              '实际宽度的dp与设计稿px的比例:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}',
               textAlign: TextAlign.center,
             ),
             Text(
-              '高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight}',
+              '实际高度的dp与设计稿px的比例:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}',
               textAlign: TextAlign.center,
             ),
             SizedBox(
@@ -97,13 +97,13 @@ class _MyHomePageState extends State<MyHomePage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('我的文字大小是28px，不会随着系统的文字大小变化',
+                Text('我的文字大小是14px，不会随着系统的文字大小变化',
                     style: TextStyle(
                         color: Colors.black,
-                        fontSize: ScreenUtil().setSp(28, false))),
-                Text('我的文字大小是28px，会随着系统的文字大小变化',
+                        fontSize: ScreenUtil().setSp(14, false))),
+                Text('我的文字大小是14px，会随着系统的文字大小变化',
                     style: TextStyle(
-                        color: Colors.black, fontSize: ScreenUtil().setSp(28))),
+                        color: Colors.black, fontSize: ScreenUtil().setSp(14))),
               ],
             )
           ],

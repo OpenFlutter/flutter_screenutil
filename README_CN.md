@@ -19,7 +19,7 @@ dependencies:
   flutter:
     sdk: flutter
   # 添加依赖
-  flutter_screenutil: ^0.3.1
+  flutter_screenutil: ^0.4.0
 ```
 
 ### 在每个使用的地方导入包：
@@ -77,8 +77,8 @@ for example:
     ScreenUtil.statusBarHeight  //状态栏高度 刘海屏会更高  单位px
     ScreenUtil.textScaleFactory //系统字体缩放比例
     
-    ScreenUtil().scaleWidth  //字体和宽度相对设计稿放大的比例
-    ScreenUtil().scaleHeight //高度相对于设计稿放大的比例
+    ScreenUtil().scaleWidth  // 实际宽度的dp与设计稿px的比例
+    ScreenUtil().scaleHeight // 实际高度的dp与设计稿px的比例
     
 ```
 
@@ -88,7 +88,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ...
 
-@override
+  @override
   Widget build(BuildContext context) {
     //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
     ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
@@ -100,9 +100,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
     print(
         '状态栏高度:${ScreenUtil.statusBarHeight}px'); //Status bar height , Notch will be higher Unit px
     print(
-        '字体和宽度相对设计稿放大的比例:${ScreenUtil().scaleWidth}'); //The width is enlarged relative to the design draft
+        '实际宽度的dp与设计稿px的比例:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}'); //The width is enlarged relative to the design draft
     print(
-        '高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight}'); //The height is enlarged relative to the design draft
+        '实际高度的dp与设计稿px的比例:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}'); //The height is enlarged relative to the design draft
     print('系统的字体缩放比例:${ScreenUtil.textScaleFactory}');
 
     return new Scaffold(
@@ -143,11 +143,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
             Text('底部安全区距离:${ScreenUtil.bottomBarHeight}px'),
             Text('状态栏高度:${ScreenUtil.statusBarHeight}px'),
             Text(
-              '字体和宽度相对设计稿放大的比例:${ScreenUtil().scaleWidth}',
+              '实际宽度的dp与设计稿px的比例:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}',
               textAlign: TextAlign.center,
             ),
             Text(
-              '高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight}',
+              '实际高度的dp与设计稿px的比例:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}',
               textAlign: TextAlign.center,
             ),
             SizedBox(
@@ -157,13 +157,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('我的文字大小是28px，不会随着系统的文字大小变化',
+                Text('我的文字大小是14px，不会随着系统的文字大小变化',
                     style: TextStyle(
                         color: Colors.black,
-                        fontSize: ScreenUtil().setSp(28, false))),
-                Text('我的文字大小是28px，会随着系统的文字大小变化',
+                        fontSize: ScreenUtil().setSp(14, false))),
+                Text('我的文字大小是14px，会随着系统的文字大小变化',
                     style: TextStyle(
-                        color: Colors.black, fontSize: ScreenUtil().setSp(28))),
+                        color: Colors.black, fontSize: ScreenUtil().setSp(14))),
               ],
             )
           ],
