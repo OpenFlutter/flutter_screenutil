@@ -171,11 +171,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('我的文字大小在设计稿上是14px，不会随着系统的文字大小变化',
+                Text('我的文字大小在设计稿上是14px，不会随着系统的文字缩放比例变化',
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: ScreenUtil().setSp(14, false))),
-                Text('我的文字大小在设计稿上是14px，会随着系统的文字大小变化',
+                Text('我的文字大小在设计稿上是14px，会随着系统的文字缩放比例变化',
                     style: TextStyle(
                         color: Colors.black, fontSize: ScreenUtil().setSp(14))),
               ],
