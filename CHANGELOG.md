@@ -12,3 +12,4 @@ Height is enlarged relative to the design draft => The ratio of  height width to
 
 ## [0.4.0] - Optimize font adaptation method
 
+## [0.4.1] - Fix font adaptation issues
