@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     'My width:${ScreenUtil().setWidth(375)}dp',
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: ScreenUtil().setSp(12, false)),
+                        fontSize: ScreenUtil().setSp(24, false)),
                   ),
                 ),
                 Container(
@@ -77,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('My width:${ScreenUtil().setWidth(375)}dp',
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: ScreenUtil().setSp(12, false))),
+                          fontSize: ScreenUtil().setSp(24, false))),
                 ),
               ],
             ),
@@ -110,16 +110,16 @@ class _MyHomePageState extends State<MyHomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                    'My font size is 14px on the design draft and will not change with the system.',
+                    'My font size is 24px on the design draft and will not change with the system.',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: ScreenUtil().setSp(14, false),
+                      fontSize: ScreenUtil().setSp(24, false),
                     )),
                 Text(
-                    'My font size is 14px on the design draft and will change with the system.',
+                    'My font size is 24px on the design draft and will change with the system.',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: ScreenUtil().setSp(14),
+                      fontSize: ScreenUtil().setSp(24),
                     )),
               ],
             )

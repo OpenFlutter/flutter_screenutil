@@ -28,7 +28,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
@@ -46,8 +45,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     print(
         '宽度和字体相对于设计稿放大的比例:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}');
-    print(
-        '高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}');
+    print('高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}');
     print('系统的字体缩放比例:${ScreenUtil.textScaleFactory}');
 
     return new Scaffold(
@@ -68,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     '我的宽度:${ScreenUtil().setWidth(375)}dp',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: ScreenUtil().setSp(12, false),
+                      fontSize: ScreenUtil().setSp(24, false),
                     ),
                   ),
                 ),
@@ -79,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('我的宽度:${ScreenUtil().setWidth(375)}dp',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: ScreenUtil().setSp(12, false),
+                        fontSize: ScreenUtil().setSp(24, false),
                       )),
                 ),
               ],
@@ -112,13 +110,13 @@ class _MyHomePageState extends State<MyHomePage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('我的文字大小在设计稿上是14px，不会随着系统的文字缩放比例变化',
+                Text('我的文字大小在设计稿上是25px，不会随着系统的文字缩放比例变化',
                     style: TextStyle(
                         color: Colors.black,
-                        fontSize: ScreenUtil().setSp(14, false))),
-                Text('我的文字大小在设计稿上是14px，会随着系统的文字缩放比例变化',
+                        fontSize: ScreenUtil().setSp(24, false))),
+                Text('我的文字大小在设计稿上是25px，会随着系统的文字缩放比例变化',
                     style: TextStyle(
-                        color: Colors.black, fontSize: ScreenUtil().setSp(14))),
+                        color: Colors.black, fontSize: ScreenUtil().setSp(24))),
               ],
             )
           ],
