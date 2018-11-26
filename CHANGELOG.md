@@ -16,10 +16,10 @@ Height is enlarged relative to the design draft => The ratio of  height width to
 
 ## [0.4.2] - add two Properties
 
-  ///Current device width dp
-  ///当前设备宽度 dp
+  ///Current device width dp <br/>
+  ///当前设备宽度 dp <br/>
   ScreenUtil.screenWidthDp 
 
-  ///Current device height dp
-  ///当前设备高度 dp
+  ///Current device height dp <br/>
+  ///当前设备高度 dp <br/>
   ScreenUtil.screenHeightDp   
