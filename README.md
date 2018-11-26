@@ -6,6 +6,7 @@
 
 github: https://github.com/OpenFlutter/flutter_ScreenUtil
 
+[Update log](/CHANGELOG.md)
 
 ## Usage:
 
