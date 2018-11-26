@@ -13,3 +13,13 @@ Height is enlarged relative to the design draft => The ratio of  height width to
 ## [0.4.0] - Optimize font adaptation method
 
 ## [0.4.1] - Fix font adaptation issues
+
+## [0.4.2] - add two Properties
+
+  ///Current device width dp
+  ///当前设备宽度 dp
+  ScreenUtil.screenWidthDp 
+
+  ///Current device height dp
+  ///当前设备高度 dp
+  ScreenUtil.screenHeightDp   

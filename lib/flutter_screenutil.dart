@@ -50,6 +50,12 @@ class ScreenUtil {
   ///设备的像素密度
   static double get pixelRatio => _pixelRatio;
 
+  ///当前设备宽度 dp
+  static double get screenWidthDp => _screenWidth;
+
+  ///当前设备高度 dp
+  static double get screenHeightDp => _screenHeight;
+
   ///当前设备宽度 px
   static double get screenWidth => _screenWidth * _pixelRatio;
 
