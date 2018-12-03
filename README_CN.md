@@ -20,7 +20,7 @@ dependencies:
   flutter:
     sdk: flutter
   # 添加依赖
-  flutter_screenutil: ^0.4.1
+  flutter_screenutil: ^0.4.2
 ```
 
 ### 在每个使用的地方导入包：
