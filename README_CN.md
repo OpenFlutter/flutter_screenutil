@@ -1,5 +1,9 @@
 
 # flutter_ScreenUtil
+
+[![pub package](https://img.shields.io/pub/v/flutter_screenutil.svg)](https://pub.dartlang.org/packages/flutter_screenutil)
+
+
 **flutter 屏幕适配方案，让你的UI在不同尺寸的屏幕上都能显示合理的布局!**
 
 [README of English](https://github.com/OpenFlutter/flutter_ScreenUtil/blob/master/README.md)
