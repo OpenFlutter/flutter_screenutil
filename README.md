@@ -1,5 +1,7 @@
 
 # flutter_ScreenUtil
+[![pub package](https://img.shields.io/pub/v/flutter_ScreenUtil.svg)](https://pub.dartlang.org/packages/flutter_ScreenUtil)
+
 **A flutter plugin for adapting screen and font size.Let your UI display a reasonable layout on different screen sizes!**
 
 [中文文档](https://github.com/OpenFlutter/flutter_ScreenUtil/blob/master/README_CN.md)
