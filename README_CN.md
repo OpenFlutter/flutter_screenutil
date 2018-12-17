@@ -34,6 +34,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ### 初始化设置尺寸
 在使用之前请设置好设计稿的宽度和高度，传入设计稿的宽度和高度(单位px)
+
 一定在MaterialApp的home中的页面设置(即入口文件，只需设置一次),以保证在每次使用之前设置好了适配尺寸:
 
 ```
@@ -43,10 +44,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ### 使用：
 
-适配尺寸：
+#### 适配尺寸： 
 
-//传入设计稿的px尺寸：
+传入设计稿的px尺寸：
+
 根据款第适配 width: ScreenUtil().setWidth(540),
+
 根据高度适配 height: ScreenUtil().setHeight(200),
 
 **注意**
@@ -71,7 +74,7 @@ Container(
             ),
 ```
 
-适配字体:
+#### 适配字体:
 ``` 
       ScreenUtil().setSp(28)         //传入字体大小，根据系统的“字体大小”辅助选项来进行缩放
       ScreenUtil().setSp(28，false)  //传入字体大小，不会根据系统的“字体大小”辅助选项来进行缩放
@@ -87,7 +90,7 @@ for example:
 
 ```
 
-其他相关api：
+#### 其他相关api：
 ```
     ScreenUtil.pixelRatio       //设备的像素密度
     ScreenUtil.screenWidth      //设备宽度
