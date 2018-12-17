@@ -48,7 +48,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 传入设计稿的px尺寸：
 
-根据款第适配 width: ScreenUtil().setWidth(540),
+根据宽度适配 width: ScreenUtil().setWidth(540),
 
 根据高度适配 height: ScreenUtil().setHeight(200),
 
