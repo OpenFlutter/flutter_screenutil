@@ -39,22 +39,38 @@ ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
 
 ### Use：
 
-Adapt screen size：
-```
+#### Adapt screen size：
+
 Pass the px size of the design draft：
 
-Width after adaptation: ScreenUtil().setWidth(540),
-Height after adaptation: ScreenUtil().setHeight(200),
+Adapted to screen width: ScreenUtil().setWidth(540),
 
+Adapted to screen height: ScreenUtil().setHeight(200),
+
+**Note** 
+
+Height is also adapted according to setWidth to ensure no deformation (when you want a square) 
+
+setHeight method is mainly adapted in height, you want to control the height and actuality of a screen on the UIUsed when the same is displayed.
+
+```
 //for example:
+//rectangle
 Container(
            width: ScreenUtil().setWidth(375),
            height: ScreenUtil().setHeight(200),
            ...
             ),
+            
+////If you want to display a square:
+Container(
+           width: ScreenUtil().setWidth(300),
+           height: ScreenUtil().setWidth(300),
+            ),
+            
 ```
 
-Adapter font:
+#### Adapter font:
 ``` 
       ScreenUtil().setSp(28)         //Incoming font size，the unit is pixel, fonts will scale to respect Text Size accessibility settings
       ScreenUtil().setSp(28，false)  //Incoming font size，the unit is pixel，fonts will not scale to respect Text Size accessibility settings
@@ -70,7 +86,7 @@ for example:
 
 ```
 
-Other related apis：
+#### Other related apis：
 ```
     ScreenUtil.pixelRatio       //Device pixel density
     ScreenUtil.screenWidth      //Device width
