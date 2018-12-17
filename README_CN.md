@@ -44,7 +44,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 ### 使用：
 
 适配尺寸：
-```
+
 //传入设计稿的px尺寸：
 根据款第适配 width: ScreenUtil().setWidth(540),
 根据高度适配 height: ScreenUtil().setHeight(200),
@@ -55,12 +55,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 setHeight方法主要是在高度上进行适配, 在你想控制UI上一屏的高度与实际中显示一样时使用.
 
 例如:
+
+```
+//长方形:
 Container(
            width: ScreenUtil().setWidth(375),
            height: ScreenUtil().setHeight(200),
             ),
             
-如果你想显示一个正方形:
+//如果你想显示一个正方形:
 Container(
            width: ScreenUtil().setWidth(300),
            height: ScreenUtil().setWidth(300),
