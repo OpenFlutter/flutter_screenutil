@@ -23,3 +23,9 @@ Height is enlarged relative to the design draft => The ratio of  height width to
   ///Current device height dp <br/>
   ///当前设备高度 dp <br/>
   ScreenUtil.screenHeightDp   
+
+## [0.4.2] - Modify the font to change with the system zoom mode. The default value is false.
+
+setSp(int fontSize, [allowFontScaling = false]) => allowFontScaling
+      ? setWidth(fontSize) * _textScaleFactor
+      : setWidth(fontSize);

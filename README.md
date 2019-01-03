@@ -72,8 +72,8 @@ Container(
 
 #### Adapter font:
 ``` 
-      ScreenUtil().setSp(28)         //Incoming font size，the unit is pixel, fonts will scale to respect Text Size accessibility settings
-      ScreenUtil().setSp(28，false)  //Incoming font size，the unit is pixel，fonts will not scale to respect Text Size accessibility settings
+      ScreenUtil().setSp(28)         //Incoming font size，the unit is pixel, fonts will not scale to respect Text Size accessibility settings
+      ScreenUtil().setSp(28，true)  //Incoming font size，the unit is pixel，fonts will scale to respect Text Size accessibility settings
 
 for example:
         Text(
