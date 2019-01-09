@@ -29,3 +29,5 @@ Height is enlarged relative to the design draft => The ratio of  height width to
 setSp(int fontSize, [allowFontScaling = false]) => allowFontScaling
       ? setWidth(fontSize) * _textScaleFactor
       : setWidth(fontSize);
+      
+## [0.4.4] - Fix bugs that default fonts change with the system
