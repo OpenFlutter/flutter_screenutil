@@ -40,10 +40,12 @@ Please set the width and height of the design draft before use, the width and he
 Be sure to set the page in the MaterialApp's home(ie the entry file, just set it once) to ensure that the fit size is set before each use:
 
 ```
+
+//fill in the screen size of the device in the design
+
 //default value : width : 1080px , height:1920px , allowFontScaling:false
 ScreenUtil.instance = ScreenUtil()..init(context);
 
-//fill in the screen size of the device in the design
 //If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
 ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
 

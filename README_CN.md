@@ -45,10 +45,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 一定在MaterialApp的home中的页面设置(即入口文件，只需设置一次),以保证在每次使用之前设置好了适配尺寸:
 
 ```
+//填入设计稿中设备的屏幕尺寸
+
 //默认 width : 1080px , height:1920px , allowFontScaling:false
 ScreenUtil.instance = ScreenUtil()..init(context);
 
-//填入设计稿中设备的屏幕尺寸 , 假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334) 
+//假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334) 
 ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
 
 //设置字体大小根据系统的“字体大小”辅助选项来进行缩放,默认为false : 字体不随着系统的“字体大小”辅助选项来进行缩放
