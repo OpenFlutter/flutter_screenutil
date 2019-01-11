@@ -27,14 +27,29 @@ dependencies:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 ```
 
-### Initialize the setup size
+### 属性
+   
+|Property|Type|Default Value|Description|
+|:---|:---|:---|:---| 
+|width|int|1080px|The width of the device in the design draft, in px|
+|height|int|1920px|The height of the device in the design draft, in px|
+|allowFontScaling|bool|false|Sets whether the font size is scaled according to the system's "font size" assist option|
+
+### Initialize and set the fit size and font size to scale according to the system's "font size" accessibility option
 Please set the width and height of the design draft before use, the width and height of the design draft (unit px).
 Be sure to set the page in the MaterialApp's home(ie the entry file, just set it once) to ensure that the fit size is set before each use:
 
 ```
-//Set the fit size (fill in the screen size of the device in the design)
+//default value : width : 1080px , height:1920px , allowFontScaling:false
+ScreenUtil.instance = ScreenUtil()..init(context);
+
+//fill in the screen size of the device in the design
 //If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
 ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
+
+//If you wang to set the font size is scaled according to the system's "font size" assist option
+ScreenUtil.instance = ScreenUtil(width: 750, height: 1334, allowFontScaling: true)..init(context);
+
 ```
 
 ### Use：

@@ -32,12 +32,7 @@ dependencies:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 ```
 
-### 初始化设置尺寸
-在使用之前请设置好设计稿的宽度和高度，传入设计稿的宽度和高度(单位px)
-
-一定在MaterialApp的home中的页面设置(即入口文件，只需设置一次),以保证在每次使用之前设置好了适配尺寸:
-
-#### 属性
+### 属性
 
 |属性|类型|默认值|描述|
 |:---|:---|:---|:---| 
@@ -45,12 +40,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 |height|int|1920px|设计稿中设备的高度,单位px|
 |allowFontScaling|bool|false|设置字体大小是否根据系统的“字体大小”辅助选项来进行缩放|
 
+### 初始化并设置适配尺寸及字体大小是否根据系统的“字体大小”辅助选项来进行缩放
+在使用之前请设置好设计稿的宽度和高度，传入设计稿的宽度和高度(单位px)
+一定在MaterialApp的home中的页面设置(即入口文件，只需设置一次),以保证在每次使用之前设置好了适配尺寸:
+
 ```
-//设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334) 
-//设置字体大小是否根据系统的“字体大小”辅助选项来进行缩放 , 默认为 false , 字体不随着系统的“字体大小”辅助选项来进行缩放
-   ScreenUtil.instance = ScreenUtil()..init(context);
-    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
-    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334, allowFontScaling: false)..init(context);
+//默认 width : 1080px , height:1920px , allowFontScaling:false
+ScreenUtil.instance = ScreenUtil()..init(context);
+
+//填入设计稿中设备的屏幕尺寸 , 假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334) 
+ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
+
+//设置字体大小根据系统的“字体大小”辅助选项来进行缩放,默认为false : 字体不随着系统的“字体大小”辅助选项来进行缩放
+ScreenUtil.instance = ScreenUtil(width: 750, height: 1334, allowFontScaling: true)..init(context);
     
 ```
 

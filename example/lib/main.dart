@@ -32,6 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     ///Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
     ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
+
     print('Device width:${ScreenUtil.screenWidth}'); //Device width
     print('Device height:${ScreenUtil.screenHeight}'); //Device height
     print(
