@@ -27,7 +27,7 @@ dependencies:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 ```
 
-### 属性
+### Property
    
 |Property|Type|Default Value|Description|
 |:---|:---|:---|:---| 
