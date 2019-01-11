@@ -9,8 +9,9 @@ class ScreenUtil {
   static ScreenUtil instance = new ScreenUtil();
 
   //设计稿的设备尺寸修改
-  int _designWidth;
-  int _designHeight;
+  int width;
+  int height;
+  bool allowFontScaling;
 
   static MediaQueryData _mediaQueryData;
   static double _screenWidth;
@@ -22,10 +23,11 @@ class ScreenUtil {
 
   static double _textScaleFactor;
 
-  ScreenUtil({int width, int height}) {
-    _designWidth = width;
-    _designHeight = height;
-  }
+  ScreenUtil({
+    this.width,
+    this.height,
+    this.allowFontScaling = false,
+  });
 
   static ScreenUtil getInstance() {
     return instance;
@@ -69,9 +71,9 @@ class ScreenUtil {
   static double get bottomBarHeight => _bottomBarHeight * _pixelRatio;
 
   ///实际的dp与设计稿px的比例
-  get scaleWidth => _screenWidth / instance._designWidth;
+  get scaleWidth => _screenWidth / instance.width;
 
-  get scaleHeight => _screenHeight / instance._designHeight;
+  get scaleHeight => _screenHeight / instance.height;
 
   ///根据设计稿的设备宽度适配
   ///高度也根据这个来做适配可以保证不变形
@@ -87,7 +89,7 @@ class ScreenUtil {
   ///@param fontSize 传入设计稿上字体的px ,
   ///@param allowFontScaling 控制字体是否要根据系统的“字体大小”辅助选项来进行缩放。默认值为true。
   ///@param allowFontScaling Specifies whether fonts should scale to respect Text Size accessibility settings. The default is true.
-  setSp(int fontSize, [allowFontScaling = false]) => allowFontScaling
+  setSp(int fontSize) => allowFontScaling
       ? setWidth(fontSize)
       : setWidth(fontSize) / _textScaleFactor;
 }

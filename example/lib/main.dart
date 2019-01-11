@@ -28,7 +28,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
   @override
   Widget build(BuildContext context) {
     ///Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
@@ -66,8 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text(
                     'My width:${ScreenUtil().setWidth(375)}dp',
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: ScreenUtil().setSp(24, false)),
+                        color: Colors.white, fontSize: ScreenUtil().setSp(24)),
                   ),
                 ),
                 Container(
@@ -77,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('My width:${ScreenUtil().setWidth(375)}dp',
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: ScreenUtil().setSp(24, false))),
+                          fontSize: ScreenUtil().setSp(24))),
                 ),
               ],
             ),
@@ -113,13 +111,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     'My font size is 24px on the design draft and will not change with the system.',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: ScreenUtil().setSp(24, false),
+                      fontSize: ScreenUtil().setSp(24),
                     )),
                 Text(
                     'My font size is 24px on the design draft and will change with the system.',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: ScreenUtil().setSp(24),
+                      fontSize: ScreenUtil(allowFontScaling: true).setSp(24),
                     )),
               ],
             )

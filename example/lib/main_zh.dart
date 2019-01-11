@@ -66,7 +66,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     '我的宽度:${ScreenUtil().setWidth(375)}dp',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: ScreenUtil().setSp(24, false),
+                      fontSize: ScreenUtil().setSp(24),
                     ),
                   ),
                 ),
@@ -77,7 +77,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Text('我的宽度:${ScreenUtil().setWidth(375)}dp',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: ScreenUtil().setSp(24, false),
+                        fontSize: ScreenUtil().setSp(24),
                       )),
                 ),
               ],
@@ -112,11 +112,10 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 Text('我的文字大小在设计稿上是25px，不会随着系统的文字缩放比例变化',
                     style: TextStyle(
-                        color: Colors.black,
-                        fontSize: ScreenUtil().setSp(24, false))),
+                        color: Colors.black, fontSize: ScreenUtil().setSp(24))),
                 Text('我的文字大小在设计稿上是25px，会随着系统的文字缩放比例变化',
                     style: TextStyle(
-                        color: Colors.black, fontSize: ScreenUtil().setSp(24))),
+                        color: Colors.black, fontSize: ScreenUtil(allowFontScaling: true).setSp(24))),
               ],
             )
           ],
