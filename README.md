@@ -207,13 +207,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                     'My font size is 14px on the design draft and will not change with the system.',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: ScreenUtil().setSp(14, false),
+                      fontSize: ScreenUtil().setSp(14),
                     )),
                 Text(
                     'My font size is 14px on the design draft and will change with the system.',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: ScreenUtil().setSp(14),
+                      fontSize: ScreenUtil().setSp(14,true),
                     )),
               ],
             )
