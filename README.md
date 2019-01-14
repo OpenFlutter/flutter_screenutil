@@ -90,14 +90,14 @@ Container(
 #### Adapter font:
 ``` 
       ScreenUtil().setSp(28)         //Incoming font size，the unit is pixel, fonts will not scale to respect Text Size accessibility settings
-      ScreenUtil().setSp(28，true)  //Incoming font size，the unit is pixel，fonts will scale to respect Text Size accessibility settings
+      ScreenUtil(allowFontScaling: true).setSp(28)  //Incoming font size，the unit is pixel，fonts will scale to respect Text Size accessibility settings
 
 for example:
         Text(
              'My font size is 28px and will not change with the system.',
                  style: TextStyle(
                    color: Colors.black,
-                   fontSize: ScreenUtil().setSp(28, false) 
+                   fontSize:ScreenUtil(allowFontScaling: true).setSp(28, false) 
                  )
              ),
 
@@ -213,7 +213,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                     'My font size is 14px on the design draft and will change with the system.',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: ScreenUtil().setSp(14,true),
+                      fontSize: ScreenUtil(allowFontScaling: true).setSp(24),
                     )),
               ],
             )
