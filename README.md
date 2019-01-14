@@ -4,6 +4,8 @@
 
 **A flutter plugin for adapting screen and font size.Let your UI display a reasonable layout on different screen sizes!**
 
+*Note*: This plugin is still under development, and some APIs might not be available yet.
+
 [中文文档](https://github.com/OpenFlutter/flutter_screenutil/blob/master/README_CN.md)
 
 github: https://github.com/OpenFlutter/flutter_screenutil
