@@ -89,17 +89,34 @@ Container(
 
 #### Adapter font:
 ``` 
-      ScreenUtil().setSp(28)         //Incoming font size，the unit is pixel, fonts will not scale to respect Text Size accessibility settings
-      ScreenUtil(allowFontScaling: true).setSp(28)  //Incoming font size，the unit is pixel，fonts will scale to respect Text Size accessibility settings
+//Incoming font size，the unit is pixel, fonts will not scale to respect Text Size accessibility settings
+//(AllowallowFontScaling when initializing ScreenUtil)
+ScreenUtil().setSp(28)    
+     
+//Incoming font size，the unit is pixel，fonts will scale to respect Text Size accessibility settings
+//(If somewhere does not follow the global allowFontScaling setting)
+ScreenUtil(allowFontScaling: true).setSp(28)  
 
-for example:
-        Text(
-             'My font size is 28px and will not change with the system.',
-                 style: TextStyle(
-                   color: Colors.black,
-                   fontSize:ScreenUtil(allowFontScaling: true).setSp(28, false) 
-                 )
-             ),
+//for example:
+
+Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                    'My font size is 24px on the design draft and will not change with the system.',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: ScreenUtil().setSp(24),
+                    )),
+                Text(
+                    'My font size is 24px on the design draft and will change with the system.',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: ScreenUtil(allowFontScaling: true).setSp(24),
+                    )),
+              ],
+            )
+
 
 ```
 

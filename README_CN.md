@@ -94,17 +94,26 @@ Container(
 传入设计稿的px尺寸：
 
 ``` 
-      ScreenUtil().setSp(28)         //传入字体大小，默认不根据系统的“字体大小”辅助选项来进行缩放
-      ScreenUtil(allowFontScaling: true).setSp(28)         //传入字体大小，根据系统的“字体大小”辅助选项来进行缩放
+//传入字体大小，默认不根据系统的“字体大小”辅助选项来进行缩放(可在初始化ScreenUtil时设置allowFontScaling)
+ScreenUtil().setSp(28)         
+ 
+//传入字体大小，根据系统的“字体大小”辅助选项来进行缩放(如果某个地方不遵循全局的allowFontScaling设置)     
+ScreenUtil(allowFontScaling: true).setSp(28)        
      
-for example:
-        Text(
-             'My font size is 28px and will not change with the system.',
-                 style: TextStyle(
-                   color: Colors.black,
-                   fontSize: ScreenUtil(allowFontScaling: true).setSp(28) 
-                 )
-             ),
+//for example:
+
+Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text('我的文字大小在设计稿上是25px，不会随着系统的文字缩放比例变化',
+                    style: TextStyle(
+                        color: Colors.black, fontSize: ScreenUtil().setSp(24))),
+                Text('我的文字大小在设计稿上是25px，会随着系统的文字缩放比例变化',
+                    style: TextStyle(
+                        color: Colors.black, fontSize: ScreenUtil(allowFontScaling: true).setSp(24))),
+              ],
+            )
+
 
 ```
 
