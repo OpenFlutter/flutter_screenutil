@@ -180,7 +180,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                     'My width:${ScreenUtil().setWidth(375)}dp',
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: ScreenUtil().setSp(12, false)),
+                        fontSize: ScreenUtil().setSp(12)),
                   ),
                 ),
                 Container(
@@ -190,7 +190,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                   child: Text('My width:${ScreenUtil().setWidth(375)}dp',
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: ScreenUtil().setSp(12, false))),
+                          fontSize: ScreenUtil().setSp(12))),
                 ),
               ],
             ),

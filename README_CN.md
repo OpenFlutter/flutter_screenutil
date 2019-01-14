@@ -178,7 +178,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                     '我的宽度:${ScreenUtil().setWidth(375)}dp',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: ScreenUtil().setSp(12, false),
+                      fontSize: ScreenUtil().setSp(12),
                     ),
                   ),
                 ),
@@ -189,7 +189,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                   child: Text('我的宽度:${ScreenUtil().setWidth(375)}dp',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: ScreenUtil().setSp(12, false),
+                        fontSize: ScreenUtil().setSp(12),
                       )),
                 ),
               ],
