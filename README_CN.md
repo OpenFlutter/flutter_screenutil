@@ -6,6 +6,8 @@
 
 **flutter 屏幕适配方案，让你的UI在不同尺寸的屏幕上都能显示合理的布局!**
 
+*注意*：此插件仍处于开发阶段，某些API可能尚未推出。
+
 [README of English](https://github.com/OpenFlutter/flutter_ScreenUtil/blob/master/README.md)
 
 github: https://github.com/OpenFlutter/flutter_ScreenUtil
