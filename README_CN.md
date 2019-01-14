@@ -102,7 +102,7 @@ for example:
              'My font size is 28px and will not change with the system.',
                  style: TextStyle(
                    color: Colors.black,
-                   fontSize: ScreenUtil(allowFontScaling: true).setSp(28, false) 
+                   fontSize: ScreenUtil(allowFontScaling: true).setSp(28) 
                  )
              ),
 
