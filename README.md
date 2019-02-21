@@ -62,9 +62,11 @@ ScreenUtil.instance = ScreenUtil(width: 750, height: 1334, allowFontScaling: tru
 
 Pass the px size of the design draft：
 
-Adapted to screen width: ScreenUtil().setWidth(540),
+Adapted to screen width: `ScreenUtil().setWidth(540)`,
 
-Adapted to screen height: ScreenUtil().setHeight(200),
+Adapted to screen height: `ScreenUtil().setHeight(200)`,
+
+You can also use `ScreenUtil.getInstance()` instead of `ScreenUtil()` , for example: `ScreenUtil.getInstance().setHeight(25)`
 
 **Note** 
 
