@@ -70,6 +70,8 @@ ScreenUtil.instance = ScreenUtil(width: 750, height: 1334, allowFontScaling: tru
 
 根据屏幕高度适配 `height: ScreenUtil.getInstance().setHeight(200)`,
 
+也可以使用 `ScreenUtil()` 替代 `ScreenUtil.getInstance()`,
+例如：`ScreenUtil().setHeight(200)`
 
 **注意**
 

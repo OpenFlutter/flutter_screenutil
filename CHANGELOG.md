@@ -32,6 +32,6 @@ setSp(int fontSize, [allowFontScaling = false]) => allowFontScaling
       
 ## [0.4.4] - Fix bugs that default fonts change with the system
 
-## [0.5.0] - Fix the wrong way of using 
+## [0.5.1] - Fix the wrong way of using 
 
-please use `ScreenUtil.getInstance()` instead of `ScreenUtil()` , for example: ScreenUtil.getInstance().setHeight(25) instead of `ScreenUtil().setHeight(25)`
+It is recommended to  use `ScreenUtil.getInstance()` instead of `ScreenUtil()` , for example: `ScreenUtil.getInstance().setHeight(25)` instead of `ScreenUtil().setHeight(25)`

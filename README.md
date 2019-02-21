@@ -66,6 +66,9 @@ Adapted to screen width: `ScreenUtil.getInstance().setWidth(540)`,
 
 Adapted to screen height: `ScreenUtil.getInstance().setHeight(200)`,
 
+You can also use `ScreenUtil()` instead of `ScreenUtil.getInstance()`,
+for example:`ScreenUtil().setHeight(200)`
+
 **Note** 
 
 Height is also adapted according to setWidth to ensure no deformation (when you want a square) 
