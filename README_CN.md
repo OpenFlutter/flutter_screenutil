@@ -66,9 +66,11 @@ ScreenUtil.instance = ScreenUtil(width: 750, height: 1334, allowFontScaling: tru
 
 传入设计稿的px尺寸：
 
-根据屏幕宽度适配 width: ScreenUtil().setWidth(540),
+根据屏幕宽度适配 `width: ScreenUtil().setWidth(540)`,
 
-根据屏幕高度适配 height: ScreenUtil().setHeight(200),
+根据屏幕高度适配 `height: ScreenUtil().setHeight(200)`,
+
+也可以使用 `ScreenUtil.getInstance()` 来替代`ScreenUtil()` , 例如：`ScreenUtil.getInstance().setHeight(25)`
 
 **注意**
 
