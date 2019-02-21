@@ -42,13 +42,13 @@ class _MyHomePageState extends State<MyHomePage> {
     print(
         'Status bar height:${ScreenUtil.statusBarHeight}px'); //Status bar height , Notch will be higher Unit px
     print(
-        'Ratio of actual width dp to design draft px:${ScreenUtil().scaleWidth}');
+        'Ratio of actual width dp to design draft px:${ScreenUtil.getInstance().scaleWidth}');
     print(
-        'Ratio of actual height dp to design draft px:${ScreenUtil().scaleHeight}');
+        'Ratio of actual height dp to design draft px:${ScreenUtil.getInstance().scaleHeight}');
     print(
-        'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}');
+        'The ratio of font and width to the size of the design:${ScreenUtil.getInstance().scaleWidth * ScreenUtil.pixelRatio}');
     print(
-        'The ratio of  height width to the size of the design:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}');
+        'The ratio of  height width to the size of the design:${ScreenUtil.getInstance().scaleHeight * ScreenUtil.pixelRatio}');
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.title),
@@ -60,23 +60,25 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               children: <Widget>[
                 Container(
-                  width: ScreenUtil().setWidth(375),
-                  height: ScreenUtil().setHeight(200),
+                  width: ScreenUtil.getInstance().setWidth(375),
+                  height: ScreenUtil.getInstance().setHeight(200),
                   color: Colors.red,
                   child: Text(
-                    'My width:${ScreenUtil().setWidth(375)}dp',
+                    'My width:${ScreenUtil.getInstance().setWidth(375)}dp',
                     style: TextStyle(
-                        color: Colors.white, fontSize: ScreenUtil().setSp(24)),
+                        color: Colors.white,
+                        fontSize: ScreenUtil.getInstance().setSp(24)),
                   ),
                 ),
                 Container(
-                  width: ScreenUtil().setWidth(375),
-                  height: ScreenUtil().setHeight(200),
+                  width: ScreenUtil.getInstance().setWidth(375),
+                  height: ScreenUtil.getInstance().setHeight(200),
                   color: Colors.blue,
-                  child: Text('My width:${ScreenUtil().setWidth(375)}dp',
+                  child: Text(
+                      'My width:${ScreenUtil.getInstance().setWidth(375)}dp',
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: ScreenUtil().setSp(24))),
+                          fontSize: ScreenUtil.getInstance().setSp(24))),
                 ),
               ],
             ),
@@ -86,23 +88,23 @@ class _MyHomePageState extends State<MyHomePage> {
             Text('Bottom safe zone distance:${ScreenUtil.bottomBarHeight}px'),
             Text('Status bar height:${ScreenUtil.statusBarHeight}px'),
             Text(
-              'Ratio of actual width dp to design draft px:${ScreenUtil().scaleWidth}',
+              'Ratio of actual width dp to design draft px:${ScreenUtil.getInstance().scaleWidth}',
               textAlign: TextAlign.center,
             ),
             Text(
-              'Ratio of actual height dp to design draft px:${ScreenUtil().scaleHeight}',
+              'Ratio of actual height dp to design draft px:${ScreenUtil.getInstance().scaleHeight}',
               textAlign: TextAlign.center,
             ),
             Text(
-              'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}',
+              'The ratio of font and width to the size of the design:${ScreenUtil.getInstance().scaleWidth * ScreenUtil.pixelRatio}',
               textAlign: TextAlign.center,
             ),
             Text(
-              'The ratio of  height width to the size of the design:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}',
+              'The ratio of  height width to the size of the design:${ScreenUtil.getInstance().scaleHeight * ScreenUtil.pixelRatio}',
               textAlign: TextAlign.center,
             ),
             SizedBox(
-              height: ScreenUtil().setHeight(100),
+              height: ScreenUtil.getInstance().setHeight(100),
             ),
             Text('System font scaling factor:${ScreenUtil.textScaleFactory}'),
             Column(
@@ -112,7 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     'My font size is 24px on the design draft and will not change with the system.',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: ScreenUtil().setSp(24),
+                      fontSize: ScreenUtil.getInstance().setSp(24),
                     )),
                 Text(
                     'My font size is 24px on the design draft and will change with the system.',

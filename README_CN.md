@@ -26,7 +26,7 @@ dependencies:
   flutter:
     sdk: flutter
   # 添加依赖
-  flutter_screenutil: ^0.4.2
+  flutter_screenutil: ^0.5.0
 ```
 
 ### 在每个使用的地方导入包：
@@ -50,7 +50,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 //填入设计稿中设备的屏幕尺寸
 
 //默认 width : 1080px , height:1920px , allowFontScaling:false
-ScreenUtil.instance = ScreenUtil()..init(context);
+ScreenUtil.instance = ScreenUtil.getInstance()..init(context);
 
 //假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334) 
 ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
@@ -66,11 +66,10 @@ ScreenUtil.instance = ScreenUtil(width: 750, height: 1334, allowFontScaling: tru
 
 传入设计稿的px尺寸：
 
-根据屏幕宽度适配 `width: ScreenUtil().setWidth(540)`,
+根据屏幕宽度适配 `width: ScreenUtil.getInstance().setWidth(540)`,
 
-根据屏幕高度适配 `height: ScreenUtil().setHeight(200)`,
+根据屏幕高度适配 `height: ScreenUtil.getInstance().setHeight(200)`,
 
-也可以使用 `ScreenUtil.getInstance()` 来替代`ScreenUtil()` , 例如：`ScreenUtil.getInstance().setHeight(25)`
 
 **注意**
 
@@ -83,14 +82,14 @@ setHeight方法主要是在高度上进行适配, 在你想控制UI上一屏的�
 ```
 //长方形:
 Container(
-           width: ScreenUtil().setWidth(375),
-           height: ScreenUtil().setHeight(200),
+           width: ScreenUtil.getInstance().setWidth(375),
+           height: ScreenUtil.getInstance().setHeight(200),
             ),
             
 //如果你想显示一个正方形:
 Container(
-           width: ScreenUtil().setWidth(300),
-           height: ScreenUtil().setWidth(300),
+           width: ScreenUtil.getInstance().setWidth(300),
+           height: ScreenUtil.getInstance().setWidth(300),
             ),
 ```
 
@@ -99,7 +98,7 @@ Container(
 
 ``` 
 //传入字体大小，默认不根据系统的“字体大小”辅助选项来进行缩放(可在初始化ScreenUtil时设置allowFontScaling)
-ScreenUtil().setSp(28)         
+ScreenUtil.getInstance().setSp(28)         
  
 //传入字体大小，根据系统的“字体大小”辅助选项来进行缩放(如果某个地方不遵循全局的allowFontScaling设置)     
 ScreenUtil(allowFontScaling: true).setSp(28)        
@@ -111,7 +110,7 @@ Column(
               children: <Widget>[
                 Text('我的文字大小在设计稿上是25px，不会随着系统的文字缩放比例变化',
                     style: TextStyle(
-                        color: Colors.black, fontSize: ScreenUtil().setSp(24))),
+                        color: Colors.black, fontSize: ScreenUtil.getInstance().setSp(24))),
                 Text('我的文字大小在设计稿上是25px，会随着系统的文字缩放比例变化',
                     style: TextStyle(
                         color: Colors.black, fontSize: ScreenUtil(allowFontScaling: true).setSp(24))),
@@ -130,8 +129,8 @@ Column(
     ScreenUtil.statusBarHeight  //状态栏高度 刘海屏会更高  单位px
     ScreenUtil.textScaleFactory //系统字体缩放比例
     
-    ScreenUtil().scaleWidth  // 实际宽度的dp与设计稿px的比例
-    ScreenUtil().scaleHeight // 实际高度的dp与设计稿px的比例
+    ScreenUtil.getInstance().scaleWidth  // 实际宽度的dp与设计稿px的比例
+    ScreenUtil.getInstance().scaleHeight // 实际高度的dp与设计稿px的比例
     
 ```
 
@@ -153,13 +152,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
     print(
         '状态栏高度:${ScreenUtil.statusBarHeight}px'); //Status bar height , Notch will be higher Unit px
 
-    print('实际宽度的dp与设计稿px的比例:${ScreenUtil().scaleWidth}');
-    print('实际高度的dp与设计稿px的比例:${ScreenUtil().scaleHeight}');
+    print('实际宽度的dp与设计稿px的比例:${ScreenUtil.getInstance().scaleWidth}');
+    print('实际高度的dp与设计稿px的比例:${ScreenUtil.getInstance().scaleHeight}');
 
     print(
-        '宽度和字体相对于设计稿放大的比例:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}'); 
+        '宽度和字体相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleWidth * ScreenUtil.pixelRatio}'); 
     print(
-        '高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}'); 
+        '高度相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleHeight * ScreenUtil.pixelRatio}'); 
     print('系统的字体缩放比例:${ScreenUtil.textScaleFactory}');
 
     return new Scaffold(
@@ -173,25 +172,25 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
             Row(
               children: <Widget>[
                 Container(
-                  width: ScreenUtil().setWidth(375),
-                  height: ScreenUtil().setHeight(200),
+                  width: ScreenUtil.getInstance().setWidth(375),
+                  height: ScreenUtil.getInstance().setHeight(200),
                   color: Colors.red,
                   child: Text(
-                    '我的宽度:${ScreenUtil().setWidth(375)}dp',
+                    '我的宽度:${ScreenUtil.getInstance().setWidth(375)}dp',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: ScreenUtil().setSp(12),
+                      fontSize: ScreenUtil.getInstance().setSp(12),
                     ),
                   ),
                 ),
                 Container(
-                  width: ScreenUtil().setWidth(375),
-                  height: ScreenUtil().setHeight(200),
+                  width: ScreenUtil.getInstance().setWidth(375),
+                  height: ScreenUtil.getInstance().setHeight(200),
                   color: Colors.blue,
-                  child: Text('我的宽度:${ScreenUtil().setWidth(375)}dp',
+                  child: Text('我的宽度:${ScreenUtil.getInstance().setWidth(375)}dp',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: ScreenUtil().setSp(12),
+                        fontSize: ScreenUtil.getInstance().setSp(12),
                       )),
                 ),
               ],
@@ -202,23 +201,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
             Text('底部安全区距离:${ScreenUtil.bottomBarHeight}px'),
             Text('状态栏高度:${ScreenUtil.statusBarHeight}px'),
             Text(
-              '实际高度的dp与设计稿px的比例:${ScreenUtil().scaleHeight}',
+              '实际高度的dp与设计稿px的比例:${ScreenUtil.getInstance().scaleHeight}',
               textAlign: TextAlign.center,
             ),
             Text(
-              '实际高度的dp与设计稿px的比例:${ScreenUtil().scaleHeight}',
+              '实际高度的dp与设计稿px的比例:${ScreenUtil.getInstance().scaleHeight}',
               textAlign: TextAlign.center,
             ),
             Text(
-              '宽度和字体相对于设计稿放大的比例:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}',
+              '宽度和字体相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleWidth * ScreenUtil.pixelRatio}',
               textAlign: TextAlign.center,
             ),
             Text(
-              '高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}',
+              '高度相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleHeight * ScreenUtil.pixelRatio}',
               textAlign: TextAlign.center,
             ),
             SizedBox(
-              height: ScreenUtil().setHeight(100),
+              height: ScreenUtil.getInstance().setHeight(100),
             ),
             Text('系统的字体缩放比例:${ScreenUtil.textScaleFactory}'),
             Column(
@@ -226,7 +225,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                          children: <Widget>[
                            Text('我的文字大小在设计稿上是25px，不会随着系统的文字缩放比例变化',
                                style: TextStyle(
-                                   color: Colors.black, fontSize: ScreenUtil().setSp(24))),
+                                   color: Colors.black, fontSize: ScreenUtil.getInstance().setSp(24))),
                            Text('我的文字大小在设计稿上是25px，会随着系统的文字缩放比例变化',
                                style: TextStyle(
                                    color: Colors.black, fontSize: ScreenUtil(allowFontScaling: true).setSp(24))),
