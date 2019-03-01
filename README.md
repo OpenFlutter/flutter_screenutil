@@ -255,5 +255,3 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 effect:
 
 ![效果](demo_en.png)
-
-12
