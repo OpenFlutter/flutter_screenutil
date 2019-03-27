@@ -41,7 +41,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 Please set the width and height of the design draft before use, the width and height of the design draft (unit px).
 Be sure to set the page in the MaterialApp's home(ie the entry file, just set it once) to ensure that the fit size is set before each use:
 
-```
+```dart
 
 //fill in the screen size of the device in the design
 
@@ -75,7 +75,7 @@ Height is also adapted according to setWidth to ensure no deformation (when you 
 
 setHeight method is mainly adapted in height, you want to control the height and actuality of a screen on the UIUsed when the same is displayed.
 
-```
+```dart
 //for example:
 //rectangle
 Container(
@@ -93,7 +93,7 @@ Container(
 ```
 
 #### Adapter font:
-``` 
+``` dart
 //Incoming font size，the unit is pixel, fonts will not scale to respect Text Size accessibility settings
 //(AllowallowFontScaling when initializing ScreenUtil)
 ScreenUtil.getInstance().setSp(28)    
@@ -126,7 +126,7 @@ Column(
 ```
 
 #### Other related apis：
-```
+```dart
     ScreenUtil.pixelRatio       //Device pixel density
     ScreenUtil.screenWidth      //Device width
     ScreenUtil.screenHeight     //Device height
@@ -139,11 +139,11 @@ Column(
 
 ```
 
-```
+```dart
 //import
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-...
+...dart
 
   @override
   Widget build(BuildContext context) {
