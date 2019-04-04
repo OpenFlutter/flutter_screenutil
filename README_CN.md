@@ -55,7 +55,7 @@ ScreenUtil.instance = ScreenUtil.getInstance()..init(context);
 //假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334) 
 ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
 
-//设置字体大小根据系统的“字体大小”辅助选项来进行缩放,默认为false : 字体随着系统的“字体大小”辅助选项来进行缩放
+//设置字体大小根据系统的“字体大小”辅助选项来进行缩放,默认为false
 ScreenUtil.instance = ScreenUtil(width: 750, height: 1334, allowFontScaling: true)..init(context);
     
 ```
