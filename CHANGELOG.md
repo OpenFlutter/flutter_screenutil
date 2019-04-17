@@ -35,3 +35,9 @@ setSp(int fontSize, [allowFontScaling = false]) => allowFontScaling
 ## [0.5.1] - Fix the wrong way of using 
 
 It is recommended to  use `ScreenUtil.getInstance()` instead of `ScreenUtil()` , for example: `ScreenUtil.getInstance().setHeight(25)` instead of `ScreenUtil().setHeight(25)`
+
+## [0.5.2] - Change the parameter type from int to double
+
+setWidth,setHeight,setSp.
+for example:
+you can use setWidth(100) or setWidth(100.0) 

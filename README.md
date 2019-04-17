@@ -21,7 +21,7 @@ dependencies:
   flutter:
     sdk: flutter
   # add flutter_ScreenUtil
-  flutter_screenutil: ^0.4.2
+  flutter_screenutil: ^0.5.2
 ```
 
 ### Add the following imports to your Dart code:
@@ -33,8 +33,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
    
 |Property|Type|Default Value|Description|
 |:---|:---|:---|:---| 
-|width|int|1080px|The width of the device in the design draft, in px|
-|height|int|1920px|The height of the device in the design draft, in px|
+|width|double|1080px|The width of the device in the design draft, in px|
+|height|double|1920px|The height of the device in the design draft, in px|
 |allowFontScaling|bool|false|Sets whether the font size is scaled according to the system's "font size" assist option|
 
 ### Initialize and set the fit size and font size to scale according to the system's "font size" accessibility option
