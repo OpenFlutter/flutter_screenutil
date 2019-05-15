@@ -33,14 +33,14 @@ class _MyHomePageState extends State<MyHomePage> {
     ///Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
     ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
 
-    print('Device width:${ScreenUtil.screenWidth}'); //Device width
-    print('Device height:${ScreenUtil.screenHeight}'); //Device height
+    print('Device width px:${ScreenUtil.screenWidth}'); //Device width
+    print('Device height px:${ScreenUtil.screenHeight}'); //Device height
     print(
         'Device pixel density:${ScreenUtil.pixelRatio}'); //Device pixel density
     print(
-        'Bottom safe zone distance:${ScreenUtil.bottomBarHeight}'); //Bottom safe zone distance，suitable for buttons with full screen
+        'Bottom safe zone distance px:${ScreenUtil.bottomBarHeight}'); //Bottom safe zone distance，suitable for buttons with full screen
     print(
-        'Status bar height:${ScreenUtil.statusBarHeight}px'); //Status bar height , Notch will be higher Unit px
+        'Status bar height px:${ScreenUtil.statusBarHeight}px'); //Status bar height , Notch will be higher Unit px
     print(
         'Ratio of actual width dp to design draft px:${ScreenUtil.getInstance().scaleWidth}');
     print(
@@ -49,6 +49,7 @@ class _MyHomePageState extends State<MyHomePage> {
         'The ratio of font and width to the size of the design:${ScreenUtil.getInstance().scaleWidth * ScreenUtil.pixelRatio}');
     print(
         'The ratio of  height width to the size of the design:${ScreenUtil.getInstance().scaleHeight * ScreenUtil.pixelRatio}');
+
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(widget.title),
@@ -84,6 +85,8 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text('Device width:${ScreenUtil.screenWidth}px'),
             Text('Device height:${ScreenUtil.screenHeight}px'),
+            Text('Device width:${ScreenUtil.screenWidthDp}dp'),
+            Text('Device height:${ScreenUtil.screenHeightDp}dp'),
             Text('Device pixel density:${ScreenUtil.pixelRatio}'),
             Text('Bottom safe zone distance:${ScreenUtil.bottomBarHeight}px'),
             Text('Status bar height:${ScreenUtil.statusBarHeight}px'),
@@ -93,14 +96,6 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               'Ratio of actual height dp to design draft px:${ScreenUtil.getInstance().scaleHeight}',
-              textAlign: TextAlign.center,
-            ),
-            Text(
-              'The ratio of font and width to the size of the design:${ScreenUtil.getInstance().scaleWidth * ScreenUtil.pixelRatio}',
-              textAlign: TextAlign.center,
-            ),
-            Text(
-              'The ratio of  height width to the size of the design:${ScreenUtil.getInstance().scaleHeight * ScreenUtil.pixelRatio}',
               textAlign: TextAlign.center,
             ),
             SizedBox(

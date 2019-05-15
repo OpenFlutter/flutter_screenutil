@@ -45,12 +45,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
     print(
         '宽度和字体相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleWidth * ScreenUtil.pixelRatio}');
-    print('高度相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleHeight * ScreenUtil.pixelRatio}');
+    print(
+        '高度相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleHeight * ScreenUtil.pixelRatio}');
     print('系统的字体缩放比例:${ScreenUtil.textScaleFactory}');
 
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text(widget.title),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -82,33 +83,29 @@ class _MyHomePageState extends State<MyHomePage> {
                   width: ScreenUtil.getInstance().setWidth(375),
                   height: ScreenUtil.getInstance().setHeight(200),
                   color: Colors.blue,
-                  child: Text('我的宽度:${ScreenUtil.getInstance().setWidth(375)}dp',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: ScreenUtil.getInstance().setSp(24),
-                      )),
+                  child:
+                      Text('我的宽度:${ScreenUtil.getInstance().setWidth(375)}dp',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: ScreenUtil.getInstance().setSp(24),
+                          )),
                 ),
               ],
             ),
             Text('设备宽度:${ScreenUtil.screenWidth}px'),
             Text('设备高度:${ScreenUtil.screenHeight}px'),
+            Text('设备宽度:${ScreenUtil.screenWidthDp}dp'),
+            Text('设备高度:${ScreenUtil.screenHeightDp}dp'),
+            Text('设计稿宽度:${ScreenUtil.getInstance().width}'),
             Text('设备的像素密度:${ScreenUtil.pixelRatio}'),
             Text('底部安全区距离:${ScreenUtil.bottomBarHeight}px'),
             Text('状态栏高度:${ScreenUtil.statusBarHeight}px'),
             Text(
-              '实际高度的dp与设计稿px的比例:${ScreenUtil.getInstance().scaleHeight}',
+              '实际宽度的dp与设计稿px的比例:${ScreenUtil.getInstance().scaleWidth}',
               textAlign: TextAlign.center,
             ),
             Text(
               '实际高度的dp与设计稿px的比例:${ScreenUtil.getInstance().scaleHeight}',
-              textAlign: TextAlign.center,
-            ),
-            Text(
-              '宽度和字体相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleWidth * ScreenUtil.pixelRatio}',
-              textAlign: TextAlign.center,
-            ),
-            Text(
-              '高度相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleHeight * ScreenUtil.pixelRatio}',
               textAlign: TextAlign.center,
             ),
             SizedBox(
@@ -118,10 +115,11 @@ class _MyHomePageState extends State<MyHomePage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('我的文字大小在设计稿上是25px，不会随着系统的文字缩放比例变化',
+                Text('我的文字大小在设计稿上是24px，不会随着系统的文字缩放比例变化',
                     style: TextStyle(
-                        color: Colors.black, fontSize: ScreenUtil.getInstance().setSp(24))),
-                Text('我的文字大小在设计稿上是25px，会随着系统的文字缩放比例变化',
+                        color: Colors.black,
+                        fontSize: ScreenUtil.getInstance().setSp(24))),
+                Text('我的文字大小在设计稿上是24px，会随着系统的文字缩放比例变化',
                     style: TextStyle(
                         color: Colors.black,
                         fontSize:
