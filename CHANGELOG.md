@@ -1,4 +1,4 @@
-## [0.0.1] -  first version
+## [0.0.1] - first version
 
 ## [0.2.2] - Fixed bug when releasing
 
@@ -41,3 +41,5 @@ It is recommended to  use `ScreenUtil.getInstance()` instead of `ScreenUtil()` ,
 setWidth,setHeight,setSp.
 for example:
 you can use setWidth(100) or setWidth(100.0) 
+
+## [0.5.3] - Change the units of statusBarHeight and bottomBarHeight to dp

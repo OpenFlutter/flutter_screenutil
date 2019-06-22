@@ -38,9 +38,9 @@ class _MyHomePageState extends State<MyHomePage> {
     print(
         'Device pixel density:${ScreenUtil.pixelRatio}'); //Device pixel density
     print(
-        'Bottom safe zone distance px:${ScreenUtil.bottomBarHeight}'); //Bottom safe zone distance，suitable for buttons with full screen
+        'Bottom safe zone distance dp:${ScreenUtil.bottomBarHeight}'); //Bottom safe zone distance，suitable for buttons with full screen
     print(
-        'Status bar height px:${ScreenUtil.statusBarHeight}px'); //Status bar height , Notch will be higher Unit px
+        'Status bar height px:${ScreenUtil.statusBarHeight}dp'); //Status bar height , Notch will be higher Unit px
     print(
         'Ratio of actual width dp to design draft px:${ScreenUtil.getInstance().scaleWidth}');
     print(
@@ -88,8 +88,8 @@ class _MyHomePageState extends State<MyHomePage> {
             Text('Device width:${ScreenUtil.screenWidthDp}dp'),
             Text('Device height:${ScreenUtil.screenHeightDp}dp'),
             Text('Device pixel density:${ScreenUtil.pixelRatio}'),
-            Text('Bottom safe zone distance:${ScreenUtil.bottomBarHeight}px'),
-            Text('Status bar height:${ScreenUtil.statusBarHeight}px'),
+            Text('Bottom safe zone distance:${ScreenUtil.bottomBarHeight}dp'),
+            Text('Status bar height:${ScreenUtil.statusBarHeight}dp'),
             Text(
               'Ratio of actual width dp to design draft px:${ScreenUtil.getInstance().scaleWidth}',
               textAlign: TextAlign.center,

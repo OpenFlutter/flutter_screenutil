@@ -64,11 +64,11 @@ class ScreenUtil {
   ///当前设备高度 px
   static double get screenHeight => _screenHeight * _pixelRatio;
 
-  ///状态栏高度 刘海屏会更高
-  static double get statusBarHeight => _statusBarHeight * _pixelRatio;
+  ///状态栏高度 dp 刘海屏会更高
+  static double get statusBarHeight => _statusBarHeight;
 
-  ///底部安全区距离
-  static double get bottomBarHeight => _bottomBarHeight * _pixelRatio;
+  ///底部安全区距离 dp
+  static double get bottomBarHeight => _bottomBarHeight;
 
   ///实际的dp与设计稿px的比例
   get scaleWidth => _screenWidth / instance.width;
