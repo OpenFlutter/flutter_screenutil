@@ -51,7 +51,7 @@ ScreenUtil.instance = ScreenUtil.getInstance()..init(context);
 //If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
 ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
 
-//If you wang to set the font size is scaled according to the system's "font size" assist option
+//If you want to set the font size is scaled according to the system's "font size" assist option
 ScreenUtil.instance = ScreenUtil(width: 750, height: 1334, allowFontScaling: true)..init(context);
 
 ```
