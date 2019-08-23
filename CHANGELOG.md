@@ -2,7 +2,7 @@
  * @Author: zhuoyuan93@gmail.com
  * @Date: 2018-10-16 19:43:03
  * @LastEditors: zhuoyuan93@gmail.com
- * @LastEditTime: 2019-08-23 16:26:24
+ * @LastEditTime: 2019-08-23 16:41:10
  * @Description: Update log
  -->
 
@@ -78,3 +78,5 @@
 # 0.6.0
 
 - Completing comments , adding English commentsWelcome to add, correct
+- 参数同时支持传入 int / double 或者是var size = 100 , var size = 100.0.
+- The argument also supports passing in in / double / var size = 100 /var size = 100.0
