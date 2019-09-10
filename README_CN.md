@@ -8,6 +8,10 @@
 
 *注意*：此插件仍处于开发阶段，某些API可能尚未推出。
 
+
+*注意*：Flutter默认使用逻辑像素，此工具是在你未知dp/pt的情况下，通过px可以快速得到dp/pt的工具。如果你已知dp/pt，只需直接在flutter上设置宽高，无需使用本工具。
+
+
 [README of English](https://github.com/OpenFlutter/flutter_ScreenUtil/blob/master/README.md)
 
 github: https://github.com/OpenFlutter/flutter_screenutil
