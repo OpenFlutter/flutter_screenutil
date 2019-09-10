@@ -6,6 +6,8 @@
 
 *Note*: This plugin is still under development, and some APIs might not be available yet.
 
+*Note*：Flutter uses logical pixels by default. This plugin can help you get dp/pt via px. If you already know dp/pt, just set the width and height directly on the flutter without using this plugin.
+
 [中文文档](https://github.com/OpenFlutter/flutter_screenutil/blob/master/README_CN.md)
 
 github: https://github.com/OpenFlutter/flutter_screenutil
