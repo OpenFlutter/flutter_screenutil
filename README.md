@@ -143,7 +143,7 @@ Column(
 //import
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-...dart
+...
 
   @override
   Widget build(BuildContext context) {
@@ -178,6 +178,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
             Row(
               children: <Widget>[
                 Container(
+                  padding: EdgeInsets.all(ScreenUtil.getInstance().setWidth(10)),
                   width: ScreenUtil.getInstance().setWidth(375),
                   height: ScreenUtil.getInstance().setHeight(200),
                   color: Colors.red,
@@ -189,6 +190,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                   ),
                 ),
                 Container(
+                  padding: EdgeInsets.all(ScreenUtil.getInstance().setWidth(10)),
                   width: ScreenUtil.getInstance().setWidth(375),
                   height: ScreenUtil.getInstance().setHeight(200),
                   color: Colors.blue,

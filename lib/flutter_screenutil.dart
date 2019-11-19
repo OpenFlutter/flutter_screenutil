@@ -84,16 +84,16 @@ class ScreenUtil {
 
   /// 实际的dp与UI设计px的比例
   /// The ratio of the actual dp to the design draft px
-  get scaleWidth => _screenWidth / instance.width;
+  double get scaleWidth => _screenWidth / instance.width;
 
-  get scaleHeight => _screenHeight / instance.height;
+  double get scaleHeight => _screenHeight / instance.height;
 
   /// 根据UI设计的设备宽度适配
   /// 高度也可以根据这个来做适配可以保证不变形,比如你先要一个正方形的时候.
   /// Adapted to the device width of the UI Design.
   /// Height can also be adapted according to this to ensure no deformation ,
   /// if you want a square
-  setWidth(num width) => width * scaleWidth;
+  num setWidth(num width) => width * scaleWidth;
 
   /// 根据UI设计的设备高度适配
   /// 当发现UI设计中的一屏显示的与当前样式效果不符合时,
@@ -103,14 +103,14 @@ class ScreenUtil {
   /// It is recommended to use this method to achieve a high degree of adaptation
   /// when it is found that one screen in the UI design
   /// does not match the current style effect, or if there is a difference in shape.
-  setHeight(num height) => height * scaleHeight;
+  num setHeight(num height) => height * scaleHeight;
 
   ///字体大小适配方法
   ///@param [fontSize] UI设计上字体的大小,单位px.
   ///Font size adaptation method
   ///@param [fontSize] The size of the font on the UI design, in px.
   ///@param [allowFontScaling]
-  setSp(num fontSize) => allowFontScaling
+  num setSp(num fontSize) => allowFontScaling
       ? setWidth(fontSize)
       : setWidth(fontSize) / _textScaleFactor;
 }

@@ -136,12 +136,12 @@ Column(
     
 ```
 
-```
+```dart
 //导入
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ...
-
+ 
   @override
   Widget build(BuildContext context) {
     //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
@@ -175,6 +175,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
             Row(
               children: <Widget>[
                 Container(
+                  padding: EdgeInsets.all(ScreenUtil.getInstance().setWidth(10)),
                   width: ScreenUtil.getInstance().setWidth(375),
                   height: ScreenUtil.getInstance().setHeight(200),
                   color: Colors.red,
@@ -187,6 +188,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                   ),
                 ),
                 Container(
+                  padding: EdgeInsets.all(ScreenUtil.getInstance().setWidth(10)),
                   width: ScreenUtil.getInstance().setWidth(375),
                   height: ScreenUtil.getInstance().setHeight(200),
                   color: Colors.blue,

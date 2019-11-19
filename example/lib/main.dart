@@ -61,6 +61,8 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               children: <Widget>[
                 Container(
+                  padding:
+                      EdgeInsets.all(ScreenUtil.getInstance().setWidth(10)),
                   width: ScreenUtil.getInstance().setWidth(375),
                   height: ScreenUtil.getInstance().setHeight(200),
                   color: Colors.red,
@@ -72,6 +74,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 Container(
+                  padding:
+                      EdgeInsets.all(ScreenUtil.getInstance().setWidth(10)),
                   width: ScreenUtil.getInstance().setWidth(375),
                   height: ScreenUtil.getInstance().setHeight(200),
                   color: Colors.blue,

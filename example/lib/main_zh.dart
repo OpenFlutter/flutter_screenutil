@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
     print(
         '高度相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleHeight * ScreenUtil.pixelRatio}');
     print('系统的字体缩放比例:${ScreenUtil.textScaleFactory}');
-  
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -68,6 +68,8 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               children: <Widget>[
                 Container(
+                  padding:
+                      EdgeInsets.all(ScreenUtil.getInstance().setWidth(10)),
                   width: ScreenUtil.getInstance().setWidth(375),
                   height: ScreenUtil.getInstance().setHeight(200),
                   color: Colors.red,
@@ -80,6 +82,8 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
                 Container(
+                  padding:
+                      EdgeInsets.all(ScreenUtil.getInstance().setWidth(10)),
                   width: ScreenUtil.getInstance().setWidth(375),
                   height: ScreenUtil.getInstance().setHeight(200),
                   color: Colors.blue,
