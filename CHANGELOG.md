@@ -6,7 +6,7 @@
  * @Description: Update log
  -->
 
-# 0.7.0
+# 0.6.1
 
 - 给所有方法添加返回类型.
 
