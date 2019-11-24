@@ -7,6 +7,7 @@
 *Note*: This plugin is still under development, and some APIs might not be available yet.
 
 [中文文档](https://github.com/OpenFlutter/flutter_screenutil/blob/master/README_CN.md)
+[README em Português](https://github.com/OpenFlutter/flutter_screenutil/blob/master/README_PT.md)
 
 github: https://github.com/OpenFlutter/flutter_screenutil
 
@@ -230,13 +231,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                    'My font size is 14px on the design draft and will not change with the system.',
+                    'My font size is 24px on the design draft and will not change with the system.',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: ScreenUtil.getInstance().setSp(14),
+                      fontSize: ScreenUtil.getInstance().setSp(24),
                     )),
                 Text(
-                    'My font size is 14px on the design draft and will change with the system.',
+                    'My font size is 24px on the design draft and will change with the system.',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: ScreenUtil(allowFontScaling: true).setSp(24),
