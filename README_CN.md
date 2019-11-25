@@ -9,6 +9,7 @@
 *注意*：此插件仍处于开发阶段，某些API可能尚未推出。
 
 [README of English](https://github.com/OpenFlutter/flutter_ScreenUtil/blob/master/README.md)
+[README em Português](https://github.com/OpenFlutter/flutter_screenutil/blob/master/README_PT.md)
 
 github: https://github.com/OpenFlutter/flutter_screenutil
 
@@ -228,10 +229,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
             Column(
                          crossAxisAlignment: CrossAxisAlignment.start,
                          children: <Widget>[
-                           Text('我的文字大小在设计稿上是25px，不会随着系统的文字缩放比例变化',
+                           Text('我的文字大小在设计稿上是24px，不会随着系统的文字缩放比例变化',
                                style: TextStyle(
                                    color: Colors.black, fontSize: ScreenUtil.getInstance().setSp(24))),
-                           Text('我的文字大小在设计稿上是25px，会随着系统的文字缩放比例变化',
+                           Text('我的文字大小在设计稿上是24px，会随着系统的文字缩放比例变化',
                                style: TextStyle(
                                    color: Colors.black, fontSize: ScreenUtil(allowFontScaling: true).setSp(24))),
                          ],
