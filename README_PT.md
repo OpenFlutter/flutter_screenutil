@@ -7,6 +7,7 @@
 *Nota*: Este plugin ainda está em desenvolvimento e algumas APIs podem ainda não estar disponíveis.
 
 [中文文档](https://github.com/OpenFlutter/flutter_screenutil/blob/master/README_CN.md)  
+
 [README of English](https://github.com/OpenFlutter/flutter_ScreenUtil/blob/master/README.md)
 
 github: https://github.com/OpenFlutter/flutter_screenutil
