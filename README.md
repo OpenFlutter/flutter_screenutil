@@ -134,7 +134,7 @@ Column(
     ScreenUtil.screenHeight     //Device height
     ScreenUtil.bottomBarHeight  //Bottom safe zone distance, suitable for buttons with full screen
     ScreenUtil.statusBarHeight  //Status bar height , Notch will be higher Unit px
-    ScreenUtil.textScaleFactory //System font scaling factor
+    ScreenUtil.textScaleFactor //System font scaling factor
 
     ScreenUtil.getInstance().scaleWidth //Ratio of actual width dp to design draft px
     ScreenUtil.getInstance().scaleHeight //Ratio of actual height dp to design draft px
@@ -227,7 +227,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
             SizedBox(
               height: ScreenUtil.getInstance().setHeight(100),
             ),
-            Text('System font scaling factor:${ScreenUtil.textScaleFactory}'),
+            Text('System font scaling factor:${ScreenUtil.textScaleFactor}'),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
