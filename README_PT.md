@@ -134,7 +134,7 @@ Column(
     ScreenUtil.screenHeight     //Altura da tela do dispositivo
     ScreenUtil.bottomBarHeight  //Distância segura do rodapé, adequada para botões em tela cheia
     ScreenUtil.statusBarHeight  //Altura da status bar em pixels, Notch será maior
-    ScreenUtil.textScaleFactory //Fator de escala da fonte do sistema
+    ScreenUtil.textScaleFactor //Fator de escala da fonte do sistema
 
     ScreenUtil.getInstance().scaleWidth //Razão entre a largura atual e a largura do protótipo de design em pixels
     ScreenUtil.getInstance().scaleHeight //Razão entre a altura atual e a altura do protótipo de design em pixels
@@ -227,7 +227,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
             SizedBox(
               height: ScreenUtil.getInstance().setHeight(100),
             ),
-            Text('Fator de escala da fonte do sistema:${ScreenUtil.textScaleFactory}'),
+            Text('Fator de escala da fonte do sistema:${ScreenUtil.textScaleFactor}'),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

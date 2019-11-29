@@ -105,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: ScreenUtil.getInstance().setHeight(100),
             ),
-            Text('System font scaling factor:${ScreenUtil.textScaleFactory}'),
+            Text('System font scaling factor:${ScreenUtil.textScaleFactor}'),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[

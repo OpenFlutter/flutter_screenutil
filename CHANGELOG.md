@@ -5,10 +5,14 @@
  * @LastEditTime: 2019-11-19 11:41
  * @Description: Update log
  -->
+ 
+#0.7.0
+
+- Replace textScaleFactory with textScaleFactor , It's a typo.
 
 # 0.6.1
 
-- 给所有方法添加返回类型.
+- Add return types to all methods.
 
 # 0.6.0
 

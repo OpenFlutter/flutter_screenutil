@@ -130,7 +130,7 @@ Column(
     ScreenUtil.screenHeight     //设备高度
     ScreenUtil.bottomBarHeight  //底部安全区距离，适用于全面屏下面有按键的
     ScreenUtil.statusBarHeight  //状态栏高度 刘海屏会更高  单位px
-    ScreenUtil.textScaleFactory //系统字体缩放比例
+    ScreenUtil.textScaleFactor //系统字体缩放比例
     
     ScreenUtil.getInstance().scaleWidth  // 实际宽度的dp与设计稿px的比例
     ScreenUtil.getInstance().scaleHeight // 实际高度的dp与设计稿px的比例
@@ -163,7 +163,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
         '宽度和字体相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleWidth * ScreenUtil.pixelRatio}'); 
     print(
         '高度相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleHeight * ScreenUtil.pixelRatio}'); 
-    print('系统的字体缩放比例:${ScreenUtil.textScaleFactory}');
+    print('系统的字体缩放比例:${ScreenUtil.textScaleFactor}');
 
     return new Scaffold(
       appBar: new AppBar(
@@ -225,7 +225,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
             SizedBox(
               height: ScreenUtil.getInstance().setHeight(100),
             ),
-            Text('系统的字体缩放比例:${ScreenUtil.textScaleFactory}'),
+            Text('系统的字体缩放比例:${ScreenUtil.textScaleFactor}'),
             Column(
                          crossAxisAlignment: CrossAxisAlignment.start,
                          children: <Widget>[

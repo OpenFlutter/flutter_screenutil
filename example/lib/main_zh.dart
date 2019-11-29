@@ -47,7 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
         '宽度和字体相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleWidth * ScreenUtil.pixelRatio}');
     print(
         '高度相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleHeight * ScreenUtil.pixelRatio}');
-    print('系统的字体缩放比例:${ScreenUtil.textScaleFactory}');
+    print('系统的字体缩放比例:${ScreenUtil.textScaleFactor}');
 
     return Scaffold(
       appBar: AppBar(
@@ -115,7 +115,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: ScreenUtil.getInstance().setHeight(100),
             ),
-            Text('系统的字体缩放比例:${ScreenUtil.textScaleFactory}'),
+            Text('系统的字体缩放比例:${ScreenUtil.textScaleFactor}'),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
