@@ -6,7 +6,7 @@
  * @Description: Update log
  -->
 
-#1.0.0
+#1.0.1
 - Rebuild code, change API
   Delete "getInstance()", please use "ScreenUtil ()" instead of "ScreenUtil.getInstance()"
   use "ScreenUtil().setSp(24, allowFontScalingSelf: true)" instead of "ScreenUtil.getInstance().setSp(14, true)"
