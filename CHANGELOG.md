@@ -2,10 +2,19 @@
  * @Author: zhuoyuan93@gmail.com
  * @Date: 2018-10-16 19:43:03
  * @LastEditors: zhuoyuan93@gmail.com
- * @LastEditTime: 2019-11-29 11:42
+ * @LastEditTime: 2020年1月6日 16:41:02
  * @Description: Update log
  -->
- 
+
+#1.0.0
+- Rebuild code, change API
+- Modify the initialization method
+- Fix #68
+- CompileSdkVersion change to 28
+- Change example code
+
+If there is significant impact, please return to 0.7.0
+
 #0.7.0
 
 - Replace textScaleFactory with textScaleFactor , It's a typo.

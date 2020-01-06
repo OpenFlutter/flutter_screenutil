@@ -6,12 +6,14 @@
 import 'package:flutter/material.dart';
 
 class ScreenUtil {
-  static ScreenUtil instance = new ScreenUtil();
+  static ScreenUtil _instance;
+  static const int defaultWidth = 1080;
+  static const int defaultHeight = 1920;
 
   /// UI设计中手机尺寸 , px
   /// Size of the phone in UI Design , px
-  double width;
-  double height;
+  num uiWidthPx;
+  num uiHeightPx;
 
   /// 控制字体是否要根据系统的“字体大小”辅助选项来进行缩放。默认值为false。
   /// allowFontScaling Specifies whether fonts should scale to respect Text Size accessibility settings. The default is false.
@@ -22,22 +24,26 @@ class ScreenUtil {
   static double _screenHeight;
   static double _pixelRatio;
   static double _statusBarHeight;
-
   static double _bottomBarHeight;
-
   static double _textScaleFactor;
 
-  ScreenUtil({
-    this.width = 1080,
-    this.height = 1920,
-    this.allowFontScaling = false,
-  });
+  ScreenUtil._();
 
-  static ScreenUtil getInstance() {
-    return instance;
+  factory ScreenUtil() {
+    return _instance;
   }
 
-  void init(BuildContext context) {
+  static void init(BuildContext context,
+      {num width = defaultWidth,
+      num height = defaultHeight,
+      bool allowFontScaling = false}) {
+    if (_instance == null) {
+      _instance = ScreenUtil._();
+    }
+    _instance.uiWidthPx = width;
+    _instance.uiHeightPx = height;
+    _instance.allowFontScaling = allowFontScaling;
+
     MediaQueryData mediaQuery = MediaQuery.of(context);
     _mediaQueryData = mediaQuery;
     _pixelRatio = mediaQuery.devicePixelRatio;
@@ -84,9 +90,11 @@ class ScreenUtil {
 
   /// 实际的dp与UI设计px的比例
   /// The ratio of the actual dp to the design draft px
-  double get scaleWidth => _screenWidth / instance.width;
+  double get scaleWidth => _screenWidth / uiWidthPx;
 
-  double get scaleHeight => _screenHeight / instance.height;
+  double get scaleHeight => _screenHeight / uiHeightPx;
+
+  double get scaleText => scaleWidth > scaleHeight ? scaleWidth : scaleHeight;
 
   /// 根据UI设计的设备宽度适配
   /// 高度也可以根据这个来做适配可以保证不变形,比如你先要一个正方形的时候.
@@ -110,7 +118,12 @@ class ScreenUtil {
   ///Font size adaptation method
   ///@param [fontSize] The size of the font on the UI design, in px.
   ///@param [allowFontScaling]
-  num setSp(num fontSize) => allowFontScaling
-      ? setWidth(fontSize)
-      : setWidth(fontSize) / _textScaleFactor;
+  num setSp(num fontSize, {bool allowFontScalingSelf}) =>
+      allowFontScalingSelf == null
+          ? (allowFontScaling
+              ? (fontSize * scaleText)
+              : ((fontSize * scaleText) / _textScaleFactor))
+          : (allowFontScalingSelf
+              ? (fontSize * scaleText)
+              : ((fontSize * scaleText) / _textScaleFactor));
 }

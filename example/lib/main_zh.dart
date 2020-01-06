@@ -4,7 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
@@ -13,7 +12,7 @@ class MyApp extends StatelessWidget {
       theme: new ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: new MyHomePage(title: 'FlutterScreenUtil Demo'),
+      home: new MyHomePage(),
     );
   }
 }
@@ -30,36 +29,31 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
-    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
-    print('设备宽度:${ScreenUtil.screenWidth}'); //Device width
-    print('设备高度:${ScreenUtil.screenHeight}'); //Device height
-    print('设备的像素密度:${ScreenUtil.pixelRatio}'); //Device pixel density
-    print(
-        '底部安全区距离:${ScreenUtil.bottomBarHeight}dp'); //Bottom safe zone distance，suitable for buttons with full screen
-    print(
-        '状态栏高度:${ScreenUtil.statusBarHeight}dp'); //Status bar height , Notch will be higher Unit px
+    //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 此处假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
+    ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
+    ScreenUtil.init(context);
+    ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
 
-    print('实际宽度的dp与设计稿px的比例:${ScreenUtil.getInstance().scaleWidth}');
-    print('实际高度的dp与设计稿px的比例:${ScreenUtil.getInstance().scaleHeight}');
+    return ExampleWidget(title: 'FlutterScreenUtil示例');
+  }
+}
 
-    print(
-        '宽度和字体相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleWidth * ScreenUtil.pixelRatio}');
-    print(
-        '高度相对于设计稿放大的比例:${ScreenUtil.getInstance().scaleHeight * ScreenUtil.pixelRatio}');
-    print('系统的字体缩放比例:${ScreenUtil.textScaleFactor}');
+class ExampleWidget extends StatefulWidget {
+  const ExampleWidget({Key key, this.title}) : super(key: key);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          print(
-              'ScreenUtil.getInstance().width：${ScreenUtil.getInstance().width}');
-          print('ScreenUtil().width：${ScreenUtil().width}');
-        },
-        child: Icon(Icons.accessible_forward),
+  final String title;
+
+  @override
+  _ExampleWidgetState createState() => _ExampleWidgetState();
+}
+
+class _ExampleWidgetState extends State<ExampleWidget> {
+  @override
+  Widget build(BuildContext context) {
+    printScreenInformation();
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text(widget.title),
       ),
       body: new Center(
         child: Column(
@@ -68,31 +62,28 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               children: <Widget>[
                 Container(
-                  padding:
-                      EdgeInsets.all(ScreenUtil.getInstance().setWidth(10)),
-                  width: ScreenUtil.getInstance().setWidth(375),
-                  height: ScreenUtil.getInstance().setHeight(200),
+                  padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
+                  width: ScreenUtil().setWidth(375),
+                  height: ScreenUtil().setHeight(200),
                   color: Colors.red,
                   child: Text(
-                    '我的宽度:${ScreenUtil.getInstance().setWidth(375)}dp',
+                    '我的宽度:${ScreenUtil().setWidth(375)}dp \n'
+                    '我的高度:${ScreenUtil().setHeight(200)}dp',
                     style: TextStyle(
-                      color: Colors.white,
-                      fontSize: ScreenUtil.getInstance().setSp(24),
-                    ),
+                        color: Colors.white, fontSize: ScreenUtil().setSp(24)),
                   ),
                 ),
                 Container(
-                  padding:
-                      EdgeInsets.all(ScreenUtil.getInstance().setWidth(10)),
-                  width: ScreenUtil.getInstance().setWidth(375),
-                  height: ScreenUtil.getInstance().setHeight(200),
+                  padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
+                  width: ScreenUtil().setWidth(375),
+                  height: ScreenUtil().setHeight(200),
                   color: Colors.blue,
-                  child:
-                      Text('我的宽度:${ScreenUtil.getInstance().setWidth(375)}dp',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: ScreenUtil.getInstance().setSp(24),
-                          )),
+                  child: Text(
+                      '我的宽度:${ScreenUtil().setWidth(375)}dp \n'
+                      '我的高度:${ScreenUtil().setHeight(200)}dp',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: ScreenUtil().setSp(24))),
                 ),
               ],
             ),
@@ -100,20 +91,19 @@ class _MyHomePageState extends State<MyHomePage> {
             Text('设备高度:${ScreenUtil.screenHeight}px'),
             Text('设备宽度:${ScreenUtil.screenWidthDp}dp'),
             Text('设备高度:${ScreenUtil.screenHeightDp}dp'),
-            Text('设计稿宽度:${ScreenUtil.getInstance().width}'),
             Text('设备的像素密度:${ScreenUtil.pixelRatio}'),
             Text('底部安全区距离:${ScreenUtil.bottomBarHeight}dp'),
             Text('状态栏高度:${ScreenUtil.statusBarHeight}dp'),
             Text(
-              '实际宽度的dp与设计稿px的比例:${ScreenUtil.getInstance().scaleWidth}',
+              '实际宽度的dp与设计稿px的比例:${ScreenUtil().scaleWidth}',
               textAlign: TextAlign.center,
             ),
             Text(
-              '实际高度的dp与设计稿px的比例:${ScreenUtil.getInstance().scaleHeight}',
+              '实际高度的dp与设计稿px的比例:${ScreenUtil().scaleHeight}',
               textAlign: TextAlign.center,
             ),
             SizedBox(
-              height: ScreenUtil.getInstance().setHeight(100),
+              height: ScreenUtil().setHeight(100),
             ),
             Text('系统的字体缩放比例:${ScreenUtil.textScaleFactor}'),
             Column(
@@ -121,18 +111,45 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 Text('我的文字大小在设计稿上是24px，不会随着系统的文字缩放比例变化',
                     style: TextStyle(
-                        color: Colors.black,
-                        fontSize: ScreenUtil.getInstance().setSp(24))),
+                      color: Colors.black,
+                      fontSize: ScreenUtil().setSp(24),
+                    )),
                 Text('我的文字大小在设计稿上是24px，会随着系统的文字缩放比例变化',
                     style: TextStyle(
                         color: Colors.black,
-                        fontSize:
-                            ScreenUtil(allowFontScaling: true).setSp(24))),
+                        fontSize: ScreenUtil()
+                            .setSp(24, allowFontScalingSelf: true))),
               ],
             )
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.title),
+        onPressed: () {
+          ScreenUtil.init(context,
+              width: 1500, height: 1334, allowFontScaling: false);
+          setState(() {});
+        },
+      ),
     );
+  }
+
+  void printScreenInformation() {
+    print('设备宽度:${ScreenUtil.screenWidth}'); //Device width
+    print('设备高度:${ScreenUtil.screenHeight}'); //Device height
+    print('设备的像素密度:${ScreenUtil.pixelRatio}'); //Device pixel density
+    print(
+        '底部安全区距离:${ScreenUtil.bottomBarHeight}dp'); //Bottom safe zone distance，suitable for buttons with full screen
+    print(
+        '状态栏高度:${ScreenUtil.statusBarHeight}dp'); //Status bar height , Notch will be higher Unit px
+
+    print('实际宽度的dp与设计稿px的比例:${ScreenUtil().scaleWidth}');
+    print('实际高度的dp与设计稿px的比例:${ScreenUtil().scaleHeight}');
+
+    print(
+        '宽度和字体相对于设计稿放大的比例:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}');
+    print('高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}');
+    print('系统的字体缩放比例:${ScreenUtil.textScaleFactor}');
   }
 }

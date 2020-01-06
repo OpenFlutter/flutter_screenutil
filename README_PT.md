@@ -23,7 +23,7 @@ dependencies:
   flutter:
     sdk: flutter
   # add flutter_screenutil
-  flutter_screenutil: ^0.7.0
+  flutter_screenutil: ^1.0.0
 ```
 
 ### Adicione o seguinte import em seu código Dart:
@@ -48,13 +48,13 @@ Certifique-se de definir as dimensões na paginal inicial do MaterialApp (ou sej
 //Preencha o tamanho da tela do dispositivo no protótipo de design
 
 //Valor padrão: width : 1080px , height:1920px , allowFontScaling:false
-ScreenUtil.instance = ScreenUtil.getInstance()..init(context);
+ScreenUtil.init(context);
 
 //Se o design é baseado no iPhone6 ​​(iPhone6 ​​750*1334)
-ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
+ScreenUtil.init(context, width: 750, height: 1334);
 
 //Se você quer definir que o tamanho da fonte seja ajustado de acordo com a opção "tamanho da fonte" na acessibilidade do sistema
-ScreenUtil.instance = ScreenUtil(width: 750, height: 1334, allowFontScaling: true)..init(context);
+ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: true);
 
 ```
 
@@ -64,12 +64,9 @@ ScreenUtil.instance = ScreenUtil(width: 750, height: 1334, allowFontScaling: tru
 
 Informe o tamanho em pixels do protótipo de design:
 
-Adaptado à largura da tela: `ScreenUtil.getInstance().setWidth(540)`,
+Adaptado à largura da tela: `ScreenUtil().setWidth(540)`,
 
-Adaptado à altura da tela: `ScreenUtil.getInstance().setHeight(200)`,
-
-Você também pode utilizar `ScreenUtil()` ao invés de `ScreenUtil.getInstance()`,
-por exemplo:`ScreenUtil().setHeight(200)`
+Adaptado à altura da tela: `ScreenUtil().setHeight(200)`,
 
 **Nota** 
 
@@ -81,15 +78,15 @@ O método setHeight é a principal forma de adaptar a altura, se quiser controla
 //Exemplo:
 //Retângulo
 Container(
-           width: ScreenUtil.getInstance().setWidth(375),
-           height: ScreenUtil.getInstance().setHeight(200),
+           width: ScreenUtil().setWidth(375),
+           height: ScreenUtil().setHeight(200),
            ...
             ),
             
 ////Se quiser exibir um quadrado:
 Container(
-           width: ScreenUtil.getInstance().setWidth(300),
-           height: ScreenUtil.getInstance().setWidth(300),
+           width: ScreenUtil().setWidth(300),
+           height: ScreenUtil().setWidth(300),
             ),
             
 ```
@@ -98,11 +95,11 @@ Container(
 ``` dart
 //Tamanho da fonte informado, em pixels, a fonte não irá dimensionar respeitando a opção "Tamanho de Fonte" nas configurações de acessibilidade
 //(allowFontScaling quando iniciar o ScreenUtil)
-ScreenUtil.getInstance().setSp(28)    
+ScreenUtil().setSp(28)    
      
 //Tamanho da fonte informado，em pixels，a fonte irá dimensionar respeitando a opção "Tamanho de Fonte" nas configurações de acessibilidade
 //(Se em algum lugar não seguir a configuração global da propriedade allowFontScaling)
-ScreenUtil(allowFontScaling: true).setSp(28)  
+ScreenUtil().setSp(24, allowFontScalingSelf: true)
 
 //Exemplo:
 
@@ -113,18 +110,16 @@ Column(
                     'Minha fonte tem 24px no protótipo de design e não irá mudar com o sistema.',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: ScreenUtil.getInstance().setSp(24),
+                      fontSize: ScreenUtil().setSp(24),
                     )),
                 Text(
                     'Minha fonte tem 24px no protótipo de design e poderá mudar com o sistema.',
                     style: TextStyle(
-                      color: Colors.black,
-                      fontSize: ScreenUtil(allowFontScaling: true).setSp(24),
-                    )),
+                        color: Colors.black,
+                        fontSize: ScreenUtil()
+                            .setSp(24, allowFontScalingSelf: true))),
               ],
             )
-
-
 ```
 
 #### Outras APIs relacionadas：
@@ -136,8 +131,8 @@ Column(
     ScreenUtil.statusBarHeight  //Altura da status bar em pixels, Notch será maior
     ScreenUtil.textScaleFactor //Fator de escala da fonte do sistema
 
-    ScreenUtil.getInstance().scaleWidth //Razão entre a largura atual e a largura do protótipo de design em pixels
-    ScreenUtil.getInstance().scaleHeight //Razão entre a altura atual e a altura do protótipo de design em pixels
+    ScreenUtil().scaleWidth //Razão entre a largura atual e a largura do protótipo de design em pixels
+    ScreenUtil().scaleHeight //Razão entre a altura atual e a altura do protótipo de design em pixels
 
 ```
 
@@ -150,7 +145,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
   @override
   Widget build(BuildContext context) {
     ///Define o tamanho de ajuste (preenche o tamanho da tela do dispositivo no design). Se o design é baseado no tamanho do iPhone6 (iPhone6 ​​750*1334)
-    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
+    ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
     
     print('Largura do dispositivo:${ScreenUtil.screenWidth}'); //Largura do dispositivo
     print('Altura do dispositivo:${ScreenUtil.screenHeight}'); //Altura do dispositivo
@@ -161,13 +156,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
     print(
         'Altura da status bar:${ScreenUtil.statusBarHeight}px'); //Altura da status bar em pixels, Notch será maior
     print(
-        'Razão entre a largura atual e a largura do protótipo de design em pixels:${ScreenUtil.getInstance().scaleWidth}'); 
+        'Razão entre a largura atual e a largura do protótipo de design em pixels:${ScreenUtil().scaleWidth}'); 
     print(
-        'Razão entre a altura atual e a altura do protótipo de design em pixels:${ScreenUtil.getInstance().scaleHeight}'); 
+        'Razão entre a altura atual e a altura do protótipo de design em pixels:${ScreenUtil().scaleHeight}'); 
     print(
-        'Razão da fonte e largura para o tamanho do design:${ScreenUtil.getInstance().scaleWidth * ScreenUtil.pixelRatio}');
+        'Razão da fonte e largura para o tamanho do design:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}');
     print(
-        'Razão da fonte e altura para o tamanho do design:${ScreenUtil.getInstance().scaleHeight * ScreenUtil.pixelRatio}');
+        'Razão da fonte e altura para o tamanho do design:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}');
         
     return new Scaffold(
       appBar: new AppBar(
@@ -180,26 +175,26 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
             Row(
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.all(ScreenUtil.getInstance().setWidth(10)),
-                  width: ScreenUtil.getInstance().setWidth(375),
-                  height: ScreenUtil.getInstance().setHeight(200),
+                  padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
+                  width: ScreenUtil().setWidth(375),
+                  height: ScreenUtil().setHeight(200),
                   color: Colors.red,
                   child: Text(
-                    'Minha largura:${ScreenUtil.getInstance().setWidth(375)}dp',
+                    'Minha largura:${ScreenUtil().setWidth(375)}dp',
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: ScreenUtil.getInstance().setSp(12)),
+                        fontSize: ScreenUtil().setSp(12)),
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(ScreenUtil.getInstance().setWidth(10)),
-                  width: ScreenUtil.getInstance().setWidth(375),
-                  height: ScreenUtil.getInstance().setHeight(200),
+                  padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
+                  width: ScreenUtil().setWidth(375),
+                  height: ScreenUtil().setHeight(200),
                   color: Colors.blue,
-                  child: Text('Minha largura:${ScreenUtil.getInstance().setWidth(375)}dp',
+                  child: Text('Minha largura:${ScreenUtil().setWidth(375)}dp',
                       style: TextStyle(
                           color: Colors.white,
-                          fontSize: ScreenUtil.getInstance().setSp(12))),
+                          fontSize: ScreenUtil().setSp(12))),
                 ),
               ],
             ),
@@ -209,23 +204,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
             Text('Distância segura do rodapé:${ScreenUtil.bottomBarHeight}px'),
             Text('Altura da status bar:${ScreenUtil.statusBarHeight}px'),
             Text(
-              'Razão entre a largura atual e a largura do protótipo de design em pixels:${ScreenUtil.getInstance().scaleWidth}',
+              'Razão entre a largura atual e a largura do protótipo de design em pixels:${ScreenUtil().scaleWidth}',
               textAlign: TextAlign.center,
             ),
             Text(
-              'Razão entre a altura atual e a altura do protótipo de design em pixels:${ScreenUtil.getInstance().scaleHeight}',
+              'Razão entre a altura atual e a altura do protótipo de design em pixels:${ScreenUtil().scaleHeight}',
               textAlign: TextAlign.center,
             ),
             Text(
-              'Razão da fonte e largura para o tamanho do design:${ScreenUtil.getInstance().scaleWidth * ScreenUtil.pixelRatio}',
+              'Razão da fonte e largura para o tamanho do design:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}',
               textAlign: TextAlign.center,
             ),
             Text(
-              'Razão da fonte e altura para o tamanho do design:${ScreenUtil.getInstance().scaleHeight * ScreenUtil.pixelRatio}',
+              'Razão da fonte e altura para o tamanho do design:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}',
               textAlign: TextAlign.center,
             ),
             SizedBox(
-              height: ScreenUtil.getInstance().setHeight(100),
+              height: ScreenUtil().setHeight(100),
             ),
             Text('Fator de escala da fonte do sistema:${ScreenUtil.textScaleFactor}'),
             Column(
@@ -235,13 +230,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                     'Minha fonte tem 24px no protótipo de design e não irá mudar com o sistema.',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: ScreenUtil.getInstance().setSp(24),
+                      fontSize: ScreenUtil().setSp(24),
                     )),
                 Text(
                     'Minha fonte tem 24px no protótipo de design e poderá mudar com o sistema.',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: ScreenUtil(allowFontScaling: true).setSp(24),
+                      fontSize: ScreenUtil().setSp(24, allowFontScalingSelf: true),
                     )),
               ],
             )
@@ -259,3 +254,4 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 Efeito:
 
 ![效果](demo_en.png)
+![tablet effect](demo_tablet_en.png)

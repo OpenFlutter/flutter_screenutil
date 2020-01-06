@@ -1,11 +1,11 @@
 # example
 
-flutter_screenutil的使用示例
+flutter_screenutil example
 
-![效果](../demo_zh.png)
-![effect](../demo_en.png)
+![手机效果](../demo_zh.png)
+![phone effect](../demo_en.png)
 
+![平板效果](../demo_tablet_zh.png)
+![tablet effect](../demo_tablet_en.png)
 ## Getting Started
-
-For help getting started with Flutter, view our online
-[documentation](https://flutter.io/).
+ 
