@@ -17,7 +17,7 @@
 
 If there is significant impact, please return to 0.7.0
 
-#0.7.0
+# 0.7.0
 
 - Replace textScaleFactory with textScaleFactor , It's a typo.
 
