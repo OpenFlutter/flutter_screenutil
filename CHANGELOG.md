@@ -6,16 +6,16 @@
  * @Description: Update log
  -->
 
-#1.0.1
+# 1.0.1
 - Rebuild code, change API
   Delete "getInstance()", please use "ScreenUtil ()" instead of "ScreenUtil.getInstance()"
   use "ScreenUtil().setSp(24, allowFontScalingSelf: true)" instead of "ScreenUtil.getInstance().setSp(14, true)"
 - Modify the initialization method
 - Fix #68
-- CompileSdkVersion change to 28
 - Change example code
+  Example CompileSdkVersion change to 28
 
-If there is significant impact, please return to 0.7.0
+**If there is significant impact, please return to 0.7.0**
 
 # 0.7.0
 
