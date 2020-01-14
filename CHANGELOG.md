@@ -5,7 +5,7 @@
  * @LastEditTime: 2020年1月6日 16:41:02
  * @Description: Update log
  -->
-# 1.0.1
+# 1.0.2
 - fix #89 
 - 优化屏幕旋转效果
 - 字体适配统一使用宽度
