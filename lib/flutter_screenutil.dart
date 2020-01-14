@@ -94,7 +94,7 @@ class ScreenUtil {
 
   double get scaleHeight => _screenHeight / uiHeightPx;
 
-  double get scaleText => scaleWidth > scaleHeight ? scaleWidth : scaleHeight;
+  double get scaleText => scaleWidth;
 
   /// 根据UI设计的设备宽度适配
   /// 高度也可以根据这个来做适配可以保证不变形,比如你先要一个正方形的时候.
