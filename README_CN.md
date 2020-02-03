@@ -9,6 +9,7 @@
 *注意*：此插件仍处于开发阶段，某些API可能尚未推出。
 
 [README of English](https://github.com/OpenFlutter/flutter_ScreenUtil/blob/master/README.md)
+
 [README em Português](https://github.com/OpenFlutter/flutter_screenutil/blob/master/README_PT.md)
 
 github: https://github.com/OpenFlutter/flutter_screenutil
