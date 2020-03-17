@@ -60,6 +60,25 @@ ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: true);
 
 ### Use：
 
+#### API
+
+```dart
+    ScreenUtil().setWidth(540) (sdk>=2.6 : 540.w) //Adapted to screen width
+    ScreenUtil().setHeight(200) (sdk>=2.6 : 200.h) //Adapted to screen height
+    ScreenUtil().setSp(24)     (sdk>=2.6 : 24.sp)  //Adapter font
+    ScreenUtil().setSp(24, allowFontScalingSelf: true)  (sdk>=2.6 : 24.ssp) //Adapter font(fonts will scale to respect Text Size accessibility settings)
+
+    ScreenUtil.pixelRatio       //Device pixel density
+    ScreenUtil.screenWidth      //Device width
+    ScreenUtil.screenHeight     //Device height
+    ScreenUtil.bottomBarHeight  //Bottom safe zone distance, suitable for buttons with full screen
+    ScreenUtil.statusBarHeight  //Status bar height , Notch will be higher Unit px
+    ScreenUtil.textScaleFactor  //System font scaling factor
+
+    ScreenUtil().scaleWidth //Ratio of actual width dp to design draft px
+    ScreenUtil().scaleHeight //Ratio of actual height dp to design draft px
+```
+
 #### Adapt screen size：
 
 Pass the px size of the design draft：
@@ -68,6 +87,23 @@ Adapted to screen width: `ScreenUtil().setWidth(540)`,
 
 Adapted to screen height: `ScreenUtil().setHeight(200)`,
 
+If your dart sdk>=2.6, you can use extension functions:
+
+example:
+instead of :
+```
+Container(
+width: ScreenUtil().setWidth(50),
+height:ScreenUtil().setHeight(200),
+)
+```
+you can use it like this:
+```
+Container(
+width: 50.w,
+height:200.h
+)
+```
 **Note** 
 
 Height is also adapted according to setWidth to ensure no deformation (when you want a square) 
@@ -120,20 +156,6 @@ Column(
                             .setSp(24, allowFontScalingSelf: true))),
               ],
             )
-```
-
-#### Other related apis：
-```dart
-    ScreenUtil.pixelRatio       //Device pixel density
-    ScreenUtil.screenWidth      //Device width
-    ScreenUtil.screenHeight     //Device height
-    ScreenUtil.bottomBarHeight  //Bottom safe zone distance, suitable for buttons with full screen
-    ScreenUtil.statusBarHeight  //Status bar height , Notch will be higher Unit px
-    ScreenUtil.textScaleFactor //System font scaling factor
-
-    ScreenUtil().scaleWidth //Ratio of actual width dp to design draft px
-    ScreenUtil().scaleHeight //Ratio of actual height dp to design draft px
-
 ```
 
 ```dart

@@ -74,12 +74,12 @@ class _ExampleWidgetState extends State<ExampleWidget> {
                 ),
                 Container(
                   padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
-                  width: ScreenUtil().setWidth(375),
-                  height: ScreenUtil().setHeight(200),
+                  width: 375.w,
+                  height: 200.h,
                   color: Colors.blue,
                   child: Text(
-                      '我的宽度:${ScreenUtil().setWidth(375)}dp \n'
-                      '我的高度:${ScreenUtil().setHeight(200)}dp',
+                      '我的宽度:${375.w}dp \n'
+                      '我的高度:${200.h}dp',
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: ScreenUtil().setSp(24))),
@@ -102,7 +102,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
               textAlign: TextAlign.center,
             ),
             SizedBox(
-              height: ScreenUtil().setHeight(100),
+              height: 100.h,
             ),
             Text('系统的字体缩放比例:${ScreenUtil.textScaleFactor}'),
             Column(
@@ -111,7 +111,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
                 Text('我的文字大小在设计稿上是24px，不会随着系统的文字缩放比例变化',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: ScreenUtil().setSp(24),
+                      fontSize: 24.sp,
                     )),
                 Text('我的文字大小在设计稿上是24px，会随着系统的文字缩放比例变化',
                     style: TextStyle(

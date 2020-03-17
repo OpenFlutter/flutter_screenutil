@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() => runApp(MyApp());
@@ -58,12 +57,12 @@ class _ExampleWidgetState extends State<ExampleWidget> {
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
-                  width: ScreenUtil().setWidth(375),
-                  height: ScreenUtil().setHeight(200),
+                  width: 375.w,
+                  height: 200.h,
                   color: Colors.red,
                   child: Text(
-                    'My width:${ScreenUtil().setWidth(375)}dp \n'
-                    'My height:${ScreenUtil().setHeight(200)}dp',
+                    'My width:${375.w}dp \n'
+                    'My height:${200.h}dp',
                     style: TextStyle(
                         color: Colors.white, fontSize: ScreenUtil().setSp(24)),
                   ),
@@ -108,7 +107,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
                     'My font size is 24px on the design draft and will not change with the system.',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: ScreenUtil().setSp(24),
+                      fontSize: 24.sp,
                     )),
                 Text(
                     'My font size is 24px on the design draft and will change with the system.',

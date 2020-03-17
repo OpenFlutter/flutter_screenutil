@@ -5,6 +5,14 @@
  * @LastEditTime: 2020年1月14日 12:11:02
  * @Description: Update log
  -->
+
+#1.1.0
+- support ExtensionMethod Dart-SDK-2.6.0
+- you can use 'width: 50.w' instead of 'width: ScreenUtil().setWidth(50)'
+  '50.h' instead of 'ScreenUtil().setHeight(50)'
+  '24.sp' instead of 'ScreenUtil().setSp(24)'
+  '24.ssp' instead of 'ScreenUtil().setSp(24, allowFontScalingSelf: true)'
+
 # 1.0.2
 - fix #89 
 - 优化屏幕旋转效果
