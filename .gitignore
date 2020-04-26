@@ -8,6 +8,7 @@ packages
 .idea/
 web/experimental
 doc
+.packages
 
 # Or the files created by dart2js.
 *.dart.js
@@ -16,5 +17,5 @@ doc
 *.js.map
 
 # Include when developing application packages.
-pubspec.lock
+.lock
 coverage*
