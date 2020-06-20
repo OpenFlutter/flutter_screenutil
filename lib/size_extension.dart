@@ -8,4 +8,6 @@ extension SizeExtension on num {
   num get sp => ScreenUtil().setSp(this);
 
   num get ssp => ScreenUtil().setSp(this, allowFontScalingSelf: true);
+
+  num get nsp => ScreenUtil().setSp(this, allowFontScalingSelf: false);
 }

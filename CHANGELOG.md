@@ -5,12 +5,15 @@
  * @LastEditTime: 2020年6月20日 11:20:02
  * @Description: Update log
  -->
+ 
+# 2.1.0 
+- add 'nsp' , you can use 'fontSize: 24.nsp' instead of 'fontSize: ScreenUtil().setSp(24, allowFontScalingSelf: false)'
 
-#2.0.0
+# 2.0.0
 - Use `MediaQueryData.fromWindow(window)` instead of `MediaQuery.of(context)`, no context parameter required
 - API changes, please note
 
-#1.1.0
+# 1.1.0
 - support ExtensionMethod Dart-SDK-2.6.0
 - you can use 'width: 50.w' instead of 'width: ScreenUtil().setWidth(50)'
   '50.h' instead of 'ScreenUtil().setHeight(50)'

@@ -29,7 +29,7 @@ dependencies:
   flutter:
     sdk: flutter
   # 添加依赖
-  flutter_screenutil: ^2.0.0
+  flutter_screenutil: ^2.1.0
 ```
 
 ### 在每个使用的地方导入包：
@@ -74,7 +74,8 @@ ScreenUtil.init(width: 750, height: 1334, allowFontScaling: true);             /
     ScreenUtil().setWidth(540)  (sdk>=2.6 : 540.w) //根据屏幕宽度适配尺寸
     ScreenUtil().setHeight(200) (sdk>=2.6 : 200.h) //根据屏幕高度适配尺寸
     ScreenUtil().setSp(24)      (sdk>=2.6 : 24.sp)  //适配字体
-    ScreenUtil().setSp(24, allowFontScalingSelf: true)  (sdk>=2.6 : 24.ssp) //适配字体(根据系统的“字体大小”辅助选项来进行缩放)
+    ScreenUtil().setSp(24, allowFontScalingSelf: true)   (sdk>=2.6 : 24.ssp) //适配字体(根据系统的“字体大小”辅助选项来进行缩放)
+    ScreenUtil().setSp(24, allowFontScalingSelf: false)  (sdk>=2.6 : 24.nsp) //适配字体(不会根据系统的“字体大小”辅助选项来进行缩放)
 
     ScreenUtil.pixelRatio       //设备的像素密度
     ScreenUtil.screenWidth      //设备宽度
