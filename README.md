@@ -298,8 +298,8 @@ class _ExampleWidgetState extends State<ExampleWidget> {
   }
 
   void printScreenInformation() {
-    print('Device width px:${ScreenUtil.screenWidth}'); //Device width
-    print('Device height px:${ScreenUtil.screenHeight}'); //Device height
+    print('Device width dp:${ScreenUtil.screenWidth}'); //Device width
+    print('Device height dp:${ScreenUtil.screenHeight}'); //Device height
     print(
         'Device pixel density:${ScreenUtil.pixelRatio}'); //Device pixel density
     print(
