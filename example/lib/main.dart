@@ -26,7 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
-    ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
+    ScreenUtil.init(width: 750, height: 1334, allowFontScaling: false);
 
     return ExampleWidget(title: 'FlutterScreenUtil Demo');
   }
@@ -81,10 +81,10 @@ class _ExampleWidgetState extends State<ExampleWidget> {
                 ),
               ],
             ),
-            Text('Device width:${ScreenUtil.screenWidth}px'),
-            Text('Device height:${ScreenUtil.screenHeight}px'),
-            Text('Device width:${ScreenUtil.screenWidthDp}dp'),
-            Text('Device height:${ScreenUtil.screenHeightDp}dp'),
+            Text('Device width:${ScreenUtil.screenWidthPx}px'),
+            Text('Device height:${ScreenUtil.screenHeightPx}px'),
+            Text('Device width:${ScreenUtil.screenWidth}dp'),
+            Text('Device height:${ScreenUtil.screenHeight}dp'),
             Text('Device pixel density:${ScreenUtil.pixelRatio}'),
             Text('Bottom safe zone distance:${ScreenUtil.bottomBarHeight}dp'),
             Text('Status bar height:${ScreenUtil.statusBarHeight}dp'),
@@ -123,8 +123,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.title),
         onPressed: () {
-          ScreenUtil.init(context,
-              width: 1500, height: 1334, allowFontScaling: false);
+          ScreenUtil.init(width: 1500, height: 1334, allowFontScaling: false);
           setState(() {});
         },
       ),
@@ -132,8 +131,8 @@ class _ExampleWidgetState extends State<ExampleWidget> {
   }
 
   void printScreenInformation() {
-    print('Device width px:${ScreenUtil.screenWidth}'); //Device width
-    print('Device height px:${ScreenUtil.screenHeight}'); //Device height
+    print('Device width dp:${ScreenUtil.screenWidth}'); //Device width
+    print('Device height dp:${ScreenUtil.screenHeight}'); //Device height
     print(
         'Device pixel density:${ScreenUtil.pixelRatio}'); //Device pixel density
     print(
@@ -148,5 +147,6 @@ class _ExampleWidgetState extends State<ExampleWidget> {
         'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}');
     print(
         'The ratio of  height width to the size of the design:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}');
+    print('System font scaling:${ScreenUtil.textScaleFactor}');
   }
 }

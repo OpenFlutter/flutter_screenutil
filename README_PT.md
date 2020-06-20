@@ -18,12 +18,13 @@ github: https://github.com/OpenFlutter/flutter_screenutil
 
 ### Adicionando a dependência：
 Por favor, verifique a última versão antes da instalação.
+Se houver algum problema com a nova versão, use a versão anterior
 ```
 dependencies:
   flutter:
     sdk: flutter
   # add flutter_screenutil
-  flutter_screenutil: ^1.0.2
+  flutter_screenutil: ^2.0.0
 ```
 
 ### Adicione o seguinte import em seu código Dart:
@@ -48,13 +49,16 @@ Certifique-se de definir as dimensões na paginal inicial do MaterialApp (ou sej
 //Preencha o tamanho da tela do dispositivo no protótipo de design
 
 //Valor padrão: width : 1080px , height:1920px , allowFontScaling:false
-ScreenUtil.init(context);
+ScreenUtil.init(context);        //flutter_screenuitl < 1.2
+ScreenUtil.init();               //flutter_screenuitl >= 1.2
 
 //Se o design é baseado no iPhone6 ​​(iPhone6 ​​750*1334)
-ScreenUtil.init(context, width: 750, height: 1334);
+ScreenUtil.init(context, width: 750, height: 1334); //flutter_screenuitl < 1.2
+ScreenUtil.init(width: 750, height: 1334);          //flutter_screenuitl >= 1.2
 
 //Se você quer definir que o tamanho da fonte seja ajustado de acordo com a opção "tamanho da fonte" na acessibilidade do sistema
-ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: true);
+ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: true);    //flutter_screenuitl < 1.2
+ScreenUtil.init(width: 750, height: 1334, allowFontScaling: true);             //flutter_screenuitl >= 1.2
 
 ```
 
@@ -182,7 +186,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
   @override
   Widget build(BuildContext context) {
     ///Define o tamanho de ajuste (preenche o tamanho da tela do dispositivo no design). Se o design é baseado no tamanho do iPhone6 (iPhone6 ​​750*1334)
-    ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
+    ScreenUtil.init(width: 750, height: 1334, allowFontScaling: false);
     
     print('Largura do dispositivo:${ScreenUtil.screenWidth}'); //Largura do dispositivo
     print('Altura do dispositivo:${ScreenUtil.screenHeight}'); //Altura do dispositivo
@@ -235,11 +239,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                 ),
               ],
             ),
-            Text('Largura do dispositivo:${ScreenUtil.screenWidth}px'),
-            Text('Altura do dispositivo:${ScreenUtil.screenHeight}px'),
+            Text('Largura do dispositivo:${ScreenUtil.screenWidth}dp'),
+            Text('Altura do dispositivo:${ScreenUtil.screenHeight}dp'),
             Text('Densidade de pixels do dispositivo:${ScreenUtil.pixelRatio}'),
-            Text('Distância segura do rodapé:${ScreenUtil.bottomBarHeight}px'),
-            Text('Altura da status bar:${ScreenUtil.statusBarHeight}px'),
+            Text('Distância segura do rodapé:${ScreenUtil.bottomBarHeight}dp'),
+            Text('Altura da status bar:${ScreenUtil.statusBarHeight}dp'),
             Text(
               'Razão entre a largura atual e a largura do protótipo de design em pixels:${ScreenUtil().scaleWidth}',
               textAlign: TextAlign.center,

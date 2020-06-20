@@ -23,12 +23,13 @@ csdn博客工具介绍:https://blog.csdn.net/u011272795/article/details/82795477
 ### 安装依赖：
 
 安装之前请查看最新版本
+新版本如有问题请使用上一版
 ```
 dependencies:
   flutter:
     sdk: flutter
   # 添加依赖
-  flutter_screenutil: ^1.0.2
+  flutter_screenutil: ^2.0.0
 ```
 
 ### 在每个使用的地方导入包：
@@ -52,13 +53,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 //填入设计稿中设备的屏幕尺寸
 
 //默认 width : 1080px , height:1920px , allowFontScaling:false
-ScreenUtil.init(context);
+ScreenUtil.init(context);        //flutter_screenuitl < 1.2
+ScreenUtil.init();               //flutter_screenuitl >= 1.2
 
 //假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334) 
-ScreenUtil.init(context, width: 750, height: 1334);
+ScreenUtil.init(context, width: 750, height: 1334); //flutter_screenuitl < 1.2
+ScreenUtil.init(width: 750, height: 1334);          //flutter_screenuitl >= 1.2
 
 //设置字体大小根据系统的“字体大小”辅助选项来进行缩放,默认为false
-ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: true);
+ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: true);    //flutter_screenuitl < 1.2
+ScreenUtil.init(width: 750, height: 1334, allowFontScaling: true);             //flutter_screenuitl >= 1.2
     
 ```
 
@@ -198,9 +202,9 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 此处假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
-    ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
-    ScreenUtil.init(context);
-    ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
+    ScreenUtil.init(width: 750, height: 1334, allowFontScaling: false);
+    ScreenUtil.init();
+    ScreenUtil.init(width: 750, height: 1334, allowFontScaling: false);
 
     return ExampleWidget(title: 'FlutterScreenUtil示例');
   }
@@ -255,10 +259,10 @@ class _ExampleWidgetState extends State<ExampleWidget> {
                 ),
               ],
             ),
-            Text('设备宽度:${ScreenUtil.screenWidth}px'),
-            Text('设备高度:${ScreenUtil.screenHeight}px'),
-            Text('设备宽度:${ScreenUtil.screenWidthDp}dp'),
-            Text('设备高度:${ScreenUtil.screenHeightDp}dp'),
+            Text('设备宽度:${ScreenUtil.screenWidth}dp'),
+            Text('设备高度:${ScreenUtil.screenHeight}dp'),
+            Text('设备宽度:${ScreenUtil.screenWidthPx}px'),
+            Text('设备高度:${ScreenUtil.screenHeightPx}px'),
             Text('设备的像素密度:${ScreenUtil.pixelRatio}'),
             Text('底部安全区距离:${ScreenUtil.bottomBarHeight}dp'),
             Text('状态栏高度:${ScreenUtil.statusBarHeight}dp'),
@@ -295,8 +299,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.title),
         onPressed: () {
-          ScreenUtil.init(context,
-              width: 1500, height: 1334, allowFontScaling: false);
+          ScreenUtil.init(width: 1500, height: 1334, allowFontScaling: false);
           setState(() {});
         },
       ),
@@ -310,11 +313,10 @@ class _ExampleWidgetState extends State<ExampleWidget> {
     print(
         '底部安全区距离:${ScreenUtil.bottomBarHeight}dp'); //Bottom safe zone distance，suitable for buttons with full screen
     print(
-        '状态栏高度:${ScreenUtil.statusBarHeight}dp'); //Status bar height , Notch will be higher Unit px
+        '状态栏高度:${ScreenUtil.statusBarHeight}dp'); //状态栏高度 , 刘海屏会更高，单位dp
 
     print('实际宽度的dp与设计稿px的比例:${ScreenUtil().scaleWidth}');
     print('实际高度的dp与设计稿px的比例:${ScreenUtil().scaleHeight}');
-
     print(
         '宽度和字体相对于设计稿放大的比例:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}');
     print('高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}');

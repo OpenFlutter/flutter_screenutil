@@ -18,12 +18,13 @@ github: https://github.com/OpenFlutter/flutter_screenutil
 
 ### Add dependency：
 Please check the latest version before installation.
+If there is any problem with the new version, please use the previous version
 ```
 dependencies:
   flutter:
     sdk: flutter
   # add flutter_screenutil
-  flutter_screenutil: ^1.0.2
+  flutter_screenutil: ^2.0.0
 ```
 
 ### Add the following imports to your Dart code:
@@ -48,13 +49,16 @@ Be sure to set the page in the MaterialApp's home(ie the entry file, just set it
 //fill in the screen size of the device in the design
 
 //default value : width : 1080px , height:1920px , allowFontScaling:false
-ScreenUtil.init(context);
+ScreenUtil.init(context);        //flutter_screenuitl < 1.2
+ScreenUtil.init();               //flutter_screenuitl >= 1.2
 
 //If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
-ScreenUtil.init(context, width: 750, height: 1334);
+ScreenUtil.init(context, width: 750, height: 1334); //flutter_screenuitl < 1.2
+ScreenUtil.init(width: 750, height: 1334);          //flutter_screenuitl >= 1.2
 
 //If you want to set the font size is scaled according to the system's "font size" assist option
-ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: true);
+ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: true);    //flutter_screenuitl < 1.2
+ScreenUtil.init(width: 750, height: 1334, allowFontScaling: true);             //flutter_screenuitl >= 1.2
 
 ```
 
@@ -189,7 +193,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
-    ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
+    ScreenUtil.init(width: 750, height: 1334, allowFontScaling: false);
 
     return ExampleWidget(title: 'FlutterScreenUtil Demo');
   }
@@ -244,10 +248,10 @@ class _ExampleWidgetState extends State<ExampleWidget> {
                 ),
               ],
             ),
-            Text('Device width:${ScreenUtil.screenWidth}px'),
-            Text('Device height:${ScreenUtil.screenHeight}px'),
-            Text('Device width:${ScreenUtil.screenWidthDp}dp'),
-            Text('Device height:${ScreenUtil.screenHeightDp}dp'),
+            Text('Device width:${ScreenUtil.screenWidth}dp'),
+            Text('Device height:${ScreenUtil.screenHeight}dp'),
+            Text('Device width:${ScreenUtil.screenWidthPx}px'),
+            Text('Device height:${ScreenUtil.screenHeightPx}px'),
             Text('Device pixel density:${ScreenUtil.pixelRatio}'),
             Text('Bottom safe zone distance:${ScreenUtil.bottomBarHeight}dp'),
             Text('Status bar height:${ScreenUtil.statusBarHeight}dp'),
@@ -286,8 +290,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.title),
         onPressed: () {
-          ScreenUtil.init(context,
-              width: 1500, height: 1334, allowFontScaling: false);
+          ScreenUtil.init(width: 1500, height: 1334, allowFontScaling: false);
           setState(() {});
         },
       ),
@@ -302,7 +305,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
     print(
         'Bottom safe zone distance dp:${ScreenUtil.bottomBarHeight}'); //Bottom safe zone distance，suitable for buttons with full screen
     print(
-        'Status bar height px:${ScreenUtil.statusBarHeight}dp'); //Status bar height , Notch will be higher Unit px
+        'Status bar height dp:${ScreenUtil.statusBarHeight}dp'); //Status bar height , Notch will be higher Unit dp
     print(
         'Ratio of actual width dp to design draft px:${ScreenUtil().scaleWidth}');
     print(
