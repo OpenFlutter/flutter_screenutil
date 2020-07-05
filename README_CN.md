@@ -12,9 +12,9 @@
 
 [README em Português](https://github.com/OpenFlutter/flutter_screenutil/blob/master/README_PT.md)
 
-github: https://github.com/OpenFlutter/flutter_screenutil
+[github](https://github.com/OpenFlutter/flutter_screenutil)
 
-csdn博客工具介绍:https://blog.csdn.net/u011272795/article/details/82795477
+[csdn博客工具介绍](https://blog.csdn.net/u011272795/article/details/82795477)
 
 [更新日志](/CHANGELOG.md)
 
@@ -29,7 +29,7 @@ dependencies:
   flutter:
     sdk: flutter
   # 添加依赖
-  flutter_screenutil: ^2.1.0
+  flutter_screenutil: ^2.2.0
 ```
 
 ### 在每个使用的地方导入包：

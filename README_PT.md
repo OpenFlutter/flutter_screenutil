@@ -10,7 +10,7 @@
 
 [README of English](https://github.com/OpenFlutter/flutter_ScreenUtil/blob/master/README.md)
 
-github: https://github.com/OpenFlutter/flutter_screenutil
+[github](https://github.com/OpenFlutter/flutter_screenutil)
 
 [Histórico de atualizações](/CHANGELOG.md)
 
@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   # add flutter_screenutil
-  flutter_screenutil: ^2.1.0
+  flutter_screenutil: ^2.2.0
 ```
 
 ### Adicione o seguinte import em seu código Dart:
