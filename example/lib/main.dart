@@ -73,7 +73,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
                   height: ScreenUtil().setHeight(200),
                   color: Colors.blue,
                   child: Text(
-                      'My width:${ScreenUtil().setWidth(375)}dp \n'
+                      'My width:${0.5.wp}dp \n'
                       'My height:${ScreenUtil().setHeight(200)}dp',
                       style: TextStyle(
                           color: Colors.white,
@@ -148,5 +148,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
     print(
         'The ratio of  height width to the size of the design:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}');
     print('System font scaling:${ScreenUtil.textScaleFactor}');
+    print('0.5 times the screen width:${0.5.wp}');
+    print('0.5 times the screen height:${0.5.hp}');
   }
 }

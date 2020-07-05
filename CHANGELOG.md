@@ -5,7 +5,11 @@
  * @LastEditTime: 2020年6月20日 11:20:02
  * @Description: Update log
  -->
- 
+
+# 2.2.0
+- add 'wp','hp'. Get the height/width of the screen proportionally
+- For example: 0.5.wp : Half the width of the screen.
+
 # 2.1.0 
 - add 'nsp' , you can use 'fontSize: 24.nsp' instead of 'fontSize: ScreenUtil().setSp(24, allowFontScalingSelf: false)'
 
