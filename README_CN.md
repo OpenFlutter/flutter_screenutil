@@ -16,7 +16,7 @@
 
 [csdn博客工具介绍](https://blog.csdn.net/u011272795/article/details/82795477)
 
-[更新日志](/CHANGELOG.md)
+[更新日志](https://github.com/OpenFlutter/flutter_screenutil/blob/master/CHANGELOG.md)
 
 ## 使用方法:
 
