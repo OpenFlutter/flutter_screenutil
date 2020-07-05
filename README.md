@@ -12,7 +12,7 @@
 
 github: https://github.com/OpenFlutter/flutter_screenutil
 
-[Update log](/CHANGELOG.md)
+[Update log](https://github.com/OpenFlutter/flutter_screenutil/blob/master/CHANGELOG.md)
 
 ## Usage:
 
