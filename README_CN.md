@@ -69,7 +69,7 @@ ScreenUtil.init(width: 750, height: 1334, allowFontScaling: true);             /
 ### 使用
 
 ### API
-
+#### 传入设计稿的px尺寸 px px px ! 
 ```dart
     ScreenUtil().setWidth(540)  (sdk>=2.6 : 540.w) //根据屏幕宽度适配尺寸
     ScreenUtil().setHeight(200) (sdk>=2.6 : 200.h) //根据屏幕高度适配尺寸
