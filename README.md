@@ -66,6 +66,8 @@ ScreenUtil.init(width: 750, height: 1334, allowFontScaling: true);             /
 
 ### API
 
+#### Pass the px size of the design draft
+
 ```dart
     ScreenUtil().setWidth(540)  (sdk>=2.6 : 540.w) //Adapted to screen width
     ScreenUtil().setHeight(200) (sdk>=2.6 : 200.h) //Adapted to screen height
