@@ -31,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 此处假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
 
-    ScreenUtil.init(width: 750, height: 1334, allowFontScaling: false);
+    ScreenUtil.init(context,width: 750, height: 1334, allowFontScaling: false);
 
     return ExampleWidget(title: 'FlutterScreenUtil示例');
   }
@@ -126,7 +126,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.title),
         onPressed: () {
-          ScreenUtil.init(width: 1500, height: 1334, allowFontScaling: false);
+          ScreenUtil.init(context,width: 1500, height: 1334, allowFontScaling: false);
           setState(() {});
         },
       ),

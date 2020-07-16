@@ -6,6 +6,9 @@
  * @Description: Update log
  -->
 
+# 2.3.0
+- We still need context to initialize, sorry.
+
 # 2.2.0
 - add 'wp','hp'. Get the height/width of the screen proportionally
 - For example: 0.5.wp : Half the width of the screen.

@@ -49,16 +49,16 @@ Certifique-se de definir as dimensões na paginal inicial do MaterialApp (ou sej
 //Preencha o tamanho da tela do dispositivo no protótipo de design
 
 //Valor padrão: width : 1080px , height:1920px , allowFontScaling:false
-ScreenUtil.init(context);        //flutter_screenuitl < 1.2
-ScreenUtil.init();               //flutter_screenuitl >= 1.2
+ScreenUtil.init(context);        ~~//flutter_screenuitl < 1.2~~
+~~ScreenUtil.init();               //flutter_screenuitl >= 1.2~~
 
 //Se o design é baseado no iPhone6 ​​(iPhone6 ​​750*1334)
-ScreenUtil.init(context, width: 750, height: 1334); //flutter_screenuitl < 1.2
-ScreenUtil.init(width: 750, height: 1334);          //flutter_screenuitl >= 1.2
+ScreenUtil.init(context, width: 750, height: 1334); ~~//flutter_screenuitl < 1.2~~
+~~ScreenUtil.init(width: 750, height: 1334);          //flutter_screenuitl >= 1.2~~
 
 //Se você quer definir que o tamanho da fonte seja ajustado de acordo com a opção "tamanho da fonte" na acessibilidade do sistema
-ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: true);    //flutter_screenuitl < 1.2
-ScreenUtil.init(width: 750, height: 1334, allowFontScaling: true);             //flutter_screenuitl >= 1.2
+ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: true);    ~~//flutter_screenuitl < 1.2~~
+~~ScreenUtil.init(width: 750, height: 1334, allowFontScaling: true);             //flutter_screenuitl >= 1.2~~
 
 ```
 

@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -26,7 +28,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
-    ScreenUtil.init(width: 750, height: 1334, allowFontScaling: false);
+    ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
 
     return ExampleWidget(title: 'FlutterScreenUtil Demo');
   }
@@ -44,7 +46,7 @@ class ExampleWidget extends StatefulWidget {
 class _ExampleWidgetState extends State<ExampleWidget> {
   @override
   Widget build(BuildContext context) {
-    printScreenInformation();
+    //printScreenInformation();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -123,7 +125,8 @@ class _ExampleWidgetState extends State<ExampleWidget> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.title),
         onPressed: () {
-          ScreenUtil.init(width: 1500, height: 1334, allowFontScaling: false);
+          ScreenUtil.init(context,
+              width: 1500, height: 1334, allowFontScaling: false);
           setState(() {});
         },
       ),

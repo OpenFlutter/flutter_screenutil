@@ -3,7 +3,7 @@
  * email: zhuoyuan93@gmail.com
  */
 
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
 class ScreenUtil {
   static ScreenUtil _instance;
@@ -19,7 +19,7 @@ class ScreenUtil {
   /// allowFontScaling Specifies whether fonts should scale to respect Text Size accessibility settings. The default is false.
   bool allowFontScaling;
 
-  static double _screenWidth;
+   static double _screenWidth;
   static double _screenHeight;
   static double _pixelRatio;
   static double _statusBarHeight;
@@ -32,22 +32,24 @@ class ScreenUtil {
     return _instance;
   }
 
-  static void init(
+  static void init(BuildContext context,
       {num width = defaultWidth,
-      num height = defaultHeight,
-      bool allowFontScaling = false}) {
+        num height = defaultHeight,
+        bool allowFontScaling = false}) {
     if (_instance == null) {
       _instance = ScreenUtil._();
     }
     _instance.uiWidthPx = width;
     _instance.uiHeightPx = height;
     _instance.allowFontScaling = allowFontScaling;
-    _pixelRatio = window.devicePixelRatio;
-    _screenWidth = window.physicalSize.width;
-    _screenHeight = window.physicalSize.height;
-    _statusBarHeight = window.padding.top;
-    _bottomBarHeight = window.padding.bottom;
-    _textScaleFactor = window.textScaleFactor;
+
+    MediaQueryData mediaQuery = MediaQuery.of(context);
+     _pixelRatio = mediaQuery.devicePixelRatio;
+    _screenWidth = mediaQuery.size.width;
+    _screenHeight = mediaQuery.size.height;
+    _statusBarHeight = mediaQuery.padding.top;
+    _bottomBarHeight = mediaQuery.padding.bottom;
+    _textScaleFactor = mediaQuery.textScaleFactor;
   }
 
   /// 每个逻辑像素的字体像素数，字体的缩放比例
@@ -60,27 +62,23 @@ class ScreenUtil {
 
   /// 当前设备宽度 dp
   /// The horizontal extent of this size.
-  static double get screenWidth => _screenWidth / _pixelRatio;
+  static double get screenWidth => _screenWidth;
 
   ///当前设备高度 dp
   ///The vertical extent of this size. dp
-  static double get screenHeight => _screenHeight / _pixelRatio;
+  static double get screenHeight => _screenHeight;
 
   /// 当前设备宽度 px
   /// The vertical extent of this size. px
-  static double get screenWidthPx => _screenWidth;
+  static double get screenWidthPx => _screenWidth * _pixelRatio;
 
   /// 当前设备高度 px
   /// The vertical extent of this size. px
-  static double get screenHeightPx => _screenHeight;
+  static double get screenHeightPx => _screenHeight * _pixelRatio;
 
   /// 状态栏高度 dp 刘海屏会更高
   /// The offset from the top
-  static double get statusBarHeight => _statusBarHeight / _pixelRatio;
-
-  /// 状态栏高度 dp 刘海屏会更高
-  /// The offset from the top
-  static double get statusBarHeightPx => _statusBarHeight;
+  static double get statusBarHeight => _statusBarHeight;
 
   /// 底部安全区距离 dp
   /// The offset from the bottom.
@@ -88,9 +86,9 @@ class ScreenUtil {
 
   /// 实际的dp与UI设计px的比例
   /// The ratio of the actual dp to the design draft px
-  double get scaleWidth => screenWidth / uiWidthPx;
+  double get scaleWidth => _screenWidth / uiWidthPx;
 
-  double get scaleHeight => screenHeight / uiHeightPx;
+  double get scaleHeight => _screenHeight / uiHeightPx;
 
   double get scaleText => scaleWidth;
 
@@ -119,9 +117,9 @@ class ScreenUtil {
   num setSp(num fontSize, {bool allowFontScalingSelf}) =>
       allowFontScalingSelf == null
           ? (allowFontScaling
-              ? (fontSize * scaleText)
-              : ((fontSize * scaleText) / _textScaleFactor))
+          ? (fontSize * scaleText)
+          : ((fontSize * scaleText) / _textScaleFactor))
           : (allowFontScalingSelf
-              ? (fontSize * scaleText)
-              : ((fontSize * scaleText) / _textScaleFactor));
+          ? (fontSize * scaleText)
+          : ((fontSize * scaleText) / _textScaleFactor));
 }
