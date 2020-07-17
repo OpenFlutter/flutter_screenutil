@@ -19,17 +19,11 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
     ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
-
     return ExampleWidget(title: 'FlutterScreenUtil Demo');
   }
 }
@@ -46,7 +40,7 @@ class ExampleWidget extends StatefulWidget {
 class _ExampleWidgetState extends State<ExampleWidget> {
   @override
   Widget build(BuildContext context) {
-    //printScreenInformation();
+    printScreenInformation();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
