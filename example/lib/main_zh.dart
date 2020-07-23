@@ -1,3 +1,4 @@
+import 'package:example/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -31,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 此处假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
 
-    ScreenUtil.init(context,width: 750, height: 1334, allowFontScaling: false);
+    ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
 
     return ExampleWidget(title: 'FlutterScreenUtil示例');
   }
@@ -108,16 +109,14 @@ class _ExampleWidgetState extends State<ExampleWidget> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('我的文字大小在设计稿上是24px，不会随着系统的文字缩放比例变化',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 24.sp,
-                    )),
-                Text('我的文字大小在设计稿上是24px，会随着系统的文字缩放比例变化',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: ScreenUtil()
-                            .setSp(24, allowFontScalingSelf: true))),
+                Text(
+                  '我的文字大小在设计稿上是24px，不会随着系统的文字缩放比例变化',
+                  style: ts.t2,
+                ),
+                Text(
+                  '我的文字大小在设计稿上是24px，会随着系统的文字缩放比例变化',
+                  style: ts.t1,
+                ),
               ],
             )
           ],
@@ -126,7 +125,8 @@ class _ExampleWidgetState extends State<ExampleWidget> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.title),
         onPressed: () {
-          ScreenUtil.init(context,width: 1500, height: 1334, allowFontScaling: false);
+          ScreenUtil.init(context,
+              width: 1500, height: 1334, allowFontScaling: false);
           setState(() {});
         },
       ),

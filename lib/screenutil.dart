@@ -19,7 +19,7 @@ class ScreenUtil {
   /// allowFontScaling Specifies whether fonts should scale to respect Text Size accessibility settings. The default is false.
   bool allowFontScaling;
 
-   static double _screenWidth;
+  static double _screenWidth;
   static double _screenHeight;
   static double _pixelRatio;
   static double _statusBarHeight;
@@ -34,8 +34,8 @@ class ScreenUtil {
 
   static void init(BuildContext context,
       {num width = defaultWidth,
-        num height = defaultHeight,
-        bool allowFontScaling = false}) {
+      num height = defaultHeight,
+      bool allowFontScaling = false}) {
     if (_instance == null) {
       _instance = ScreenUtil._();
     }
@@ -44,7 +44,7 @@ class ScreenUtil {
     _instance.allowFontScaling = allowFontScaling;
 
     MediaQueryData mediaQuery = MediaQuery.of(context);
-     _pixelRatio = mediaQuery.devicePixelRatio;
+    _pixelRatio = mediaQuery.devicePixelRatio;
     _screenWidth = mediaQuery.size.width;
     _screenHeight = mediaQuery.size.height;
     _statusBarHeight = mediaQuery.padding.top;
@@ -117,9 +117,9 @@ class ScreenUtil {
   num setSp(num fontSize, {bool allowFontScalingSelf}) =>
       allowFontScalingSelf == null
           ? (allowFontScaling
-          ? (fontSize * scaleText)
-          : ((fontSize * scaleText) / _textScaleFactor))
+              ? (fontSize * scaleText)
+              : ((fontSize * scaleText) / _textScaleFactor))
           : (allowFontScalingSelf
-          ? (fontSize * scaleText)
-          : ((fontSize * scaleText) / _textScaleFactor));
+              ? (fontSize * scaleText)
+              : ((fontSize * scaleText) / _textScaleFactor));
 }

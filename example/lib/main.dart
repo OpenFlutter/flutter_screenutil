@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:example/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -107,10 +108,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
                     )),
                 Text(
                     'My font size is 24px on the design draft and will change with the system.',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: ScreenUtil()
-                            .setSp(24, allowFontScalingSelf: true))),
+                    style: ts.t1),
               ],
             )
           ],
