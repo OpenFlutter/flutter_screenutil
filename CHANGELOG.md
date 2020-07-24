@@ -5,6 +5,9 @@
  * @LastEditTime: 2020年6月20日 11:20:02
  * @Description: Update log
  -->
+ 
+# 2.3.0
+- add textStyle Example.
 
 # 2.3.0
 - We still need context to initialize, sorry.
