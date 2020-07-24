@@ -6,7 +6,7 @@
  * @Description: Update log
  -->
  
-# 2.3.0
+# 2.3.1
 - add textStyle Example.
 
 # 2.3.0
