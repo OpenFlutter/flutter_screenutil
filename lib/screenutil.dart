@@ -4,91 +4,90 @@
  */
 
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 
 class ScreenUtil {
   static ScreenUtil _instance;
-  static const int defaultWidth = 1080;
-  static const int defaultHeight = 1920;
+  static const Size defaultSize = Size(1080, 1920);
 
   /// UI设计中手机尺寸 , px
   /// Size of the phone in UI Design , px
-  num uiWidthPx;
-  num uiHeightPx;
+  Size uiSize = defaultSize;
 
   /// 控制字体是否要根据系统的“字体大小”辅助选项来进行缩放。默认值为false。
   /// allowFontScaling Specifies whether fonts should scale to respect Text Size accessibility settings. The default is false.
-  bool allowFontScaling;
+  bool allowFontScaling = false;
 
-  static double _screenWidth;
-  static double _screenHeight;
-  static double _pixelRatio;
-  static double _statusBarHeight;
-  static double _bottomBarHeight;
-  static double _textScaleFactor;
+  double _pixelRatio;
+  double _screenWidth;
+  double _screenHeight;
+  double _statusBarHeight;
+  double _bottomBarHeight;
+  double _textScaleFactor;
 
-  ScreenUtil._();
-
-  factory ScreenUtil() {
-    return _instance;
+  ScreenUtil._() {
+    final window = SchedulerBinding.instance?.window;
+    assert(
+      window != null,
+      '\nYou need to explicitly call the `WidgetsFlutterBinding.ensureInitialized()`, before initializing ScreenUtil.',
+    );
+    _pixelRatio = window.devicePixelRatio;
+    _screenWidth = window.physicalSize.width / _pixelRatio;
+    _screenHeight = window.physicalSize.height / _pixelRatio;
+    _statusBarHeight = window.padding.top;
+    _bottomBarHeight = window.padding.bottom;
+    _textScaleFactor = window.textScaleFactor;
   }
 
-  static void init(BuildContext context,
-      {num width = defaultWidth,
-      num height = defaultHeight,
-      bool allowFontScaling = false}) {
-    if (_instance == null) {
-      _instance = ScreenUtil._();
-    }
-    _instance.uiWidthPx = width;
-    _instance.uiHeightPx = height;
-    _instance.allowFontScaling = allowFontScaling;
+  factory ScreenUtil() => _instance;
 
-    MediaQueryData mediaQuery = MediaQuery.of(context);
-    _pixelRatio = mediaQuery.devicePixelRatio;
-    _screenWidth = mediaQuery.size.width;
-    _screenHeight = mediaQuery.size.height;
-    _statusBarHeight = mediaQuery.padding.top;
-    _bottomBarHeight = mediaQuery.padding.bottom;
-    _textScaleFactor = mediaQuery.textScaleFactor;
+  static void init({
+    Size designSize = defaultSize,
+    bool allowFontScaling = false,
+  }) {
+    _instance ??= ScreenUtil._();
+    _instance
+      ..uiSize = designSize
+      ..allowFontScaling = allowFontScaling;
   }
 
   /// 每个逻辑像素的字体像素数，字体的缩放比例
   /// The number of font pixels for each logical pixel.
-  static double get textScaleFactor => _textScaleFactor;
+  double get textScaleFactor => _textScaleFactor;
 
   /// 设备的像素密度
   /// The size of the media in logical pixels (e.g, the size of the screen).
-  static double get pixelRatio => _pixelRatio;
+  double get pixelRatio => _pixelRatio;
 
   /// 当前设备宽度 dp
   /// The horizontal extent of this size.
-  static double get screenWidth => _screenWidth;
+  double get screenWidth => _screenWidth;
 
   ///当前设备高度 dp
   ///The vertical extent of this size. dp
-  static double get screenHeight => _screenHeight;
+  double get screenHeight => _screenHeight;
 
   /// 当前设备宽度 px
   /// The vertical extent of this size. px
-  static double get screenWidthPx => _screenWidth * _pixelRatio;
+  double get screenWidthPx => _screenWidth * _pixelRatio;
 
   /// 当前设备高度 px
   /// The vertical extent of this size. px
-  static double get screenHeightPx => _screenHeight * _pixelRatio;
+  double get screenHeightPx => _screenHeight * _pixelRatio;
 
   /// 状态栏高度 dp 刘海屏会更高
   /// The offset from the top
-  static double get statusBarHeight => _statusBarHeight;
+  double get statusBarHeight => _statusBarHeight;
 
   /// 底部安全区距离 dp
   /// The offset from the bottom.
-  static double get bottomBarHeight => _bottomBarHeight;
+  double get bottomBarHeight => _bottomBarHeight;
 
   /// 实际的dp与UI设计px的比例
   /// The ratio of the actual dp to the design draft px
-  double get scaleWidth => _screenWidth / uiWidthPx;
+  double get scaleWidth => _screenWidth / uiSize.width;
 
-  double get scaleHeight => _screenHeight / uiHeightPx;
+  double get scaleHeight => _screenHeight / uiSize.height;
 
   double get scaleText => scaleWidth;
 
