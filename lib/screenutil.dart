@@ -39,7 +39,13 @@ class ScreenUtil {
     _textScaleFactor = window.textScaleFactor;
   }
 
-  factory ScreenUtil() => _instance;
+  factory ScreenUtil() {
+    assert(
+      _instance != null,
+      '\nEnsure to initialize ScreenUtil before accessing it.',
+    );
+    return _instance;
+  }
 
   static void init({
     Size designSize = defaultSize,
