@@ -47,17 +47,22 @@ Por favor, defina a largura e altura do protótipo de design antes de usar (em p
 Certifique-se de definir as dimensões na paginal inicial do MaterialApp (ou seja, no arquivo de entrada, defina apenas uma vez) para garantir que o tamanho de ajuste seja o mesmo antes de cada uso:
 
 ```dart
-
 //Preencha o tamanho da tela do dispositivo no protótipo de design
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+  ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: false);
+  runApp(MyApp());
+}
 
 //Valor padrão: width : 1080px , height:1920px , allowFontScaling:false
-ScreenUtil.init(context);
+ScreenUtil.init();
 
 //Se o design é baseado no iPhone6 ​​(iPhone6 ​​750*1334)
-ScreenUtil.init(context, width: 750, height: 1334);
+ScreenUtil.init(designSize: Size(750, 1334));
 
 //Se você quer definir que o tamanho da fonte seja ajustado de acordo com a opção "tamanho da fonte" na acessibilidade do sistema
-ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: true);
+ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: true);
 
 ```
 

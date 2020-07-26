@@ -56,15 +56,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ```
 //填入设计稿中设备的屏幕尺寸
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 此处假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
+  ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: false);
+  runApp(MyApp());
+}
 
 //默认 width : 1080px , height:1920px , allowFontScaling:false
-ScreenUtil.init(context);
+ScreenUtil.init();
 
 //假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334) 
-ScreenUtil.init(context, width: 750, height: 1334);
+ScreenUtil.init(designSize: Size(750, 1334));
 
 //设置字体大小根据系统的“字体大小”辅助选项来进行缩放,默认为false
-ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: true);
+ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: true);
     
 ```
 
