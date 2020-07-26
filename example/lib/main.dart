@@ -1,10 +1,16 @@
 import 'dart:ui';
 
-import 'package:example/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() => runApp(MyApp());
+import 'text_style.dart';
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+  ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: false);
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -15,17 +21,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: ExampleWidget(title: 'FlutterScreenUtil Demo'),
     );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
-    ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
-    return ExampleWidget(title: 'FlutterScreenUtil Demo');
   }
 }
 
@@ -41,7 +38,7 @@ class ExampleWidget extends StatefulWidget {
 class _ExampleWidgetState extends State<ExampleWidget> {
   @override
   Widget build(BuildContext context) {
-    printScreenInformation();
+    //  printScreenInformation();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -52,39 +49,45 @@ class _ExampleWidgetState extends State<ExampleWidget> {
           children: <Widget>[
             Row(
               children: <Widget>[
+                // Using Extensions
                 Container(
-                  padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
-                  width: 375.w,
+                  padding: EdgeInsets.all(10.w),
+                  width: 0.5.wp,
                   height: 200.h,
                   color: Colors.red,
                   child: Text(
-                    'My width:${375.w}dp \n'
+                    'My width:${0.5.wp}dp \n'
                     'My height:${200.h}dp',
                     style: TextStyle(
-                        color: Colors.white, fontSize: ScreenUtil().setSp(24)),
+                      color: Colors.white,
+                      fontSize: 24.sp,
+                    ),
                   ),
                 ),
+                // Without using Extensions
                 Container(
                   padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
-                  width: ScreenUtil().setWidth(375),
+                  width: ScreenUtil().screenWidth * 0.5,
                   height: ScreenUtil().setHeight(200),
                   color: Colors.blue,
                   child: Text(
-                      'My width:${0.5.wp}dp \n'
-                      'My height:${ScreenUtil().setHeight(200)}dp',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: ScreenUtil().setSp(24))),
+                    'My width:${ScreenUtil().screenWidth * 0.5}dp \n'
+                    'My height:${ScreenUtil().setHeight(200)}dp',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: ScreenUtil().setSp(24),
+                    ),
+                  ),
                 ),
               ],
             ),
-            Text('Device width:${ScreenUtil.screenWidthPx}px'),
-            Text('Device height:${ScreenUtil.screenHeightPx}px'),
-            Text('Device width:${ScreenUtil.screenWidth}dp'),
-            Text('Device height:${ScreenUtil.screenHeight}dp'),
-            Text('Device pixel density:${ScreenUtil.pixelRatio}'),
-            Text('Bottom safe zone distance:${ScreenUtil.bottomBarHeight}dp'),
-            Text('Status bar height:${ScreenUtil.statusBarHeight}dp'),
+            Text('Device width:${ScreenUtil().screenWidthPx}px'),
+            Text('Device height:${ScreenUtil().screenHeightPx}px'),
+            Text('Device width:${ScreenUtil().screenWidth}dp'),
+            Text('Device height:${ScreenUtil().screenHeight}dp'),
+            Text('Device pixel density:${ScreenUtil().pixelRatio}'),
+            Text('Bottom safe zone distance:${ScreenUtil().bottomBarHeight}dp'),
+            Text('Status bar height:${ScreenUtil().statusBarHeight}dp'),
             Text(
               'Ratio of actual width dp to design draft px:${ScreenUtil().scaleWidth}',
               textAlign: TextAlign.center,
@@ -96,19 +99,21 @@ class _ExampleWidgetState extends State<ExampleWidget> {
             SizedBox(
               height: ScreenUtil().setHeight(100),
             ),
-            Text('System font scaling factor:${ScreenUtil.textScaleFactor}'),
+            Text('System font scaling factor:${ScreenUtil().textScaleFactor}'),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                    'My font size is 24px on the design draft and will not change with the system.',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 24.sp,
-                    )),
+                  'My font size is 24px on the design draft and will not change with the system.',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 24.sp,
+                  ),
+                ),
                 Text(
-                    'My font size is 24px on the design draft and will change with the system.',
-                    style: ts.t1),
+                  'My font size is 24px on the design draft and will change with the system.',
+                  style: ts.t1,
+                ),
               ],
             )
           ],
@@ -117,8 +122,10 @@ class _ExampleWidgetState extends State<ExampleWidget> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.title),
         onPressed: () {
-          ScreenUtil.init(context,
-              width: 1500, height: 1334, allowFontScaling: false);
+          ScreenUtil.init(
+            designSize: Size(1500, 1334),
+            allowFontScaling: false,
+          );
           setState(() {});
         },
       ),
@@ -126,23 +133,23 @@ class _ExampleWidgetState extends State<ExampleWidget> {
   }
 
   void printScreenInformation() {
-    print('Device width dp:${ScreenUtil.screenWidth}'); //Device width
-    print('Device height dp:${ScreenUtil.screenHeight}'); //Device height
+    print('Device width dp:${ScreenUtil().screenWidth}'); //Device width
+    print('Device height dp:${ScreenUtil().screenHeight}'); //Device height
     print(
-        'Device pixel density:${ScreenUtil.pixelRatio}'); //Device pixel density
+        'Device pixel density:${ScreenUtil().pixelRatio}'); //Device pixel density
     print(
-        'Bottom safe zone distance dp:${ScreenUtil.bottomBarHeight}'); //Bottom safe zone distance，suitable for buttons with full screen
+        'Bottom safe zone distance dp:${ScreenUtil().bottomBarHeight}'); //Bottom safe zone distance，suitable for buttons with full screen
     print(
-        'Status bar height px:${ScreenUtil.statusBarHeight}dp'); //Status bar height , Notch will be higher Unit px
+        'Status bar height px:${ScreenUtil().statusBarHeight}dp'); //Status bar height , Notch will be higher Unit px
     print(
         'Ratio of actual width dp to design draft px:${ScreenUtil().scaleWidth}');
     print(
         'Ratio of actual height dp to design draft px:${ScreenUtil().scaleHeight}');
     print(
-        'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}');
+        'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth * ScreenUtil().pixelRatio}');
     print(
-        'The ratio of  height width to the size of the design:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}');
-    print('System font scaling:${ScreenUtil.textScaleFactor}');
+        'The ratio of  height width to the size of the design:${ScreenUtil().scaleHeight * ScreenUtil().pixelRatio}');
+    print('System font scaling:${ScreenUtil().textScaleFactor}');
     print('0.5 times the screen width:${0.5.wp}');
     print('0.5 times the screen height:${0.5.hp}');
   }

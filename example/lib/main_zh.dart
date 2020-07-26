@@ -1,8 +1,14 @@
-import 'package:example/text_style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() => runApp(MyApp());
+import 'text_style.dart';
+
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 此处假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
+  ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: false);
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -13,28 +19,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(),
+      home: ExampleWidget(title: 'FlutterScreenUtil示例'),
     );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 此处假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
-
-    ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
-
-    return ExampleWidget(title: 'FlutterScreenUtil示例');
   }
 }
 
@@ -87,13 +73,13 @@ class _ExampleWidgetState extends State<ExampleWidget> {
                 ),
               ],
             ),
-            Text('设备宽度:${ScreenUtil.screenWidthPx}px'),
-            Text('设备高度:${ScreenUtil.screenHeightPx}px'),
-            Text('设备宽度:${ScreenUtil.screenWidth}dp'),
-            Text('设备高度:${ScreenUtil.screenHeight}dp'),
-            Text('设备的像素密度:${ScreenUtil.pixelRatio}'),
-            Text('底部安全区距离:${ScreenUtil.bottomBarHeight}dp'),
-            Text('状态栏高度:${ScreenUtil.statusBarHeight}dp'),
+            Text('设备宽度:${ScreenUtil().screenWidthPx}px'),
+            Text('设备高度:${ScreenUtil().screenHeightPx}px'),
+            Text('设备宽度:${ScreenUtil().screenWidth}dp'),
+            Text('设备高度:${ScreenUtil().screenHeight}dp'),
+            Text('设备的像素密度:${ScreenUtil().pixelRatio}'),
+            Text('底部安全区距离:${ScreenUtil().bottomBarHeight}dp'),
+            Text('状态栏高度:${ScreenUtil().statusBarHeight}dp'),
             Text(
               '实际宽度的dp与设计稿px的比例:${ScreenUtil().scaleWidth}',
               textAlign: TextAlign.center,
@@ -105,7 +91,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
             SizedBox(
               height: 100.h,
             ),
-            Text('系统的字体缩放比例:${ScreenUtil.textScaleFactor}'),
+            Text('系统的字体缩放比例:${ScreenUtil().textScaleFactor}'),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -125,8 +111,10 @@ class _ExampleWidgetState extends State<ExampleWidget> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.title),
         onPressed: () {
-          ScreenUtil.init(context,
-              width: 1500, height: 1334, allowFontScaling: false);
+          ScreenUtil.init(
+            designSize: Size(1500, 1334),
+            allowFontScaling: false,
+          );
           setState(() {});
         },
       ),
@@ -134,21 +122,26 @@ class _ExampleWidgetState extends State<ExampleWidget> {
   }
 
   void printScreenInformation() {
-    print('设备宽度:${ScreenUtil.screenWidth}'); //Device width
-    print('设备高度:${ScreenUtil.screenHeight}'); //Device height
-    print('设备的像素密度:${ScreenUtil.pixelRatio}'); //Device pixel density
+    print('设备宽度:${ScreenUtil().screenWidth}'); //Device width
+    print('设备高度:${ScreenUtil().screenHeight}'); //Device height
+    print('设备的像素密度:${ScreenUtil().pixelRatio}'); //Device pixel density
     print(
-        '底部安全区距离:${ScreenUtil.bottomBarHeight}dp'); //Bottom safe zone distance，suitable for buttons with full screen
+      '底部安全区距离:${ScreenUtil().bottomBarHeight}dp',
+    ); //Bottom safe zone distance，suitable for buttons with full screen
     print(
-        '状态栏高度:${ScreenUtil.statusBarHeight}dp'); //Status bar height , Notch will be higher Unit px
+      '状态栏高度:${ScreenUtil().statusBarHeight}dp',
+    ); //Status bar height , Notch will be higher Unit px
 
     print('实际宽度的dp与设计稿px的比例:${ScreenUtil().scaleWidth}');
     print('实际高度的dp与设计稿px的比例:${ScreenUtil().scaleHeight}');
 
     print(
-        '宽度和字体相对于设计稿放大的比例:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}');
-    print('高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}');
-    print('系统的字体缩放比例:${ScreenUtil.textScaleFactor}');
+      '宽度和字体相对于设计稿放大的比例:${ScreenUtil().scaleWidth * ScreenUtil().pixelRatio}',
+    );
+    print(
+      '高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight * ScreenUtil().pixelRatio}',
+    );
+    print('系统的字体缩放比例:${ScreenUtil().textScaleFactor}');
 
     print('屏幕宽度的0.5:${0.5.wp}');
     print('屏幕高度的0.5:${0.5.hp}');

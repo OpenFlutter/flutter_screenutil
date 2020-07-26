@@ -5,7 +5,12 @@
  * @LastEditTime: 2020年6月20日 11:20:02
  * @Description: Update log
  -->
- 
+# 3.0.0-beta.1
+**BREAKING CHANGES**
+- `BuildContext` is no more required while initializing. i.e. ScreenUtil.init(~~context~~)
+- Initialize size of design draft using `designSize` instead of width & height.
+- All the static methods are now member methods.
+
 # 2.3.1
 - add textStyle Example.
 
