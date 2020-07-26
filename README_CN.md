@@ -4,8 +4,8 @@
 
 [![pub package](https://img.shields.io/pub/v/flutter_screenutil.svg)](https://pub.dartlang.org/packages/flutter_screenutil)
 
-
 **flutter 屏幕适配方案，让你的UI在不同尺寸的屏幕上都能显示合理的布局!**
+
 
 *注意*：此插件仍处于开发阶段，某些API可能尚未推出。
 
@@ -18,6 +18,10 @@
 [csdn博客工具介绍](https://blog.csdn.net/u011272795/article/details/82795477)
 
 [更新日志](https://github.com/OpenFlutter/flutter_screenutil/blob/master/CHANGELOG.md)
+
+## Note
+v3 requer `flutter> = 1.19.0`.
+v2 é usado para a versão atual de flutter estável.
 
 ## 使用方法:
 
