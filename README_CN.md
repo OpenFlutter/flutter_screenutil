@@ -36,7 +36,6 @@ dependencies:
   # 添加依赖
   flutter_screenutil: ^2.3.0
 ```
-
 ### 在每个使用的地方导入包：
 ```
 import 'package:flutter_screenutil/flutter_screenutil.dart';

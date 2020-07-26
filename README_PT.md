@@ -15,7 +15,6 @@
 
 [Histórico de atualizações](https://github.com/OpenFlutter/flutter_screenutil/blob/master/CHANGELOG.md)
 
-
 ## Como usar:
 
 ### Adicionando a dependência：
