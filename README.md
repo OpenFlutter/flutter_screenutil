@@ -14,6 +14,9 @@
 
 [Update log](https://github.com/OpenFlutter/flutter_screenutil/blob/master/CHANGELOG.md)
 
+## Note
+v3 requires `flutter >= 1.19.0`. Use v2 for current stable version of flutter.
+
 ## Usage:
 
 ### Add dependency：
@@ -24,7 +27,7 @@ dependencies:
   flutter:
     sdk: flutter
   # add flutter_screenutil
-  flutter_screenutil: ^3.0.0
+  flutter_screenutil: ^3.0.0-beta.1
 ```
 
 ### Add the following imports to your Dart code:
