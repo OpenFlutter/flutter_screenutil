@@ -38,7 +38,7 @@ class ExampleWidget extends StatefulWidget {
 class _ExampleWidgetState extends State<ExampleWidget> {
   @override
   Widget build(BuildContext context) {
-    printScreenInformation();
+    //  printScreenInformation();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
