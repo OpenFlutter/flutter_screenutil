@@ -193,16 +193,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
   @override
   Widget build(BuildContext context) {
     ///Define o tamanho de ajuste (preenche o tamanho da tela do dispositivo no design). Se o design é baseado no tamanho do iPhone6 (iPhone6 ​​750*1334)
-    ScreenUtil.init(width: 750, height: 1334, allowFontScaling: false);
+    ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: false);
     
-    print('Largura do dispositivo:${ScreenUtil.screenWidth}'); //Largura do dispositivo
-    print('Altura do dispositivo:${ScreenUtil.screenHeight}'); //Altura do dispositivo
+    print('Largura do dispositivo:${ScreenUtil().screenWidth}'); //Largura do dispositivo
+    print('Altura do dispositivo:${ScreenUtil().screenHeight}'); //Altura do dispositivo
     print(
-        'Densidade de pixels do dispositivo:${ScreenUtil.pixelRatio}'); //Densidade de pixels do dispositivo
+        'Densidade de pixels do dispositivo:${ScreenUtil().pixelRatio}'); //Densidade de pixels do dispositivo
     print(
-        'Distância segura do rodapé:${ScreenUtil.bottomBarHeight}'); //Distância segura do rodapé, adequada para botões em tela cheia
+        'Distância segura do rodapé:${ScreenUtil().bottomBarHeight}'); //Distância segura do rodapé, adequada para botões em tela cheia
     print(
-        'Altura da status bar:${ScreenUtil.statusBarHeight}px'); //Altura da status bar em pixels, Notch será maior
+        'Altura da status bar:${ScreenUtil().statusBarHeight}px'); //Altura da status bar em pixels, Notch será maior
     print(
         'Razão entre a largura atual e a largura do protótipo de design em pixels:${ScreenUtil().scaleWidth}'); 
     print(
@@ -246,11 +246,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
                 ),
               ],
             ),
-            Text('Largura do dispositivo:${ScreenUtil.screenWidth}dp'),
-            Text('Altura do dispositivo:${ScreenUtil.screenHeight}dp'),
-            Text('Densidade de pixels do dispositivo:${ScreenUtil.pixelRatio}'),
-            Text('Distância segura do rodapé:${ScreenUtil.bottomBarHeight}dp'),
-            Text('Altura da status bar:${ScreenUtil.statusBarHeight}dp'),
+            Text('Largura do dispositivo:${ScreenUtil().screenWidth}dp'),
+            Text('Altura do dispositivo:${ScreenUtil().screenHeight}dp'),
+            Text('Densidade de pixels do dispositivo:${ScreenUtil().pixelRatio}'),
+            Text('Distância segura do rodapé:${ScreenUtil().bottomBarHeight}dp'),
+            Text('Altura da status bar:${ScreenUtil().statusBarHeight}dp'),
             Text(
               'Razão entre a largura atual e a largura do protótipo de design em pixels:${ScreenUtil().scaleWidth}',
               textAlign: TextAlign.center,

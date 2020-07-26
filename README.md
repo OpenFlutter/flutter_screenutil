@@ -123,7 +123,7 @@ height:200.h
 ```
 **Note** 
 
-Height is also adapted according to setWidth to ensure no deformation (when you want a square) 
+The height can also use setWidth to ensure that it is not deformed(when you want a square)
 
 setHeight method is mainly adapted in height, you want to control the height and actuality of a screen on the UIUsed when the same is displayed.
 
@@ -139,23 +139,28 @@ Container(
 ////If you want to display a square:
 Container(
            width: ScreenUtil().setWidth(300),
-           height: ScreenUtil().setWidth(300),
+           height: 300.w,
             ),
-            
+
 ```
 
 #### Adapter font:
 ``` dart
 //Incoming font size，the unit is pixel, fonts will not scale to respect Text Size accessibility settings
 //(AllowallowFontScaling when initializing ScreenUtil)
-ScreenUtil().setSp(28)    
+ScreenUtil().setSp(28) 
+28.sp   
      
 //Incoming font size，the unit is pixel，fonts will scale to respect Text Size accessibility settings
-//(If somewhere does not follow the global allowFontScaling setting)
+//(If somewhere follow the global allowFontScaling setting)
 ScreenUtil().setSp(24, allowFontScalingSelf: true)
+28.ssp
+
+//(If somewhere does not follow the global allowFontScaling setting)
+ScreenUtil().setSp(24, allowFontScalingSelf: false)
+28.nsp
 
 //for example:
-
 Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
