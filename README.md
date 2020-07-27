@@ -14,6 +14,10 @@
 
 [Update log](https://github.com/OpenFlutter/flutter_screenutil/blob/master/CHANGELOG.md)
 
+## Note
+v3 requires `flutter >= 1.19.0`. 
+v2 for current stable version of flutter.
+
 ## Usage:
 
 ### Add dependency：
