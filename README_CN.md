@@ -18,6 +18,10 @@
 
 [更新日志](https://github.com/OpenFlutter/flutter_screenutil/blob/master/CHANGELOG.md)
 
+## Note
+v3可用于`flutter> = 1.19.0`
+v2用于当前Flutter的`stable`版本。
+
 ## 使用方法:
 
 ### 安装依赖：
