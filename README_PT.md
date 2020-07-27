@@ -15,6 +15,10 @@
 
 [Histórico de atualizações](https://github.com/OpenFlutter/flutter_screenutil/blob/master/CHANGELOG.md)
 
+## Note
+v3 requer `flutter> = 1.19.0`.
+v2 é usado para a versão atual de flutter estável.
+
 ## Como usar:
 
 ### Adicionando a dependência：
