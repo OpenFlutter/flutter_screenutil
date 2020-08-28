@@ -1,5 +1,3 @@
-# 该分支适用于Flutter的Beta版
-
 # flutter_ScreenUtil
 
 [![pub package](https://img.shields.io/pub/v/flutter_screenutil.svg)](https://pub.dartlang.org/packages/flutter_screenutil)

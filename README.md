@@ -1,5 +1,3 @@
-# This branch is suitable for the beta version of flutter
-
 # flutter_screenutil
 [![pub package](https://img.shields.io/pub/v/flutter_screenutil.svg)](https://pub.dartlang.org/packages/flutter_screenutil)
 
