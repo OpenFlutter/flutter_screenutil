@@ -19,7 +19,7 @@
 [更新日志](https://github.com/OpenFlutter/flutter_screenutil/blob/master/CHANGELOG.md)
 
 ## Note
-[v3](https://github.com/OpenFlutter/flutter_screenutil/tree/beta)可用于`flutter >= 1.19.0`  
+[v3](https://github.com/OpenFlutter/flutter_screenutil/tree/beta)可用于`flutter >= 1.19.0`.    
 [v2](https://github.com/OpenFlutter/flutter_screenutil)可用于`flutter > 1.19.0`。
 
 ## 使用方法:
