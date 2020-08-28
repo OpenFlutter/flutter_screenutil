@@ -15,7 +15,7 @@
 
 ## Note
 [v3](https://github.com/OpenFlutter/flutter_screenutil/tree/beta) requer `flutter >= 1.19.0`.
-[v2](https://github.com/OpenFlutter/flutter_screenutil) requer `flutter < 1.19.0`.
+[v2](https://github.com/OpenFlutter/flutter_screenutil) support all versions.
 
 ## Como usar:
 
