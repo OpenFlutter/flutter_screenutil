@@ -297,6 +297,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
     );
   }
 ```
+[widget test](https://github.com/OpenFlutter/flutter_screenutil/issues/115)
 
 ### Exemplo:
 
