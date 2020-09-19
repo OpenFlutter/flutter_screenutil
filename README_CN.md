@@ -326,6 +326,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
 }
 
 ```
+[widget test](https://github.com/OpenFlutter/flutter_screenutil/issues/115)
 
 ### 使用示例:
 
