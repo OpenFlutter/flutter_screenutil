@@ -1,4 +1,3 @@
-
 # flutter_screenutil
 [![pub package](https://img.shields.io/pub/v/flutter_screenutil.svg)](https://pub.dartlang.org/packages/flutter_screenutil)
 
@@ -50,17 +49,22 @@ Por favor, defina a largura e altura do protótipo de design antes de usar (em p
 Certifique-se de definir as dimensões na paginal inicial do MaterialApp (ou seja, no arquivo de entrada, defina apenas uma vez) para garantir que o tamanho de ajuste seja o mesmo antes de cada uso:
 
 ```dart
-
 //Preencha o tamanho da tela do dispositivo no protótipo de design
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+  ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: false);
+  runApp(MyApp());
+}
 
 //Valor padrão: width : 1080px , height:1920px , allowFontScaling:false
-ScreenUtil.init(context);
+ScreenUtil.init();
 
 //Se o design é baseado no iPhone6 ​​(iPhone6 ​​750*1334)
-ScreenUtil.init(context, width: 750, height: 1334);
+ScreenUtil.init(designSize: Size(750, 1334));
 
 //Se você quer definir que o tamanho da fonte seja ajustado de acordo com a opção "tamanho da fonte" na acessibilidade do sistema
-ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: true);
+ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: true);
 
 ```
 
@@ -145,4 +149,160 @@ Container(
 ScreenUtil().setSp(28)    
      
 //Tamanho da fonte informado，em pixels，a fonte irá dimensionar respeitando a opção "Tamanho de Fonte" nas configurações de acessibilidade
-//(Se em algum lugar não seguir a configuração global da propriedade allowFontScaling
+//(Se em algum lugar não seguir a configuração global da propriedade allowFontScaling)
+ScreenUtil().setSp(24, allowFontScalingSelf: true)
+
+//Exemplo:
+
+Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                    'Minha fonte tem 24px no protótipo de design e não irá mudar com o sistema.',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: ScreenUtil().setSp(24),
+                    )),
+                Text(
+                    'Minha fonte tem 24px no protótipo de design e poderá mudar com o sistema.',
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontSize: ScreenUtil()
+                            .setSp(24, allowFontScalingSelf: true))),
+              ],
+            )
+```
+
+#### Outras APIs relacionadas：
+```dart
+    ScreenUtil.pixelRatio       //Densidade de pixels do dispositivo
+    ScreenUtil.screenWidth      //Largura da tela do dispositivo
+    ScreenUtil.screenHeight     //Altura da tela do dispositivo
+    ScreenUtil.bottomBarHeight  //Distância segura do rodapé, adequada para botões em tela cheia
+    ScreenUtil.statusBarHeight  //Altura da status bar em pixels, Notch será maior
+    ScreenUtil.textScaleFactor //Fator de escala da fonte do sistema
+
+    ScreenUtil().scaleWidth //Razão entre a largura atual e a largura do protótipo de design em pixels
+    ScreenUtil().scaleHeight //Razão entre a altura atual e a altura do protótipo de design em pixels
+
+```
+
+```dart
+//import
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+...
+
+  @override
+  Widget build(BuildContext context) {
+    ///Define o tamanho de ajuste (preenche o tamanho da tela do dispositivo no design). Se o design é baseado no tamanho do iPhone6 (iPhone6 ​​750*1334)
+    ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: false);
+    
+    print('Largura do dispositivo:${ScreenUtil().screenWidth}'); //Largura do dispositivo
+    print('Altura do dispositivo:${ScreenUtil().screenHeight}'); //Altura do dispositivo
+    print(
+        'Densidade de pixels do dispositivo:${ScreenUtil().pixelRatio}'); //Densidade de pixels do dispositivo
+    print(
+        'Distância segura do rodapé:${ScreenUtil().bottomBarHeight}'); //Distância segura do rodapé, adequada para botões em tela cheia
+    print(
+        'Altura da status bar:${ScreenUtil().statusBarHeight}px'); //Altura da status bar em pixels, Notch será maior
+    print(
+        'Razão entre a largura atual e a largura do protótipo de design em pixels:${ScreenUtil().scaleWidth}'); 
+    print(
+        'Razão entre a altura atual e a altura do protótipo de design em pixels:${ScreenUtil().scaleHeight}'); 
+    print(
+        'Razão da fonte e largura para o tamanho do design:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}');
+    print(
+        'Razão da fonte e altura para o tamanho do design:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}');
+        
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Row(
+              children: <Widget>[
+                Container(
+                  padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
+                  width: ScreenUtil().setWidth(375),
+                  height: ScreenUtil().setHeight(200),
+                  color: Colors.red,
+                  child: Text(
+                    'Minha largura:${ScreenUtil().setWidth(375)}dp',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: ScreenUtil().setSp(12)),
+                  ),
+                ),
+                Container(
+                  padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
+                  width: ScreenUtil().setWidth(375),
+                  height: ScreenUtil().setHeight(200),
+                  color: Colors.blue,
+                  child: Text('Minha largura:${ScreenUtil().setWidth(375)}dp',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: ScreenUtil().setSp(12))),
+                ),
+              ],
+            ),
+            Text('Largura do dispositivo:${ScreenUtil().screenWidth}dp'),
+            Text('Altura do dispositivo:${ScreenUtil().screenHeight}dp'),
+            Text('Densidade de pixels do dispositivo:${ScreenUtil().pixelRatio}'),
+            Text('Distância segura do rodapé:${ScreenUtil().bottomBarHeight}dp'),
+            Text('Altura da status bar:${ScreenUtil().statusBarHeight}dp'),
+            Text(
+              'Razão entre a largura atual e a largura do protótipo de design em pixels:${ScreenUtil().scaleWidth}',
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              'Razão entre a altura atual e a altura do protótipo de design em pixels:${ScreenUtil().scaleHeight}',
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              'Razão da fonte e largura para o tamanho do design:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}',
+              textAlign: TextAlign.center,
+            ),
+            Text(
+              'Razão da fonte e altura para o tamanho do design:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}',
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: ScreenUtil().setHeight(100),
+            ),
+            Text('Fator de escala da fonte do sistema:${ScreenUtil.textScaleFactor}'),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                    'Minha fonte tem 24px no protótipo de design e não irá mudar com o sistema.',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: ScreenUtil().setSp(24),
+                    )),
+                Text(
+                    'Minha fonte tem 24px no protótipo de design e poderá mudar com o sistema.',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: ScreenUtil().setSp(24, allowFontScalingSelf: true),
+                    )),
+              ],
+            )
+          ],
+        ),
+      ),
+    );
+  }
+```
+
+### Exemplo:
+
+[Demonstração](/example/lib/main_zh.dart)
+ 
+Efeito:
+
+![效果](demo_en.png)
+![tablet effect](demo_tablet_en.png)
