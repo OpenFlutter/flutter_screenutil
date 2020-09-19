@@ -5,7 +5,10 @@
  * @LastEditTime: 2020年6月20日 11:20:02
  * @Description: Update log
  -->
- 
+
+# 3.0.0
+- After a period of experimentation, I think it's time to release the official version
+
 # 3.0.0-beta.2
 - readme update
  
