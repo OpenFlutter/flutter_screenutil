@@ -28,7 +28,7 @@ dependencies:
   flutter:
     sdk: flutter
   # add flutter_screenutil
-  flutter_screenutil: ^3.0.0-beta.1
+  flutter_screenutil: ^3.0.0
 ```
 ### Add the following imports to your Dart code:
 ```
