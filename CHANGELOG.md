@@ -6,6 +6,9 @@
  * @Description: Update log
  -->
 
+# 3.0.1
+- update readme
+
 # 3.0.0
 - After a period of experimentation, I think it's time to release the official version
 
