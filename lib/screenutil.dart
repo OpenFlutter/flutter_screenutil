@@ -34,8 +34,8 @@ class ScreenUtil {
     _pixelRatio = window.devicePixelRatio;
     _screenWidth = window.physicalSize.width / _pixelRatio;
     _screenHeight = window.physicalSize.height / _pixelRatio;
-    _statusBarHeight = window.padding.top;
-    _bottomBarHeight = window.padding.bottom;
+    _statusBarHeight = window.padding.top / _pixelRatio;
+    _bottomBarHeight = window.padding.bottom / _pixelRatio;
     _textScaleFactor = window.textScaleFactor;
   }
 
@@ -119,12 +119,9 @@ class ScreenUtil {
   ///Font size adaptation method
   ///@param [fontSize] The size of the font on the UI design, in px.
   ///@param [allowFontScaling]
-  num setSp(num fontSize, {bool allowFontScalingSelf}) =>
-      allowFontScalingSelf == null
-          ? (allowFontScaling
-              ? (fontSize * scaleText)
-              : ((fontSize * scaleText) / _textScaleFactor))
-          : (allowFontScalingSelf
-              ? (fontSize * scaleText)
-              : ((fontSize * scaleText) / _textScaleFactor));
+  num setSp(num fontSize, {bool allowFontScalingSelf}) => allowFontScalingSelf == null
+      ? (allowFontScaling ? (fontSize * scaleText) : ((fontSize * scaleText) / _textScaleFactor))
+      : (allowFontScalingSelf
+          ? (fontSize * scaleText)
+          : ((fontSize * scaleText) / _textScaleFactor));
 }
