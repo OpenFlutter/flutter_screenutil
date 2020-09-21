@@ -34,8 +34,8 @@ class ScreenUtil {
     _pixelRatio = window.devicePixelRatio;
     _screenWidth = window.physicalSize.width / _pixelRatio;
     _screenHeight = window.physicalSize.height / _pixelRatio;
-    _statusBarHeight = window.padding.top;
-    _bottomBarHeight = window.padding.bottom;
+    _statusBarHeight = window.padding.top / _pixelRatio;
+    _bottomBarHeight = window.padding.bottom / _pixelRatio;
     _textScaleFactor = window.textScaleFactor;
   }
 
@@ -83,11 +83,11 @@ class ScreenUtil {
 
   /// 状态栏高度 dp 刘海屏会更高
   /// The offset from the top
-  double get statusBarHeight => _statusBarHeight / _pixelRatio;
+  double get statusBarHeight => _statusBarHeight;
 
   /// 底部安全区距离 dp
   /// The offset from the bottom.
-  double get bottomBarHeight => _bottomBarHeight / _pixelRatio;
+  double get bottomBarHeight => _bottomBarHeight;
 
   /// 实际的dp与UI设计px的比例
   /// The ratio of the actual dp to the design draft px

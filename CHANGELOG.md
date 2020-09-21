@@ -5,6 +5,8 @@
  * @LastEditTime: 2020年6月20日 11:20:02
  * @Description: Update log
  -->
+# 3.0.2
+- Change the unit of'statusBarHeight' and 'bottomBarHeight' to dp
 
 # 3.0.1
 - update readme
