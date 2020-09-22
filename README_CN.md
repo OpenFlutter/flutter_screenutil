@@ -94,7 +94,7 @@ ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: true);
     ScreenUtil().scaleHeight // 实际高度的dp与设计稿px的比例
 
     0.2.wp  //屏幕宽度的0.2倍
-    0.5.hp  //屏幕宽度的50%
+    0.5.hp  //屏幕高度的50%
 ```
 
 
