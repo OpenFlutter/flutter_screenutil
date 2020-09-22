@@ -90,7 +90,7 @@ ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: true);
     ScreenUtil().scaleHeight //Ratio of actual height dp to design draft px
 
     0.2.wp  //0,2 vezes a largura da tela
-    0.5.hp  //50% da largura da tela
+    0.5.hp  //50% altura da tela
 ```
 
 #### Adaptar o tamanho da tela：
