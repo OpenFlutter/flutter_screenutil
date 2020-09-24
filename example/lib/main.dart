@@ -38,7 +38,7 @@ class ExampleWidget extends StatefulWidget {
 class _ExampleWidgetState extends State<ExampleWidget> {
   @override
   Widget build(BuildContext context) {
-    //  printScreenInformation();
+    printScreenInformation();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -135,16 +135,13 @@ class _ExampleWidgetState extends State<ExampleWidget> {
   void printScreenInformation() {
     print('Device width dp:${ScreenUtil().screenWidth}'); //Device width
     print('Device height dp:${ScreenUtil().screenHeight}'); //Device height
-    print(
-        'Device pixel density:${ScreenUtil().pixelRatio}'); //Device pixel density
+    print('Device pixel density:${ScreenUtil().pixelRatio}'); //Device pixel density
     print(
         'Bottom safe zone distance dp:${ScreenUtil().bottomBarHeight}'); //Bottom safe zone distance，suitable for buttons with full screen
     print(
         'Status bar height px:${ScreenUtil().statusBarHeight}dp'); //Status bar height , Notch will be higher Unit px
-    print(
-        'Ratio of actual width dp to design draft px:${ScreenUtil().scaleWidth}');
-    print(
-        'Ratio of actual height dp to design draft px:${ScreenUtil().scaleHeight}');
+    print('Ratio of actual width dp to design draft px:${ScreenUtil().scaleWidth}');
+    print('Ratio of actual height dp to design draft px:${ScreenUtil().scaleHeight}');
     print(
         'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth * ScreenUtil().pixelRatio}');
     print(
@@ -154,3 +151,4 @@ class _ExampleWidgetState extends State<ExampleWidget> {
     print('0.5 times the screen height:${0.5.hp}');
   }
 }
+

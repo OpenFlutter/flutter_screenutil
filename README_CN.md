@@ -1,3 +1,5 @@
+# 请使用v2,v3现在有一些bug
+
 # flutter_ScreenUtil
 
 [![pub package](https://img.shields.io/pub/v/flutter_screenutil.svg)](https://pub.dartlang.org/packages/flutter_screenutil)
