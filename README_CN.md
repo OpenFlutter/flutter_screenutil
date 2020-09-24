@@ -35,7 +35,7 @@ dependencies:
   flutter:
     sdk: flutter
   # 添加依赖
-  flutter_screenutil: ^3.0.2
+  flutter_screenutil: ^2.3.1
 ```
 ### 在每个使用的地方导入包：
 ```
