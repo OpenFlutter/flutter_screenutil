@@ -1,4 +1,5 @@
-# 请使用v2,v3现在有一些bug
+# 请使用[v2](https://pub.flutter-io.cn/packages/flutter_screenutil/versions/2.3.1),
+[v3](https://pub.flutter-io.cn/packages/flutter_screenutil/versions/3.0.2)现在有一些bug
 
 # flutter_ScreenUtil
 

@@ -1,4 +1,5 @@
-# Please use v2, v3 now has some bugs.
+# Please use [v2](https://pub.flutter-io.cn/packages/flutter_screenutil/versions/2.3.1),
+[v3](https://pub.flutter-io.cn/packages/flutter_screenutil/versions/3.0.2) now has some bugs.
 
 # flutter_screenutil
 [![pub package](https://img.shields.io/pub/v/flutter_screenutil.svg)](https://pub.dev/packages/flutter_screenutil)
