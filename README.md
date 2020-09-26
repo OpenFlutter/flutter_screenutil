@@ -13,11 +13,6 @@
 
 [Update log](https://github.com/OpenFlutter/flutter_screenutil/blob/master/CHANGELOG.md)
 
-## Note
-[v3](https://github.com/OpenFlutter/flutter_screenutil/tree/beta) requires `flutter >= 1.19.0`.
-
-[v2](https://github.com/OpenFlutter/flutter_screenutil) support all versions.
-
 ## Usage:
 
 ### Add dependency：

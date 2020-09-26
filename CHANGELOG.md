@@ -6,6 +6,9 @@
  * @Description: Update log
  -->
 
+# 3.1.1
+- change readme
+
 # 3.1.0
 - Use the way back to v2 version
 - Modify registration method
