@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'text_style.dart';
-
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 此处假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
-  ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: false);
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
@@ -19,8 +12,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ExampleWidget(title: 'FlutterScreenUtil示例'),
+      home: MyHomePage(),
     );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 此处假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
+    ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: false);
+    return ExampleWidget(title: 'FlutterScreenUtil 示例');
   }
 }
 
@@ -55,8 +57,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
                   child: Text(
                     '我的宽度:${0.5.wp}dp \n'
                     '我的高度:${ScreenUtil().setHeight(200)}dp',
-                    style: TextStyle(
-                        color: Colors.white, fontSize: ScreenUtil().setSp(24)),
+                    style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(24)),
                   ),
                 ),
                 Container(
@@ -67,9 +68,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
                   child: Text(
                       '我的宽度:${375.w}dp \n'
                       '我的高度:${200.h}dp',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: ScreenUtil().setSp(24))),
+                      style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(24))),
                 ),
               ],
             ),
@@ -97,11 +96,17 @@ class _ExampleWidgetState extends State<ExampleWidget> {
               children: <Widget>[
                 Text(
                   '我的文字大小在设计稿上是24px，不会随着系统的文字缩放比例变化',
-                  style: ts.t2,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 24.sp,
+                  ),
                 ),
                 Text(
                   '我的文字大小在设计稿上是24px，会随着系统的文字缩放比例变化',
-                  style: ts.t1,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 24.ssp,
+                  ),
                 ),
               ],
             )
@@ -112,6 +117,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
         child: Icon(Icons.title),
         onPressed: () {
           ScreenUtil.init(
+            context,
             designSize: Size(750, 1334),
             allowFontScaling: false,
           );

@@ -1,5 +1,3 @@
-# Please use [v2](https://pub.flutter-io.cn/packages/flutter_screenutil/versions/2.3.1),[v3](https://pub.flutter-io.cn/packages/flutter_screenutil/versions/3.0.2) now has some bugs.
-
 # flutter_screenutil
 [![pub package](https://img.shields.io/pub/v/flutter_screenutil.svg)](https://pub.dev/packages/flutter_screenutil)
 
@@ -30,7 +28,7 @@ dependencies:
   flutter:
     sdk: flutter
   # add flutter_screenutil
-  flutter_screenutil: ^2.3.1
+  flutter_screenutil: ^3.1.0
 ```
 ### Add the following imports to your Dart code:
 ```
@@ -59,13 +57,13 @@ void main() {
 //fill in the screen size of the device in the design
 
 //default value : width : 1080px , height:1920px , allowFontScaling:false
-ScreenUtil.init();
+ScreenUtil.init(context);
 
 //If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
-ScreenUtil.init(designSize: Size(750, 1334));
+ScreenUtil.init(context, designSize: Size(750, 1334));
 
 //If you want to set the font size is scaled according to the system's "font size" assist option
-ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: true);
+ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: true);
 
 ```
 

@@ -4,7 +4,6 @@
  */
 
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 
 class ScreenUtil {
   static ScreenUtil _instance;
@@ -18,26 +17,14 @@ class ScreenUtil {
   /// allowFontScaling Specifies whether fonts should scale to respect Text Size accessibility settings. The default is false.
   bool allowFontScaling = false;
 
-  double _pixelRatio;
-  double _screenWidth;
-  double _screenHeight;
-  double _statusBarHeight;
-  double _bottomBarHeight;
-  double _textScaleFactor;
+  static double _pixelRatio;
+  static double _screenWidth;
+  static double _screenHeight;
+  static double _statusBarHeight;
+  static double _bottomBarHeight;
+  static double _textScaleFactor;
 
-  ScreenUtil._() {
-    final window = SchedulerBinding.instance?.window;
-    assert(
-      window != null,
-      '\nYou need to explicitly call the `WidgetsFlutterBinding.ensureInitialized()`, before initializing ScreenUtil.',
-    );
-    _pixelRatio = window.devicePixelRatio;
-    _screenWidth = window.physicalSize.width / _pixelRatio;
-    _screenHeight = window.physicalSize.height / _pixelRatio;
-    _statusBarHeight = window.padding.top / _pixelRatio;
-    _bottomBarHeight = window.padding.bottom / _pixelRatio;
-    _textScaleFactor = window.textScaleFactor;
-  }
+  ScreenUtil._();
 
   factory ScreenUtil() {
     assert(
@@ -47,7 +34,8 @@ class ScreenUtil {
     return _instance;
   }
 
-  static void init({
+  static void init(
+    BuildContext context, {
     Size designSize = defaultSize,
     bool allowFontScaling = false,
   }) {
@@ -55,6 +43,13 @@ class ScreenUtil {
     _instance
       ..uiSize = designSize
       ..allowFontScaling = allowFontScaling;
+    MediaQueryData mediaQuery = MediaQuery.of(context);
+    _pixelRatio = mediaQuery.devicePixelRatio;
+    _screenWidth = mediaQuery.size.width;
+    _screenHeight = mediaQuery.size.height;
+    _statusBarHeight = mediaQuery.padding.top;
+    _bottomBarHeight = mediaQuery.padding.bottom;
+    _textScaleFactor = mediaQuery.textScaleFactor;
   }
 
   /// 每个逻辑像素的字体像素数，字体的缩放比例

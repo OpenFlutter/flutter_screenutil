@@ -1,5 +1,3 @@
-# Please use [v2](https://pub.flutter-io.cn/packages/flutter_screenutil/versions/2.3.1),[v3](https://pub.flutter-io.cn/packages/flutter_screenutil/versions/3.0.2) now has some bugs.
-
 # flutter_screenutil
 [![pub package](https://img.shields.io/pub/v/flutter_screenutil.svg)](https://pub.dartlang.org/packages/flutter_screenutil)
 
@@ -30,7 +28,7 @@ dependencies:
   flutter:
     sdk: flutter
   # add flutter_screenutil
-  flutter_screenutil: ^2.3.1
+  flutter_screenutil: ^3.1.0
 ```
 
 ### Adicione o seguinte import em seu código Dart:
@@ -60,13 +58,13 @@ void main() {
 }
 
 //Valor padrão: width : 1080px , height:1920px , allowFontScaling:false
-ScreenUtil.init();
+ScreenUtil.init(context);
 
 //Se o design é baseado no iPhone6 ​​(iPhone6 ​​750*1334)
-ScreenUtil.init(designSize: Size(750, 1334));
+ScreenUtil.init(context, designSize: Size(750, 1334));
 
 //Se você quer definir que o tamanho da fonte seja ajustado de acordo com a opção "tamanho da fonte" na acessibilidade do sistema
-ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: true);
+ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: true);
 
 ```
 
