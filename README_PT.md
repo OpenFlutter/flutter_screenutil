@@ -48,7 +48,7 @@ Certifique-se de definir as dimensões na paginal inicial do MaterialApp (ou sej
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
-  ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: false);
+  ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: false);
   runApp(MyApp());
 }
 
