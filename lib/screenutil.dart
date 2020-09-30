@@ -110,10 +110,10 @@ class ScreenUtil {
   double setHeight(num height) => height * scaleHeight;
 
   ///字体大小适配方法
-  ///@param [fontSize] UI设计上字体的大小,单位px.
+  ///- [fontSize] UI设计上字体的大小,单位px.
   ///Font size adaptation method
-  ///@param [fontSize] The size of the font on the UI design, in px.
-  ///@param [allowFontScaling]
+  ///- [fontSize] The size of the font on the UI design, in px.
+  ///- [allowFontScaling]
   double setSp(num fontSize, {bool allowFontScalingSelf}) =>
       allowFontScalingSelf == null
           ? (allowFontScaling
