@@ -97,7 +97,7 @@ class ScreenUtil {
   /// Adapted to the device width of the UI Design.
   /// Height can also be adapted according to this to ensure no deformation ,
   /// if you want a square
-  num setWidth(num width) => width * scaleWidth;
+  double setWidth(num width) => width * scaleWidth;
 
   /// 根据UI设计的设备高度适配
   /// 当发现UI设计中的一屏显示的与当前样式效果不符合时,
@@ -107,14 +107,14 @@ class ScreenUtil {
   /// It is recommended to use this method to achieve a high degree of adaptation
   /// when it is found that one screen in the UI design
   /// does not match the current style effect, or if there is a difference in shape.
-  num setHeight(num height) => height * scaleHeight;
+  double setHeight(num height) => height * scaleHeight;
 
   ///字体大小适配方法
   ///- [fontSize] UI设计上字体的大小,单位px.
   ///Font size adaptation method
   ///- [fontSize] The size of the font on the UI design, in px.
   ///- [allowFontScaling]
-  num setSp(num fontSize, {bool allowFontScalingSelf}) =>
+  double setSp(num fontSize, {bool allowFontScalingSelf}) =>
       allowFontScalingSelf == null
           ? (allowFontScaling
               ? (fontSize * scaleText)
