@@ -13,11 +13,6 @@
 
 [Histórico de atualizações](https://github.com/OpenFlutter/flutter_screenutil/blob/master/CHANGELOG.md)
 
-## Note
-[v3](https://github.com/OpenFlutter/flutter_screenutil/tree/beta) requer `flutter >= 1.19.0`.
-
-[v2](https://github.com/OpenFlutter/flutter_screenutil) support all versions.
-
 ## Como usar:
 
 ### Adicionando a dependência：
@@ -28,7 +23,7 @@ dependencies:
   flutter:
     sdk: flutter
   # add flutter_screenutil
-  flutter_screenutil: ^3.0.2
+  flutter_screenutil: ^3.1.0
 ```
 
 ### Adicione o seguinte import em seu código Dart:
@@ -53,18 +48,18 @@ Certifique-se de definir as dimensões na paginal inicial do MaterialApp (ou sej
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
-  ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: false);
+  ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: false);
   runApp(MyApp());
 }
 
 //Valor padrão: width : 1080px , height:1920px , allowFontScaling:false
-ScreenUtil.init();
+ScreenUtil.init(context);
 
 //Se o design é baseado no iPhone6 ​​(iPhone6 ​​750*1334)
-ScreenUtil.init(designSize: Size(750, 1334));
+ScreenUtil.init(context, designSize: Size(750, 1334));
 
 //Se você quer definir que o tamanho da fonte seja ajustado de acordo com a opção "tamanho da fonte" na acessibilidade do sistema
-ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: true);
+ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: true);
 
 ```
 

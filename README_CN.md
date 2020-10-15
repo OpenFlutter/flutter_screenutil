@@ -17,11 +17,6 @@
 
 [更新日志](https://github.com/OpenFlutter/flutter_screenutil/blob/master/CHANGELOG.md)
 
-## Note
-[v3](https://github.com/OpenFlutter/flutter_screenutil/tree/beta)可用于`flutter >= 1.19.0`
-
-[v2](https://github.com/OpenFlutter/flutter_screenutil)可用于所有版本。
-
 ## 使用方法:
 
 ### 安装依赖：
@@ -33,7 +28,7 @@ dependencies:
   flutter:
     sdk: flutter
   # 添加依赖
-  flutter_screenutil: ^3.0.2
+  flutter_screenutil: ^3.1.0
 ```
 ### 在每个使用的地方导入包：
 ```
@@ -57,18 +52,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 此处假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
-  ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: false);
+  ScreenUtil.init(context,designSize: Size(750, 1334), allowFontScaling: false);
   runApp(MyApp());
 }
 
 //默认 width : 1080px , height:1920px , allowFontScaling:false
-ScreenUtil.init();
+ScreenUtil.init(context);
 
 //假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334) 
-ScreenUtil.init(designSize: Size(750, 1334));
+ScreenUtil.init(context, designSize: Size(750, 1334));
 
 //设置字体大小根据系统的“字体大小”辅助选项来进行缩放,默认为false
-ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: true);
+ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: true);
     
 ```
 
@@ -180,12 +175,10 @@ Column(
 ```
 
 ```dart
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 此处假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
-  ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: false);
-  runApp(MyApp());
-}
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
@@ -196,8 +189,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ExampleWidget(title: 'FlutterScreenUtil示例'),
+      home: MyHomePage(),
     );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 此处假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
+    ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: false);
+    return ExampleWidget(title: 'FlutterScreenUtil 示例');
   }
 }
 
@@ -232,8 +234,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
                   child: Text(
                     '我的宽度:${0.5.wp}dp \n'
                     '我的高度:${ScreenUtil().setHeight(200)}dp',
-                    style: TextStyle(
-                        color: Colors.white, fontSize: ScreenUtil().setSp(24)),
+                    style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(24)),
                   ),
                 ),
                 Container(
@@ -244,9 +245,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
                   child: Text(
                       '我的宽度:${375.w}dp \n'
                       '我的高度:${200.h}dp',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: ScreenUtil().setSp(24))),
+                      style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(24))),
                 ),
               ],
             ),
@@ -274,11 +273,17 @@ class _ExampleWidgetState extends State<ExampleWidget> {
               children: <Widget>[
                 Text(
                   '我的文字大小在设计稿上是24px，不会随着系统的文字缩放比例变化',
-                  style: ts.t2,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 24.sp,
+                  ),
                 ),
                 Text(
                   '我的文字大小在设计稿上是24px，会随着系统的文字缩放比例变化',
-                  style: ts.t1,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 24.ssp,
+                  ),
                 ),
               ],
             )
@@ -289,7 +294,8 @@ class _ExampleWidgetState extends State<ExampleWidget> {
         child: Icon(Icons.title),
         onPressed: () {
           ScreenUtil.init(
-            designSize: Size(1500, 1334),
+            context,
+            designSize: Size(750, 1334),
             allowFontScaling: false,
           );
           setState(() {});

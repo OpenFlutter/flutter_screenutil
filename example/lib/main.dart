@@ -3,14 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'text_style.dart';
-
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
-  ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: false);
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
@@ -21,8 +14,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ExampleWidget(title: 'FlutterScreenUtil Demo'),
+      home: MyHomePage(),
     );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+    ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: false);
+    return ExampleWidget(title: 'FlutterScreenUtil Demo');
   }
 }
 
@@ -38,7 +40,10 @@ class ExampleWidget extends StatefulWidget {
 class _ExampleWidgetState extends State<ExampleWidget> {
   @override
   Widget build(BuildContext context) {
-    //  printScreenInformation();
+    //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+    ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: false);
+
+    printScreenInformation();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -112,7 +117,10 @@ class _ExampleWidgetState extends State<ExampleWidget> {
                 ),
                 Text(
                   'My font size is 24px on the design draft and will change with the system.',
-                  style: ts.t1,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 24.ssp,
+                  ),
                 ),
               ],
             )
@@ -122,10 +130,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.title),
         onPressed: () {
-          ScreenUtil.init(
-            designSize: Size(750, 1334),
-            allowFontScaling: false,
-          );
+          ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: false);
           setState(() {});
         },
       ),
@@ -135,16 +140,13 @@ class _ExampleWidgetState extends State<ExampleWidget> {
   void printScreenInformation() {
     print('Device width dp:${ScreenUtil().screenWidth}'); //Device width
     print('Device height dp:${ScreenUtil().screenHeight}'); //Device height
-    print(
-        'Device pixel density:${ScreenUtil().pixelRatio}'); //Device pixel density
+    print('Device pixel density:${ScreenUtil().pixelRatio}'); //Device pixel density
     print(
         'Bottom safe zone distance dp:${ScreenUtil().bottomBarHeight}'); //Bottom safe zone distance，suitable for buttons with full screen
     print(
         'Status bar height px:${ScreenUtil().statusBarHeight}dp'); //Status bar height , Notch will be higher Unit px
-    print(
-        'Ratio of actual width dp to design draft px:${ScreenUtil().scaleWidth}');
-    print(
-        'Ratio of actual height dp to design draft px:${ScreenUtil().scaleHeight}');
+    print('Ratio of actual width dp to design draft px:${ScreenUtil().scaleWidth}');
+    print('Ratio of actual height dp to design draft px:${ScreenUtil().scaleHeight}');
     print(
         'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth * ScreenUtil().pixelRatio}');
     print(

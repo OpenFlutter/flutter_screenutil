@@ -5,6 +5,17 @@
  * @LastEditTime: 2020年6月20日 11:20:02
  * @Description: Update log
  -->
+
+# 3.1.1
+- change readme
+
+# 3.1.0
+- Use the way back to v2 version
+- Modify registration method
+
+# 3.0.2+1
+- Guide users to use V2 version
+
 # 3.0.2
 - Change the unit of'statusBarHeight' and 'bottomBarHeight' to dp
 
