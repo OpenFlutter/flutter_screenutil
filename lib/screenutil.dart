@@ -29,7 +29,7 @@ class ScreenUtil {
   factory ScreenUtil() {
     assert(
       _instance != null,
-      '\nEnsure to initialize ScreenUtil before accessing it.',
+      '\nEnsure to initialize ScreenUtil before accessing it.Please execute the init method:ScreenUtil.init()',
     );
     return _instance;
   }
