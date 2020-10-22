@@ -102,7 +102,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
               textAlign: TextAlign.center,
             ),
             SizedBox(
-              height: ScreenUtil().setHeight(100),
+              height: 5.h,
             ),
             Text('System font scaling factor:${ScreenUtil().textScaleFactor}'),
             Column(
