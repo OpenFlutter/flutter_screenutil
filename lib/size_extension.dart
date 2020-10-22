@@ -2,25 +2,25 @@ import 'package:flutter_screenutil/screenutil.dart';
 
 extension SizeExtension on num {
   ///[ScreenUtil.setWidth]
-  num get w => ScreenUtil().setWidth(this);
+  double get w => ScreenUtil().setWidth(this);
 
   ///[ScreenUtil.setHeight]
-  num get h => ScreenUtil().setHeight(this);
+  double get h => ScreenUtil().setHeight(this);
 
   ///[ScreenUtil.setSp]
-  num get sp => ScreenUtil().setSp(this);
+  double get sp => ScreenUtil().setSp(this);
 
   ///[ScreenUtil.setSp]
-  num get ssp => ScreenUtil().setSp(this, allowFontScalingSelf: true);
+  double get ssp => ScreenUtil().setSp(this, allowFontScalingSelf: true);
 
   ///[ScreenUtil.setSp]
-  num get nsp => ScreenUtil().setSp(this, allowFontScalingSelf: false);
+  double get nsp => ScreenUtil().setSp(this, allowFontScalingSelf: false);
 
   ///屏幕宽度的倍数
   ///Multiple of screen width
-  num get wp => ScreenUtil().screenWidth * this;
+  double get wp => ScreenUtil().screenWidth * this;
 
   ///屏幕高度的倍数
   ///Multiple of screen height
-  num get hp => ScreenUtil().screenHeight * this;
+  double get hp => ScreenUtil().screenHeight * this;
 }
