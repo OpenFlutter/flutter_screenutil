@@ -79,8 +79,8 @@ ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: true);
     ScreenUtil().setSp(24, allowFontScalingSelf: false)  (sdk>=2.6 : 24.nsp) //适配字体(不会根据系统的“字体大小”辅助选项来进行缩放)
 
     ScreenUtil.pixelRatio       //设备的像素密度
-    ScreenUtil.screenWidth   (sdk>=2.6 : 1.wp)   //设备宽度
-    ScreenUtil.screenHeight  (sdk>=2.6 : 1.hp)   //设备高度
+    ScreenUtil.screenWidth   (sdk>=2.6 : 1.sw)   //设备宽度
+    ScreenUtil.screenHeight  (sdk>=2.6 : 1.sh)   //设备高度
     ScreenUtil.bottomBarHeight  //底部安全区距离，适用于全面屏下面有按键的
     ScreenUtil.statusBarHeight  //状态栏高度 刘海屏会更高  单位px
     ScreenUtil.textScaleFactor //系统字体缩放比例
@@ -88,8 +88,8 @@ ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: true);
     ScreenUtil().scaleWidth  // 实际宽度的dp与设计稿px的比例
     ScreenUtil().scaleHeight // 实际高度的dp与设计稿px的比例
 
-    0.2.wp  //屏幕宽度的0.2倍
-    0.5.hp  //屏幕高度的50%
+    0.2.sw  //屏幕宽度的0.2倍
+    0.5.sh  //屏幕高度的50%
 ```
 
 
@@ -232,7 +232,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
                   height: ScreenUtil().setHeight(200),
                   color: Colors.red,
                   child: Text(
-                    '我的宽度:${0.5.wp}dp \n'
+                    '我的宽度:${0.5.sw}dp \n'
                     '我的高度:${ScreenUtil().setHeight(200)}dp',
                     style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(24)),
                   ),
@@ -326,8 +326,8 @@ class _ExampleWidgetState extends State<ExampleWidget> {
     );
     print('系统的字体缩放比例:${ScreenUtil().textScaleFactor}');
 
-    print('屏幕宽度的0.5:${0.5.wp}');
-    print('屏幕高度的0.5:${0.5.hp}');
+    print('屏幕宽度的0.5:${0.5.sw}');
+    print('屏幕高度的0.5:${0.5.sh}');
   }
 }
 

@@ -18,9 +18,9 @@ extension SizeExtension on num {
 
   ///屏幕宽度的倍数
   ///Multiple of screen width
-  double get wp => ScreenUtil().screenWidth * this;
+  double get sw => ScreenUtil().screenWidth * this;
 
   ///屏幕高度的倍数
   ///Multiple of screen height
-  double get hp => ScreenUtil().screenHeight * this;
+  double get sh => ScreenUtil().screenHeight * this;
 }

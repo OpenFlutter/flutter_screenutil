@@ -55,7 +55,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
                   height: ScreenUtil().setHeight(200),
                   color: Colors.red,
                   child: Text(
-                    '我的宽度:${0.5.wp}dp \n'
+                    '我的宽度:${0.5.sw}dp \n'
                     '我的高度:${ScreenUtil().setHeight(200)}dp',
                     style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(24)),
                   ),
@@ -149,7 +149,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
     );
     print('系统的字体缩放比例:${ScreenUtil().textScaleFactor}');
 
-    print('屏幕宽度的0.5:${0.5.wp}');
-    print('屏幕高度的0.5:${0.5.hp}');
+    print('屏幕宽度的0.5:${0.5.sw}');
+    print('屏幕高度的0.5:${0.5.sh}');
   }
 }

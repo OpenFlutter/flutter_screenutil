@@ -57,11 +57,11 @@ class _ExampleWidgetState extends State<ExampleWidget> {
                 // Using Extensions
                 Container(
                   padding: EdgeInsets.all(10.w),
-                  width: 0.5.wp,
+                  width: 0.5.sw,
                   height: 200.h,
                   color: Colors.red,
                   child: Text(
-                    'My width:${0.5.wp}dp \n'
+                    'My width:${0.5.sw}dp \n'
                     'My height:${200.h}dp',
                     style: TextStyle(
                       color: Colors.white,
@@ -152,7 +152,7 @@ class _ExampleWidgetState extends State<ExampleWidget> {
     print(
         'The ratio of  height width to the size of the design:${ScreenUtil().scaleHeight * ScreenUtil().pixelRatio}');
     print('System font scaling:${ScreenUtil().textScaleFactor}');
-    print('0.5 times the screen width:${0.5.wp}');
-    print('0.5 times the screen height:${0.5.hp}');
+    print('0.5 times the screen width:${0.5.sw}');
+    print('0.5 times the screen height:${0.5.sh}');
   }
 }

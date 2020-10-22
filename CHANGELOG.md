@@ -6,6 +6,11 @@
  * @Description: Update log
  -->
 
+# 3.2.0
+- Modify the method name to be more semantic: wp->sw , hp->sh
+- Remove the restriction of flutter version
+- Modify the return type num to double
+
 # 3.1.1
 - change readme
 
