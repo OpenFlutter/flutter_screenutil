@@ -82,7 +82,7 @@ ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: true);
     ScreenUtil.screenWidth   (sdk>=2.6 : 1.sw)   //设备宽度
     ScreenUtil.screenHeight  (sdk>=2.6 : 1.sh)   //设备高度
     ScreenUtil.bottomBarHeight  //底部安全区距离，适用于全面屏下面有按键的
-    ScreenUtil.statusBarHeight  //状态栏高度 刘海屏会更高  单位px
+    ScreenUtil.statusBarHeight  //状态栏高度 刘海屏会更高  单位dp
     ScreenUtil.textScaleFactor //系统字体缩放比例
 
     ScreenUtil().scaleWidth  // 实际宽度的dp与设计稿px的比例
