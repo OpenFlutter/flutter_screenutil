@@ -74,12 +74,12 @@ ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: true);
     ScreenUtil().setSp(24, allowFontScalingSelf: true)  (sdk>=2.6 : 24.ssp)  //Adapter font(fonts will scale to respect Text Size accessibility settings)
     ScreenUtil().setSp(24, allowFontScalingSelf: false)  (sdk>=2.6 : 24.nsp) //Adapter font(fonts will not scale to respect Text Size accessibility settings)
 
-    ScreenUtil.pixelRatio       //Device pixel density
-    ScreenUtil.screenWidth     (sdk>=2.6 : 1.sw)  //Device width
-    ScreenUtil.screenHeight    (sdk>=2.6 : 1.sh)  //Device height
-    ScreenUtil.bottomBarHeight  //Bottom safe zone distance, suitable for buttons with full screen
-    ScreenUtil.statusBarHeight  //Status bar height , Notch will be higher Unit px
-    ScreenUtil.textScaleFactor  //System font scaling factor
+    ScreenUtil().pixelRatio       //Device pixel density
+    ScreenUtil().screenWidth     (sdk>=2.6 : 1.sw)  //Device width
+    ScreenUtil().screenHeight    (sdk>=2.6 : 1.sh)  //Device height
+    ScreenUtil().bottomBarHeight  //Bottom safe zone distance, suitable for buttons with full screen
+    ScreenUtil().statusBarHeight  //Status bar height , Notch will be higher Unit px
+    ScreenUtil().textScaleFactor  //System font scaling factor
 
     ScreenUtil().scaleWidth //Ratio of actual width dp to design draft px
     ScreenUtil().scaleHeight //Ratio of actual height dp to design draft px
