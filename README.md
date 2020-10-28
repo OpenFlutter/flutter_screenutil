@@ -79,7 +79,7 @@ ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: true);
     ScreenUtil().screenWidth   (sdk>=2.6 : 1.sw)    //Device width
     ScreenUtil().screenHeight  (sdk>=2.6 : 1.sh)    //Device height
     ScreenUtil().bottomBarHeight  //Bottom safe zone distance, suitable for buttons with full screen
-    ScreenUtil().statusBarHeight  //Status bar height , Notch will be higher Unit px
+    ScreenUtil().statusBarHeight  //Status bar height , Notch will be higher Unit dp
     ScreenUtil().textScaleFactor  //System font scaling factor
 
     ScreenUtil().scaleWidth //Ratio of actual width dp to design draft px
