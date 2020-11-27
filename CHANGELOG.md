@@ -8,6 +8,7 @@
 
 # 4.0.0-beta
 - Modified the initialization method
+- Support font adaptation in themedata
 
 # 3.2.0
 - Modify the method name to be more semantic: wp->sw , hp->sh
