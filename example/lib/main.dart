@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
           title: 'Flutter_ScreenUtil',
           theme: ThemeData(
             primarySwatch: Colors.blue,
+            textTheme: TextTheme(button: TextStyle(fontSize: 80.nsp)),
           ),
           home: HomePage(title: 'FlutterScreenUtil Demo'),
         );
@@ -47,6 +48,7 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            TextButton(onPressed: null, child: Text('text')),
             Row(
               children: <Widget>[
                 // Using Extensions

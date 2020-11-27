@@ -190,7 +190,7 @@ Column(
 
 ### Example:
 
-[example demo](/example/lib/main.dart)
+[example demo](https://github.com/OpenFlutter/flutter_screenutil/blob/master/example/lib/main_zh.dart)
  
 ### Effect:
 

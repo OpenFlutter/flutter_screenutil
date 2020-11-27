@@ -333,7 +333,7 @@ class _HomePageState extends State<HomePage> {
 
 ### Exemplo:
 
-[Demonstração](/example/lib/main_zh.dart)
+[Demonstração](https://github.com/OpenFlutter/flutter_screenutil/blob/master/example/lib/main_zh.dart)
  
 Efeito:
 

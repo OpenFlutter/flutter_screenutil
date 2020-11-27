@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
           title: 'Flutter_ScreenUtil',
           theme: ThemeData(
             primarySwatch: Colors.blue,
+            textTheme: TextTheme(button: TextStyle(fontSize: 80.nsp)),
           ),
           home: HomePage(title: 'FlutterScreenUtil Demo'),
         );
