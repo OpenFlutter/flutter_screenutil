@@ -48,7 +48,6 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            TextButton(onPressed: null, child: Text('text')),
             Row(
               children: <Widget>[
                 // Using Extensions
