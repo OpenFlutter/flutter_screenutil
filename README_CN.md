@@ -28,7 +28,7 @@ dependencies:
   flutter:
     sdk: flutter
   # 添加依赖
-  flutter_screenutil: ^3.1.0
+  flutter_screenutil: ^4.0.0-beta
 ```
 ### 在每个使用的地方导入包：
 ```
@@ -38,32 +38,42 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 ### 属性
 
 |属性|类型|默认值|描述|
-|:---|:---|:---|:---| 
-|width|double|1080px|设计稿中设备的宽度,单位px|
-|height|double|1920px|设计稿中设备的高度,单位px|
+|:---|:---|:---|:---|
+|designSize|Size|Size(1080, 1920)|设计稿中设备的尺寸(单位随意,但在使用过程中必须保持一致)|
 |allowFontScaling|bool|false|设置字体大小是否根据系统的“字体大小”辅助选项来进行缩放|
 
 ### 初始化并设置适配尺寸及字体大小是否根据系统的“字体大小”辅助选项来进行缩放
-在使用之前请设置好设计稿的宽度和高度，传入设计稿的宽度和高度(单位px)
-一定在MaterialApp的home中的页面设置(即入口文件，只需设置一次),以保证在每次使用之前设置好了适配尺寸:
+在使用之前请设置好设计稿的宽度和高度，传入设计稿的宽度和高度(单位随意,但在使用过程中必须保持一致)
+一定要进行初始化(只需设置一次),以保证在每次使用之前设置好了适配尺寸:
 
 ```
 //填入设计稿中设备的屏幕尺寸
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 此处假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
-  ScreenUtil.init(context,designSize: Size(750, 1334), allowFontScaling: false);
-  runApp(MyApp());
-}
 
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 此处假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
+        ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: false);
+
+        return MaterialApp(
+            ...
+        );
+      },
+    );
+  }
+}
 //默认 width : 1080px , height:1920px , allowFontScaling:false
-ScreenUtil.init(context);
+ScreenUtil.init(constraints);
 
 //假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334) 
-ScreenUtil.init(context, designSize: Size(750, 1334));
+ScreenUtil.init(constraints, designSize: Size(750, 1334));
 
 //设置字体大小根据系统的“字体大小”辅助选项来进行缩放,默认为false
-ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: true);
+ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: true);
     
 ```
 
@@ -73,7 +83,7 @@ ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: true);
 #### 传入设计稿的px尺寸 px px px ! 
 ```dart
     ScreenUtil().setWidth(540)  (sdk>=2.6 : 540.w) //根据屏幕宽度适配尺寸
-    ScreenUtil().setHeight(200) (sdk>=2.6 : 200.h) //根据屏幕高度适配尺寸
+    ScreenUtil().setHeight(200) (sdk>=2.6 : 200.h) //根据屏幕高度适配尺寸(一般根据宽度适配即可)
     ScreenUtil().setSp(24)      (sdk>=2.6 : 24.sp)  //适配字体
     ScreenUtil().setSp(24, allowFontScalingSelf: true)   (sdk>=2.6 : 24.ssp) //适配字体(根据系统的“字体大小”辅助选项来进行缩放)
     ScreenUtil().setSp(24, allowFontScalingSelf: false)  (sdk>=2.6 : 24.nsp) //适配字体(不会根据系统的“字体大小”辅助选项来进行缩放)
@@ -82,11 +92,11 @@ ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: true);
     ScreenUtil.screenWidth   (sdk>=2.6 : 1.sw)   //设备宽度
     ScreenUtil.screenHeight  (sdk>=2.6 : 1.sh)   //设备高度
     ScreenUtil.bottomBarHeight  //底部安全区距离，适用于全面屏下面有按键的
-    ScreenUtil.statusBarHeight  //状态栏高度 刘海屏会更高  单位px
+    ScreenUtil.statusBarHeight  //状态栏高度 刘海屏会更高
     ScreenUtil.textScaleFactor //系统字体缩放比例
 
-    ScreenUtil().scaleWidth  // 实际宽度的dp与设计稿px的比例
-    ScreenUtil().scaleHeight // 实际高度的dp与设计稿px的比例
+    ScreenUtil().scaleWidth  // 实际宽度的dp与设计稿宽度的比例
+    ScreenUtil().scaleHeight // 实际高度的dp与设计稿高度度的比例
 
     0.2.sw  //屏幕宽度的0.2倍
     0.5.sh  //屏幕高度的50%
@@ -95,11 +105,11 @@ ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: true);
 
 #### 适配尺寸
 
-传入设计稿的px尺寸：
+传入设计稿的尺寸(单位与初始化时的单位相同)：
 
 根据屏幕宽度适配 `width: ScreenUtil().setWidth(540)`,
 
-根据屏幕高度适配 `height: ScreenUtil().setHeight(200)`,
+根据屏幕高度适配 `height: ScreenUtil().setHeight(200)`, 一般来说，控件高度也根据宽度进行适配
 
 **注意**
 
@@ -113,7 +123,7 @@ setHeight方法主要是在高度上进行适配, 在你想控制UI上一屏的�
 //UI上是长方形:
 Container(
            width: ScreenUtil().setWidth(375),
-           height: ScreenUtil().setHeight(200),
+           height: ScreenUtil().setHeight(375),
             ),
             
 //如果你想显示一个正方形:
@@ -141,10 +151,10 @@ height:200.h
 ```
 
 #### 适配字体:
-传入设计稿的px尺寸：
+传入设计稿的字体大小：
 
 ``` 
-//传入字体大小，默认不根据系统的“字体大小”辅助选项来进行缩放(可在初始化ScreenUtil时设置allowFontScaling)
+//传入字体大小(单位和初始化时的单位保持一致)，默认不根据系统的“字体大小”辅助选项来进行缩放(可在初始化ScreenUtil时设置allowFontScaling)
 ScreenUtil().setSp(28)
 或
 28.sp (dart sdk>=2.6)
@@ -183,36 +193,34 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter_ScreenUtil',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+        ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: false);
+
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter_ScreenUtil',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: HomePage(title: 'FlutterScreenUtil Demo'),
+        );
+      },
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 此处假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
-    ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: false);
-    return ExampleWidget(title: 'FlutterScreenUtil 示例');
-  }
-}
-
-class ExampleWidget extends StatefulWidget {
-  const ExampleWidget({Key key, this.title}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _ExampleWidgetState createState() => _ExampleWidgetState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _ExampleWidgetState extends State<ExampleWidget> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     printScreenInformation();
@@ -290,42 +298,20 @@ class _ExampleWidgetState extends State<ExampleWidget> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.title),
-        onPressed: () {
-          ScreenUtil.init(
-            context,
-            designSize: Size(750, 1334),
-            allowFontScaling: false,
-          );
-          setState(() {});
-        },
-      ),
     );
   }
 
   void printScreenInformation() {
-    print('设备宽度:${ScreenUtil().screenWidth}'); //Device width
-    print('设备高度:${ScreenUtil().screenHeight}'); //Device height
-    print('设备的像素密度:${ScreenUtil().pixelRatio}'); //Device pixel density
-    print(
-      '底部安全区距离:${ScreenUtil().bottomBarHeight}dp',
-    ); //Bottom safe zone distance，suitable for buttons with full screen
-    print(
-      '状态栏高度:${ScreenUtil().statusBarHeight}dp',
-    ); //Status bar height , Notch will be higher Unit px
-
+    print('设备宽度:${1.sw}');
+    print('设备高度:${1.sh}');
+    print('设备的像素密度:${ScreenUtil().pixelRatio}');
+    print('底部安全区距离:${ScreenUtil().bottomBarHeight}dp');
+    print('状态栏高度:${ScreenUtil().statusBarHeight}dp');
     print('实际宽度的dp与设计稿px的比例:${ScreenUtil().scaleWidth}');
     print('实际高度的dp与设计稿px的比例:${ScreenUtil().scaleHeight}');
-
-    print(
-      '宽度和字体相对于设计稿放大的比例:${ScreenUtil().scaleWidth * ScreenUtil().pixelRatio}',
-    );
-    print(
-      '高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight * ScreenUtil().pixelRatio}',
-    );
+    print('宽度和字体相对于设计稿放大的比例:${ScreenUtil().scaleWidth * ScreenUtil().pixelRatio}');
+    print('高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight * ScreenUtil().pixelRatio}');
     print('系统的字体缩放比例:${ScreenUtil().textScaleFactor}');
-
     print('屏幕宽度的0.5:${0.5.sw}');
     print('屏幕高度的0.5:${0.5.sh}');
   }

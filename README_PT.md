@@ -1,3 +1,4 @@
+# I don’t speak Portuguese, and other developers have translated the first version. I later modified it based on the translation software. It is recommended to read the English/Chinese version.
 # flutter_screenutil
 [![pub package](https://img.shields.io/pub/v/flutter_screenutil.svg)](https://pub.dartlang.org/packages/flutter_screenutil)
 
@@ -23,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   # add flutter_screenutil
-  flutter_screenutil: ^3.1.0
+  flutter_screenutil: ^4.0.0-beta
 ```
 
 ### Adicione o seguinte import em seu código Dart:
@@ -48,18 +49,18 @@ Certifique-se de definir as dimensões na paginal inicial do MaterialApp (ou sej
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
-  ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: false);
+  ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: false);
   runApp(MyApp());
 }
 
 //Valor padrão: width : 1080px , height:1920px , allowFontScaling:false
-ScreenUtil.init(context);
+ScreenUtil.init(constraints);
 
 //Se o design é baseado no iPhone6 ​​(iPhone6 ​​750*1334)
-ScreenUtil.init(context, designSize: Size(750, 1334));
+ScreenUtil.init(constraints, designSize: Size(750, 1334));
 
 //Se você quer definir que o tamanho da fonte seja ajustado de acordo com a opção "tamanho da fonte" na acessibilidade do sistema
-ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: true);
+ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: true);
 
 ```
 
@@ -183,33 +184,48 @@ Column(
 ```
 
 ```dart
-//import
+...
+import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-...
+void main() => runApp(MyApp());
 
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ///Define o tamanho de ajuste (preenche o tamanho da tela do dispositivo no design). Se o design é baseado no tamanho do iPhone6 (iPhone6 ​​750*1334)
-    ScreenUtil.init(designSize: Size(750, 1334), allowFontScaling: false);
-    
-    print('Largura do dispositivo:${ScreenUtil().screenWidth}'); //Largura do dispositivo
-    print('Altura do dispositivo:${ScreenUtil().screenHeight}'); //Altura do dispositivo
-    print(
-        'Densidade de pixels do dispositivo:${ScreenUtil().pixelRatio}'); //Densidade de pixels do dispositivo
-    print(
-        'Distância segura do rodapé:${ScreenUtil().bottomBarHeight}'); //Distância segura do rodapé, adequada para botões em tela cheia
-    print(
-        'Altura da status bar:${ScreenUtil().statusBarHeight}px'); //Altura da status bar em pixels, Notch será maior
-    print(
-        'Razão entre a largura atual e a largura do protótipo de design em pixels:${ScreenUtil().scaleWidth}'); 
-    print(
-        'Razão entre a altura atual e a altura do protótipo de design em pixels:${ScreenUtil().scaleHeight}'); 
-    print(
-        'Razão da fonte e largura para o tamanho do design:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}');
-    print(
-        'Razão da fonte e altura para o tamanho do design:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}');
-        
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+        ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: false);
+
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter_ScreenUtil',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: HomePage(title: 'FlutterScreenUtil Demo'),
+        );
+      },
+    );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+
+    printScreenInformation();
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -220,70 +236,74 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
           children: <Widget>[
             Row(
               children: <Widget>[
+                // Using Extensions
                 Container(
-                  padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
-                  width: ScreenUtil().setWidth(375),
-                  height: ScreenUtil().setHeight(200),
+                  padding: EdgeInsets.all(10.w),
+                  width: 0.5.sw,
+                  height: 200.h,
                   color: Colors.red,
                   child: Text(
-                    'Minha largura:${ScreenUtil().setWidth(375)}dp',
+                    'My width:${0.5.sw}dp \n'
+                    'My height:${200.h}dp',
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: ScreenUtil().setSp(12)),
+                      color: Colors.white,
+                      fontSize: 24.sp,
+                    ),
                   ),
                 ),
+                // Without using Extensions
                 Container(
                   padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
-                  width: ScreenUtil().setWidth(375),
+                  width: ScreenUtil().screenWidth * 0.5,
                   height: ScreenUtil().setHeight(200),
                   color: Colors.blue,
-                  child: Text('Minha largura:${ScreenUtil().setWidth(375)}dp',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: ScreenUtil().setSp(12))),
+                  child: Text(
+                    'My width:${ScreenUtil().screenWidth * 0.5}dp \n'
+                    'My height:${ScreenUtil().setHeight(200)}dp',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: ScreenUtil().setSp(24),
+                    ),
+                  ),
                 ),
               ],
             ),
-            Text('Largura do dispositivo:${ScreenUtil().screenWidth}dp'),
-            Text('Altura do dispositivo:${ScreenUtil().screenHeight}dp'),
-            Text('Densidade de pixels do dispositivo:${ScreenUtil().pixelRatio}'),
-            Text('Distância segura do rodapé:${ScreenUtil().bottomBarHeight}dp'),
-            Text('Altura da status bar:${ScreenUtil().statusBarHeight}dp'),
+            Text('Device width:${ScreenUtil().screenWidthPx}px'),
+            Text('Device height:${ScreenUtil().screenHeightPx}px'),
+            Text('Device width:${ScreenUtil().screenWidth}dp'),
+            Text('Device height:${ScreenUtil().screenHeight}dp'),
+            Text('Device pixel density:${ScreenUtil().pixelRatio}'),
+            Text('Bottom safe zone distance:${ScreenUtil().bottomBarHeight}dp'),
+            Text('Status bar height:${ScreenUtil().statusBarHeight}dp'),
             Text(
-              'Razão entre a largura atual e a largura do protótipo de design em pixels:${ScreenUtil().scaleWidth}',
+              'Ratio of actual width dp to design draft px:${ScreenUtil().scaleWidth}',
               textAlign: TextAlign.center,
             ),
             Text(
-              'Razão entre a altura atual e a altura do protótipo de design em pixels:${ScreenUtil().scaleHeight}',
-              textAlign: TextAlign.center,
-            ),
-            Text(
-              'Razão da fonte e largura para o tamanho do design:${ScreenUtil().scaleWidth * ScreenUtil.pixelRatio}',
-              textAlign: TextAlign.center,
-            ),
-            Text(
-              'Razão da fonte e altura para o tamanho do design:${ScreenUtil().scaleHeight * ScreenUtil.pixelRatio}',
+              'Ratio of actual height dp to design draft px:${ScreenUtil().scaleHeight}',
               textAlign: TextAlign.center,
             ),
             SizedBox(
-              height: ScreenUtil().setHeight(100),
+              height: 5.h,
             ),
-            Text('Fator de escala da fonte do sistema:${ScreenUtil.textScaleFactor}'),
+            Text('System font scaling factor:${ScreenUtil().textScaleFactor}'),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                    'Minha fonte tem 24px no protótipo de design e não irá mudar com o sistema.',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: ScreenUtil().setSp(24),
-                    )),
+                  'My font size is 24px on the design draft and will not change with the system.',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 24.sp,
+                  ),
+                ),
                 Text(
-                    'Minha fonte tem 24px no protótipo de design e poderá mudar com o sistema.',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: ScreenUtil().setSp(24, allowFontScalingSelf: true),
-                    )),
+                  'My font size is 24px on the design draft and will change with the system.',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 24.ssp,
+                  ),
+                ),
               ],
             )
           ],
@@ -291,6 +311,23 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
       ),
     );
   }
+
+  void printScreenInformation() {
+    print('Device width dp:${1.sw}'); //Device width
+    print('Device height dp:${1.sh}'); //Device height
+    print('Device pixel density:${ScreenUtil().pixelRatio}'); //Device pixel density
+    print(
+        'Bottom safe zone distance dp:${ScreenUtil().bottomBarHeight}'); //Bottom safe zone distance，suitable for buttons with full screen
+    print(
+        'Status bar height px:${ScreenUtil().statusBarHeight}dp'); //Status bar height , Notch will be higher Unit px
+    print('Ratio of actual width dp to UI Design:${ScreenUtil().scaleWidth}');
+    print('Ratio of actual height dp to UI Design:${ScreenUtil().scaleHeight}');
+    print('System font scaling:${ScreenUtil().textScaleFactor}');
+    print('0.5 times the screen width:${0.5.sw}');
+    print('0.5 times the screen height:${0.5.sh}');
+  }
+}
+
 ```
 [widget test](https://github.com/OpenFlutter/flutter_screenutil/issues/115)
 

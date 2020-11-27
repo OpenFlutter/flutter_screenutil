@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -8,40 +6,37 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter_ScreenUtil',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: MyHomePage(),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+        ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: false);
+
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter_ScreenUtil',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: HomePage(title: 'FlutterScreenUtil Demo'),
+        );
+      },
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
-    ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: false);
-    return ExampleWidget(title: 'FlutterScreenUtil Demo');
-  }
-}
-
-class ExampleWidget extends StatefulWidget {
-  const ExampleWidget({Key key, this.title}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key key, this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _ExampleWidgetState createState() => _ExampleWidgetState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _ExampleWidgetState extends State<ExampleWidget> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
-    ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: false);
 
     printScreenInformation();
     return Scaffold(
@@ -127,30 +122,19 @@ class _ExampleWidgetState extends State<ExampleWidget> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.title),
-        onPressed: () {
-          ScreenUtil.init(context, designSize: Size(750, 1334), allowFontScaling: false);
-          setState(() {});
-        },
-      ),
     );
   }
 
   void printScreenInformation() {
-    print('Device width dp:${ScreenUtil().screenWidth}'); //Device width
-    print('Device height dp:${ScreenUtil().screenHeight}'); //Device height
+    print('Device width dp:${1.sw}'); //Device width
+    print('Device height dp:${1.sh}'); //Device height
     print('Device pixel density:${ScreenUtil().pixelRatio}'); //Device pixel density
     print(
         'Bottom safe zone distance dp:${ScreenUtil().bottomBarHeight}'); //Bottom safe zone distance，suitable for buttons with full screen
     print(
         'Status bar height px:${ScreenUtil().statusBarHeight}dp'); //Status bar height , Notch will be higher Unit px
-    print('Ratio of actual width dp to design draft px:${ScreenUtil().scaleWidth}');
-    print('Ratio of actual height dp to design draft px:${ScreenUtil().scaleHeight}');
-    print(
-        'The ratio of font and width to the size of the design:${ScreenUtil().scaleWidth * ScreenUtil().pixelRatio}');
-    print(
-        'The ratio of  height width to the size of the design:${ScreenUtil().scaleHeight * ScreenUtil().pixelRatio}');
+    print('Ratio of actual width dp to UI Design:${ScreenUtil().scaleWidth}');
+    print('Ratio of actual height dp to UI Design:${ScreenUtil().scaleHeight}');
     print('System font scaling:${ScreenUtil().textScaleFactor}');
     print('0.5 times the screen width:${0.5.sw}');
     print('0.5 times the screen height:${0.5.sh}');
