@@ -6,6 +6,9 @@
  * @Description: Update log
  -->
 
+# 4.0.0-beta1
+- change readme
+
 # 4.0.0-beta
 - Modified the initialization method
 - Support font adaptation in themedata
