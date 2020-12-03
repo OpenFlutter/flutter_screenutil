@@ -33,8 +33,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 ### Property
    
 |Property|Type|Default Value|Description|
-|:---|:---|:---|:---| 
-|designSize|Size|Size(1080, 1920)|The size of the ui design draft can be in any unit, but it must be consistent during use|
+|:---|:---|:---|:---|
+|designSize|Size|Size(1080, 1920)|The size of the device in the design draft, in px|
 |allowFontScaling|bool|false|Sets whether the font size is scaled according to the system's "font size" assist option|
 
 ### Initialize and set the fit size and font size to scale according to the system's "font size" accessibility option

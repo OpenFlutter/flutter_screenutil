@@ -39,7 +39,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 |属性|类型|默认值|描述|
 |:---|:---|:---|:---|
-|designSize|Size|Size(1080, 1920)|设计稿中设备的尺寸(单位随意,但在使用过程中必须保持一致)|
+|designSize|Size|Size(1080, 1920)|设计稿中设备的尺寸(单位px)|
 |allowFontScaling|bool|false|设置字体大小是否根据系统的“字体大小”辅助选项来进行缩放|
 
 ### 初始化并设置适配尺寸及字体大小是否根据系统的“字体大小”辅助选项来进行缩放
