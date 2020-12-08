@@ -47,7 +47,7 @@ class ScreenUtil {
     _screenWidth = constraints.maxWidth;
     _screenHeight = constraints.maxHeight;
 
-    ui.Window mediaQuery = ui.window;
+    var mediaQuery = ui.window;
     _pixelRatio = mediaQuery.devicePixelRatio;
     _statusBarHeight = mediaQuery.padding.top;
     _bottomBarHeight = mediaQuery.padding.bottom;
