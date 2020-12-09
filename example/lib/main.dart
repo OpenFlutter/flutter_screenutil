@@ -127,17 +127,17 @@ class _HomePageState extends State<HomePage> {
   }
 
   void printScreenInformation() {
-    print('Device width dp:${1.sw}'); //Device width
-    print('Device height dp:${1.sh}'); //Device height
-    print('Device pixel density:${ScreenUtil().pixelRatio}'); //Device pixel density
+    print('Device width dp:${1.sw}dp');
+    print('Device height dp:${1.sh}dp');
+    print('Device pixel density:${ScreenUtil().pixelRatio}');
     print(
-        'Bottom safe zone distance dp:${ScreenUtil().bottomBarHeight}'); //Bottom safe zone distance，suitable for buttons with full screen
+        'Bottom safe zone distance dp:${ScreenUtil().bottomBarHeight}dp');
     print(
-        'Status bar height px:${ScreenUtil().statusBarHeight}dp'); //Status bar height , Notch will be higher Unit px
+        'Status bar height dp:${ScreenUtil().statusBarHeight}dp');
     print('Ratio of actual width dp to UI Design:${ScreenUtil().scaleWidth}');
     print('Ratio of actual height dp to UI Design:${ScreenUtil().scaleHeight}');
     print('System font scaling:${ScreenUtil().textScaleFactor}');
-    print('0.5 times the screen width:${0.5.sw}');
-    print('0.5 times the screen height:${0.5.sh}');
+    print('0.5 times the screen width:${0.5.sw}dp');
+    print('0.5 times the screen height:${0.5.sh}dp');
   }
 }

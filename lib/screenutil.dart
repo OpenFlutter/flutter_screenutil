@@ -79,11 +79,11 @@ class ScreenUtil {
   double get screenHeightPx => _screenHeight * _pixelRatio;
 
   /// 状态栏高度 dp 刘海屏会更高
-  /// The offset from the top
+  /// The offset from the top, in dp
   double get statusBarHeight => _statusBarHeight / _pixelRatio;
 
   /// 底部安全区距离 dp
-  /// The offset from the bottom.
+  /// The offset from the bottom, in dp
   double get bottomBarHeight => _bottomBarHeight / _pixelRatio;
 
   /// 实际的dp与UI设计px的比例
