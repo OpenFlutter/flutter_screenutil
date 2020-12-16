@@ -1,6 +1,9 @@
 # 5.0.0-nullsafety.0
 - Migrated flutter_screenutil to non-nullable
 
+# 4.0.0
+- Upgrade to 4.0.0
+
 # 4.0.0-beta3
 - Optimize the way of initialization
 
