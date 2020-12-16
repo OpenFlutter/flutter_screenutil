@@ -6,6 +6,9 @@
  * @Description: Update log
  -->
 
+# 4.0.0-beta3
+- Optimize the way of initialization
+
 # 4.0.0-beta2
 - fix error:'window is not a type.'
 
