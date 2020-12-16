@@ -4,7 +4,7 @@ import 'screenutil.dart';
 
 class ScreenUtilInit extends StatelessWidget {
   /// A helper widget that initializes [ScreenUtil]
-  const ScreenUtilInit({
+  ScreenUtilInit({
     @required this.child,
     this.designSize = ScreenUtil.defaultSize,
     this.allowFontScaling = false,

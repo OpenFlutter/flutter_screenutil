@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
 class ScreenUtil {
-  static ScreenUtil _instance;
   static const Size defaultSize = Size(1080, 1920);
+  static ScreenUtil _instance;
 
   /// UI设计中手机尺寸 , px
   /// Size of the phone in UI Design , px
