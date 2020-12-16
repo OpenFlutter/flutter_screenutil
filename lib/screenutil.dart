@@ -12,14 +12,14 @@ class ScreenUtil {
 
   /// UI设计中手机尺寸 , px
   /// Size of the phone in UI Design , px
-  Size uiSize = defaultSize;
+  Size uiSize;
 
   /// 控制字体是否要根据系统的“字体大小”辅助选项来进行缩放。默认值为false。
   /// allowFontScaling Specifies whether fonts should scale to respect Text Size accessibility settings. The default is false.
-  bool allowFontScaling = false;
+  bool allowFontScaling;
 
-  static double _pixelRatio = 1;
-  static double _textScaleFactor = 1;
+  static double _pixelRatio;
+  static double _textScaleFactor;
   static double _screenWidth;
   static double _screenHeight;
   static double _statusBarHeight;
