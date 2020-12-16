@@ -19,16 +19,16 @@
 ### Adicionando a dependência：
 Por favor, verifique a última versão antes da instalação.
 Se houver algum problema com a nova versão, use a versão anterior
-```
+```yaml
 dependencies:
   flutter:
     sdk: flutter
   # add flutter_screenutil
-  flutter_screenutil: ^4.0.0-beta1
+  flutter_screenutil: ^4.0.0-beta
 ```
 
 ### Adicione o seguinte import em seu código Dart:
-```
+```dart
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 ```
 
@@ -45,12 +45,20 @@ Por favor, defina a largura e altura do protótipo de design antes de usar (em p
 Certifique-se de definir as dimensões na paginal inicial do MaterialApp (ou seja, no arquivo de entrada, defina apenas uma vez) para garantir que o tamanho de ajuste seja o mesmo antes de cada uso:
 
 ```dart
-//Preencha o tamanho da tela do dispositivo no protótipo de design
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
-  ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: false);
-  runApp(MyApp());
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    //Preencha o tamanho da tela do dispositivo no protótipo de design
+    return ScreenUtilInit(
+      designSize: Size(750, 1334),
+      allowFontScaling: false,
+      child: MaterialApp(
+        ...
+      ),
+    );
+  }
 }
 
 //Valor padrão: width : 1080px , height:1920px , allowFontScaling:false

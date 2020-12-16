@@ -18,7 +18,7 @@
 ### Add dependency：
 Please check the latest version before installation.
 If there is any problem with the new version, please use the previous version
-```
+```yaml
 dependencies:
   flutter:
     sdk: flutter
@@ -26,35 +26,33 @@ dependencies:
   flutter_screenutil: ^4.0.0-beta1
 ```
 ### Add the following imports to your Dart code:
-```
+```dart
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 ```
 
 ### Property
    
 |Property|Type|Default Value|Description|
-|:---|:---|:---|:---|
+|:---|:---|:---|:---| 
 |designSize|Size|Size(1080, 1920)|The size of the device in the design draft, in px|
 |allowFontScaling|bool|false|Sets whether the font size is scaled according to the system's "font size" assist option|
 
 ### Initialize and set the fit size and font size to scale according to the system's "font size" accessibility option
 Please set the size of the design draft before use, the width and height of the design draft.
 
-```
+```dart
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
-        ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: false);
-
-        return MaterialApp(
-          ...
-        );
-      },
+    //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+    return ScreenUtilInit(
+      designSize: Size(750, 1334),
+      allowFontScaling: false,
+      child: MaterialApp(
+        ...
+      ),
     );
   }
 }
@@ -112,14 +110,14 @@ If your dart sdk>=2.6, you can use extension functions:
 example:
 
 instead of :
-```
+```dart
 Container(
 width: ScreenUtil().setWidth(50),
 height:ScreenUtil().setHeight(200),
 )
 ```
 you can use it like this:
-```
+```dart
 Container(
 width: 50.w,
 height:200.h
