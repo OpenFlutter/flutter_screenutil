@@ -23,7 +23,7 @@
 
 安装之前请查看最新版本
 新版本如有问题请使用上一版
-```
+```yaml
 dependencies:
   flutter:
     sdk: flutter
@@ -31,7 +31,7 @@ dependencies:
   flutter_screenutil: ^4.0.0-beta1
 ```
 ### 在每个使用的地方导入包：
-```
+```dart
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 ```
 
@@ -39,14 +39,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 |属性|类型|默认值|描述|
 |:---|:---|:---|:---|
-|designSize|Size|Size(1080, 1920)|设计稿中设备的尺寸(单位px)|
+|designSize|Size|Size(1080, 1920)|设计稿中设备的尺寸(单位随意,但在使用过程中必须保持一致)|
 |allowFontScaling|bool|false|设置字体大小是否根据系统的“字体大小”辅助选项来进行缩放|
 
 ### 初始化并设置适配尺寸及字体大小是否根据系统的“字体大小”辅助选项来进行缩放
 在使用之前请设置好设计稿的宽度和高度，传入设计稿的宽度和高度(单位随意,但在使用过程中必须保持一致)
 一定要进行初始化(只需设置一次),以保证在每次使用之前设置好了适配尺寸:
 
-```
+```dart
 //填入设计稿中设备的屏幕尺寸
 
 void main() => runApp(MyApp());
@@ -54,18 +54,17 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 此处假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
-        ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: false);
-
-        return MaterialApp(
-            ...
-        );
-      },
+    //设置适配尺寸 (填入设计稿中设备的屏幕尺寸) 此处假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334)
+    return ScreenUtilInit(
+      designSize: Size(750, 1334),
+      allowFontScaling: false,
+      child: MaterialApp(
+        ...
+      ),
     );
   }
 }
+
 //默认 width : 1080px , height:1920px , allowFontScaling:false
 ScreenUtil.init(constraints);
 
@@ -119,7 +118,7 @@ setHeight方法主要是在高度上进行适配, 在你想控制UI上一屏的�
 
 例如:
 
-```
+```dart
 //UI上是长方形:
 Container(
            width: ScreenUtil().setWidth(375),
@@ -136,14 +135,14 @@ Container(
 如果你的dart sdk>=2.6,可以使用扩展函数:
 example:
 不用这个:
-```
+```dart
 Container(
 width: ScreenUtil().setWidth(50),
 height:ScreenUtil().setHeight(200),
 )
 ```
 而是用这个:
-```
+```dart
 Container(
 width: 50.w,
 height:200.h
@@ -153,7 +152,7 @@ height:200.h
 #### 适配字体:
 传入设计稿的字体大小：
 
-``` 
+```dart 
 //传入字体大小(单位和初始化时的单位保持一致)，默认不根据系统的“字体大小”辅助选项来进行缩放(可在初始化ScreenUtil时设置allowFontScaling)
 ScreenUtil().setSp(28)
 或
@@ -184,12 +183,12 @@ Column(
             )
 ```
 
-```
+
 [widget test](https://github.com/OpenFlutter/flutter_screenutil/issues/115)
 
 ### 使用示例:
 
-[example demo](https://github.com/OpenFlutter/flutter_screenutil/blob/master/example/lib/main_zh.dart)
+[example demo](https://github.com/OpenFlutter/flutter_ScreenUtil/blob/master/example/lib/main_zh.dart)
  
 效果:
 
