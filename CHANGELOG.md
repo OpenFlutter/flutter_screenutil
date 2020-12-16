@@ -1,10 +1,5 @@
-<!--
- * @Author: zhuoyuan93@gmail.com
- * @Date: 2018-10-16 19:43:03
- * @LastEditors: zhuoyuan93@gmail.com
- * @LastEditTime: 2020年6月20日 11:20:02
- * @Description: Update log
- -->
+# 5.0.0-nullsafety.0
+- Migrated flutter_screenutil to non-nullable
 
 # 4.0.0-beta3
 - Optimize the way of initialization
