@@ -122,8 +122,3 @@ class ScreenUtil {
               ? (fontSize * scaleText)
               : (fontSize * scaleText / _textScaleFactor));
 }
-
-enum UnitType {
-  px,
-  dp,
-}
