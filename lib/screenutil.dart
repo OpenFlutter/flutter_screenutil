@@ -3,6 +3,8 @@
  * email: zhuoyuan93@gmail.com
  */
 
+import 'dart:ui' as ui;
+
 import 'package:flutter/material.dart';
 
 class ScreenUtil {
@@ -42,7 +44,7 @@ class ScreenUtil {
     _screenWidth = constraints.maxWidth;
     _screenHeight = constraints.maxHeight;
 
-    var mediaQuery = WidgetsBinding.instance.window;
+    var mediaQuery = WidgetsBinding.instance?.window ?? ui.window;
     _pixelRatio = mediaQuery.devicePixelRatio;
     _statusBarHeight = mediaQuery.padding.top;
     _bottomBarHeight = mediaQuery.padding.bottom;
