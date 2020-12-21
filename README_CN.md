@@ -1,4 +1,4 @@
-# flutter_ScreenUtil
+# flutter_screenUtil
 
 [![pub package](https://img.shields.io/pub/v/flutter_screenutil.svg)](https://pub.dartlang.org/packages/flutter_screenutil)
 
@@ -28,7 +28,7 @@ dependencies:
   flutter:
     sdk: flutter
   # 添加依赖
-  flutter_screenutil: ^5.0.0-nullsafety.0
+  flutter_screenutil: ^5.0.0-nullsafety.1
 ```
 ### 在每个使用的地方导入包：
 ```dart
@@ -39,7 +39,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 |属性|类型|默认值|描述|
 |:---|:---|:---|:---|
-|designSize|Size|Size(1080, 1920)|设计稿中设备的尺寸(单位随意,但在使用过程中必须保持一致)|
+|designSize|Size|Size(360, 690)|设计稿中设备的尺寸(单位随意,但在使用过程中必须保持一致)|
 |allowFontScaling|bool|false|设置字体大小是否根据系统的“字体大小”辅助选项来进行缩放|
 
 ### 初始化并设置适配尺寸及字体大小是否根据系统的“字体大小”辅助选项来进行缩放
@@ -65,25 +65,26 @@ class MyApp extends StatelessWidget {
   }
 }
 
-//默认 width : 1080px , height:1920px , allowFontScaling:false
+//默认 width : 360dp , height:690dp , allowFontScaling:false
 ScreenUtil.init(constraints);
 
-//假如设计稿是按iPhone6的尺寸设计的(iPhone6 750*1334) 
-ScreenUtil.init(constraints, designSize: Size(750, 1334));
+//传入设计稿的尺寸(例如(360,690))
+ScreenUtil.init(constraints, designSize: Size(360,690));
 
 //设置字体大小根据系统的“字体大小”辅助选项来进行缩放,默认为false
-ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: true);
+ScreenUtil.init(constraints, designSize: Size(360,690), allowFontScaling: true);
     
 ```
 
 ### 使用
 
 ### API
-#### 传入设计稿的px尺寸 px px px ! 
+#### 传入设计稿的dp尺寸
 ```dart
-    ScreenUtil().setWidth(540)  (sdk>=2.6 : 540.w) //根据屏幕宽度适配尺寸
-    ScreenUtil().setHeight(200) (sdk>=2.6 : 200.h) //根据屏幕高度适配尺寸(一般根据宽度适配即可)
-    ScreenUtil().setSp(24)      (sdk>=2.6 : 24.sp)  //适配字体
+    ScreenUtil().setWidth(540)  (sdk>=2.6 : 540.w)   //根据屏幕宽度适配尺寸
+    ScreenUtil().setHeight(200) (sdk>=2.6 : 200.h)   //根据屏幕高度适配尺寸(一般根据宽度适配即可)
+    ScreenUtil().radius(200)    (sdk>=2.6 : 200.r)   //根据宽度或高度中的较小者进行调整
+    ScreenUtil().setSp(24)      (sdk>=2.6 : 24.sp)   //适配字体
     ScreenUtil().setSp(24, allowFontScalingSelf: true)   (sdk>=2.6 : 24.ssp) //适配字体(根据系统的“字体大小”辅助选项来进行缩放)
     ScreenUtil().setSp(24, allowFontScalingSelf: false)  (sdk>=2.6 : 24.nsp) //适配字体(不会根据系统的“字体大小”辅助选项来进行缩放)
 
@@ -94,8 +95,8 @@ ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: true
     ScreenUtil.statusBarHeight  //状态栏高度 刘海屏会更高
     ScreenUtil.textScaleFactor //系统字体缩放比例
 
-    ScreenUtil().scaleWidth  // 实际宽度的dp与设计稿宽度的比例
-    ScreenUtil().scaleHeight // 实际高度的dp与设计稿高度度的比例
+    ScreenUtil().scaleWidth  // 实际宽度设计稿宽度的比例
+    ScreenUtil().scaleHeight // 实际高度与设计稿高度度的比例
 
     0.2.sw  //屏幕宽度的0.2倍
     0.5.sh  //屏幕高度的50%
@@ -110,6 +111,8 @@ ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: true
 
 根据屏幕高度适配 `height: ScreenUtil().setHeight(200)`, 一般来说，控件高度也根据宽度进行适配
 
+一般来说，50.w!=50.h
+
 **注意**
 
 高度也根据setWidth来做适配可以保证不变形(当你想要一个正方形的时候)
@@ -119,16 +122,16 @@ setHeight方法主要是在高度上进行适配, 在你想控制UI上一屏的�
 例如:
 
 ```dart
-//UI上是长方形:
+//UI可能显示长方形:
 Container(
-           width: ScreenUtil().setWidth(375),
-           height: ScreenUtil().setHeight(375),
+           width: 375.w,
+           height: 375.h,
             ),
             
 //如果你想显示一个正方形:
 Container(
-           width: ScreenUtil().setWidth(300),
-           height: ScreenUtil().setWidth(300),
+           width: 300.r,
+           height: 300.r,
             ),
 ```
 
@@ -169,12 +172,12 @@ ScreenUtil().setSp(24, allowFontScalingSelf: true)
 Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('我的文字大小在设计稿上是24px，不会随着系统的文字缩放比例变化',
+                Text('我的文字大小在设计稿上是24dp，不会随着系统的文字缩放比例变化',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: ScreenUtil().setSp(24),
                     )),
-                Text('我的文字大小在设计稿上是24px，会随着系统的文字缩放比例变化',
+                Text('我的文字大小在设计稿上是24dp，会随着系统的文字缩放比例变化',
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: ScreenUtil()

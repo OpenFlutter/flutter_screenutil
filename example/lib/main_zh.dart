@@ -51,57 +51,68 @@ class _HomePageState extends State<HomePage> {
                   height: ScreenUtil().setHeight(200),
                   color: Colors.red,
                   child: Text(
-                    '我的宽度:${0.5.sw}dp \n'
-                    '我的高度:${ScreenUtil().setHeight(200)}dp',
-                    style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(24)),
+                    '我的实际宽度:${0.5.sw}dp \n'
+                    '我的实际高度:${ScreenUtil().setHeight(200)}dp',
+                    style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(12)),
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
-                  width: 375.w,
+                  width: 180.w,
                   height: 200.h,
                   color: Colors.blue,
                   child: Text(
-                      '我的宽度:${375.w}dp \n'
-                      '我的高度:${200.h}dp',
-                      style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(24))),
+                      '我的设计稿宽度: 180dp \n'
+                      '我的设计稿高度: 200dp',
+                      style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(12))),
                 ),
+
               ],
             ),
-            Text('设备宽度:${ScreenUtil().screenWidthPx}px'),
-            Text('设备高度:${ScreenUtil().screenHeightPx}px'),
+            Container(
+              padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
+              width: 100.r,
+              height: 100.r,
+              color: Colors.green,
+              child: Text('我是正方形,边长是100',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: ScreenUtil().setSp(12),
+                ),
+              ),
+            ),
             Text('设备宽度:${ScreenUtil().screenWidth}dp'),
             Text('设备高度:${ScreenUtil().screenHeight}dp'),
             Text('设备的像素密度:${ScreenUtil().pixelRatio}'),
             Text('底部安全区距离:${ScreenUtil().bottomBarHeight}dp'),
             Text('状态栏高度:${ScreenUtil().statusBarHeight}dp'),
             Text(
-              '实际宽度的dp与设计稿px的比例:${ScreenUtil().scaleWidth}',
+              '实际宽度与设计稿的比例:${ScreenUtil().scaleWidth}',
               textAlign: TextAlign.center,
             ),
             Text(
-              '实际高度的dp与设计稿px的比例:${ScreenUtil().scaleHeight}',
+              '实际高度与设计稿的比例:${ScreenUtil().scaleHeight}',
               textAlign: TextAlign.center,
             ),
             SizedBox(
-              height: 100.h,
+              height: 50.h,
             ),
             Text('系统的字体缩放比例:${ScreenUtil().textScaleFactor}'),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  '我的文字大小在设计稿上是24px，不会随着系统的文字缩放比例变化',
+                  '我的文字大小在设计稿上是16dp，不会随着系统的文字缩放比例变化',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 24.sp,
+                    fontSize: 16.sp,
                   ),
                 ),
                 Text(
-                  '我的文字大小在设计稿上是24px，会随着系统的文字缩放比例变化',
+                  '我的文字大小在设计稿上是16dp，会随着系统的文字缩放比例变化',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 24.ssp,
+                    fontSize: 16.ssp,
                   ),
                 ),
               ],

@@ -23,7 +23,7 @@ dependencies:
   flutter:
     sdk: flutter
   # add flutter_screenutil
-  flutter_screenutil: ^5.0.0-nullsafety.0
+  flutter_screenutil: ^5.0.0-nullsafety.1
 ```
 ### Add the following imports to your Dart code:
 ```dart
@@ -34,7 +34,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
    
 |Property|Type|Default Value|Description|
 |:---|:---|:---|:---| 
-|designSize|Size|Size(1080, 1920)|The size of the device in the design draft, in px|
+|designSize|Size|Size(360, 690)|The size of the device in the design draft, in dp|
 |allowFontScaling|bool|false|Sets whether the font size is scaled according to the system's "font size" assist option|
 
 ### Initialize and set the fit size and font size to scale according to the system's "font size" accessibility option
@@ -59,14 +59,14 @@ class MyApp extends StatelessWidget {
 
 //fill in the screen size of the device in the design
 
-//default value : width : 1080px , height:1920px , allowFontScaling:false
+//default value : width : 360dp , height:690dp , allowFontScaling:false
 ScreenUtil.init(constraints);
 
-//If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
-ScreenUtil.init(constraints, designSize: Size(750, 1334));
+//The size of the equipment in the design draft(360,690)
+ScreenUtil.init(constraints, designSize: Size(360, 690));
 
 //If you want to set the font size is scaled according to the system's "font size" assist option
-ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: true);
+ScreenUtil.init(constraints, designSize: Size(360, 690), allowFontScaling: true);
 
 ```
 
@@ -74,11 +74,12 @@ ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: true
 
 ### API
 
-#### Pass the px size of the design draft
+#### Pass the dp size of the design draft
 
 ```dart
     ScreenUtil().setWidth(540)  (dart sdk>=2.6 : 540.w) //Adapted to screen width
     ScreenUtil().setHeight(200) (dart sdk>=2.6 : 200.h) //Adapted to screen height , under normal circumstances, the height still uses x.w
+    ScreenUtil().radius(200) (dart sdk>=2.6 : 200.r)    //Adapt according to the smaller of width or height
     ScreenUtil().setSp(24)      (dart sdk>=2.6 : 24.sp) //Adapter font
     ScreenUtil().setSp(24, allowFontScalingSelf: true)  (dart sdk>=2.6 : 24.ssp) //Adapter font(fonts will scale to respect Text Size accessibility settings)
     ScreenUtil().setSp(24, allowFontScalingSelf: false) (dart sdk>=2.6 : 24.nsp) //Adapter font(fonts will not scale to respect Text Size accessibility settings)
@@ -87,11 +88,11 @@ ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: true
     ScreenUtil().screenWidth   (dart sdk>=2.6 : 1.sw)    //Device width
     ScreenUtil().screenHeight  (dart sdk>=2.6 : 1.sh)    //Device height
     ScreenUtil().bottomBarHeight  //Bottom safe zone distance, suitable for buttons with full screen
-    ScreenUtil().statusBarHeight  //Status bar height , Notch will be higher Unit px
+    ScreenUtil().statusBarHeight  //Status bar height , Notch will be higher
     ScreenUtil().textScaleFactor  //System font scaling factor
 
-    ScreenUtil().scaleWidth //Ratio of actual width dp to ui design
-    ScreenUtil().scaleHeight //Ratio of actual height dp to ui design
+    ScreenUtil().scaleWidth //The ratio of actual width to UI design
+    ScreenUtil().scaleHeight //The ratio of actual height to UI design
 
     0.2.sw  //0.2 times the screen width
     0.5.sh  //50% of screen height
@@ -99,7 +100,7 @@ ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: true
 
 #### Adapt screen size：
 
-Pass the px size of the design draft((The unit is the same as the unit at initialization))：
+Pass the dp size of the design draft((The unit is the same as the unit at initialization))：
 
 Adapted to screen width: `ScreenUtil().setWidth(540)`,
 
@@ -129,22 +130,30 @@ The height can also use setWidth to ensure that it is not deformed(when you want
 
 setHeight method is mainly adapted in height, you want to control the height and actuality of a screen on the UIUsed when the same is displayed.
 
+Generally speaking, 50.w!=50.h.
+
 ```dart
 //for example:
 
 ///If you want to display a square:
-///rectangle
+///The UI may show a rectangle:
 Container(
-           width: ScreenUtil().setWidth(375),
-           height: ScreenUtil().setWidth(200),
+           width: 375.w,
+           height: 375.h,
             ),
             
 ////If you want to display a square:
 Container(
-           width: ScreenUtil().setWidth(300),
+           width: 300.w,
            height: 300.w,
             ),
 
+or
+
+Container(
+           width: 300.r,
+           height: 300.r,
+            ),
 ```
 
 
@@ -169,13 +178,13 @@ Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                    'My font size is 24px on the design draft and will not change with the system.',
+                    'My font size is 24dp on the design draft and will not change with the system.',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: ScreenUtil().setSp(24),
                     )),
                 Text(
-                    'My font size is 24px on the design draft and will change with the system.',
+                    'My font size is 24dp on the design draft and will change with the system.',
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: ScreenUtil()

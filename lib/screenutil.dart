@@ -5,6 +5,8 @@
 
 import 'dart:ui' as ui;
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class ScreenUtil {
@@ -44,11 +46,11 @@ class ScreenUtil {
     _screenWidth = constraints.maxWidth;
     _screenHeight = constraints.maxHeight;
 
-    var mediaQuery = WidgetsBinding.instance?.window ?? ui.window;
-    _pixelRatio = mediaQuery.devicePixelRatio;
-    _statusBarHeight = mediaQuery.padding.top;
-    _bottomBarHeight = mediaQuery.padding.bottom;
-    _textScaleFactor = mediaQuery.textScaleFactor;
+    var window = WidgetsBinding.instance?.window ?? ui.window;
+    _pixelRatio = window.devicePixelRatio;
+    _statusBarHeight = window.padding.top;
+    _bottomBarHeight = window.padding.bottom;
+    _textScaleFactor = window.textScaleFactor;
   }
 
   /// 每个逻辑像素的字体像素数，字体的缩放比例
@@ -67,14 +69,6 @@ class ScreenUtil {
   ///The vertical extent of this size. dp
   double get screenHeight => _screenHeight;
 
-  /// 当前设备宽度 px
-  /// The vertical extent of this size. px
-  double get screenWidthPx => _screenWidth * _pixelRatio;
-
-  /// 当前设备高度 px
-  /// The vertical extent of this size. px
-  double get screenHeightPx => _screenHeight * _pixelRatio;
-
   /// 状态栏高度 dp 刘海屏会更高
   /// The offset from the top, in dp
   double get statusBarHeight => _statusBarHeight / _pixelRatio;
@@ -83,13 +77,14 @@ class ScreenUtil {
   /// The offset from the bottom, in dp
   double get bottomBarHeight => _bottomBarHeight / _pixelRatio;
 
-  /// 实际的dp与UI设计px的比例
-  /// The ratio of the actual dp to the design draft px
+  /// 实际尺寸与UI设计的比例
+  /// The ratio of actual width to UI design
   double get scaleWidth => _screenWidth / uiSize.width;
 
+  ///  /// The ratio of actual height to UI design
   double get scaleHeight => _screenHeight / uiSize.height;
 
-  double get scaleText => scaleWidth;
+  double get scaleText => min(scaleWidth, scaleHeight);
 
   /// 根据UI设计的设备宽度适配
   /// 高度也可以根据这个来做适配可以保证不变形,比如你先要一个正方形的时候.
@@ -107,6 +102,9 @@ class ScreenUtil {
   /// when it is found that one screen in the UI design
   /// does not match the current style effect, or if there is a difference in shape.
   double setHeight(num height) => height * scaleHeight;
+
+  ///Adapt according to the smaller of width or height
+  double radius(num r) => r * scaleText;
 
   ///字体大小适配方法
   ///- [fontSize] UI设计上字体的大小,单位px.

@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   # add flutter_screenutil
-  flutter_screenutil: ^5.0.0-nullsafety.0
+  flutter_screenutil: ^5.0.0-nullsafety.1
 ```
 
 ### Adicione o seguinte import em seu código Dart:
@@ -36,8 +36,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
    
 |Propriedade|Tipo|Valor Padrão|Descrição|
 |:---|:---|:---|:---| 
-|width|double|1080px|A largura do dispositivo no protótipo de design, em px|
-|height|double|1920px|A altura do dispositivo no protótipo de design, em px|
+|width|double|360dp|A largura do dispositivo no protótipo de design, em dp|
+|height|double|690dp|A altura do dispositivo no protótipo de design, em dp|
 |allowFontScaling|bool|false|Defina caso o tamanho da fonte seja dimensionado de acordo com a opção "tamanho de fonte" na acessibilidade do sistema|
 
 ### Inicialize e defina o tamanho de ajuste e tamanho da fonte para dimensionar de acordo com a opção "tamanho de fonte" na acessibilidade do sistema
@@ -61,14 +61,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-//Valor padrão: width : 1080px , height:1920px , allowFontScaling:false
+//Valor padrão: width : 360dp , height:690dp , allowFontScaling:false
 ScreenUtil.init(constraints);
 
-//Se o design é baseado no iPhone6 ​​(iPhone6 ​​750*1334)
-ScreenUtil.init(constraints, designSize: Size(750, 1334));
+//The size of the equipment in the design draft(360,690)
+ScreenUtil.init(constraints, designSize: Size(360,690));
 
 //Se você quer definir que o tamanho da fonte seja ajustado de acordo com a opção "tamanho da fonte" na acessibilidade do sistema
-ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: true);
+ScreenUtil.init(constraints, designSize: Size(360,690), allowFontScaling: true);
 
 ```
 
@@ -79,6 +79,7 @@ ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: true
 ```dart
     ScreenUtil().setWidth(540)  (sdk>=2.6 : 540.w) //Adapted to screen width
     ScreenUtil().setHeight(200) (sdk>=2.6 : 200.h) //Adapted to screen height
+    ScreenUtil().radius(200) (dart sdk>=2.6 : 200.r)    //Adapt according to the smaller of width or height
     ScreenUtil().setSp(24)      (sdk>=2.6 : 24.sp)  //Adapter font
     ScreenUtil().setSp(24, allowFontScalingSelf: true)  (sdk>=2.6 : 24.ssp)  //Adapter font(fonts will scale to respect Text Size accessibility settings)
     ScreenUtil().setSp(24, allowFontScalingSelf: false)  (sdk>=2.6 : 24.nsp) //Adapter font(fonts will not scale to respect Text Size accessibility settings)
@@ -87,11 +88,11 @@ ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: true
     ScreenUtil.screenWidth     (sdk>=2.6 : 1.sw)  //Device width
     ScreenUtil.screenHeight    (sdk>=2.6 : 1.sh)  //Device height
     ScreenUtil.bottomBarHeight  //Bottom safe zone distance, suitable for buttons with full screen
-    ScreenUtil.statusBarHeight  //Status bar height , Notch will be higher Unit px
+    ScreenUtil.statusBarHeight  //Status bar height , Notch will be higher
     ScreenUtil.textScaleFactor  //System font scaling factor
 
-    ScreenUtil().scaleWidth //Ratio of actual width dp to design draft px
-    ScreenUtil().scaleHeight //Ratio of actual height dp to design draft px
+    ScreenUtil().scaleWidth //The ratio of actual width to UI design
+    ScreenUtil().scaleHeight //The ratio of actual height to UI design
 
     0.2.sw  //0,2 vezes a largura da tela
     0.5.sh  //50% altura da tela
@@ -129,19 +130,21 @@ Altura também é adaptada de acordo com o setWidth para garantir que não tenha
 
 O método setHeight é a principal forma de adaptar a altura, se quiser controlar a altura e a realidade de uma tela na UiUsed quando a mesma for exibida.
 
+Generally speaking, 50.w!=50.h.
+
 ```dart
 //Exemplo:
 //Retângulo
 Container(
-           width: ScreenUtil().setWidth(375),
-           height: ScreenUtil().setHeight(200),
+           width: 375.w,
+           height: 200.w,
            ...
             ),
             
 ////Se quiser exibir um quadrado:
 Container(
-           width: ScreenUtil().setWidth(300),
-           height: ScreenUtil().setWidth(300),
+           width: 300.r,
+           height: 300.r,
             ),
             
 ```

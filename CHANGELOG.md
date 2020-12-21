@@ -1,8 +1,19 @@
+
+# 5.0.0-nullsafety.1
+- merge 4.0.1 ,4.0.2 #183
+
 # 5.0.0-nullsafety.0
 - Migrated flutter_screenutil to non-nullable
 
+# 4.0.2
+- add r(),adapt according to the smaller of width or height
+
+# 4.0.1
+- Modify the initialization unit to dp
+- delete screenWidthPx and screenHeightPx(No one use these method,I guess)
+
 # 4.0.0
-- Upgrade to 4.0.0
+- update to 4.0.0
 
 # 4.0.0-beta3
 - Optimize the way of initialization
