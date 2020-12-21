@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   # add flutter_screenutil
-  flutter_screenutil: ^4.0.0-beta3
+  flutter_screenutil: ^4.0.1
 ```
 
 ### Adicione o seguinte import em seu código Dart:
@@ -36,8 +36,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
    
 |Propriedade|Tipo|Valor Padrão|Descrição|
 |:---|:---|:---|:---| 
-|width|double|1080px|A largura do dispositivo no protótipo de design, em px|
-|height|double|1920px|A altura do dispositivo no protótipo de design, em px|
+|width|double|360dp|A largura do dispositivo no protótipo de design, em dp|
+|height|double|690dp|A altura do dispositivo no protótipo de design, em dp|
 |allowFontScaling|bool|false|Defina caso o tamanho da fonte seja dimensionado de acordo com a opção "tamanho de fonte" na acessibilidade do sistema|
 
 ### Inicialize e defina o tamanho de ajuste e tamanho da fonte para dimensionar de acordo com a opção "tamanho de fonte" na acessibilidade do sistema
@@ -61,14 +61,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
-//Valor padrão: width : 1080px , height:1920px , allowFontScaling:false
+//Valor padrão: width : 360dp , height:690dp , allowFontScaling:false
 ScreenUtil.init(constraints);
 
-//Se o design é baseado no iPhone6 ​​(iPhone6 ​​750*1334)
-ScreenUtil.init(constraints, designSize: Size(750, 1334));
+//The size of the equipment in the design draft(360,690)
+ScreenUtil.init(constraints, designSize: Size(360,690));
 
 //Se você quer definir que o tamanho da fonte seja ajustado de acordo com a opção "tamanho da fonte" na acessibilidade do sistema
-ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: true);
+ScreenUtil.init(constraints, designSize: Size(360,690), allowFontScaling: true);
 
 ```
 
@@ -87,11 +87,11 @@ ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: true
     ScreenUtil.screenWidth     (sdk>=2.6 : 1.sw)  //Device width
     ScreenUtil.screenHeight    (sdk>=2.6 : 1.sh)  //Device height
     ScreenUtil.bottomBarHeight  //Bottom safe zone distance, suitable for buttons with full screen
-    ScreenUtil.statusBarHeight  //Status bar height , Notch will be higher Unit px
+    ScreenUtil.statusBarHeight  //Status bar height , Notch will be higher
     ScreenUtil.textScaleFactor  //System font scaling factor
 
-    ScreenUtil().scaleWidth //Ratio of actual width dp to design draft px
-    ScreenUtil().scaleHeight //Ratio of actual height dp to design draft px
+    ScreenUtil().scaleWidth //The ratio of actual width to UI design
+    ScreenUtil().scaleHeight //The ratio of actual height to UI design
 
     0.2.sw  //0,2 vezes a largura da tela
     0.5.sh  //50% altura da tela

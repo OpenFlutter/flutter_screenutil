@@ -4,10 +4,9 @@
  */
 
 import 'package:flutter/material.dart';
-import 'dart:ui' as ui;
 
 class ScreenUtil {
-  static const Size defaultSize = Size(1080, 1920);
+  static const Size defaultSize = Size(360, 690);
   static ScreenUtil _instance;
 
   /// UI设计中手机尺寸 , px
@@ -47,7 +46,7 @@ class ScreenUtil {
     _screenWidth = constraints.maxWidth;
     _screenHeight = constraints.maxHeight;
 
-    var mediaQuery = ui.window;
+    var mediaQuery = WidgetsBinding.instance.window;
     _pixelRatio = mediaQuery.devicePixelRatio;
     _statusBarHeight = mediaQuery.padding.top;
     _bottomBarHeight = mediaQuery.padding.bottom;
@@ -70,14 +69,6 @@ class ScreenUtil {
   ///The vertical extent of this size. dp
   double get screenHeight => _screenHeight;
 
-  /// 当前设备宽度 px
-  /// The vertical extent of this size. px
-  double get screenWidthPx => _screenWidth * _pixelRatio;
-
-  /// 当前设备高度 px
-  /// The vertical extent of this size. px
-  double get screenHeightPx => _screenHeight * _pixelRatio;
-
   /// 状态栏高度 dp 刘海屏会更高
   /// The offset from the top, in dp
   double get statusBarHeight => _statusBarHeight / _pixelRatio;
@@ -86,10 +77,11 @@ class ScreenUtil {
   /// The offset from the bottom, in dp
   double get bottomBarHeight => _bottomBarHeight / _pixelRatio;
 
-  /// 实际的dp与UI设计px的比例
-  /// The ratio of the actual dp to the design draft px
+  /// 实际尺寸与UI设计的比例
+  /// The ratio of actual width to UI design
   double get scaleWidth => _screenWidth / uiSize.width;
 
+  ///  /// The ratio of actual height to UI design
   double get scaleHeight => _screenHeight / uiSize.height;
 
   double get scaleText => scaleWidth;
@@ -116,12 +108,12 @@ class ScreenUtil {
   ///Font size adaptation method
   ///- [fontSize] The size of the font on the UI design, in px.
   ///- [allowFontScaling]
-  double setSp(num fontSize, {bool allowFontScalingSelf}) =>
-      allowFontScalingSelf == null
-          ? (allowFontScaling
-              ? (fontSize * scaleText)
-              : (fontSize * scaleText / _textScaleFactor))
-          : (allowFontScalingSelf
-              ? (fontSize * scaleText)
-              : (fontSize * scaleText / _textScaleFactor));
+  double setSp(num fontSize, {bool allowFontScalingSelf}) => allowFontScalingSelf == null
+      ? (allowFontScaling ? (fontSize * scaleText) : (fontSize * scaleText / _textScaleFactor))
+      : (allowFontScalingSelf ? (fontSize * scaleText) : (fontSize * scaleText / _textScaleFactor));
+}
+
+enum UnitType {
+  px,
+  dp,
 }

@@ -6,6 +6,13 @@
  * @Description: Update log
  -->
 
+# 4.0.1
+- Modify the initialization unit to dp
+- delete screenWidthPx and screenHeightPx(No one use these method,I guess)
+
+# 4.0.0
+- update to 4.0.0
+
 # 4.0.0-beta3
 - Optimize the way of initialization
 
