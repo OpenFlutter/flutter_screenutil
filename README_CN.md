@@ -28,7 +28,7 @@ dependencies:
   flutter:
     sdk: flutter
   # 添加依赖
-  flutter_screenutil: ^4.0.1
+  flutter_screenutil: ^4.0.2+1
 ```
 ### 在每个使用的地方导入包：
 ```dart

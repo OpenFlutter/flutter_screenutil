@@ -1,3 +1,8 @@
+
+# 4.0.2+1
+- delete dirty code
+- change radius() type num to double
+
 # 4.0.2
 - add r(),adapt according to the smaller of width or height
 
