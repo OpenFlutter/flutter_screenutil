@@ -106,7 +106,7 @@ class ScreenUtil {
   double setHeight(num height) => height * scaleHeight;
 
   ///Adapt according to the smaller of width or height
-  num radius(num r) => r * scaleText;
+  double radius(num r) => r * scaleText;
 
   ///字体大小适配方法
   ///- [fontSize] UI设计上字体的大小,单位px.
