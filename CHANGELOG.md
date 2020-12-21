@@ -1,10 +1,5 @@
-<!--
- * @Author: zhuoyuan93@gmail.com
- * @Date: 2018-10-16 19:43:03
- * @LastEditors: zhuoyuan93@gmail.com
- * @LastEditTime: 2020年6月20日 11:20:02
- * @Description: Update log
- -->
+# 4.0.2
+- add r(),adapt according to the smaller of width or height
 
 # 4.0.1
 - Modify the initialization unit to dp

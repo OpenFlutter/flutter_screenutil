@@ -79,6 +79,7 @@ ScreenUtil.init(constraints, designSize: Size(360,690), allowFontScaling: true);
 ```dart
     ScreenUtil().setWidth(540)  (sdk>=2.6 : 540.w) //Adapted to screen width
     ScreenUtil().setHeight(200) (sdk>=2.6 : 200.h) //Adapted to screen height
+    ScreenUtil().radius(200) (dart sdk>=2.6 : 200.r)    //Adapt according to the smaller of width or height
     ScreenUtil().setSp(24)      (sdk>=2.6 : 24.sp)  //Adapter font
     ScreenUtil().setSp(24, allowFontScalingSelf: true)  (sdk>=2.6 : 24.ssp)  //Adapter font(fonts will scale to respect Text Size accessibility settings)
     ScreenUtil().setSp(24, allowFontScalingSelf: false)  (sdk>=2.6 : 24.nsp) //Adapter font(fonts will not scale to respect Text Size accessibility settings)
@@ -129,19 +130,21 @@ Altura também é adaptada de acordo com o setWidth para garantir que não tenha
 
 O método setHeight é a principal forma de adaptar a altura, se quiser controlar a altura e a realidade de uma tela na UiUsed quando a mesma for exibida.
 
+Generally speaking, 50.w!=50.h.
+
 ```dart
 //Exemplo:
 //Retângulo
 Container(
-           width: ScreenUtil().setWidth(375),
-           height: ScreenUtil().setHeight(200),
+           width: 375.w,
+           height: 200.w,
            ...
             ),
             
 ////Se quiser exibir um quadrado:
 Container(
-           width: ScreenUtil().setWidth(300),
-           height: ScreenUtil().setWidth(300),
+           width: 300.r,
+           height: 300.r,
             ),
             
 ```

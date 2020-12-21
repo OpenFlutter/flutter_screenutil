@@ -79,6 +79,18 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
+            Container(
+              padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
+              width: 100.r,
+              height: 100.r,
+              color: Colors.green,
+              child: Text('I am a square with a side length of 100',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: ScreenUtil().setSp(12),
+                ),
+              ),
+            ),
             Text('Device width:${ScreenUtil().screenWidth}dp'),
             Text('Device height:${ScreenUtil().screenHeight}dp'),
             Text('Device pixel density:${ScreenUtil().pixelRatio}'),
@@ -99,11 +111,14 @@ class _HomePageState extends State<HomePage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text(
-                  'My font size is 16sp on the design draft and will not change with the system.',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16.sp,
+                Container(
+                  height: 32.h,
+                  child: Text(
+                    'My font size is 16sp on the design draft and will not change with the system.',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16.sp,
+                    ),
                   ),
                 ),
                 Text(

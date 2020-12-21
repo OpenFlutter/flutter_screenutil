@@ -3,6 +3,8 @@
  * email: zhuoyuan93@gmail.com
  */
 
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class ScreenUtil {
@@ -84,7 +86,7 @@ class ScreenUtil {
   ///  /// The ratio of actual height to UI design
   double get scaleHeight => _screenHeight / uiSize.height;
 
-  double get scaleText => scaleWidth;
+  double get scaleText => min(scaleWidth, scaleHeight);
 
   /// 根据UI设计的设备宽度适配
   /// 高度也可以根据这个来做适配可以保证不变形,比如你先要一个正方形的时候.
@@ -103,14 +105,22 @@ class ScreenUtil {
   /// does not match the current style effect, or if there is a difference in shape.
   double setHeight(num height) => height * scaleHeight;
 
+  ///Adapt according to the smaller of width or height
+  num radius(num r) => r * scaleText;
+
   ///字体大小适配方法
   ///- [fontSize] UI设计上字体的大小,单位px.
   ///Font size adaptation method
   ///- [fontSize] The size of the font on the UI design, in px.
   ///- [allowFontScaling]
-  double setSp(num fontSize, {bool allowFontScalingSelf}) => allowFontScalingSelf == null
-      ? (allowFontScaling ? (fontSize * scaleText) : (fontSize * scaleText / _textScaleFactor))
-      : (allowFontScalingSelf ? (fontSize * scaleText) : (fontSize * scaleText / _textScaleFactor));
+  double setSp(num fontSize, {bool allowFontScalingSelf}) =>
+      allowFontScalingSelf == null
+          ? (allowFontScaling
+              ? (fontSize * scaleText)
+              : (fontSize * scaleText / _textScaleFactor))
+          : (allowFontScalingSelf
+              ? (fontSize * scaleText)
+              : (fontSize * scaleText / _textScaleFactor));
 }
 
 enum UnitType {

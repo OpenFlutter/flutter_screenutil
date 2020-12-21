@@ -66,7 +66,20 @@ class _HomePageState extends State<HomePage> {
                       '我的设计稿高度: 200dp',
                       style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(12))),
                 ),
+
               ],
+            ),
+            Container(
+              padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
+              width: 100.r,
+              height: 100.r,
+              color: Colors.green,
+              child: Text('我是正方形,边长是100',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: ScreenUtil().setSp(12),
+                ),
+              ),
             ),
             Text('设备宽度:${ScreenUtil().screenWidth}dp'),
             Text('设备高度:${ScreenUtil().screenHeight}dp'),

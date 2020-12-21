@@ -81,9 +81,10 @@ ScreenUtil.init(constraints, designSize: Size(360,690), allowFontScaling: true);
 ### API
 #### 传入设计稿的dp尺寸
 ```dart
-    ScreenUtil().setWidth(540)  (sdk>=2.6 : 540.w) //根据屏幕宽度适配尺寸
-    ScreenUtil().setHeight(200) (sdk>=2.6 : 200.h) //根据屏幕高度适配尺寸(一般根据宽度适配即可)
-    ScreenUtil().setSp(24)      (sdk>=2.6 : 24.sp)  //适配字体
+    ScreenUtil().setWidth(540)  (sdk>=2.6 : 540.w)   //根据屏幕宽度适配尺寸
+    ScreenUtil().setHeight(200) (sdk>=2.6 : 200.h)   //根据屏幕高度适配尺寸(一般根据宽度适配即可)
+    ScreenUtil().radius(200)    (sdk>=2.6 : 200.r)   //根据宽度或高度中的较小者进行调整
+    ScreenUtil().setSp(24)      (sdk>=2.6 : 24.sp)   //适配字体
     ScreenUtil().setSp(24, allowFontScalingSelf: true)   (sdk>=2.6 : 24.ssp) //适配字体(根据系统的“字体大小”辅助选项来进行缩放)
     ScreenUtil().setSp(24, allowFontScalingSelf: false)  (sdk>=2.6 : 24.nsp) //适配字体(不会根据系统的“字体大小”辅助选项来进行缩放)
 
@@ -110,6 +111,8 @@ ScreenUtil.init(constraints, designSize: Size(360,690), allowFontScaling: true);
 
 根据屏幕高度适配 `height: ScreenUtil().setHeight(200)`, 一般来说，控件高度也根据宽度进行适配
 
+一般来说，50.w!=50.h
+
 **注意**
 
 高度也根据setWidth来做适配可以保证不变形(当你想要一个正方形的时候)
@@ -119,16 +122,16 @@ setHeight方法主要是在高度上进行适配, 在你想控制UI上一屏的�
 例如:
 
 ```dart
-//UI上是长方形:
+//UI可能显示长方形:
 Container(
-           width: ScreenUtil().setWidth(375),
-           height: ScreenUtil().setHeight(375),
+           width: 375.w,
+           height: 375.h,
             ),
             
 //如果你想显示一个正方形:
 Container(
-           width: ScreenUtil().setWidth(300),
-           height: ScreenUtil().setWidth(300),
+           width: 300.r,
+           height: 300.r,
             ),
 ```
 

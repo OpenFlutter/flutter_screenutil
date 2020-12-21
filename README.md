@@ -79,6 +79,7 @@ ScreenUtil.init(constraints, designSize: Size(360, 690), allowFontScaling: true)
 ```dart
     ScreenUtil().setWidth(540)  (dart sdk>=2.6 : 540.w) //Adapted to screen width
     ScreenUtil().setHeight(200) (dart sdk>=2.6 : 200.h) //Adapted to screen height , under normal circumstances, the height still uses x.w
+    ScreenUtil().radius(200) (dart sdk>=2.6 : 200.r)    //Adapt according to the smaller of width or height
     ScreenUtil().setSp(24)      (dart sdk>=2.6 : 24.sp) //Adapter font
     ScreenUtil().setSp(24, allowFontScalingSelf: true)  (dart sdk>=2.6 : 24.ssp) //Adapter font(fonts will scale to respect Text Size accessibility settings)
     ScreenUtil().setSp(24, allowFontScalingSelf: false) (dart sdk>=2.6 : 24.nsp) //Adapter font(fonts will not scale to respect Text Size accessibility settings)
@@ -129,22 +130,30 @@ The height can also use setWidth to ensure that it is not deformed(when you want
 
 setHeight method is mainly adapted in height, you want to control the height and actuality of a screen on the UIUsed when the same is displayed.
 
+Generally speaking, 50.w!=50.h.
+
 ```dart
 //for example:
 
 ///If you want to display a square:
-///rectangle
+///The UI may show a rectangle:
 Container(
-           width: ScreenUtil().setWidth(375),
-           height: ScreenUtil().setWidth(200),
+           width: 375.w,
+           height: 375.h,
             ),
             
 ////If you want to display a square:
 Container(
-           width: ScreenUtil().setWidth(300),
+           width: 300.w,
            height: 300.w,
             ),
 
+or
+
+Container(
+           width: 300.r,
+           height: 300.r,
+            ),
 ```
 
 
