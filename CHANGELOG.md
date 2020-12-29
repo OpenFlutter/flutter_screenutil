@@ -1,4 +1,7 @@
 
+# 4.0.2+2
+- fix #186 Fix the bug that the font size is abnormal when the system font is scaled
+
 # 4.0.2+1
 - delete dirty code
 - change radius() type num to double
