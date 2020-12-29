@@ -84,7 +84,8 @@ class _HomePageState extends State<HomePage> {
               width: 100.r,
               height: 100.r,
               color: Colors.green,
-              child: Text('I am a square with a side length of 100',
+              child: Text(
+                'I am a square with a side length of 100',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: ScreenUtil().setSp(12),
@@ -105,20 +106,17 @@ class _HomePageState extends State<HomePage> {
               textAlign: TextAlign.center,
             ),
             SizedBox(
-              height: 50.h,
+              height: 10.h,
             ),
             Text('System font scaling factor:${ScreenUtil().textScaleFactor}'),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  height: 32.h,
-                  child: Text(
-                    'My font size is 16sp on the design draft and will not change with the system.',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16.sp,
-                    ),
+                Text(
+                  'My font size is 16sp on the design draft and will not change with the system.',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.nsp,
                   ),
                 ),
                 Text(

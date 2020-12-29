@@ -116,9 +116,9 @@ class ScreenUtil {
   double setSp(num fontSize, {bool allowFontScalingSelf}) =>
       allowFontScalingSelf == null
           ? (allowFontScaling
-              ? (fontSize * scaleText)
-              : (fontSize * scaleText / _textScaleFactor))
+              ? (fontSize * scaleText) * _textScaleFactor
+              : (fontSize * scaleText))
           : (allowFontScalingSelf
-              ? (fontSize * scaleText)
-              : (fontSize * scaleText / _textScaleFactor));
+              ? (fontSize * scaleText) * _textScaleFactor
+              : (fontSize * scaleText));
 }
