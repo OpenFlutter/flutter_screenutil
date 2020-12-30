@@ -47,19 +47,19 @@ class _HomePageState extends State<HomePage> {
               children: <Widget>[
                 Container(
                   padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
-                  width: ScreenUtil().setWidth(375),
-                  height: ScreenUtil().setHeight(200),
+                  width: 180.w,
+                  height: 200.h,
                   color: Colors.red,
                   child: Text(
-                    '我的实际宽度:${0.5.sw}dp \n'
-                    '我的实际高度:${ScreenUtil().setHeight(200)}dp',
-                    style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(12)),
+                    '我的实际宽度:${180.w}dp \n'
+                    '我的实际高度:${200.h}dp',
+                    style: TextStyle(color: Colors.white, fontSize: 12.sp),
                   ),
                 ),
                 Container(
                   padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
-                  width: 180.w,
-                  height: 200.h,
+                  width: ScreenUtil().setWidth(180),
+                  height: ScreenUtil().setHeight(200),
                   color: Colors.blue,
                   child: Text(
                       '我的设计稿宽度: 180dp \n'
