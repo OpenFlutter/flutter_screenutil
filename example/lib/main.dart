@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                 // Without using Extensions
                 Container(
                   padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
-                  width: 180.w,
+                  width: ScreenUtil().setWidth(180),
                   height: ScreenUtil().setHeight(200),
                   color: Colors.blue,
                   child: Text(
