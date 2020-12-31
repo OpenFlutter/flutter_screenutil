@@ -87,7 +87,7 @@ class ScreenUtil {
   double get scaleText => min(scaleWidth, scaleHeight);
 
   /// 根据UI设计的设备宽度适配
-  /// 高度也可以根据这个来做适配可以保证不变形,比如你先要一个正方形的时候.
+  /// 高度也可以根据这个来做适配可以保证不变形,比如你想要一个正方形的时候.
   /// Adapted to the device width of the UI Design.
   /// Height can also be adapted according to this to ensure no deformation ,
   /// if you want a square
@@ -103,6 +103,7 @@ class ScreenUtil {
   /// does not match the current style effect, or if there is a difference in shape.
   double setHeight(num height) => height * scaleHeight;
 
+  ///根据宽度或高度中的较小值进行适配
   ///Adapt according to the smaller of width or height
   double radius(num r) => r * scaleText;
 
