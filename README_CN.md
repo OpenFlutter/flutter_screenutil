@@ -64,16 +64,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-//默认 width : 360dp , height:690dp , allowFontScaling:false
-ScreenUtil.init(constraints);
-
-//传入设计稿的尺寸(例如(360,690))
-ScreenUtil.init(constraints, designSize: Size(360,690));
-
-//设置字体大小根据系统的“字体大小”辅助选项来进行缩放,默认为false
-ScreenUtil.init(constraints, designSize: Size(360,690), allowFontScaling: true);
-    
 ```
 
 ### 使用

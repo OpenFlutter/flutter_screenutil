@@ -60,16 +60,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-//Valor padrão: width : 360dp , height:690dp , allowFontScaling:false
-ScreenUtil.init(constraints);
-
-//The size of the equipment in the design draft(360,690)
-ScreenUtil.init(constraints, designSize: Size(360,690));
-
-//Se você quer definir que o tamanho da fonte seja ajustado de acordo com a opção "tamanho da fonte" na acessibilidade do sistema
-ScreenUtil.init(constraints, designSize: Size(360,690), allowFontScaling: true);
-
 ```
 
 ### Uso：
