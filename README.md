@@ -46,9 +46,9 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
+    //Set the fit size (fill in the screen size of the device in the design,in dp)
     return ScreenUtilInit(
-      designSize: Size(750, 1334),
+      designSize: Size(360, 690),
       allowFontScaling: false,
       child: MaterialApp(
         ...
