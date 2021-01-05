@@ -56,18 +56,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-//fill in the screen size of the device in the design
-
-//default value : width : 360dp , height:690dp , allowFontScaling:false
-ScreenUtil.init(constraints);
-
-//The size of the equipment in the design draft(360,690)
-ScreenUtil.init(constraints, designSize: Size(360, 690));
-
-//If you want to set the font size is scaled according to the system's "font size" assist option
-ScreenUtil.init(constraints, designSize: Size(360, 690), allowFontScaling: true);
-
 ```
 
 ### Use：
