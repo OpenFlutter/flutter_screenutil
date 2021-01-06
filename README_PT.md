@@ -24,7 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   # add flutter_screenutil
-  flutter_screenutil: ^5.0.0-nullsafety.1
+  flutter_screenutil: ^{latest version}
 ```
 
 ### Adicione o seguinte import em seu código Dart:

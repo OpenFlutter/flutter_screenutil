@@ -28,7 +28,7 @@ dependencies:
   flutter:
     sdk: flutter
   # 添加依赖
-  flutter_screenutil: ^5.0.0-nullsafety.1
+  flutter_screenutil: ^{latest version}
 ```
 ### 在每个使用的地方导入包：
 ```dart
