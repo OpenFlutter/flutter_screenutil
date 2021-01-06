@@ -116,7 +116,7 @@ height:200.h
 
 The height can also use setWidth to ensure that it is not deformed(when you want a square)
 
-setHeight method is mainly adapted in height, you want to control the height and actuality of a screen on the UIUsed when the same is displayed.
+The setHeight method is mainly to adapt to the height, which is used when you want to control the height of a screen on the UI to be the same as the actual display.
 
 Generally speaking, 50.w!=50.h.
 
