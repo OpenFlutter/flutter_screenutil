@@ -1,4 +1,7 @@
 
+# 4.0.2+3
+- Fix the bug that the release is not displayed in some cases
+
 # 4.0.2+2
 - fix #186 Fix the bug that the font size is abnormal when the system font is scaled
 

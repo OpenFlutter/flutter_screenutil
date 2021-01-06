@@ -21,3 +21,4 @@ doc
 coverage*
 *.iml
 *.lock
+/example/.flutter-plugins-dependencies
