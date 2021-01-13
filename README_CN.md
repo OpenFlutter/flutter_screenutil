@@ -176,6 +176,26 @@ Column(
             )
 ```
 
+#### 设置字体不随系统字体大小进行改变
+
+```
+ MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter_ScreenUtil',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        builder: (context, widget) {
+          return MediaQuery(
+            ///设置文字大小不随系统设置改变
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+            child: widget,
+          );
+        },
+        home: HomePage(title: 'FlutterScreenUtil Demo'),
+      ),
+```
+
 
 [widget test](https://github.com/OpenFlutter/flutter_screenutil/issues/115)
 

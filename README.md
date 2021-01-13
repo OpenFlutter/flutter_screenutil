@@ -181,6 +181,26 @@ Column(
             )
 ```
 
+#### Setting font does not change with system font size
+
+```
+ MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter_ScreenUtil',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        builder: (context, widget) {
+          return MediaQuery(
+            ///Setting font does not change with system font size
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+            child: widget,
+          );
+        },
+        home: HomePage(title: 'FlutterScreenUtil Demo'),
+      ),
+```
+
 [widget test](https://github.com/OpenFlutter/flutter_screenutil/issues/115)
 
 ### Example:
