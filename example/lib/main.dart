@@ -16,6 +16,13 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+        builder: (context, widget) {
+          return MediaQuery(
+            ///设置文字大小不随系统设置改变
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+            child: widget,
+          );
+        },
         home: HomePage(title: 'FlutterScreenUtil Demo'),
       ),
     );
