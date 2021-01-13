@@ -1,4 +1,10 @@
 
+# 4.0.2+5
+- Fix the bug of font scaling failure
+
+# 4.0.2+4
+- Fix the bug of font scaling failure
+
 # 4.0.2+3
 - Fix the bug that the release is not displayed in some cases
 
