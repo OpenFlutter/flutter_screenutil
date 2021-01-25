@@ -20,7 +20,6 @@ class ScreenUtil {
   bool allowFontScaling;
 
   static double _pixelRatio;
-  static double _textScaleFactor;
   static double _screenWidth;
   static double _screenHeight;
   static double _statusBarHeight;
@@ -52,12 +51,11 @@ class ScreenUtil {
     _pixelRatio = mediaQuery.devicePixelRatio;
     _statusBarHeight = mediaQuery.padding.top;
     _bottomBarHeight = mediaQuery.padding.bottom;
-    _textScaleFactor = mediaQuery.textScaleFactor;
   }
 
   /// 每个逻辑像素的字体像素数，字体的缩放比例
   /// The number of font pixels for each logical pixel.
-  double get textScaleFactor => _textScaleFactor;
+  double get textScaleFactor => WidgetsBinding.instance.window.textScaleFactor;
 
   /// 设备的像素密度
   /// The size of the media in logical pixels (e.g, the size of the screen).
@@ -116,9 +114,9 @@ class ScreenUtil {
   double setSp(num fontSize, {bool allowFontScalingSelf}) =>
       allowFontScalingSelf == null
           ? (allowFontScaling
-              ? (fontSize * scaleText * _textScaleFactor)
+              ? (fontSize * scaleText * textScaleFactor)
               : fontSize * scaleText)
           : (allowFontScalingSelf
-              ? (fontSize * scaleText * _textScaleFactor)
+              ? (fontSize * scaleText * textScaleFactor)
               : (fontSize * scaleText));
 }
