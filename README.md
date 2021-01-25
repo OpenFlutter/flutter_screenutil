@@ -205,7 +205,7 @@ Column(
 
 ### Example:
 
-[example demo](https://github.com/OpenFlutter/flutter_screenutil/blob/master/example/lib/main_zh.dart)
+[example demo](https://github.com/OpenFlutter/flutter_screenutil/blob/master/example/lib/main.dart)
  
 ### Effect:
 

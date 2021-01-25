@@ -16,13 +16,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        builder: (context, widget) {
-          return MediaQuery(
-            ///设置文字大小不随系统设置改变
-            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-            child: widget,
-          );
-        },
         home: HomePage(title: 'FlutterScreenUtil Demo'),
       ),
     );
@@ -41,8 +34,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
-
     printScreenInformation();
     return Scaffold(
       appBar: AppBar(
