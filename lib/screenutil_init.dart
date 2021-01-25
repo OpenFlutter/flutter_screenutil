@@ -33,6 +33,7 @@ class ScreenUtilInit extends StatelessWidget {
 
           return child;
         }
+        return Container();
       },
     );
   }
