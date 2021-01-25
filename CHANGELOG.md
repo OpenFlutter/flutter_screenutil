@@ -1,3 +1,5 @@
+# 4.0.2+6
+- Fix #202
 
 # 4.0.2+5
 - Fix the bug of font scaling failure
