@@ -30,10 +30,8 @@ class ScreenUtilInit extends StatelessWidget {
             designSize: designSize,
             allowFontScaling: allowFontScaling,
           );
-
-          return child;
         }
-        return Container();
+        return child;
       },
     );
   }
