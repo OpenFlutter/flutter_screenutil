@@ -13,7 +13,7 @@ class ScreenUtilInit extends StatelessWidget {
 
   final Widget child;
 
-  /// The [Size] of the device in the design draft, in px
+  /// The [Size] of the device in the design draft, in dp
   final Size designSize;
 
   /// Sets whether the font size is scaled according to the system's "font size" assist option
