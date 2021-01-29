@@ -10,11 +10,11 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class ScreenUtil {
-  static const Size defaultSize = Size(1080, 1920);
+  static const Size defaultSize = Size(360, 690);
   static late ScreenUtil _instance;
 
-  /// UI设计中手机尺寸 , px
-  /// Size of the phone in UI Design , px
+  /// UI设计中手机尺寸 , dp
+  /// Size of the phone in UI Design , dp
   late Size uiSize;
 
   /// 控制字体是否要根据系统的“字体大小”辅助选项来进行缩放。默认值为false。
@@ -108,9 +108,9 @@ class ScreenUtil {
   double radius(num r) => r * scaleText;
 
   ///字体大小适配方法
-  ///- [fontSize] UI设计上字体的大小,单位px.
+  ///- [fontSize] UI设计上字体的大小,单位dp.
   ///Font size adaptation method
-  ///- [fontSize] The size of the font on the UI design, in px.
+  ///- [fontSize] The size of the font on the UI design, in dp.
   ///- [allowFontScaling]
   double setSp(num fontSize, {bool? allowFontScalingSelf}) =>
       allowFontScalingSelf == null
