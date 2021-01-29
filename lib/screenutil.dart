@@ -11,8 +11,8 @@ class ScreenUtil {
   static const Size defaultSize = Size(360, 690);
   static ScreenUtil _instance;
 
-  /// UI设计中手机尺寸 , px
-  /// Size of the phone in UI Design , px
+  /// UI设计中手机尺寸 , dp
+  /// Size of the phone in UI Design , dp
   Size uiSize;
 
   /// 控制字体是否要根据系统的“字体大小”辅助选项来进行缩放。默认值为false。
