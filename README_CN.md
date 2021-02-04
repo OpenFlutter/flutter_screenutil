@@ -54,13 +54,20 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //设置适配尺寸 (填入设计稿中设备的屏幕尺寸,单位dp)
-    return ScreenUtilInit(
-      designSize: Size(360, 690),
-      allowFontScaling: false,
-      child: MaterialApp(
-        ...
-      ),
+    return LayoutBuilder(
+      builder: (_, BoxConstraints constraints) {
+        //设置合适的尺寸（填写设计图中设备的屏幕尺寸,单位dp）
+        ScreenUtil.init(
+          context: _,
+          constraints: constraints,
+          designSize: Size(360, 690),
+          allowFontScaling: false,
+        );
+
+        return MaterialApp(
+         ...
+        );
+      },
     );
   }
 }

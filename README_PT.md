@@ -50,13 +50,20 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //Preencha o tamanho da tela do dispositivo no protótipo de design , in dp
-    return ScreenUtilInit(
-      designSize: Size(360, 690),
-      allowFontScaling: false,
-      child: MaterialApp(
-        ...
-      ),
+    return LayoutBuilder(
+      builder: (_, BoxConstraints constraints) {
+        //Preencha o tamanho da tela do dispositivo no protótipo de design , in dp
+        ScreenUtil.init(
+          context: _,
+          constraints: constraints,
+          designSize: Size(360, 690),
+          allowFontScaling: false,
+        );
+
+        return MaterialApp(
+         ...
+        );
+      },
     );
   }
 }

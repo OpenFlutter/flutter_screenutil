@@ -6,18 +6,24 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
-    return ScreenUtilInit(
-      designSize: Size(750, 1334),
-      allowFontScaling: false,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter_ScreenUtil',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: HomePage(title: 'FlutterScreenUtil Demo'),
-      ),
+    return LayoutBuilder(
+      builder: (_, BoxConstraints constraints) {
+        //设置合适的尺寸（填写设计图中设备的屏幕尺寸,单位dp）
+        ScreenUtil.init(
+          context: _,
+          constraints: constraints,
+          designSize: Size(360, 690),
+          allowFontScaling: false,
+        );
+
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter_ScreenUtil',
+          theme: ThemeData(
+              primarySwatch: Colors.blue, textTheme: TextTheme(button: TextStyle(fontSize: 20.sp))),
+          home: HomePage(title: 'FlutterScreenUtil Demo'),
+        );
+      },
     );
   }
 }
@@ -66,7 +72,6 @@ class _HomePageState extends State<HomePage> {
                       '我的设计稿高度: 200dp',
                       style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(12))),
                 ),
-
               ],
             ),
             Container(
@@ -74,7 +79,8 @@ class _HomePageState extends State<HomePage> {
               width: 100.r,
               height: 100.r,
               color: Colors.green,
-              child: Text('我是正方形,边长是100',
+              child: Text(
+                '我是正方形,边长是100',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: ScreenUtil().setSp(12),

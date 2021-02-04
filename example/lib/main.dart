@@ -6,18 +6,24 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
-    return ScreenUtilInit(
-      designSize: Size(360, 690),
-      allowFontScaling: false,
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter_ScreenUtil',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: HomePage(title: 'FlutterScreenUtil Demo'),
-      ),
+    return LayoutBuilder(
+      builder: (_, BoxConstraints constraints) {
+        //Set the fit size (fill in the screen size of the device in the design,in dp)
+        ScreenUtil.init(
+          context: _,
+          constraints: constraints,
+          designSize: Size(360, 690),
+          allowFontScaling: false,
+        );
+
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter_ScreenUtil',
+          theme: ThemeData(
+              primarySwatch: Colors.blue, textTheme: TextTheme(button: TextStyle(fontSize: 20.sp))),
+          home: HomePage(title: 'FlutterScreenUtil Demo'),
+        );
+      },
     );
   }
 }

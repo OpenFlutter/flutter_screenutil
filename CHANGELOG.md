@@ -1,4 +1,10 @@
+# 4.0.3
+- fix #208 #196
+- support use in textTheme
+- [BREAKING] delete screenutil_init.dart , please use the latest initialization method
+
 # 4.0.2+8
+- update md
 
 # 4.0.2+7
 - Fix #196
