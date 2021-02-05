@@ -46,20 +46,17 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (_, BoxConstraints constraints) {
-        //Set the fit size (fill in the screen size of the device in the design,in dp)
-        ScreenUtil.init(
-          context: _,
-          constraints: constraints,
-          designSize: Size(360, 690),
-          allowFontScaling: false,
-        );
-
-        return MaterialApp(
-         ...
-        );
-      },
+    return ScreenUtilInit(
+      designSize: Size(360, 690),
+      allowFontScaling: false,
+      builder: () => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter_ScreenUtil',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: HomePage(title: 'FlutterScreenUtil Demo'),
+      ),
     );
   }
 }

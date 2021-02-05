@@ -1,3 +1,7 @@
+
+# 4.0.3+1
+- Optimize initialization method
+
 # 4.0.3
 - fix #208 #196
 - support use in textTheme

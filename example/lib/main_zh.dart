@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/screenutil_init.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (_, BoxConstraints constraints) {
-        //设置合适的尺寸（填写设计图中设备的屏幕尺寸,单位dp）
-        ScreenUtil.init(
-          context: _,
-          constraints: constraints,
-          designSize: Size(360, 690),
-          allowFontScaling: false,
-        );
-
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter_ScreenUtil',
-          theme: ThemeData(
-              primarySwatch: Colors.blue, textTheme: TextTheme(button: TextStyle(fontSize: 20.sp))),
-          home: HomePage(title: 'FlutterScreenUtil Demo'),
-        );
-      },
+    return ScreenUtilInit(
+      designSize: Size(360, 690),
+      allowFontScaling: false,
+      builder: () => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter_ScreenUtil',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: HomePage(title: 'FlutterScreenUtil Demo'),
+      ),
     );
   }
 }
@@ -70,7 +64,9 @@ class _HomePageState extends State<HomePage> {
                   child: Text(
                       '我的设计稿宽度: 180dp \n'
                       '我的设计稿高度: 200dp',
-                      style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(12))),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: ScreenUtil().setSp(12))),
                 ),
               ],
             ),
@@ -137,8 +133,10 @@ class _HomePageState extends State<HomePage> {
     print('状态栏高度:${ScreenUtil().statusBarHeight}dp');
     print('实际宽度的dp与设计稿px的比例:${ScreenUtil().scaleWidth}');
     print('实际高度的dp与设计稿px的比例:${ScreenUtil().scaleHeight}');
-    print('宽度和字体相对于设计稿放大的比例:${ScreenUtil().scaleWidth * ScreenUtil().pixelRatio}');
-    print('高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight * ScreenUtil().pixelRatio}');
+    print(
+        '宽度和字体相对于设计稿放大的比例:${ScreenUtil().scaleWidth * ScreenUtil().pixelRatio}');
+    print(
+        '高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight * ScreenUtil().pixelRatio}');
     print('系统的字体缩放比例:${ScreenUtil().textScaleFactor}');
     print('屏幕宽度的0.5:${0.5.sw}dp');
     print('屏幕高度的0.5:${0.5.sh}dp');

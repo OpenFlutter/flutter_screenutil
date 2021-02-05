@@ -1,29 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_screenutil/screenutil_init.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (_, BoxConstraints constraints) {
-        //Set the fit size (fill in the screen size of the device in the design,in dp)
-        ScreenUtil.init(
-          context: _,
-          constraints: constraints,
-          designSize: Size(360, 690),
-          allowFontScaling: false,
-        );
-
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter_ScreenUtil',
-          theme: ThemeData(
-              primarySwatch: Colors.blue, textTheme: TextTheme(button: TextStyle(fontSize: 20.sp))),
-          home: HomePage(title: 'FlutterScreenUtil Demo'),
-        );
-      },
+    return ScreenUtilInit(
+      designSize: Size(360, 690),
+      allowFontScaling: false,
+      builder: () => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter_ScreenUtil',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: HomePage(title: 'FlutterScreenUtil Demo'),
+      ),
     );
   }
 }
@@ -145,7 +139,8 @@ class _HomePageState extends State<HomePage> {
     print('Bottom safe zone distance dp:${ScreenUtil().bottomBarHeight}dp');
     print('Status bar height dp:${ScreenUtil().statusBarHeight}dp');
     print('The ratio of actual width to UI design:${ScreenUtil().scaleWidth}');
-    print('The ratio of actual height to UI design:${ScreenUtil().scaleHeight}');
+    print(
+        'The ratio of actual height to UI design:${ScreenUtil().scaleHeight}');
     print('System font scaling:${ScreenUtil().textScaleFactor}');
     print('0.5 times the screen width:${0.5.sw}dp');
     print('0.5 times the screen height:${0.5.sh}dp');

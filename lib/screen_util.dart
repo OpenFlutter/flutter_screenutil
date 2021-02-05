@@ -8,22 +8,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class ScreenUtil {
-  static init({
-    BuildContext context,
-    BoxConstraints constraints,
-    Size designSize,
-    bool allowFontScaling,
-  }) {
-    print('constraints:$constraints');
-    if (constraints.maxWidth != 0) {
-      _init(
-        constraints,
-        designSize: designSize,
-        allowFontScaling: allowFontScaling,
-      );
-    }
-  }
-
   static const Size defaultSize = Size(360, 690);
   static ScreenUtil _instance;
 
@@ -51,7 +35,7 @@ class ScreenUtil {
     return _instance;
   }
 
-  static void _init(
+  static void init(
     BoxConstraints constraints, {
     Size designSize = defaultSize,
     bool allowFontScaling = false,
@@ -127,7 +111,12 @@ class ScreenUtil {
   ///Font size adaptation method
   ///- [fontSize] The size of the font on the UI design, in sp.
   ///- [allowFontScaling]
-  double setSp(num fontSize, {bool allowFontScalingSelf}) => allowFontScalingSelf == null
-      ? (allowFontScaling ? (fontSize * scaleText * textScaleFactor) : fontSize * scaleText)
-      : (allowFontScalingSelf ? (fontSize * scaleText * textScaleFactor) : (fontSize * scaleText));
+  double setSp(num fontSize, {bool allowFontScalingSelf}) =>
+      allowFontScalingSelf == null
+          ? (allowFontScaling
+              ? (fontSize * scaleText * textScaleFactor)
+              : fontSize * scaleText)
+          : (allowFontScalingSelf
+              ? (fontSize * scaleText * textScaleFactor)
+              : (fontSize * scaleText));
 }
