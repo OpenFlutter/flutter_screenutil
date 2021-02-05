@@ -5,13 +5,13 @@ import 'screenutil.dart';
 class ScreenUtilInit extends StatelessWidget {
   /// A helper widget that initializes [ScreenUtil]
   ScreenUtilInit({
-    required this.child,
+    required this.builder,
     this.designSize = ScreenUtil.defaultSize,
     this.allowFontScaling = false,
     Key? key,
   }) : super(key: key);
 
-  final Widget child;
+  final Widget Function() builder;
 
   /// The [Size] of the device in the design draft, in dp
   final Size designSize;
@@ -31,7 +31,7 @@ class ScreenUtilInit extends StatelessWidget {
             allowFontScaling: allowFontScaling,
           );
         }
-        return child;
+        return builder();
       },
     );
   }

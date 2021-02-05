@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(360, 690),
       allowFontScaling: false,
-      child: MaterialApp(
+      builder: () => MaterialApp(
         ...
       ),
     );
