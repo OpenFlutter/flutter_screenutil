@@ -35,7 +35,9 @@ class ScreenUtil {
   }
 
   static void init(
-    BoxConstraints constraints, {
+    BoxConstraints constraints, 
+    Orientation orientation,
+    {
     Size designSize = defaultSize,
     bool allowFontScaling = false,
   }) {
@@ -43,8 +45,13 @@ class ScreenUtil {
     _instance
       ..uiSize = designSize
       ..allowFontScaling = allowFontScaling;
-    _screenWidth = constraints.maxWidth;
+    if(orientation == Orientation.potrait){
+      _screenWidth = constraints.maxWidth;
     _screenHeight = constraints.maxHeight;
+    }else{
+      _screenWidth = constraints.maxHeight;
+    _screenHeight = constraints.maxWidth;
+    }
 
     var window = WidgetsBinding.instance?.window ?? ui.window;
     _pixelRatio = window.devicePixelRatio;

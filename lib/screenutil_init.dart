@@ -22,16 +22,21 @@ class ScreenUtilInit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
-      // ignore: missing_return
       builder: (_, BoxConstraints constraints) {
-        if (constraints.maxWidth != 0) {
-          ScreenUtil.init(
-            constraints,
-            designSize: designSize,
-            allowFontScaling: allowFontScaling,
-          );
-        }
-        return builder();
+        return OrientationBuilder(
+          builder: (_, Orientation orientation) {
+            // ignore: missing_return
+            if (constraints.maxWidth != 0) {
+              ScreenUtil.init(
+                constraints,
+                orientation,
+                designSize: designSize,
+                allowFontScaling: allowFontScaling,
+              );
+            }
+            return builder();
+          },
+        );
       },
     );
   }
