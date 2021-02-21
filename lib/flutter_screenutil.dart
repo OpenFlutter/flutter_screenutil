@@ -7,3 +7,4 @@ library flutter_screenutil;
 
 export 'screen_util.dart';
 export 'size_extension.dart';
+export 'screenutil_init.dart';
