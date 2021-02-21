@@ -1,4 +1,7 @@
 
+# 4.0.3+2
+- fix #217
+
 # 4.0.3+1
 - Optimize initialization method
 
