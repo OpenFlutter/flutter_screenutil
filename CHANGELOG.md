@@ -1,6 +1,8 @@
+# 5.0.0-nullsafety.6
+- merge #216 #218
+
 # 5.0.0-nullsafety.5
 - Optimize initialization method
-
 
 # 5.0.0-nullsafety.4
 - merge #205
