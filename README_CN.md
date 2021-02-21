@@ -49,18 +49,24 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 ```dart
 //填入设计稿中设备的屏幕尺寸
 
-void main() => runApp(MyApp());
+class HomePage extends StatelessWidget {
+  const HomePage({Key key}) : super(key: key);
 
-class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //设置适配尺寸 (填入设计稿中设备的屏幕尺寸,单位dp)
-    return ScreenUtilInit(
-      designSize: Size(360, 690),
-      allowFontScaling: false,
-      builder: () => MaterialApp(
-        ...
+    // 初始化
+    ScreenUtil.init(
+      // 设备像素大小(必须在首页中获取)
+      BoxConstraints(
+        maxWidth: MediaQuery.of(context).size.width,
+        maxHeight: MediaQuery.of(context).size.height,
       ),
+      // 设计尺寸
+      designSize: Size(750, 1334),
+      allowFontScaling: false,
+    );
+    return Container(
+      child: child,
     );
   }
 }
