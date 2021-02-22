@@ -45,7 +45,7 @@ class ScreenUtil {
     _instance
       ..uiSize = designSize
       ..allowFontScaling = allowFontScaling;
-    if(orientation == Orientation.potrait){
+    if(orientation == Orientation.portrait){
       _screenWidth = constraints.maxWidth;
     _screenHeight = constraints.maxHeight;
     }else{
