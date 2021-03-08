@@ -1,3 +1,5 @@
+# 4.0.3+3
+- Add a method to get the screen orientation
 
 # 4.0.3+2
 - fix #217
