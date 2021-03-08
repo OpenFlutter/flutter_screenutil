@@ -142,5 +142,6 @@ class _HomePageState extends State<HomePage> {
     print('System font scaling:${ScreenUtil().textScaleFactor}');
     print('0.5 times the screen width:${0.5.sw}dp');
     print('0.5 times the screen height:${0.5.sh}dp');
+    print('Screen orientation:${ScreenUtil().orientation}');
   }
 }
