@@ -86,8 +86,11 @@ class MyApp extends StatelessWidget {
     ScreenUtil().scaleWidth //The ratio of actual width to UI design
     ScreenUtil().scaleHeight //The ratio of actual height to UI design
 
+    ScreenUtil().orientation  //Screen orientation
     0.2.sw  //0.2 times the screen width
     0.5.sh  //50% of screen height
+
+
 ```
 
 #### Adapt screen size：

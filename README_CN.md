@@ -92,6 +92,8 @@ class MyApp extends StatelessWidget {
     ScreenUtil().scaleWidth  // 实际宽度设计稿宽度的比例
     ScreenUtil().scaleHeight // 实际高度与设计稿高度度的比例
 
+    ScreenUtil().orientation  //屏幕方向
+
     0.2.sw  //屏幕宽度的0.2倍
     0.5.sh  //屏幕高度的50%
 ```
