@@ -19,6 +19,8 @@ class ScreenUtil {
   /// allowFontScaling Specifies whether fonts should scale to respect Text Size accessibility settings. The default is false.
   bool allowFontScaling = false;
 
+  ///屏幕方向
+  static Orientation _orientation;
   static double _pixelRatio;
   static double _screenWidth;
   static double _screenHeight;
@@ -36,7 +38,8 @@ class ScreenUtil {
   }
 
   static void init(
-    BoxConstraints constraints, {
+    BoxConstraints constraints,
+    Orientation orientation, {
     Size designSize = defaultSize,
     bool allowFontScaling = false,
   }) {
@@ -44,14 +47,26 @@ class ScreenUtil {
     _instance
       ..uiSize = designSize
       ..allowFontScaling = allowFontScaling;
-    _screenWidth = constraints.maxWidth;
-    _screenHeight = constraints.maxHeight;
+
+    _orientation = orientation;
+
+    if (orientation == Orientation.portrait) {
+      _screenWidth = constraints.maxWidth;
+      _screenHeight = constraints.maxHeight;
+    } else {
+      _screenWidth = constraints.maxHeight;
+      _screenHeight = constraints.maxWidth;
+    }
 
     var mediaQuery = WidgetsBinding.instance.window;
     _pixelRatio = mediaQuery.devicePixelRatio;
     _statusBarHeight = mediaQuery.padding.top;
     _bottomBarHeight = mediaQuery.padding.bottom;
   }
+
+  ///获取屏幕方向
+  ///Get screen orientation
+  Orientation get orientation => _orientation;
 
   /// 每个逻辑像素的字体像素数，字体的缩放比例
   /// The number of font pixels for each logical pixel.
@@ -111,12 +126,7 @@ class ScreenUtil {
   ///Font size adaptation method
   ///- [fontSize] The size of the font on the UI design, in sp.
   ///- [allowFontScaling]
-  double setSp(num fontSize, {bool allowFontScalingSelf}) =>
-      allowFontScalingSelf == null
-          ? (allowFontScaling
-              ? (fontSize * scaleText * textScaleFactor)
-              : fontSize * scaleText)
-          : (allowFontScalingSelf
-              ? (fontSize * scaleText * textScaleFactor)
-              : (fontSize * scaleText));
+  double setSp(num fontSize, {bool allowFontScalingSelf}) => allowFontScalingSelf == null
+      ? (allowFontScaling ? (fontSize * scaleText * textScaleFactor) : fontSize * scaleText)
+      : (allowFontScalingSelf ? (fontSize * scaleText * textScaleFactor) : (fontSize * scaleText));
 }
