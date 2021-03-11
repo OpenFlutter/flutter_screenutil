@@ -49,24 +49,22 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 ```dart
 //填入设计稿中设备的屏幕尺寸
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+void main() => runApp(MyApp());
 
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // 初始化
-    ScreenUtil.init(
-      // 设备像素大小(必须在首页中获取)
-      BoxConstraints(
-        maxWidth: MediaQuery.of(context).size.width,
-        maxHeight: MediaQuery.of(context).size.height,
-      ),
-      // 设计尺寸
-      designSize: Size(750, 1334),
+    return ScreenUtilInit(
+      designSize: Size(360, 690),
       allowFontScaling: false,
-    );
-    return Container(
-      child: child,
+      builder: () => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter_ScreenUtil',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: HomePage(title: 'FlutterScreenUtil Demo'),
+      ),
     );
   }
 }
@@ -93,6 +91,8 @@ class HomePage extends StatelessWidget {
 
     ScreenUtil().scaleWidth  // 实际宽度设计稿宽度的比例
     ScreenUtil().scaleHeight // 实际高度与设计稿高度度的比例
+
+    ScreenUtil().orientation  //屏幕方向
 
     0.2.sw  //屏幕宽度的0.2倍
     0.5.sh  //屏幕高度的50%
@@ -180,6 +180,26 @@ Column(
                             .setSp(24, allowFontScalingSelf: true))),
               ],
             )
+```
+
+#### 设置字体不随系统字体大小进行改变
+
+```
+ MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter_ScreenUtil',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        builder: (context, widget) {
+          return MediaQuery(
+            ///设置文字大小不随系统设置改变
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+            child: widget,
+          );
+        },
+        home: HomePage(title: 'FlutterScreenUtil Demo'),
+      ),
 ```
 
 

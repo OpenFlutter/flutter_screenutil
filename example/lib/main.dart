@@ -34,8 +34,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
-
     printScreenInformation();
     return Scaffold(
       appBar: AppBar(
@@ -105,20 +103,17 @@ class _HomePageState extends State<HomePage> {
               textAlign: TextAlign.center,
             ),
             SizedBox(
-              height: 50.h,
+              height: 10.h,
             ),
             Text('System font scaling factor:${ScreenUtil().textScaleFactor}'),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  height: 32.h,
-                  child: Text(
-                    'My font size is 16sp on the design draft and will not change with the system.',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16.sp,
-                    ),
+                Text(
+                  'My font size is 16sp on the design draft and will not change with the system.',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.nsp,
                   ),
                 ),
                 Text(
@@ -147,5 +142,6 @@ class _HomePageState extends State<HomePage> {
     print('System font scaling:${ScreenUtil().textScaleFactor}');
     print('0.5 times the screen width:${0.5.sw}dp');
     print('0.5 times the screen height:${0.5.sh}dp');
+    print('Screen orientation:${ScreenUtil().orientation}');
   }
 }

@@ -1,6 +1,6 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/screen_util.dart';
 
-import 'screenutil.dart';
 
 class ScreenUtilInit extends StatelessWidget {
   /// A helper widget that initializes [ScreenUtil]
@@ -21,23 +21,20 @@ class ScreenUtilInit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (_, BoxConstraints constraints) {
-        return OrientationBuilder(
-          builder: (_, Orientation orientation) {
-            // ignore: missing_return
-            if (constraints.maxWidth != 0) {
-              ScreenUtil.init(
-                constraints,
-                orientation,
-                designSize: designSize,
-                allowFontScaling: allowFontScaling,
-              );
-            }
-            return builder();
-          },
-        );
-      },
-    );
+    return LayoutBuilder(builder: (_, BoxConstraints constraints) {
+      return OrientationBuilder(
+        builder: (_, Orientation orientation) {
+          if (constraints.maxWidth != 0) {
+            ScreenUtil.init(
+              constraints,
+              orientation,
+              designSize: designSize,
+              allowFontScaling: allowFontScaling,
+            );
+          }
+          return builder();
+        },
+      );
+    });
   }
 }

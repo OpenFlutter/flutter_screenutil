@@ -3,9 +3,8 @@
  * email: zhuoyuan93@gmail.com
  */
 
-import 'dart:ui' as ui;
-
 import 'dart:math';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 
@@ -21,6 +20,9 @@ class ScreenUtil {
   /// allowFontScaling Specifies whether fonts should scale to respect Text Size accessibility settings. The default is false.
   late bool allowFontScaling;
 
+  ///屏幕方向
+  static late Orientation _orientation;
+
   static late double _pixelRatio;
   static late double _textScaleFactor;
   static late double _screenWidth;
@@ -35,9 +37,8 @@ class ScreenUtil {
   }
 
   static void init(
-    BoxConstraints constraints, 
-    Orientation orientation,
-    {
+    BoxConstraints constraints,
+    Orientation orientation, {
     Size designSize = defaultSize,
     bool allowFontScaling = false,
   }) {
@@ -45,12 +46,14 @@ class ScreenUtil {
     _instance
       ..uiSize = designSize
       ..allowFontScaling = allowFontScaling;
-    if(orientation == Orientation.portrait){
+
+    _orientation = orientation;
+    if (orientation == Orientation.portrait) {
       _screenWidth = constraints.maxWidth;
-    _screenHeight = constraints.maxHeight;
-    }else{
+      _screenHeight = constraints.maxHeight;
+    } else {
       _screenWidth = constraints.maxHeight;
-    _screenHeight = constraints.maxWidth;
+      _screenHeight = constraints.maxWidth;
     }
 
     var window = WidgetsBinding.instance?.window ?? ui.window;
@@ -59,6 +62,10 @@ class ScreenUtil {
     _bottomBarHeight = window.padding.bottom;
     _textScaleFactor = window.textScaleFactor;
   }
+
+  ///获取屏幕方向
+  ///Get screen orientation
+  Orientation get orientation => _orientation;
 
   /// 每个逻辑像素的字体像素数，字体的缩放比例
   /// The number of font pixels for each logical pixel.
@@ -119,12 +126,7 @@ class ScreenUtil {
   ///Font size adaptation method
   ///- [fontSize] The size of the font on the UI design, in dp.
   ///- [allowFontScaling]
-  double setSp(num fontSize, {bool? allowFontScalingSelf}) =>
-      allowFontScalingSelf == null
-          ? (allowFontScaling
-              ? (fontSize * scaleText) * _textScaleFactor
-              : (fontSize * scaleText))
-          : (allowFontScalingSelf
-              ? (fontSize * scaleText) * _textScaleFactor
-              : (fontSize * scaleText));
+  double setSp(num fontSize, {bool? allowFontScalingSelf}) => allowFontScalingSelf == null
+      ? (allowFontScaling ? (fontSize * scaleText) * _textScaleFactor : (fontSize * scaleText))
+      : (allowFontScalingSelf ? (fontSize * scaleText) * _textScaleFactor : (fontSize * scaleText));
 }
