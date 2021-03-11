@@ -125,7 +125,12 @@ class ScreenUtil {
   ///Font size adaptation method
   ///- [fontSize] The size of the font on the UI design, in dp.
   ///- [allowFontScaling]
-  double setSp(num fontSize, {bool? allowFontScalingSelf}) => allowFontScalingSelf == null
-      ? (allowFontScaling ? (fontSize * scaleText) * _textScaleFactor : (fontSize * scaleText))
-      : (allowFontScalingSelf ? (fontSize * scaleText) * _textScaleFactor : (fontSize * scaleText));
+  double setSp(num fontSize, {bool? allowFontScalingSelf}) =>
+      allowFontScalingSelf == null
+          ? (allowFontScaling
+              ? (fontSize * scaleText) * _textScaleFactor
+              : (fontSize * scaleText))
+          : (allowFontScalingSelf
+              ? (fontSize * scaleText) * _textScaleFactor
+              : (fontSize * scaleText));
 }

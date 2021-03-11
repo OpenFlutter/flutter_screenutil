@@ -1,3 +1,6 @@
+# 5.0.0-nullsafety.8
+- merge v4
+- Add a method to get the screen orientation
 
 # 5.0.0-nullsafety.7
 - fix #221

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/screen_util.dart';
 
-
 class ScreenUtilInit extends StatelessWidget {
   /// A helper widget that initializes [ScreenUtil]
   ScreenUtilInit({
