@@ -26,7 +26,7 @@ class ScreenUtilInit extends StatelessWidget {
           if (constraints.maxWidth != 0) {
             ScreenUtil.init(
               constraints,
-              orientation,
+              orientation: orientation,
               designSize: designSize,
               allowFontScaling: allowFontScaling,
             );

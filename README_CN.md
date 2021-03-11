@@ -46,14 +46,14 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 在使用之前请设置好设计稿的宽度和高度，传入设计稿的宽度和高度(单位随意,但在使用过程中必须保持一致)
 一定要进行初始化(只需设置一次),以保证在每次使用之前设置好了适配尺寸:
 
+方式一:
 ```dart
-//填入设计稿中设备的屏幕尺寸
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    //填入设计稿中设备的屏幕尺寸,单位dp
     return ScreenUtilInit(
       designSize: Size(360, 690),
       allowFontScaling: false,
@@ -65,6 +65,24 @@ class MyApp extends StatelessWidget {
         ),
         home: HomePage(title: 'FlutterScreenUtil Demo'),
       ),
+    );
+  }
+}
+```
+方式二:
+```
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    //填入设计稿中设备的屏幕尺寸 (例如:360*690) , 单位dp
+    ScreenUtil.init(BoxConstraints(maxWidth: 360, maxHeight: 690));
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter_ScreenUtil',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: HomePage(title: 'FlutterScreenUtil Demo'),
     );
   }
 }

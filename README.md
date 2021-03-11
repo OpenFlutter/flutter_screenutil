@@ -40,6 +40,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 ### Initialize and set the fit size and font size to scale according to the system's "font size" accessibility option
 Please set the size of the design draft before use, the width and height of the design draft.
 
+The first way:
 ```dart
 void main() => runApp(MyApp());
 
@@ -53,6 +54,24 @@ class MyApp extends StatelessWidget {
       builder: () => MaterialApp(
         ...
       ),
+    );
+  }
+}
+```
+The second way:
+```
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the 360*690
+    ScreenUtil.init(BoxConstraints(maxWidth: 360, maxHeight: 690));
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter_ScreenUtil',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: HomePage(title: 'FlutterScreenUtil Demo'),
     );
   }
 }

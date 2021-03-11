@@ -44,19 +44,38 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 Por favor, defina a largura e altura do protótipo de design antes de usar (em pixels).
 Certifique-se de definir as dimensões na paginal inicial do MaterialApp (ou seja, no arquivo de entrada, defina apenas uma vez) para garantir que o tamanho de ajuste seja o mesmo antes de cada uso:
 
+The first way:
 ```dart
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //Preencha o tamanho da tela do dispositivo no protótipo de design , in dp
+    //Set the fit size (fill in the screen size of the device in the design,in dp)
     return ScreenUtilInit(
       designSize: Size(360, 690),
       allowFontScaling: false,
       builder: () => MaterialApp(
         ...
       ),
+    );
+  }
+}
+```
+The second way:
+```
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the 360*690
+    ScreenUtil.init(BoxConstraints(maxWidth: 360, maxHeight: 690));
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter_ScreenUtil',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: HomePage(title: 'FlutterScreenUtil Demo'),
     );
   }
 }
