@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 
 class ScreenUtil {
   static const Size defaultSize = Size(360, 690);
-  static late ScreenUtil _instance;
+  static ScreenUtil _instance = ScreenUtil._();
 
   /// UI设计中手机尺寸 , dp
   /// Size of the phone in UI Design , dp
@@ -21,14 +21,14 @@ class ScreenUtil {
   late bool allowFontScaling;
 
   ///屏幕方向
-  static late Orientation _orientation;
+  late Orientation _orientation;
 
-  static late double _pixelRatio;
-  static late double _textScaleFactor;
-  static late double _screenWidth;
-  static late double _screenHeight;
-  static late double _statusBarHeight;
-  static late double _bottomBarHeight;
+  late double _pixelRatio;
+  late double _textScaleFactor;
+  late double _screenWidth;
+  late double _screenHeight;
+  late double _statusBarHeight;
+  late double _bottomBarHeight;
 
   ScreenUtil._();
 
@@ -42,25 +42,24 @@ class ScreenUtil {
     Size designSize = defaultSize,
     bool allowFontScaling = false,
   }) {
-    _instance = ScreenUtil._();
     _instance
       ..uiSize = designSize
-      ..allowFontScaling = allowFontScaling;
+      ..allowFontScaling = allowFontScaling
+      .._orientation = orientation;
 
-    _orientation = orientation;
     if (orientation == Orientation.portrait) {
-      _screenWidth = constraints.maxWidth;
-      _screenHeight = constraints.maxHeight;
+      _instance._screenWidth = constraints.maxWidth;
+      _instance._screenHeight = constraints.maxHeight;
     } else {
-      _screenWidth = constraints.maxHeight;
-      _screenHeight = constraints.maxWidth;
+      _instance._screenWidth = constraints.maxHeight;
+      _instance._screenHeight = constraints.maxWidth;
     }
 
     var window = WidgetsBinding.instance?.window ?? ui.window;
-    _pixelRatio = window.devicePixelRatio;
-    _statusBarHeight = window.padding.top;
-    _bottomBarHeight = window.padding.bottom;
-    _textScaleFactor = window.textScaleFactor;
+    _instance._pixelRatio = window.devicePixelRatio;
+    _instance._statusBarHeight = window.padding.top;
+    _instance._bottomBarHeight = window.padding.bottom;
+    _instance._textScaleFactor = window.textScaleFactor;
   }
 
   ///获取屏幕方向
