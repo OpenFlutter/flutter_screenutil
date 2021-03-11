@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 
 class ScreenUtil {
   static const Size defaultSize = Size(360, 690);
-  static ScreenUtil _instance = ScreenUtil._();
+  static late ScreenUtil _instance;
 
   /// UI设计中手机尺寸 , dp
   /// Size of the phone in UI Design , dp
@@ -42,7 +42,7 @@ class ScreenUtil {
     Size designSize = defaultSize,
     bool allowFontScaling = false,
   }) {
-    _instance
+    _instance = ScreenUtil._()
       ..uiSize = designSize
       ..allowFontScaling = allowFontScaling
       .._orientation = orientation;
