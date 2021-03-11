@@ -62,13 +62,11 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
-The second way:
+The second way:Does not support the use of font adaptation in the App
 ```
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the 360*690
-    ScreenUtil.init(BoxConstraints(maxWidth: 360, maxHeight: 690));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter_ScreenUtil',
@@ -77,6 +75,30 @@ class MyApp extends StatelessWidget {
       ),
       home: HomePage(title: 'FlutterScreenUtil Demo'),
     );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the 360*690(dp)
+    ScreenUtil.init(
+        BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width,
+            maxHeight: MediaQuery.of(context).size.height),
+        designSize: Size(360, 690),
+        allowFontScaling: false,
+        orientation: Orientation.portrait);
+    return Scaffold();
   }
 }
 ```

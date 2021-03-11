@@ -69,13 +69,11 @@ class MyApp extends StatelessWidget {
   }
 }
 ```
-方式二:
+方式二: 不支持在App中使用字体适配
 ```
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //填入设计稿中设备的屏幕尺寸 (例如:360*690) , 单位dp
-    ScreenUtil.init(BoxConstraints(maxWidth: 360, maxHeight: 690));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter_ScreenUtil',
@@ -84,6 +82,30 @@ class MyApp extends StatelessWidget {
       ),
       home: HomePage(title: 'FlutterScreenUtil Demo'),
     );
+  }
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({Key key, this.title}) : super(key: key);
+
+  final String title;
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  Widget build(BuildContext context) {
+    //设置尺寸（填写设计中设备的屏幕尺寸）如果设计基于360dp * 690dp的屏幕
+    ScreenUtil.init(
+        BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width,
+            maxHeight: MediaQuery.of(context).size.height),
+        designSize: Size(360, 690),
+        allowFontScaling: false,
+        orientation: Orientation.portrait);
+    return Scaffold();
   }
 }
 ```

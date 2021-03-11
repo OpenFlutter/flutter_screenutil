@@ -6,8 +6,6 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 360*690
-    ScreenUtil.init(BoxConstraints(maxWidth: 360, maxHeight: 690));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter_ScreenUtil',
@@ -31,6 +29,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the  360*690
+    ScreenUtil.init(
+        BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width,
+            maxHeight: MediaQuery.of(context).size.height),
+        designSize: Size(360, 690),
+        allowFontScaling: false,
+        orientation: Orientation.portrait);
     printScreenInformation();
     return Scaffold(
       appBar: AppBar(
