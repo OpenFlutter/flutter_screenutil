@@ -1,6 +1,6 @@
 import 'package:flutter_screenutil/screen_util.dart';
 
-extension SizeExtension on double {
+extension SizeExtension on num {
   ///[ScreenUtil.setWidth]
   double get w => ScreenUtil().setWidth(this);
 
