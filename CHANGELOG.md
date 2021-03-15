@@ -1,3 +1,6 @@
+# 5.0.0-nullsafety.10
+- fix #228
+
 # 5.0.0-nullsafety.9
 - Supplementary documentation, supports two initialization methods
 
