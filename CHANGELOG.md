@@ -1,5 +1,6 @@
 # 5.0.0-nullsafety.11
 - revert 5.0.0-nullsafety.10
+- fix #230
 
 # 5.0.0-nullsafety.10
 - fix #228
