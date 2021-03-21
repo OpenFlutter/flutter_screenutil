@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
 }
 ```
 方式二: 不支持在App中使用字体适配
-```
+```dart
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -102,9 +102,9 @@ class _HomePageState extends State<HomePage> {
         BoxConstraints(
             maxWidth: MediaQuery.of(context).size.width,
             maxHeight: MediaQuery.of(context).size.height),
+        Orientation.portrait,
         designSize: Size(360, 690),
-        allowFontScaling: false,
-        orientation: Orientation.portrait);
+        allowFontScaling: false);
     return Scaffold();
   }
 }
