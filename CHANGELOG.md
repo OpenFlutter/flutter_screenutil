@@ -1,3 +1,6 @@
+# 4.0.4
+- Modify the initialization method with V5
+
 # 4.0.3+3
 - Add a method to get the screen orientation
 

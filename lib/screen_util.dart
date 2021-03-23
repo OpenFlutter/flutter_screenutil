@@ -38,8 +38,8 @@ class ScreenUtil {
   }
 
   static void init(
-    BoxConstraints constraints,
-    Orientation orientation, {
+    BoxConstraints constraints, {
+    Orientation orientation = Orientation.portrait,
     Size designSize = defaultSize,
     bool allowFontScaling = false,
   }) {
@@ -126,12 +126,7 @@ class ScreenUtil {
   ///Font size adaptation method
   ///- [fontSize] The size of the font on the UI design, in sp.
   ///- [allowFontScaling]
-  double setSp(num fontSize, {bool allowFontScalingSelf}) =>
-      allowFontScalingSelf == null
-          ? (allowFontScaling
-              ? (fontSize * scaleText * textScaleFactor)
-              : fontSize * scaleText)
-          : (allowFontScalingSelf
-              ? (fontSize * scaleText * textScaleFactor)
-              : (fontSize * scaleText));
+  double setSp(num fontSize, {bool allowFontScalingSelf}) => allowFontScalingSelf == null
+      ? (allowFontScaling ? (fontSize * scaleText * textScaleFactor) : fontSize * scaleText)
+      : (allowFontScalingSelf ? (fontSize * scaleText * textScaleFactor) : (fontSize * scaleText));
 }
