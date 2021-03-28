@@ -12,21 +12,21 @@ class ScreenUtil {
 
   /// Size of the phone in UI Design in px.
   /// UI设计中手机尺寸，单位 px
-  late final num uiWidthPx;
-  late final num uiHeightPx;
+  late num uiWidthPx;
+  late num uiHeightPx;
 
   /// Whether fonts should scale to respect text size accessibility settings.
   /// Defaults to false.
   /// 控制字体是否要根据系统的“字体大小”辅助选项来进行缩放。
   /// 默认值为 false。
-  late final bool allowFontScaling;
+  late bool allowFontScaling;
 
-  static late final double _screenWidth;
-  static late final double _screenHeight;
-  static late final double _pixelRatio;
-  static late final double _statusBarHeight;
-  static late final double _bottomBarHeight;
-  static late final double _textScaleFactor;
+  static late double _screenWidth;
+  static late double _screenHeight;
+  static late double _pixelRatio;
+  static late double _statusBarHeight;
+  static late double _bottomBarHeight;
+  static late double _textScaleFactor;
 
   ScreenUtil._();
 
