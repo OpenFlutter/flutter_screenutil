@@ -6,7 +6,7 @@
 import 'package:flutter/material.dart';
 
 class ScreenUtil {
-  static late final ScreenUtil _instance;
+  static late ScreenUtil _instance;
   static const int defaultWidth = 1080;
   static const int defaultHeight = 1920;
 
