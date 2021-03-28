@@ -21,3 +21,4 @@ doc
 coverage*
 *.iml
 *.lock
+ios/flutter_export_environment.sh
