@@ -49,14 +49,8 @@ class ScreenUtil {
       ..allowFontScaling = allowFontScaling;
 
     _orientation = orientation;
-
-    if (orientation == Orientation.portrait) {
-      _screenWidth = constraints.maxWidth;
-      _screenHeight = constraints.maxHeight;
-    } else {
-      _screenWidth = constraints.maxHeight;
-      _screenHeight = constraints.maxWidth;
-    }
+    _screenWidth = constraints.maxWidth;
+    _screenHeight = constraints.maxHeight;
 
     var mediaQuery = WidgetsBinding.instance.window;
     _pixelRatio = mediaQuery.devicePixelRatio;
