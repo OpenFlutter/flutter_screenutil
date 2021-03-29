@@ -1,3 +1,6 @@
+# 4.0.4+1
+- fix #238
+
 # 4.0.4
 - Modify the initialization method with V5
 
