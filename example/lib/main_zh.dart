@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_screenutil/screenutil_init.dart';
 
 void main() => runApp(MyApp());
 
@@ -64,9 +63,7 @@ class _HomePageState extends State<HomePage> {
                   child: Text(
                       '我的设计稿宽度: 180dp \n'
                       '我的设计稿高度: 200dp',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: ScreenUtil().setSp(12))),
+                      style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(12))),
                 ),
               ],
             ),
@@ -133,10 +130,8 @@ class _HomePageState extends State<HomePage> {
     print('状态栏高度:${ScreenUtil().statusBarHeight}dp');
     print('实际宽度的dp与设计稿px的比例:${ScreenUtil().scaleWidth}');
     print('实际高度的dp与设计稿px的比例:${ScreenUtil().scaleHeight}');
-    print(
-        '宽度和字体相对于设计稿放大的比例:${ScreenUtil().scaleWidth * ScreenUtil().pixelRatio}');
-    print(
-        '高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight * ScreenUtil().pixelRatio}');
+    print('宽度和字体相对于设计稿放大的比例:${ScreenUtil().scaleWidth * ScreenUtil().pixelRatio}');
+    print('高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight * ScreenUtil().pixelRatio}');
     print('系统的字体缩放比例:${ScreenUtil().textScaleFactor}');
     print('屏幕宽度的0.5:${0.5.sw}dp');
     print('屏幕高度的0.5:${0.5.sh}dp');
