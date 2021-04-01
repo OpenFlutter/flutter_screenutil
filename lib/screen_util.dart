@@ -2,10 +2,7 @@
  * Created by 李卓原 on 2018/9/29.
  * email: zhuoyuan93@gmail.com
  */
-
-import 'dart:math';
-
-import 'package:flutter/material.dart';
+part of flutter_screenutil;
 
 class ScreenUtil {
   static const Size defaultSize = Size(360, 690);
@@ -120,7 +117,12 @@ class ScreenUtil {
   ///Font size adaptation method
   ///- [fontSize] The size of the font on the UI design, in sp.
   ///- [allowFontScaling]
-  double setSp(num fontSize, {bool allowFontScalingSelf}) => allowFontScalingSelf == null
-      ? (allowFontScaling ? (fontSize * scaleText * textScaleFactor) : fontSize * scaleText)
-      : (allowFontScalingSelf ? (fontSize * scaleText * textScaleFactor) : (fontSize * scaleText));
+  double setSp(num fontSize, {bool allowFontScalingSelf}) =>
+      allowFontScalingSelf == null
+          ? (allowFontScaling
+              ? (fontSize * scaleText * textScaleFactor)
+              : fontSize * scaleText)
+          : (allowFontScalingSelf
+              ? (fontSize * scaleText * textScaleFactor)
+              : (fontSize * scaleText));
 }

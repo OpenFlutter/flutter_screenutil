@@ -1,4 +1,4 @@
-import 'package:flutter_screenutil/screen_util.dart';
+part of flutter_screenutil;
 
 extension SizeExtension on num {
   ///[ScreenUtil.setWidth]
