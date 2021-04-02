@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
 }
 ```
 The second way:Does not support the use of font adaptation in the App
-```
+```dart
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -225,7 +225,7 @@ Column(
 
 #### Setting font does not change with system font size
 
-```
+```dart
  MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter_ScreenUtil',
