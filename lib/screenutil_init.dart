@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/screen_util.dart';
+part of flutter_screenutil;
 
 class ScreenUtilInit extends StatelessWidget {
   /// A helper widget that initializes [ScreenUtil]
   ScreenUtilInit({
     required this.builder,
     this.designSize = ScreenUtil.defaultSize,
-    this.allowFontScaling = false,
     Key? key,
   }) : super(key: key);
 
@@ -14,9 +12,6 @@ class ScreenUtilInit extends StatelessWidget {
 
   /// The [Size] of the device in the design draft, in dp
   final Size designSize;
-
-  /// Sets whether the font size is scaled according to the system's "font size" assist option
-  final bool allowFontScaling;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +23,6 @@ class ScreenUtilInit extends StatelessWidget {
               constraints,
               orientation: orientation,
               designSize: designSize,
-              allowFontScaling: allowFontScaling,
             );
             return builder();
           }

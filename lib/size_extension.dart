@@ -1,4 +1,4 @@
-import 'package:flutter_screenutil/screen_util.dart';
+part of flutter_screenutil;
 
 extension SizeExtension on num {
   ///[ScreenUtil.setWidth]
@@ -14,10 +14,13 @@ extension SizeExtension on num {
   double get sp => ScreenUtil().setSp(this);
 
   ///[ScreenUtil.setSp]
-  double get ssp => ScreenUtil().setSp(this, allowFontScalingSelf: true);
+  @Deprecated('please use [sp]')
+  double get ssp => ScreenUtil().setSp(this);
 
   ///[ScreenUtil.setSp]
-  double get nsp => ScreenUtil().setSp(this, allowFontScalingSelf: false);
+  @Deprecated(
+      'please use [sp] , and set textScaleFactor: 1.0 , for example: Text("text", textScaleFactor: 1.0)')
+  double get nsp => ScreenUtil().setSp(this);
 
   ///屏幕宽度的倍数
   ///Multiple of screen width

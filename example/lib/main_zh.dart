@@ -35,7 +35,6 @@ class _HomePageState extends State<HomePage> {
             maxWidth: MediaQuery.of(context).size.width,
             maxHeight: MediaQuery.of(context).size.height),
         designSize: Size(360, 690),
-        allowFontScaling: false,
         orientation: Orientation.portrait);
     printScreenInformation();
     return Scaffold(
@@ -67,7 +66,9 @@ class _HomePageState extends State<HomePage> {
                   child: Text(
                       '我的设计稿宽度: 180dp \n'
                       '我的设计稿高度: 200dp',
-                      style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(12))),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: ScreenUtil().setSp(12))),
                 ),
               ],
             ),
@@ -105,17 +106,18 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  '我的文字大小在设计稿上是16dp，不会随着系统的文字缩放比例变化',
+                  '我的文字大小在设计稿上是16dp，因为设置了`textScaleFactor`,所以不会随着系统的文字缩放比例变化',
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16.sp,
                   ),
+                  textScaleFactor: 1.0,
                 ),
                 Text(
                   '我的文字大小在设计稿上是16dp，会随着系统的文字缩放比例变化',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 16.ssp,
+                    fontSize: 16.sp,
                   ),
                 ),
               ],
@@ -134,8 +136,10 @@ class _HomePageState extends State<HomePage> {
     print('状态栏高度:${ScreenUtil().statusBarHeight}dp');
     print('实际宽度的dp与设计稿px的比例:${ScreenUtil().scaleWidth}');
     print('实际高度的dp与设计稿px的比例:${ScreenUtil().scaleHeight}');
-    print('宽度和字体相对于设计稿放大的比例:${ScreenUtil().scaleWidth * ScreenUtil().pixelRatio}');
-    print('高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight * ScreenUtil().pixelRatio}');
+    print(
+        '宽度和字体相对于设计稿放大的比例:${ScreenUtil().scaleWidth * ScreenUtil().pixelRatio}');
+    print(
+        '高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight * ScreenUtil().pixelRatio}');
     print('系统的字体缩放比例:${ScreenUtil().textScaleFactor}');
     print('屏幕宽度的0.5:${0.5.sw}dp');
     print('屏幕高度的0.5:${0.5.sh}dp');

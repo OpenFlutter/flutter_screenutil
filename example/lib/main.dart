@@ -9,13 +9,19 @@ class MyApp extends StatelessWidget {
     //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
     return ScreenUtilInit(
       designSize: Size(360, 690),
-      allowFontScaling: false,
       builder: () => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter_ScreenUtil',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
+        builder: (context, widget) {
+          return MediaQuery(
+            //Setting font does not change with system font size
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+            child: widget,
+          );
+        },
         home: HomePage(title: 'FlutterScreenUtil Demo'),
       ),
     );
@@ -41,7 +47,7 @@ class _HomePageState extends State<HomePage> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Row(
               children: <Widget>[
@@ -82,7 +88,8 @@ class _HomePageState extends State<HomePage> {
               width: 100.r,
               height: 100.r,
               color: Colors.green,
-              child: Text('I am a square with a side length of 100',
+              child: Text(
+                'I am a square with a side length of 100',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: ScreenUtil().setSp(12),
@@ -106,21 +113,23 @@ class _HomePageState extends State<HomePage> {
               height: 10.h,
             ),
             Text('System font scaling factor:${ScreenUtil().textScaleFactor}'),
+            SizedBox(height: 5),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  'My font size is 16sp on the design draft and will not change with the system.',
+                  '16sp, will not change with the system.',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 16.nsp,
+                    fontSize: 16.sp,
                   ),
+                  textScaleFactor: 1.0,
                 ),
                 Text(
-                  'My font size is 16sp on the design draft and will change with the system.',
+                  '16sp,if data is not set in MediaQuery,my font size will change with the system.',
                   style: TextStyle(
                     color: Colors.black,
-                    fontSize: 16.ssp,
+                    fontSize: 16.sp,
                   ),
                 ),
               ],
@@ -138,7 +147,8 @@ class _HomePageState extends State<HomePage> {
     print('Bottom safe zone distance dp:${ScreenUtil().bottomBarHeight}dp');
     print('Status bar height dp:${ScreenUtil().statusBarHeight}dp');
     print('The ratio of actual width to UI design:${ScreenUtil().scaleWidth}');
-    print('The ratio of actual height to UI design:${ScreenUtil().scaleHeight}');
+    print(
+        'The ratio of actual height to UI design:${ScreenUtil().scaleHeight}');
     print('System font scaling:${ScreenUtil().textScaleFactor}');
     print('0.5 times the screen width:${0.5.sw}dp');
     print('0.5 times the screen height:${0.5.sh}dp');

@@ -35,7 +35,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 |Property|Type|Default Value|Description|
 |:---|:---|:---|:---| 
 |designSize|Size|Size(360, 690)|The size of the device in the design draft, in dp|
-|allowFontScaling|bool|false|Sets whether the font size is scaled according to the system's "font size" assist option|
 
 ### Initialize and set the fit size and font size to scale according to the system's "font size" accessibility option
 Please set the size of the design draft before use, the width and height of the design draft.
@@ -92,7 +91,6 @@ class _HomePageState extends State<HomePage> {
             maxWidth: MediaQuery.of(context).size.width,
             maxHeight: MediaQuery.of(context).size.height),
         designSize: Size(360, 690),
-        allowFontScaling: false,
         orientation: Orientation.portrait);
     return Scaffold();
   }
@@ -110,8 +108,6 @@ class _HomePageState extends State<HomePage> {
     ScreenUtil().setHeight(200) (dart sdk>=2.6 : 200.h) //Adapted to screen height , under normal circumstances, the height still uses x.w
     ScreenUtil().radius(200) (dart sdk>=2.6 : 200.r)    //Adapt according to the smaller of width or height
     ScreenUtil().setSp(24)      (dart sdk>=2.6 : 24.sp) //Adapter font
-    ScreenUtil().setSp(24, allowFontScalingSelf: true)  (dart sdk>=2.6 : 24.ssp) //Adapter font(fonts will scale to respect Text Size accessibility settings)
-    ScreenUtil().setSp(24, allowFontScalingSelf: false) (dart sdk>=2.6 : 24.nsp) //Adapter font(fonts will not scale to respect Text Size accessibility settings)
 
     ScreenUtil().pixelRatio       //Device pixel density
     ScreenUtil().screenWidth   (dart sdk>=2.6 : 1.sw)    //Device width
@@ -192,16 +188,7 @@ Container(
 //Incoming font size(The unit is the same as the unit at initialization), fonts will not scale to respect Text Size accessibility settings
 //(AllowallowFontScaling when initializing ScreenUtil)
 ScreenUtil().setSp(28) 
-28.sp   
-     
-//Incoming font size，the unit is pixel，fonts will scale to respect Text Size accessibility settings
-//(If somewhere follow the global allowFontScaling setting)
-ScreenUtil().setSp(24, allowFontScalingSelf: true)
-28.ssp
-
-//(If somewhere does not follow the global allowFontScaling setting)
-ScreenUtil().setSp(24, allowFontScalingSelf: false)
-28.nsp
+28.sp
 
 //for example:
 Column(

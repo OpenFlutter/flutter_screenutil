@@ -1,3 +1,7 @@
+# 5.0.0
+-Breaking change. Use a new way to set font scaling
+-Deprecated ssp and nsp
+
 # 5.0.0-nullsafety.11
 - revert 5.0.0-nullsafety.10
 - fix #230

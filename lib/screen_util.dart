@@ -2,11 +2,7 @@
  * Created by 李卓原 on 2018/9/29.
  * email: zhuoyuan93@gmail.com
  */
-
-import 'dart:math';
-import 'dart:ui' as ui;
-
-import 'package:flutter/material.dart';
+part of flutter_screenutil;
 
 class ScreenUtil {
   static const Size defaultSize = Size(360, 690);
@@ -15,10 +11,6 @@ class ScreenUtil {
   /// UI设计中手机尺寸 , dp
   /// Size of the phone in UI Design , dp
   late Size uiSize;
-
-  /// 控制字体是否要根据系统的“字体大小”辅助选项来进行缩放。默认值为false。
-  /// allowFontScaling Specifies whether fonts should scale to respect Text Size accessibility settings. The default is false.
-  late bool allowFontScaling;
 
   ///屏幕方向
   late Orientation _orientation;
@@ -40,11 +32,9 @@ class ScreenUtil {
     BoxConstraints constraints, {
     Orientation orientation = Orientation.portrait,
     Size designSize = defaultSize,
-    bool allowFontScaling = false,
   }) {
     _instance = ScreenUtil._()
       ..uiSize = designSize
-      ..allowFontScaling = allowFontScaling
       .._orientation = orientation
       .._screenWidth = constraints.maxWidth
       .._screenHeight = constraints.maxHeight;
@@ -118,8 +108,5 @@ class ScreenUtil {
   ///- [fontSize] UI设计上字体的大小,单位dp.
   ///Font size adaptation method
   ///- [fontSize] The size of the font on the UI design, in dp.
-  ///- [allowFontScaling]
-  double setSp(num fontSize, {bool? allowFontScalingSelf}) => allowFontScalingSelf == null
-      ? (allowFontScaling ? (fontSize * scaleText) * _textScaleFactor : (fontSize * scaleText))
-      : (allowFontScalingSelf ? (fontSize * scaleText) * _textScaleFactor : (fontSize * scaleText));
+  double setSp(num fontSize) => fontSize * scaleText;
 }

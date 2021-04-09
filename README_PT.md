@@ -38,7 +38,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 |:---|:---|:---|:---| 
 |width|double|360dp|A largura do dispositivo no protótipo de design, em dp|
 |height|double|690dp|A altura do dispositivo no protótipo de design, em dp|
-|allowFontScaling|bool|false|Defina caso o tamanho da fonte seja dimensionado de acordo com a opção "tamanho de fonte" na acessibilidade do sistema|
 
 ### Inicialize e defina o tamanho de ajuste e tamanho da fonte para dimensionar de acordo com a opção "tamanho de fonte" na acessibilidade do sistema
 Por favor, defina a largura e altura do protótipo de design antes de usar (em pixels).
@@ -54,7 +53,6 @@ class MyApp extends StatelessWidget {
     //Set the fit size (fill in the screen size of the device in the design,in dp)
     return ScreenUtilInit(
       designSize: Size(360, 690),
-      allowFontScaling: false,
       builder: () => MaterialApp(
         ...
       ),
@@ -112,8 +110,6 @@ class _HomePageState extends State<HomePage> {
     ScreenUtil().setHeight(200) (sdk>=2.6 : 200.h) //Adapted to screen height
     ScreenUtil().radius(200) (dart sdk>=2.6 : 200.r)    //Adapt according to the smaller of width or height
     ScreenUtil().setSp(24)      (sdk>=2.6 : 24.sp)  //Adapter font
-    ScreenUtil().setSp(24, allowFontScalingSelf: true)  (sdk>=2.6 : 24.ssp)  //Adapter font(fonts will scale to respect Text Size accessibility settings)
-    ScreenUtil().setSp(24, allowFontScalingSelf: false)  (sdk>=2.6 : 24.nsp) //Adapter font(fonts will not scale to respect Text Size accessibility settings)
 
     ScreenUtil.pixelRatio       //Device pixel density
     ScreenUtil.screenWidth     (sdk>=2.6 : 1.sw)  //Device width
@@ -189,8 +185,7 @@ Container(
 ScreenUtil().setSp(28)    
      
 //Tamanho da fonte informado，em pixels，a fonte irá dimensionar respeitando a opção "Tamanho de Fonte" nas configurações de acessibilidade
-//(Se em algum lugar não seguir a configuração global da propriedade allowFontScaling)
-ScreenUtil().setSp(24, allowFontScalingSelf: true)
+ScreenUtil().setSp(24)
 
 //Exemplo:
 
@@ -240,7 +235,7 @@ class MyApp extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
-        ScreenUtil.init(constraints, designSize: Size(750, 1334), allowFontScaling: false);
+        ScreenUtil.init(constraints, designSize: Size(750, 1334));
 
         return MaterialApp(
           debugShowCheckedModeBanner: false,

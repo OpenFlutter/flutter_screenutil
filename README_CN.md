@@ -40,7 +40,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 |属性|类型|默认值|描述|
 |:---|:---|:---|:---|
 |designSize|Size|Size(360, 690)|设计稿中设备的尺寸(单位随意,但在使用过程中必须保持一致)|
-|allowFontScaling|bool|false|设置字体大小是否根据系统的“字体大小”辅助选项来进行缩放|
 
 ### 初始化并设置适配尺寸及字体大小是否根据系统的“字体大小”辅助选项来进行缩放
 在使用之前请设置好设计稿的宽度和高度，传入设计稿的宽度和高度(单位随意,但在使用过程中必须保持一致)
@@ -103,7 +102,6 @@ class _HomePageState extends State<HomePage> {
             maxWidth: MediaQuery.of(context).size.width,
             maxHeight: MediaQuery.of(context).size.height),
         designSize: Size(360, 690),
-        allowFontScaling: false,
         orientation: Orientation.portrait);
     return Scaffold();
   }
@@ -119,8 +117,6 @@ class _HomePageState extends State<HomePage> {
     ScreenUtil().setHeight(200) (sdk>=2.6 : 200.h)   //根据屏幕高度适配尺寸(一般根据宽度适配即可)
     ScreenUtil().radius(200)    (sdk>=2.6 : 200.r)   //根据宽度或高度中的较小者进行调整
     ScreenUtil().setSp(24)      (sdk>=2.6 : 24.sp)   //适配字体
-    ScreenUtil().setSp(24, allowFontScalingSelf: true)   (sdk>=2.6 : 24.ssp) //适配字体(根据系统的“字体大小”辅助选项来进行缩放)
-    ScreenUtil().setSp(24, allowFontScalingSelf: false)  (sdk>=2.6 : 24.nsp) //适配字体(不会根据系统的“字体大小”辅助选项来进行缩放)
 
     ScreenUtil.pixelRatio       //设备的像素密度
     ScreenUtil.screenWidth   (sdk>=2.6 : 1.sw)   //设备宽度
@@ -196,12 +192,6 @@ height:200.h
 ScreenUtil().setSp(28)
 或
 28.sp (dart sdk>=2.6)
- 
-//传入字体大小，根据系统的“字体大小”辅助选项来进行缩放(如果某个地方不遵循全局的allowFontScaling设置)       
-ScreenUtil().setSp(24, allowFontScalingSelf: true)
-或
-24.ssp (dart sdk>=2.6)
-
 
 //for example:
 
