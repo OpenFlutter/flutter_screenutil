@@ -212,6 +212,7 @@ Column(
 
 #### Setting font does not change with system font size
 
+APP global:
 ```
  MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -228,6 +229,11 @@ Column(
         },
         home: HomePage(title: 'FlutterScreenUtil Demo'),
       ),
+```
+
+Separate Text:
+```dart
+Text("text", textScaleFactor: 1.0)
 ```
 
 [widget test](https://github.com/OpenFlutter/flutter_screenutil/issues/115)

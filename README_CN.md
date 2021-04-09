@@ -214,7 +214,8 @@ Column(
 
 #### 设置字体不随系统字体大小进行改变
 
-```
+APP全局:
+```dart
  MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter_ScreenUtil',
@@ -231,7 +232,10 @@ Column(
         home: HomePage(title: 'FlutterScreenUtil Demo'),
       ),
 ```
-
+单独的Text:
+```dart
+Text("text", textScaleFactor: 1.0)
+```
 
 [widget test](https://github.com/OpenFlutter/flutter_screenutil/issues/115)
 
