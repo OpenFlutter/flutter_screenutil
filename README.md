@@ -49,7 +49,6 @@ class MyApp extends StatelessWidget {
     //Set the fit size (fill in the screen size of the device in the design,in dp)
     return ScreenUtilInit(
       designSize: Size(360, 690),
-      allowFontScaling: false,
       builder: () => MaterialApp(
         ...
       ),
