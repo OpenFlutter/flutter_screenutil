@@ -55,7 +55,6 @@ class MyApp extends StatelessWidget {
     //填入设计稿中设备的屏幕尺寸,单位dp
     return ScreenUtilInit(
       designSize: Size(360, 690),
-      allowFontScaling: false,
       builder: () => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter_ScreenUtil',
@@ -188,7 +187,7 @@ height:200.h
 传入设计稿的字体大小：
 
 ```dart 
-//传入字体大小(单位和初始化时的单位保持一致)，默认不根据系统的“字体大小”辅助选项来进行缩放(可在初始化ScreenUtil时设置allowFontScaling)
+//传入字体大小(单位和初始化时的单位保持一致)
 ScreenUtil().setSp(28)
 或
 28.sp (dart sdk>=2.6)
@@ -201,13 +200,12 @@ Column(
                 Text('我的文字大小在设计稿上是24dp，不会随着系统的文字缩放比例变化',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: ScreenUtil().setSp(24),
+                      fontSize: 24.sp,
                     )),
                 Text('我的文字大小在设计稿上是24dp，会随着系统的文字缩放比例变化',
                     style: TextStyle(
                         color: Colors.black,
-                        fontSize: ScreenUtil()
-                            .setSp(24, allowFontScalingSelf: true))),
+                        fontSize: 24.sp)),
               ],
             )
 ```

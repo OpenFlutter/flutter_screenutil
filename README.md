@@ -203,7 +203,7 @@ Column(
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: ScreenUtil()
-                            .setSp(24, allowFontScalingSelf: true))),
+                            .setSp(24))),
               ],
             )
 ```

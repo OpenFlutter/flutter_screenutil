@@ -94,7 +94,6 @@ class _HomePageState extends State<HomePage> {
             maxWidth: MediaQuery.of(context).size.width,
             maxHeight: MediaQuery.of(context).size.height),
         designSize: Size(360, 690),
-        allowFontScaling: false,
         orientation: Orientation.portrait);
     return Scaffold();
   }
@@ -203,7 +202,7 @@ Column(
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: ScreenUtil()
-                            .setSp(24, allowFontScalingSelf: true))),
+                            .setSp(24))),
               ],
             )
 ```
