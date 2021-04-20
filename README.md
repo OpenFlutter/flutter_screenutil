@@ -206,8 +206,7 @@ Container(
 
 #### Adapter font:
 ``` dart
-//Incoming font size(The unit is the same as the unit at initialization), fonts will not scale to respect Text Size accessibility settings
-//(AllowallowFontScaling when initializing ScreenUtil)
+//Incoming font size(The unit is the same as the unit at initialization)
 ScreenUtil().setSp(28) 
 28.sp
 
@@ -226,7 +225,7 @@ Column(
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: ScreenUtil()
-                            .setSp(24, allowFontScalingSelf: true))),
+                            .setSp(24))),
               ],
             )
 ```

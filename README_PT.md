@@ -102,7 +102,6 @@ class _HomePageState extends State<HomePage> {
             maxWidth: MediaQuery.of(context).size.width,
             maxHeight: MediaQuery.of(context).size.height),
         designSize: Size(360, 690),
-        allowFontScaling: false,
         orientation: Orientation.portrait);
     return Scaffold();
   }
@@ -188,8 +187,8 @@ Container(
 
 #### Adaptar fonte:
 ``` dart
-//Tamanho da fonte informado, em pixels, a fonte não irá dimensionar respeitando a opção "Tamanho de Fonte" nas configurações de acessibilidade
-//(allowFontScaling quando iniciar o ScreenUtil)
+//Tamanho da fonte informado, em dp
+
 ScreenUtil().setSp(28)    
      
 //Tamanho da fonte informado，em pixels，a fonte irá dimensionar respeitando a opção "Tamanho de Fonte" nas configurações de acessibilidade
@@ -211,7 +210,7 @@ Column(
                     style: TextStyle(
                         color: Colors.black,
                         fontSize: ScreenUtil()
-                            .setSp(24, allowFontScalingSelf: true))),
+                            .setSp(24))),
               ],
             )
 ```

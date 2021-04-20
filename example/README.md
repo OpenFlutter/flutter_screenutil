@@ -126,7 +126,6 @@ class _ExampleWidgetState extends State<ExampleWidget> {
         onPressed: () {
           ScreenUtil.init(
             designSize: Size(1500, 1334),
-            allowFontScaling: false,
           );
           setState(() {});
         },
