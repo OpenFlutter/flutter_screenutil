@@ -49,15 +49,36 @@ class MyApp extends StatelessWidget {
     //Set the fit size (fill in the screen size of the device in the design,in dp)
     return ScreenUtilInit(
       designSize: Size(360, 690),
-      allowFontScaling: false,
       builder: () => MaterialApp(
         ...
+        theme: ThemeData(
+                          primarySwatch: Colors.blue,
+                          textTheme: TextTheme(
+                          //To support the following, you need to use the first initialization method
+                            button: TextStyle(fontSize: 45.sp)
+                          ),
+                        ),
       ),
     );
   }
 }
+
 ```
-The second way:Does not support the use of font adaptation in the App
+The second way:Does not support font adaptation in the textTheme of MaterialApp's theme.
+
+not support this:
+```dart
+MaterialApp(
+  ...
+  theme: ThemeData(
+           textTheme: TextTheme(
+             //To support the following, you need to use the first initialization method
+             button: TextStyle(fontSize: 45.sp)
+             ),
+           ),
+)
+```
+
 ```dart
 class MyApp extends StatelessWidget {
   @override

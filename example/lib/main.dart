@@ -14,6 +14,9 @@ class MyApp extends StatelessWidget {
         title: 'Flutter_ScreenUtil',
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          textTheme: TextTheme(
+            button: TextStyle(fontSize: 45.sp)
+          ),
         ),
         builder: (context, widget) {
           return MediaQuery(

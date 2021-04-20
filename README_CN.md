@@ -55,20 +55,24 @@ class MyApp extends StatelessWidget {
     //填入设计稿中设备的屏幕尺寸,单位dp
     return ScreenUtilInit(
       designSize: Size(360, 690),
-      allowFontScaling: false,
       builder: () => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter_ScreenUtil',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+                  primarySwatch: Colors.blue,
+                  //要支持下面这个需要使用第一种初始化方式
+                  textTheme: TextTheme(
+                    button: TextStyle(fontSize: 45.sp)
+                  ),
+                ),
         home: HomePage(title: 'FlutterScreenUtil Demo'),
       ),
     );
   }
 }
 ```
-方式二: 不支持在App中使用字体适配
+
+方式二: 不支持在MaterialApp的theme的textTheme中使用字体适配
 ```
 class MyApp extends StatelessWidget {
   @override

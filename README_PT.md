@@ -55,12 +55,20 @@ class MyApp extends StatelessWidget {
       designSize: Size(360, 690),
       builder: () => MaterialApp(
         ...
+        theme: ThemeData(
+                          primarySwatch: Colors.blue,
+                          //To support the following, you need to use the first initialization method
+                          textTheme: TextTheme(
+                            button: TextStyle(fontSize: 45.sp)
+                          ),
+                        ),
       ),
     );
   }
 }
 ```
-The second way:Does not support the use of font adaptation in the App
+
+The second way:Does not support font adaptation in the textTheme of MaterialApp's theme.
 ```
 class MyApp extends StatelessWidget {
   @override
