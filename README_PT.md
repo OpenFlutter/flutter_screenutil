@@ -36,8 +36,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
    
 |Propriedade|Tipo|Valor Padrão|Descrição|
 |:---|:---|:---|:---| 
-|width|double|360dp|A largura do dispositivo no protótipo de design, em dp|
-|height|double|690dp|A altura do dispositivo no protótipo de design, em dp|
+|designSize|Size|Size(360, 690)|The size of the device screen in the design draft, in dp|
+|builder|Widget Function()|Container()|Generally returning a Function of MaterialApp type|
+|orientation|Orientation|portrait|screen orientation|
 
 ### Inicialize e defina o tamanho de ajuste e tamanho da fonte para dimensionar de acordo com a opção "tamanho de fonte" na acessibilidade do sistema
 Por favor, defina a largura e altura do protótipo de design antes de usar (em pixels).
