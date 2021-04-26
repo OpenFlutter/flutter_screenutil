@@ -46,7 +46,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //Set the fit size (fill in the screen size of the device in the design,in dp)
+    //Set the fit size (Find your UI design, look at the dimensions of the device screen and fill it in,unit in dp)
     return ScreenUtilInit(
       designSize: Size(360, 690),
       builder: () => MaterialApp(

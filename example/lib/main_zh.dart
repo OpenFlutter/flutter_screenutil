@@ -31,11 +31,11 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the  360*690
     ScreenUtil.init(
-        BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width,
-            maxHeight: MediaQuery.of(context).size.height),
-        designSize: Size(360, 690),
-        orientation: Orientation.portrait);
+      BoxConstraints(
+          maxWidth: MediaQuery.of(context).size.width,
+          maxHeight: MediaQuery.of(context).size.height),
+      designSize: Size(360, 690),
+    );
     printScreenInformation();
     return Scaffold(
       appBar: AppBar(
@@ -66,9 +66,7 @@ class _HomePageState extends State<HomePage> {
                   child: Text(
                       '我的设计稿宽度: 180dp \n'
                       '我的设计稿高度: 200dp',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: ScreenUtil().setSp(12))),
+                      style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(12))),
                 ),
               ],
             ),
@@ -136,8 +134,7 @@ class _HomePageState extends State<HomePage> {
     print('状态栏高度:${ScreenUtil().statusBarHeight}dp');
     print('实际宽度和字体(dp)与设计稿(dp)的比例:${ScreenUtil().scaleWidth}');
     print('实际高度(dp)与设计稿(dp)的比例:${ScreenUtil().scaleHeight}');
-    print(
-        '高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight}');
+    print('高度相对于设计稿放大的比例:${ScreenUtil().scaleHeight}');
     print('系统的字体缩放比例:${ScreenUtil().textScaleFactor}');
     print('屏幕宽度的0.5:${0.5.sw}dp');
     print('屏幕高度的0.5:${0.5.sh}dp');
