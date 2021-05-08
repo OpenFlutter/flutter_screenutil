@@ -217,17 +217,20 @@ Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                    'My font size is 24dp on the design draft and will not change with the system.',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: ScreenUtil().setSp(24),
-                    )),
+                  '16sp, will not change with the system.',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.sp,
+                  ),
+                  textScaleFactor: 1.0,
+                ),
                 Text(
-                    'My font size is 24dp on the design draft and will change with the system.',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: ScreenUtil()
-                            .setSp(24))),
+                  '16sp,if data is not set in MediaQuery,my font size will change with the system.',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.sp,
+                  ),
+                ),
               ],
             )
 ```

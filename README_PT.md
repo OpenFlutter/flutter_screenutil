@@ -205,7 +205,8 @@ Column(
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: ScreenUtil().setSp(24),
-                    )),
+                    ),
+                    textScaleFactor: 1.0,),
                 Text(
                     'Minha fonte tem 24px no protótipo de design e poderá mudar com o sistema.',
                     style: TextStyle(

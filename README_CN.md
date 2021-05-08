@@ -204,15 +204,21 @@ ScreenUtil().setSp(28)
 Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('我的文字大小在设计稿上是24dp，不会随着系统的文字缩放比例变化',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 24.sp,
-                    )),
-                Text('我的文字大小在设计稿上是24dp，会随着系统的文字缩放比例变化',
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 24.sp)),
+                Text(
+                  '我的文字大小在设计稿上是16dp，因为设置了`textScaleFactor`,所以不会随着系统的文字缩放比例变化',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.sp,
+                  ),
+                  textScaleFactor: 1.0,
+                ),
+                Text(
+                  '我的文字大小在设计稿上是16dp，会随着系统的文字缩放比例变化',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 16.sp,
+                  ),
+                ),
               ],
             )
 ```
