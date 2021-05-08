@@ -1,3 +1,6 @@
+# 5.0.0+1
+- update readme
+
 # 5.0.0
 -Breaking change. Use a new way to set font scaling
 -Deprecated ssp and nsp
