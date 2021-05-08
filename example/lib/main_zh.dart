@@ -66,7 +66,9 @@ class _HomePageState extends State<HomePage> {
                   child: Text(
                       '我的设计稿宽度: 180dp \n'
                       '我的设计稿高度: 200dp',
-                      style: TextStyle(color: Colors.white, fontSize: ScreenUtil().setSp(12))),
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: ScreenUtil().setSp(12))),
                 ),
               ],
             ),
