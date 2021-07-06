@@ -47,7 +47,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 在使用之前请设置好设计稿的宽度和高度，传入设计稿的宽度和高度(单位随意,但在使用过程中必须保持一致)
 一定要进行初始化(只需设置一次),以保证在每次使用之前设置好了适配尺寸:
 
-方式一:
+#### 方式一:
 ```dart
 void main() => runApp(MyApp());
 
@@ -74,7 +74,7 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-方式二: 不支持在MaterialApp的theme的textTheme中使用字体适配
+#### 方式二: 不支持在MaterialApp的theme的textTheme中使用字体适配
 
 **ScreenUtil.init只需在home或者根路由（即第一个flutter页面）中调用一次即可。**
 ```
