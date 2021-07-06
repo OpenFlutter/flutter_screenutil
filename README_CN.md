@@ -75,6 +75,7 @@ class MyApp extends StatelessWidget {
 ```
 
 方式二: 不支持在MaterialApp的theme的textTheme中使用字体适配
+
 **ScreenUtil.init只需在home或者根路由（即第一个flutter页面）中调用一次即可。**
 ```
 class MyApp extends StatelessWidget {
