@@ -41,7 +41,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 ### Initialize and set the fit size and font size to scale according to the system's "font size" accessibility option
 Please set the size of the design draft before use, the width and height of the design draft.
 
-The first way:
+#### The first way:
 ```dart
 void main() => runApp(MyApp());
 
@@ -66,7 +66,7 @@ class MyApp extends StatelessWidget {
 }
 
 ```
-The second way:Does not support font adaptation in the textTheme of MaterialApp's theme.
+#### The second way:Does not support font adaptation in the textTheme of MaterialApp's theme.
 
 not support this:
 ```dart
