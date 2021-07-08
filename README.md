@@ -31,12 +31,32 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 ```
 
 ### Property
-   
-|Property|Type|Default Value|Description|
-|:---|:---|:---|:---| 
-|designSize|Size|Size(360, 690)|The size of the device screen in the design draft, in dp|
-|builder|Widget Function()|Container()|Generally returning a Function of MaterialApp type|
-|orientation|Orientation|portrait|screen orientation|
+<table style="width:100%">
+	<tr>
+		<th>Property</th>
+		<th>Type</th>
+		<th>Default Value</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>designSize</td>
+		<td>Size</td>
+		<td>Size(360, 690)</td>
+		<td>The size of the device screen in the design draft, in dp</td>
+	</tr>
+	<tr>
+		<td>builder</td>
+		<td>Widget Function()</td>
+		<td>Container()</td>
+		<td>Generally returning a Function of MaterialApp type</td>
+	</tr>
+	<tr>
+		<td>orientation</td>
+		<td>Orientation</td>
+		<td>portrait</td>
+		<td>screen orientation</td>
+	</tr>
+</table>
 
 ### Initialize and set the fit size and font size to scale according to the system's "font size" accessibility option
 Please set the size of the design draft before use, the width and height of the design draft.
