@@ -16,19 +16,18 @@ class ScreenUtilInit extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (_, BoxConstraints constraints) {
-      return OrientationBuilder(
-        builder: (_, Orientation orientation) {
-          if (constraints.maxWidth != 0) {
-            ScreenUtil.init(
-              constraints,
-              orientation: orientation,
-              designSize: designSize,
-            );
-            return builder();
-          }
-          return Container();
-        },
-      );
+      if (constraints.maxWidth != 0) {
+        final Orientation orientation = constraints.maxWidth > constraints.maxHeight
+            ? Orientation.landscape
+            : Orientation.portrait;
+        ScreenUtil.init(
+          constraints,
+          orientation: orientation,
+          designSize: designSize,
+        );
+        return builder();
+      }
+      return Container();
     });
   }
 }
