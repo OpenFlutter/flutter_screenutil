@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -50,7 +52,7 @@ class _HomePageState extends State<HomePage> {
                 Container(
                   padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
                   width: 180.w,
-                  height: 200.h,
+                  height: 120.h,
                   color: Colors.red,
                   child: Text(
                     '我的实际宽度:${180.w}dp \n'
