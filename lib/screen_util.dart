@@ -115,6 +115,6 @@ class ScreenUtil {
       );
 
   Widget setHorizontalSpacing(num width) => SizedBox(
-        height: width * scaleHeight,
+        width: width * scaleHeight,
       );
 }
