@@ -42,6 +42,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 |designSize|Size|Size(360, 690)|设计稿中设备的尺寸(单位随意,建议dp,但在使用过程中必须保持一致)|
 |builder|Widget Function()|Container()|一般返回一个MaterialApp类型的Function()|
 |orientation|Orientation|portrait|屏幕方向|
+|splitScreenMode|bool|true|支持分屏尺寸|
 
 ### 初始化并设置适配尺寸及字体大小是否根据系统的“字体大小”辅助选项来进行缩放
 在使用之前请设置好设计稿的宽度和高度，传入设计稿的宽度和高度(单位随意,但在使用过程中必须保持一致)
@@ -127,6 +128,7 @@ class _HomePageState extends State<HomePage> {
     ScreenUtil().setHeight(200) (sdk>=2.6 : 200.h)   //根据屏幕高度适配尺寸(一般根据宽度适配即可)
     ScreenUtil().radius(200)    (sdk>=2.6 : 200.r)   //根据宽度或高度中的较小者进行调整
     ScreenUtil().setSp(24)      (sdk>=2.6 : 24.sp)   //适配字体
+    12.sm   // 取12和12.sp中的最小值
 
     ScreenUtil.pixelRatio       //设备的像素密度
     ScreenUtil.screenWidth   (sdk>=2.6 : 1.sw)   //设备宽度

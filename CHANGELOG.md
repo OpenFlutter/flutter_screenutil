@@ -1,3 +1,7 @@
+# 5.0.1
+- support for split screen
+- add number.sm (return min(number.sp , number))
+
 # 5.0.0+2
 - update readme
 

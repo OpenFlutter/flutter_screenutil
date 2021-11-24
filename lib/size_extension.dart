@@ -18,15 +18,6 @@ extension SizeExtension on num {
   ///I think that it is good for save size balance on big sizes of screen
   double get sm => min(toDouble(), sp);
 
-  ///[ScreenUtil.setSp]
-  @Deprecated('please use [sp]')
-  double get ssp => ScreenUtil().setSp(this);
-
-  ///[ScreenUtil.setSp]
-  @Deprecated(
-      'please use [sp] , and set textScaleFactor: 1.0 , for example: Text("text", textScaleFactor: 1.0)')
-  double get nsp => ScreenUtil().setSp(this);
-
   ///屏幕宽度的倍数
   ///Multiple of screen width
   double get sw => ScreenUtil().screenWidth * this;

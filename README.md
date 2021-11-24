@@ -56,6 +56,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 		<td>portrait</td>
 		<td>screen orientation</td>
 	</tr>
+	<tr>
+		<td>splitScreenMode</td>
+		<td>bool</td>
+		<td>true</td>
+		<td>support for split screen</td>
+	</tr>
 </table>
 
 ### Initialize and set the fit size and font size to scale according to the system's "font size" accessibility option
@@ -150,8 +156,9 @@ class _HomePageState extends State<HomePage> {
 ```dart
     ScreenUtil().setWidth(540)  (dart sdk>=2.6 : 540.w) //Adapted to screen width
     ScreenUtil().setHeight(200) (dart sdk>=2.6 : 200.h) //Adapted to screen height , under normal circumstances, the height still uses x.w
-    ScreenUtil().radius(200) (dart sdk>=2.6 : 200.r)    //Adapt according to the smaller of width or height
+    ScreenUtil().radius(200)    (dart sdk>=2.6 : 200.r)    //Adapt according to the smaller of width or height
     ScreenUtil().setSp(24)      (dart sdk>=2.6 : 24.sp) //Adapter font
+    12.sm   //return min(12,12.sp)
 
     ScreenUtil().pixelRatio       //Device pixel density
     ScreenUtil().screenWidth   (dart sdk>=2.6 : 1.sw)    //Device width

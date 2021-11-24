@@ -19,5 +19,4 @@ doc
 # Include when developing application packages.
 .lock
 coverage*
-*.iml
 *.lock
