@@ -148,8 +148,7 @@ class _HomePageState extends State<HomePage> {
     print('Bottom safe zone distance dp:${ScreenUtil().bottomBarHeight}dp');
     print('Status bar height dp:${ScreenUtil().statusBarHeight}dp');
     print('The ratio of actual width to UI design:${ScreenUtil().scaleWidth}');
-    print(
-        'The ratio of actual height to UI design:${ScreenUtil().scaleHeight}');
+    print('The ratio of actual height to UI design:${ScreenUtil().scaleHeight}');
     print('System font scaling:${ScreenUtil().textScaleFactor}');
     print('0.5 times the screen width:${0.5.sw}dp');
     print('0.5 times the screen height:${0.5.sh}dp');
