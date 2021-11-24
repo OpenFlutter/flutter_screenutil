@@ -32,12 +32,15 @@ class ScreenUtil {
     BoxConstraints constraints, {
     Orientation orientation = Orientation.portrait,
     Size designSize = defaultSize,
+    bool splitScreenMode = true,
   }) {
     _instance = ScreenUtil._()
       ..uiSize = designSize
       .._orientation = orientation
       .._screenWidth = constraints.maxWidth
-      .._screenHeight = constraints.maxHeight;
+      .._screenHeight = splitScreenMode
+          ? max(constraints.maxHeight, 700)
+          : constraints.maxHeight;
 
     var window = WidgetsBinding.instance?.window ?? ui.window;
     _instance._pixelRatio = window.devicePixelRatio;
