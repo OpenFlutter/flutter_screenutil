@@ -32,7 +32,7 @@ class ScreenUtil {
     BoxConstraints constraints, {
     Orientation orientation = Orientation.portrait,
     Size designSize = defaultSize,
-    bool splitScreenMode = true,
+    bool splitScreenMode = false,
   }) {
     _instance = ScreenUtil._()
       ..uiSize = designSize
