@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
     //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
     return ScreenUtilInit(
       designSize: Size(360, 690),
+      splitScreenMode: true,
       builder: () => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter_ScreenUtil',
@@ -97,6 +98,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+            TextField(style: TextStyle(fontSize: 180.sp)),
             Text('Device width:${ScreenUtil().screenWidth}dp'),
             Text('Device height:${ScreenUtil().screenHeight}dp'),
             Text('Device pixel density:${ScreenUtil().pixelRatio}'),
@@ -148,7 +150,8 @@ class _HomePageState extends State<HomePage> {
     print('Bottom safe zone distance dp:${ScreenUtil().bottomBarHeight}dp');
     print('Status bar height dp:${ScreenUtil().statusBarHeight}dp');
     print('The ratio of actual width to UI design:${ScreenUtil().scaleWidth}');
-    print('The ratio of actual height to UI design:${ScreenUtil().scaleHeight}');
+    print(
+        'The ratio of actual height to UI design:${ScreenUtil().scaleHeight}');
     print('System font scaling:${ScreenUtil().textScaleFactor}');
     print('0.5 times the screen width:${0.5.sw}dp');
     print('0.5 times the screen height:${0.5.sh}dp');
