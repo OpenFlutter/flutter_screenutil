@@ -1,3 +1,11 @@
+# 5.0.1+4
+
+- Fix .sp, Text adaptation according to the smaller of width or height
+
+# 5.0.1+3
+
+- Fix .r
+
 # 5.0.1+2
 
 - Text adaptation no longer considers the height of the screen

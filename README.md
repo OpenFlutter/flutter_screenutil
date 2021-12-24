@@ -61,7 +61,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 	<tr>
 		<td>splitScreenMode</td>
 		<td>bool</td>
-		<td>true</td>
+		<td>false</td>
 		<td>support for split screen</td>
 	</tr>
 </table>
