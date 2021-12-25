@@ -60,7 +60,6 @@ class MyApp extends StatelessWidget {
     //填入设计稿中设备的屏幕尺寸,单位dp
     return ScreenUtilInit(
       designSize: Size(360, 690),
-      minTextAdapt: true,
       builder: () => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter_ScreenUtil',
@@ -116,7 +115,6 @@ class _HomePageState extends State<HomePage> {
             maxWidth: MediaQuery.of(context).size.width,
             maxHeight: MediaQuery.of(context).size.height),
         designSize: Size(360, 690),
-        minTextAdapt: true,
         orientation: Orientation.portrait);
     return Scaffold();
   }

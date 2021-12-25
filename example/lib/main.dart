@@ -9,7 +9,6 @@ class MyApp extends StatelessWidget {
     //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
     return ScreenUtilInit(
       designSize: Size(360, 690),
-      minTextAdapt: true,
       splitScreenMode: true,
       builder: () => MaterialApp(
         debugShowCheckedModeBanner: false,
