@@ -21,6 +21,7 @@ class ScreenUtil {
   late double _screenHeight;
   late double _statusBarHeight;
   late double _bottomBarHeight;
+  late bool _minTextAdapt;
 
   ScreenUtil._();
 
@@ -33,14 +34,14 @@ class ScreenUtil {
     Orientation orientation = Orientation.portrait,
     Size designSize = defaultSize,
     bool splitScreenMode = false,
+    bool minTextAdapt = false,
   }) {
     _instance = ScreenUtil._()
       ..uiSize = designSize
+      .._minTextAdapt = minTextAdapt
       .._orientation = orientation
       .._screenWidth = constraints.maxWidth
-      .._screenHeight = splitScreenMode
-          ? max(constraints.maxHeight, 700)
-          : constraints.maxHeight;
+      .._screenHeight = splitScreenMode ? max(constraints.maxHeight, 700) : constraints.maxHeight;
 
     var window = WidgetsBinding.instance?.window ?? ui.window;
     _instance._pixelRatio = window.devicePixelRatio;
@@ -84,7 +85,7 @@ class ScreenUtil {
   ///  /// The ratio of actual height to UI design
   double get scaleHeight => _screenHeight / uiSize.height;
 
-  double get scaleText => scaleWidth;
+  double get scaleText => _minTextAdapt ? min(scaleWidth, scaleHeight) : scaleWidth;
 
   /// 根据UI设计的设备宽度适配
   /// 高度也可以根据这个来做适配可以保证不变形,比如你想要一个正方形的时候.

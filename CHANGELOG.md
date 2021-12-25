@@ -1,3 +1,12 @@
+# 5.0.2
+
+- add "minTextAdapt" param , Font adaptation is based on the minimum value of width and height or only based on width(default)
+- update readme
+
+# 5.0.1+3
+
+- fix .r
+
 # 5.0.1+2
 
 - Text adaptation no longer considers the height of the screen

@@ -79,6 +79,7 @@ class MyApp extends StatelessWidget {
     //Set the fit size (Find your UI design, look at the dimensions of the device screen and fill it in,unit in dp)
     return ScreenUtilInit(
       designSize: Size(360, 690),
+      minTextAdapt: true,
       builder: () => MaterialApp(
         ...
         theme: ThemeData(
@@ -143,6 +144,7 @@ class _HomePageState extends State<HomePage> {
             maxWidth: MediaQuery.of(context).size.width,
             maxHeight: MediaQuery.of(context).size.height),
         designSize: Size(360, 690),
+        minTextAdapt: true,
         orientation: Orientation.portrait);
     return Scaffold();
   }
