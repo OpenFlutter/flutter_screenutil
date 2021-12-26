@@ -45,6 +45,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 |builder|Widget Function()|Container()|一般返回一个MaterialApp类型的Function()|
 |orientation|Orientation|portrait|屏幕方向|
 |splitScreenMode|bool|true|支持分屏尺寸|
+|minTextAdapt|bool|false|Whether to adapt the text according to the minimum of width and height|
 
 ### 初始化并设置适配尺寸及字体大小是否根据系统的“字体大小”辅助选项来进行缩放
 在使用之前请设置好设计稿的宽度和高度，传入设计稿的宽度和高度(单位随意,但在使用过程中必须保持一致)

@@ -64,6 +64,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 		<td>true</td>
 		<td>support for split screen</td>
 	</tr>
+	<tr>
+		<td>minTextAdapt</td>
+		<td>bool</td>
+		<td>false</td>
+		<td>Whether to adapt the text according to the minimum of width and height</td>
+	</tr>
 </table>
 
 ### Initialize and set the fit size and font size to scale according to the system's "font size" accessibility option

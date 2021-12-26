@@ -41,6 +41,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 |designSize|Size|Size(360, 690)|The size of the device screen in the design draft, in dp|
 |builder|Widget Function()|Container()|Generally returning a Function of MaterialApp type|
 |orientation|Orientation|portrait|screen orientation|
+|minTextAdapt|bool|false|Whether to adapt the text according to the minimum of width and height|
 
 ### Inicialize e defina o tamanho de ajuste e tamanho da fonte para dimensionar de acordo com a opção "tamanho de fonte" na acessibilidade do sistema
 Por favor, defina a largura e altura do protótipo de design antes de usar (em pixels).
