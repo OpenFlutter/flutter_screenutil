@@ -5,7 +5,7 @@ class ScreenUtilInit extends StatelessWidget {
   ScreenUtilInit({
     required this.builder,
     this.designSize = ScreenUtil.defaultSize,
-    this.splitScreenMode = true,
+    this.splitScreenMode = false,
     this.minTextAdapt = false,
     Key? key,
   }) : super(key: key);
