@@ -1,3 +1,6 @@
+# 5.0.2+1
+- fix splitScreenMode to false
+
 # 5.0.2
 
 - add "minTextAdapt" param , Font adaptation is based on the minimum value of width and height or only based on width(default)
