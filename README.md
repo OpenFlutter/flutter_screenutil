@@ -70,6 +70,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 		<td>false</td>
 		<td>Whether to adapt the text according to the minimum of width and height</td>
 	</tr>
+    <tr>
+		<td>context</td>
+		<td>BuildContext</td>
+		<td>null</td>
+		<td>If context!=null, screen changes will be more sensitive</td>
+	</tr>
 </table>
 
 ### Initialize and set the fit size and font size to scale according to the system's "font size" accessibility option

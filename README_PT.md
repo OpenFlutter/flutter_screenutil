@@ -42,6 +42,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 |builder|Widget Function()|Container()|Generally returning a Function of MaterialApp type|
 |orientation|Orientation|portrait|screen orientation|
 |minTextAdapt|bool|false|Whether to adapt the text according to the minimum of width and height|
+|context|BuildContext|null|传入context会更灵敏的根据屏幕变化而改变|
 
 ### Inicialize e defina o tamanho de ajuste e tamanho da fonte para dimensionar de acordo com a opção "tamanho de fonte" na acessibilidade do sistema
 Por favor, defina a largura e altura do protótipo de design antes de usar (em pixels).

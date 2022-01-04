@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -87,7 +90,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             Container(
-              padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
+              padding: EdgeInsets.all(10.w),
               width: 100.r,
               height: 100.r,
               color: Colors.green,
@@ -95,11 +98,10 @@ class _HomePageState extends State<HomePage> {
                 'I am a square with a side length of 100',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: ScreenUtil().setSp(12),
+                  fontSize: 12.sp,
                 ),
               ),
             ),
-            TextField(style: TextStyle(fontSize: 180.sp)),
             Text('Device width:${ScreenUtil().screenWidth}dp'),
             Text('Device height:${ScreenUtil().screenHeight}dp'),
             Text('Device pixel density:${ScreenUtil().pixelRatio}'),

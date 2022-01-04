@@ -1,9 +1,16 @@
+# 5.0.3
+
+- init method add "context" param
+- update ReadMe.md
+
 # 5.0.2+1
+
 - fix splitScreenMode to false
 
 # 5.0.2
 
-- add "minTextAdapt" param , Font adaptation is based on the minimum value of width and height or only based on width(default)
+- add "minTextAdapt" param , Font adaptation is based on the minimum value of width and height or
+  only based on width(default)
 - update readme
 
 # 5.0.1+3
