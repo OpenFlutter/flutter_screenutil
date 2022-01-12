@@ -1,3 +1,7 @@
+# 5.0.4
+- add setContext() , the first initialization method requires calling
+- fix # 310
+
 # 5.0.3
 
 - init method add "context" param

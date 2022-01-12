@@ -15,18 +15,19 @@ class ScreenUtil {
   ///屏幕方向
   late Orientation _orientation;
 
-  late double _pixelRatio;
-  late double _textScaleFactor;
   late double _screenWidth;
   late double _screenHeight;
-  late double _statusBarHeight;
-  late double _bottomBarHeight;
   late bool _minTextAdapt;
+  late BuildContext? context;
 
   ScreenUtil._();
 
   factory ScreenUtil() {
     return _instance;
+  }
+
+  static void setContext(BuildContext context) {
+    _instance.context = context;
   }
 
   static void init(
@@ -45,17 +46,7 @@ class ScreenUtil {
       .._screenHeight = splitScreenMode
           ? max(constraints.maxHeight, 700)
           : constraints.maxHeight;
-
-    var windowData;
-    if (context != null) {
-      windowData = MediaQuery.of(context);
-    } else {
-      windowData = WidgetsBinding.instance?.window ?? ui.window;
-    }
-    _instance._pixelRatio = windowData.devicePixelRatio;
-    _instance._statusBarHeight = windowData.padding.top;
-    _instance._bottomBarHeight = windowData.padding.bottom;
-    _instance._textScaleFactor = windowData.textScaleFactor;
+    if (context != null) setContext(context);
   }
 
   ///获取屏幕方向
@@ -64,11 +55,11 @@ class ScreenUtil {
 
   /// 每个逻辑像素的字体像素数，字体的缩放比例
   /// The number of font pixels for each logical pixel.
-  double get textScaleFactor => _textScaleFactor;
+  double get textScaleFactor => MediaQuery.of(context!).textScaleFactor;
 
   /// 设备的像素密度
   /// The size of the media in logical pixels (e.g, the size of the screen).
-  double get pixelRatio => _pixelRatio;
+  double? get pixelRatio => MediaQuery.of(context!).devicePixelRatio;
 
   /// 当前设备宽度 dp
   /// The horizontal extent of this size.
@@ -80,11 +71,11 @@ class ScreenUtil {
 
   /// 状态栏高度 dp 刘海屏会更高
   /// The offset from the top, in dp
-  double get statusBarHeight => _statusBarHeight / _pixelRatio;
+  double get statusBarHeight => MediaQuery.of(context!).padding.top;
 
   /// 底部安全区距离 dp
   /// The offset from the bottom, in dp
-  double get bottomBarHeight => _bottomBarHeight / _pixelRatio;
+  double get bottomBarHeight => MediaQuery.of(context!).padding.bottom;
 
   /// 实际尺寸与UI设计的比例
   /// The ratio of actual width to UI design
