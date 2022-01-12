@@ -63,18 +63,26 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(360, 690),
       minTextAdapt: true,
-      builder: () => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter_ScreenUtil',
-        theme: ThemeData(
-                  primarySwatch: Colors.blue,
-                  //要支持下面这个需要使用第一种初始化方式
-                  textTheme: TextTheme(
-                    button: TextStyle(fontSize: 45.sp)
-                  ),
-                ),
-        home: HomePage(title: 'FlutterScreenUtil Demo'),
-      ),
+      splitScreenMode: true,
+      builder: () =>
+          MaterialApp(
+            //... other code
+            builder: (context, widget) {
+              //add this line
+              ScreenUtil.setContext(context);
+              return MediaQuery(
+                //Setting font does not change with system font size
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                child: widget,
+              );
+            },
+            theme: ThemeData(
+              textTheme: TextTheme(
+                //要支持下面这个需要使用第一种初始化方式
+                button: TextStyle(fontSize: 45.sp)
+              ),
+            ),
+          ),
     );
   }
 }
@@ -118,6 +126,7 @@ class _HomePageState extends State<HomePage> {
             maxWidth: MediaQuery.of(context).size.width,
             maxHeight: MediaQuery.of(context).size.height),
         designSize: Size(360, 690),
+        context: context,
         minTextAdapt: true,
         orientation: Orientation.portrait);
     return Scaffold();

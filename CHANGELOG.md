@@ -1,6 +1,7 @@
 # 5.0.4
 - add setContext() , the first initialization method requires calling
 - fix # 310
+- update ReadMe.md
 
 # 5.0.3
 

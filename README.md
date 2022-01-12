@@ -92,16 +92,26 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: Size(360, 690),
       minTextAdapt: true,
-      builder: () => MaterialApp(
-        ...
-        theme: ThemeData(
-                          primarySwatch: Colors.blue,
-                          textTheme: TextTheme(
-                          //To support the following, you need to use the first initialization method
-                            button: TextStyle(fontSize: 45.sp)
-                          ),
-                        ),
-      ),
+      splitScreenMode: true,
+      builder: () =>
+          MaterialApp(
+            //... other code
+            builder: (context, widget) {
+              //add this line
+              ScreenUtil.setContext(context);
+              return MediaQuery(
+                //Setting font does not change with system font size
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                child: widget,
+              );
+            },
+            theme: ThemeData(
+              textTheme: TextTheme(
+                //To support the following, you need to use the first initialization method
+                  button: TextStyle(fontSize: 45.sp)
+              ),
+            ),
+          ),
     );
   }
 }
@@ -156,6 +166,7 @@ class _HomePageState extends State<HomePage> {
             maxWidth: MediaQuery.of(context).size.width,
             maxHeight: MediaQuery.of(context).size.height),
         designSize: Size(360, 690),
+        context: context,
         minTextAdapt: true,
         orientation: Orientation.portrait);
     return Scaffold();
