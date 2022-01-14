@@ -1,3 +1,6 @@
+# 5.1.0
+- Break Change: updated the first initialization method, please refer to README.md
+
 # 5.0.4
 - Break Change : add setContext() , the first initialization method requires calling
 - fix # 310
