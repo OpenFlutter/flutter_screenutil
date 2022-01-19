@@ -81,10 +81,10 @@ class ScreenUtil {
 
   /// 实际尺寸与UI设计的比例
   /// The ratio of actual width to UI design
-  double get scaleWidth => _screenWidth / uiSize.width;
+  double get scaleWidth => screenWidth / uiSize.width;
 
   ///  /// The ratio of actual height to UI design
-  double get scaleHeight => _screenHeight / uiSize.height;
+  double get scaleHeight => screenHeight / uiSize.height;
 
   double get scaleText =>
       _minTextAdapt ? min(scaleWidth, scaleHeight) : scaleWidth;
