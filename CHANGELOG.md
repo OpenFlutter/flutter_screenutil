@@ -1,3 +1,6 @@
+# 5.1.1
+- .w,.h use MediaQuery
+
 # 5.1.0
 - Break Change: updated the first initialization method, please refer to README.md
 
