@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -35,6 +37,7 @@ class _HomePageState extends State<HomePage> {
           maxWidth: MediaQuery.of(context).size.width,
           maxHeight: MediaQuery.of(context).size.height),
       designSize: Size(360, 690),
+      context: context,
     );
     printScreenInformation();
     return Scaffold(

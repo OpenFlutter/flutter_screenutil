@@ -1,6 +1,8 @@
-# flutter_screenUtil
+# flutter_screenutil
 
 [![pub package](https://img.shields.io/pub/v/flutter_screenutil.svg)](https://pub.dartlang.org/packages/flutter_screenutil)
+[![pub points](https://badges.bar/flutter_screenutil/pub%20points)](https://pub.dev/packages/flutter_screenutil/score)
+[![popularity](https://badges.bar/flutter_screenutil/popularity)](https://pub.dev/packages/flutter_screenutil/score)
 
 **flutter 屏幕适配方案，让你的UI在不同尺寸的屏幕上都能显示合理的布局!**
 
@@ -42,6 +44,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 |designSize|Size|Size(360, 690)|设计稿中设备的尺寸(单位随意,建议dp,但在使用过程中必须保持一致)|
 |builder|Widget Function()|Container()|一般返回一个MaterialApp类型的Function()|
 |orientation|Orientation|portrait|屏幕方向|
+|splitScreenMode|bool|true|支持分屏尺寸|
+|minTextAdapt|bool|false|是否根据宽度/高度中的最小值适配文字|
+|context|BuildContext|null|传入context会更灵敏的根据屏幕变化而改变|
 
 ### 初始化并设置适配尺寸及字体大小是否根据系统的“字体大小”辅助选项来进行缩放
 在使用之前请设置好设计稿的宽度和高度，传入设计稿的宽度和高度(单位随意,但在使用过程中必须保持一致)
@@ -57,18 +62,27 @@ class MyApp extends StatelessWidget {
     //填入设计稿中设备的屏幕尺寸,单位dp
     return ScreenUtilInit(
       designSize: Size(360, 690),
-      builder: () => MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter_ScreenUtil',
-        theme: ThemeData(
-                  primarySwatch: Colors.blue,
-                  //要支持下面这个需要使用第一种初始化方式
-                  textTheme: TextTheme(
-                    button: TextStyle(fontSize: 45.sp)
-                  ),
-                ),
-        home: HomePage(title: 'FlutterScreenUtil Demo'),
-      ),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: () =>
+          MaterialApp(
+            //... other code
+            builder: (context, widget) {
+              //add this line
+              ScreenUtil.setContext(context);
+              return MediaQuery(
+                //Setting font does not change with system font size
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                child: widget!,
+              );
+            },
+            theme: ThemeData(
+              textTheme: TextTheme(
+                //要支持下面这个需要使用第一种初始化方式
+                button: TextStyle(fontSize: 45.sp)
+              ),
+            ),
+          ),
     );
   }
 }
@@ -112,6 +126,8 @@ class _HomePageState extends State<HomePage> {
             maxWidth: MediaQuery.of(context).size.width,
             maxHeight: MediaQuery.of(context).size.height),
         designSize: Size(360, 690),
+        context: context,
+        minTextAdapt: true,
         orientation: Orientation.portrait);
     return Scaffold();
   }
@@ -127,6 +143,7 @@ class _HomePageState extends State<HomePage> {
     ScreenUtil().setHeight(200) (sdk>=2.6 : 200.h)   //根据屏幕高度适配尺寸(一般根据宽度适配即可)
     ScreenUtil().radius(200)    (sdk>=2.6 : 200.r)   //根据宽度或高度中的较小者进行调整
     ScreenUtil().setSp(24)      (sdk>=2.6 : 24.sp)   //适配字体
+    12.sm   // 取12和12.sp中的最小值
 
     ScreenUtil.pixelRatio       //设备的像素密度
     ScreenUtil.screenWidth   (sdk>=2.6 : 1.sw)   //设备宽度
