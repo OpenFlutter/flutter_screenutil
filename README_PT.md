@@ -1,6 +1,8 @@
 # I don’t speak Portuguese, and other developers have translated the first version. I later modified it based on the translation software. It is recommended to read the English/Chinese version.
 # flutter_screenutil
 [![pub package](https://img.shields.io/pub/v/flutter_screenutil.svg)](https://pub.dartlang.org/packages/flutter_screenutil)
+[![pub points](https://badges.bar/flutter_screenutil/pub%20points)](https://pub.dev/packages/flutter_screenutil/score)
+[![popularity](https://badges.bar/flutter_screenutil/popularity)](https://pub.dev/packages/flutter_screenutil/score)
 
 **Um plugin Flutter para adaptação de tamanho de tela e fontes. Deixe sua UI exibir um layout aceitável em diferentes tamanhos de tela!**
 
@@ -39,6 +41,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 |designSize|Size|Size(360, 690)|The size of the device screen in the design draft, in dp|
 |builder|Widget Function()|Container()|Generally returning a Function of MaterialApp type|
 |orientation|Orientation|portrait|screen orientation|
+|minTextAdapt|bool|false|Whether to adapt the text according to the minimum of width and height|
+|context|BuildContext|null|传入context会更灵敏的根据屏幕变化而改变|
 
 ### Inicialize e defina o tamanho de ajuste e tamanho da fonte para dimensionar de acordo com a opção "tamanho de fonte" na acessibilidade do sistema
 Por favor, defina a largura e altura do protótipo de design antes de usar (em pixels).
@@ -54,16 +58,27 @@ class MyApp extends StatelessWidget {
     //Set the fit size (Find your UI design, look at the dimensions of the device screen and fill it in,unit in dp)
     return ScreenUtilInit(
       designSize: Size(360, 690),
-      builder: () => MaterialApp(
-        ...
-        theme: ThemeData(
-                          primarySwatch: Colors.blue,
-                          //To support the following, you need to use the first initialization method
-                          textTheme: TextTheme(
-                            button: TextStyle(fontSize: 45.sp)
-                          ),
-                        ),
-      ),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: () =>
+          MaterialApp(
+            //... other code
+            builder: (context, widget) {
+              //add this line
+              ScreenUtil.setContext(context);
+              return MediaQuery(
+                //Setting font does not change with system font size
+                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+                child: widget!,
+              );
+            },
+            theme: ThemeData(
+              textTheme: TextTheme(
+                //To support the following, you need to use the first initialization method
+                  button: TextStyle(fontSize: 45.sp)
+              ),
+            ),
+          ),
     );
   }
 }
@@ -103,6 +118,7 @@ class _HomePageState extends State<HomePage> {
             maxWidth: MediaQuery.of(context).size.width,
             maxHeight: MediaQuery.of(context).size.height),
         designSize: Size(360, 690),
+        context: context,
         orientation: Orientation.portrait);
     return Scaffold();
   }

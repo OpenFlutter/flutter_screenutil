@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   @override
@@ -9,6 +11,8 @@ class MyApp extends StatelessWidget {
     //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the iPhone6 ​​(iPhone6 ​​750*1334)
     return ScreenUtilInit(
       designSize: Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
       builder: () => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter_ScreenUtil',
@@ -17,6 +21,7 @@ class MyApp extends StatelessWidget {
           textTheme: TextTheme(button: TextStyle(fontSize: 45.sp)),
         ),
         builder: (context, widget) {
+          ScreenUtil.setContext(context);
           return MediaQuery(
             //Setting font does not change with system font size
             data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
@@ -85,7 +90,7 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             Container(
-              padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
+              padding: EdgeInsets.all(10.w),
               width: 100.r,
               height: 100.r,
               color: Colors.green,
@@ -93,7 +98,7 @@ class _HomePageState extends State<HomePage> {
                 'I am a square with a side length of 100',
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: ScreenUtil().setSp(12),
+                  fontSize: 12.sp,
                 ),
               ),
             ),
