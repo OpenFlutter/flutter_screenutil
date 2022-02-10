@@ -19,21 +19,24 @@ class ScreenUtilInit extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (_, BoxConstraints constraints) {
-      if (constraints.maxWidth != 0) {
-        final Orientation orientation =
-            constraints.maxWidth > constraints.maxHeight
-                ? Orientation.landscape
-                : Orientation.portrait;
-        ScreenUtil.init(constraints,
-            context: _,
-            orientation: orientation,
-            designSize: designSize,
-            splitScreenMode: splitScreenMode,
-            minTextAdapt: minTextAdapt);
-        return builder();
-      }
-      return Container();
-    });
+    return MediaQuery(
+      data: MediaQueryData.fromWindow(WidgetsBinding.instance!.window),
+      child: LayoutBuilder(builder: (_, BoxConstraints constraints) {
+        if (constraints.maxWidth != 0) {
+          final Orientation orientation =
+              constraints.maxWidth > constraints.maxHeight
+                  ? Orientation.landscape
+                  : Orientation.portrait;
+          ScreenUtil.init(constraints,
+              context: _,
+              orientation: orientation,
+              designSize: designSize,
+              splitScreenMode: splitScreenMode,
+              minTextAdapt: minTextAdapt);
+          return builder();
+        }
+        return Container();
+      }),
+    );
   }
 }
