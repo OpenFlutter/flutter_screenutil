@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
@@ -143,12 +144,22 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          SystemChrome.setPreferredOrientations([
+            MediaQuery.of(context).orientation == Orientation.portrait
+                ? DeviceOrientation.landscapeRight
+                : DeviceOrientation.portraitUp,
+          ]);
+          //  setState(() {});
+        },
+        child: Icon(Icons.screen_rotation),
+      ),
     );
   }
 
   void printScreenInformation() {
-    print('Device width dp:${1.sw}dp');
-    print('Device height dp:${1.sh}dp');
+    print('Device Size:${Size(1.sw, 1.sh)}');
     print('Device pixel density:${ScreenUtil().pixelRatio}');
     print('Bottom safe zone distance dp:${ScreenUtil().bottomBarHeight}dp');
     print('Status bar height dp:${ScreenUtil().statusBarHeight}dp');

@@ -19,6 +19,7 @@ class ScreenUtil {
   late double _screenHeight;
   late bool _minTextAdapt;
   late BuildContext? context;
+  late bool _splitScreenMode;
 
   ScreenUtil._();
 
@@ -40,12 +41,11 @@ class ScreenUtil {
   }) {
     _instance = ScreenUtil._()
       ..uiSize = designSize
+      .._splitScreenMode = splitScreenMode
       .._minTextAdapt = minTextAdapt
       .._orientation = orientation
       .._screenWidth = constraints.maxWidth
-      .._screenHeight = splitScreenMode
-          ? max(constraints.maxHeight, 700)
-          : constraints.maxHeight;
+      .._screenHeight = constraints.maxHeight;
     if (context != null) setContext(context);
   }
 
@@ -82,7 +82,9 @@ class ScreenUtil {
   double get scaleWidth => screenWidth / uiSize.width;
 
   ///  /// The ratio of actual height to UI design
-  double get scaleHeight => screenHeight / uiSize.height;
+  double get scaleHeight =>
+      (_splitScreenMode ? max(screenHeight, 700) : screenHeight) /
+      uiSize.height;
 
   double get scaleText =>
       _minTextAdapt ? min(scaleWidth, scaleHeight) : scaleWidth;
