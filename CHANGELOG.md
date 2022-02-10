@@ -1,6 +1,7 @@
 # 5.2.0
 
 - Rollback of 5.1.1 commit
+- Fix the problem of inaccurate height
 
 # 5.1.1
 
