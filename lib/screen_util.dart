@@ -115,4 +115,12 @@ class ScreenUtil {
   ///Font size adaptation method
   ///- [fontSize] The size of the font on the UI design, in dp.
   double setSp(num fontSize) => fontSize * scaleText;
+
+  Widget setVerticalSpacing(num height) => SizedBox(
+        height: height * scaleHeight,
+      );
+
+  Widget setHorizontalSpacing(num width) => SizedBox(
+        width: width * scaleHeight,
+      );
 }

@@ -25,4 +25,10 @@ extension SizeExtension on num {
   ///屏幕高度的倍数
   ///Multiple of screen height
   double get sh => ScreenUtil().screenHeight * this;
+
+  ///[ScreenUtil.setWidth]
+  Widget get verticalSpace => ScreenUtil().setVerticalSpacing(this);
+
+  ///[ScreenUtil.setHeight]
+  Widget get horizontalSpace => ScreenUtil().setHorizontalSpacing(this);
 }

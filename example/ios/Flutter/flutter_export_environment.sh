@@ -1,9 +1,13 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Users/lizhuoyuan/Development/flutter"
-export "FLUTTER_APPLICATION_PATH=/Users/lizhuoyuan/Development/Project/flutter_screenutil/example"
+export "FLUTTER_ROOT=C:\dev\flutter"
+export "FLUTTER_APPLICATION_PATH=C:\Users\kagee\Documents\flutter_screenutil\example"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
+<<<<<<< HEAD
+export "FLUTTER_TARGET=lib\main.dart"
+=======
 export "FLUTTER_TARGET=/Users/lizhuoyuan/Development/Project/flutter_screenutil/example/lib/main.dart"
+>>>>>>> 30a18a0ab24cfbb7f41bc5abd3b88e91b091d595
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=1.0.0"
 export "FLUTTER_BUILD_NUMBER=1"
