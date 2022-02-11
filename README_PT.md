@@ -149,6 +149,8 @@ class _HomePageState extends State<HomePage> {
 
     0.2.sw  //0,2 vezes a largura da tela
     0.5.sh  //50% altura da tela
+    20.setVerticalSpacing  // SizedBox(height: 20 * scaleHeight)
+    20.horizontalSpace  // SizedBox(height: 20 * scaleWidth)
 ```
 
 #### Adaptar o tamanho da tela：

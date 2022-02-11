@@ -200,6 +200,8 @@ class _HomePageState extends State<HomePage> {
     ScreenUtil().orientation  //Screen orientation
     0.2.sw  //0.2 times the screen width
     0.5.sh  //50% of screen height
+    20.setVerticalSpacing  // SizedBox(height: 20 * scaleHeight)
+    20.horizontalSpace  // SizedBox(height: 20 * scaleWidth)
 ```
 
 #### Adapt screen size：

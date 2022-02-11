@@ -2,6 +2,10 @@
 
 - Rollback of 5.1.1 commit
 - Fix the problem of inaccurate height
+- merge #332(https://github.com/OpenFlutter/flutter_screenutil/pull/332)
+  add
+  num.setVerticalSpacing  // SizedBox(height: num * scaleHeight)
+  num.horizontalSpace  // SizedBox(height: num * scaleWidth)
 
 # 5.1.1
 

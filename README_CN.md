@@ -159,6 +159,9 @@ class _HomePageState extends State<HomePage> {
 
     0.2.sw  //屏幕宽度的0.2倍
     0.5.sh  //屏幕高度的50%
+    20.setVerticalSpacing  // SizedBox(height: 20 * scaleHeight)
+    20.horizontalSpace  // SizedBox(height: 20 * scaleWidth)
+
 ```
 
 
