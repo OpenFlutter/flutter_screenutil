@@ -55,11 +55,13 @@ class ScreenUtil {
 
   /// 每个逻辑像素的字体像素数，字体的缩放比例
   /// The number of font pixels for each logical pixel.
-  double get textScaleFactor => MediaQuery.of(context!).textScaleFactor;
+  double get textScaleFactor =>
+      context != null ? MediaQuery.of(context!).textScaleFactor : 1;
 
   /// 设备的像素密度
   /// The size of the media in logical pixels (e.g, the size of the screen).
-  double? get pixelRatio => MediaQuery.of(context!).devicePixelRatio;
+  double? get pixelRatio =>
+      context != null ? MediaQuery.of(context!).devicePixelRatio : 1;
 
   /// 当前设备宽度 dp
   /// The horizontal extent of this size.
