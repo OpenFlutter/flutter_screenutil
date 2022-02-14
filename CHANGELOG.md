@@ -1,3 +1,7 @@
+# 5.3.0
+- For the size, use the context to get it first, which needs to provide the Context
+  More rigorous context checking
+
 # 5.2.0
 
 - Rollback of 5.1.1 commit
