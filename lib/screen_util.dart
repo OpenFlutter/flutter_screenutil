@@ -63,19 +63,23 @@ class ScreenUtil {
 
   /// 当前设备宽度 dp
   /// The horizontal extent of this size.
-  double get screenWidth => _screenWidth;
+  double get screenWidth =>
+      context != null ? MediaQuery.of(context!).size.width : _screenWidth;
 
   ///当前设备高度 dp
   ///The vertical extent of this size. dp
-  double get screenHeight => _screenHeight;
+  double get screenHeight =>
+      context != null ? MediaQuery.of(context!).size.height : _screenHeight;
 
   /// 状态栏高度 dp 刘海屏会更高
   /// The offset from the top, in dp
-  double get statusBarHeight => MediaQuery.of(context!).padding.top;
+  double get statusBarHeight =>
+      context == null ? 0 : MediaQuery.of(context!).padding.top;
 
   /// 底部安全区距离 dp
   /// The offset from the bottom, in dp
-  double get bottomBarHeight => MediaQuery.of(context!).padding.bottom;
+  double get bottomBarHeight =>
+      context == null ? 0 : MediaQuery.of(context!).padding.bottom;
 
   /// 实际尺寸与UI设计的比例
   /// The ratio of actual width to UI design
