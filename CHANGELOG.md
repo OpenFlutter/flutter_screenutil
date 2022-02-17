@@ -1,3 +1,9 @@
+# 5.3.1
+- add num.verticalSpacingRadius
+  num.horizontalSpaceRadius
+  num.setVerticalSpacingFromWidth
+- update num.horizontalSpace
+  
 # 5.3.0
 - For the size, use the context to get it first, which needs to provide the Context
   More rigorous context checking

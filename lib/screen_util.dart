@@ -122,11 +122,16 @@ class ScreenUtil {
   ///- [fontSize] The size of the font on the UI design, in dp.
   double setSp(num fontSize) => fontSize * scaleText;
 
-  Widget setVerticalSpacing(num height) => SizedBox(
-        height: height * scaleHeight,
-      );
+  Widget setVerticalSpacing(num height) => SizedBox(height: setHeight(height));
 
-  Widget setHorizontalSpacing(num width) => SizedBox(
-        width: width * scaleHeight,
-      );
+  Widget setVerticalSpacingFromWidth(num height) =>
+      SizedBox(height: setWidth(height));
+
+  Widget setHorizontalSpacing(num width) => SizedBox(width: setWidth(width));
+
+  Widget setHorizontalSpacingRadius(num width) =>
+      SizedBox(width: radius(width));
+
+  Widget setVerticalSpacingRadius(num height) =>
+      SizedBox(height: radius(height));
 }

@@ -26,9 +26,21 @@ extension SizeExtension on num {
   ///Multiple of screen height
   double get sh => ScreenUtil().screenHeight * this;
 
-  ///[ScreenUtil.setWidth]
+  ///[ScreenUtil.setHeight]
   Widget get verticalSpace => ScreenUtil().setVerticalSpacing(this);
 
-  ///[ScreenUtil.setHeight]
+  ///[ScreenUtil.setVerticalSpacingFromWidth]
+  Widget get verticalSpaceFromWidth =>
+      ScreenUtil().setVerticalSpacingFromWidth(this);
+
+  ///[ScreenUtil.setWidth]
   Widget get horizontalSpace => ScreenUtil().setHorizontalSpacing(this);
+
+  ///[ScreenUtil.radius]
+  Widget get horizontalSpaceRadius =>
+      ScreenUtil().setHorizontalSpacingRadius(this);
+
+  ///[ScreenUtil.radius]
+  Widget get verticalSpacingRadius =>
+      ScreenUtil().setVerticalSpacingRadius(this);
 }
