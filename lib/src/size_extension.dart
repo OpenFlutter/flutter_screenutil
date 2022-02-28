@@ -48,3 +48,30 @@ extension SizeExtension on num {
   Widget get verticalSpacingRadius =>
       ScreenUtil().setVerticalSpacingRadius(this);
 }
+
+extension EdgeInsetsExtension on EdgeInsets {
+  /// Creates adapt insets using r [SizeExtension].
+  EdgeInsets get r => copyWith(
+        top: top.r,
+        bottom: bottom.r,
+        right: right.r,
+        left: left.r,
+      );
+}
+
+extension BorderRaduisExtension on BorderRadius {
+  /// Creates adapt BorderRadius using r [SizeExtension].
+  BorderRadius get r => copyWith(
+        bottomLeft: bottomLeft.r,
+        bottomRight: bottomLeft.r,
+        topLeft: topLeft.r,
+        topRight: topRight.r,
+      );
+}
+
+extension RaduisExtension on Radius {
+  /// Creates adapt Radius using r [SizeExtension].
+  Radius get r => this
+    ..x.r
+    ..y.r;
+}
