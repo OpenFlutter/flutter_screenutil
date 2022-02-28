@@ -2,7 +2,10 @@
  * Created by 李卓原 on 2018/9/29.
  * email: zhuoyuan93@gmail.com
  */
-part of flutter_screenutil;
+
+import 'dart:math';
+
+import 'package:flutter/material.dart';
 
 class ScreenUtil {
   static const Size defaultSize = Size(360, 690);

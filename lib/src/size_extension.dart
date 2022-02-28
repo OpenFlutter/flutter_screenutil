@@ -1,4 +1,8 @@
-part of flutter_screenutil;
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+
+import '../flutter_screenutil.dart';
 
 extension SizeExtension on num {
   ///[ScreenUtil.setWidth]
