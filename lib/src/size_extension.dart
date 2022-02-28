@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../flutter_screenutil.dart';
+import 'screen_util.dart';
 
 extension SizeExtension on num {
   ///[ScreenUtil.setWidth]
@@ -74,4 +74,22 @@ extension RaduisExtension on Radius {
   Radius get r => this
     ..x.r
     ..y.r;
+}
+
+extension BoxConstraintsExtension on BoxConstraints {
+  /// Creates adapt BoxConstraints using r [SizeExtension].
+  BoxConstraints get r => this.copyWith(
+        maxHeight: maxHeight.r,
+        maxWidth: maxWidth.r,
+        minHeight: minHeight.r,
+        minWidth: minWidth.r,
+      );
+
+  /// Creates adapt BoxConstraints using h-w [SizeExtension].
+  BoxConstraints get hw => this.copyWith(
+        maxHeight: maxHeight.h,
+        maxWidth: maxWidth.w,
+        minHeight: minHeight.h,
+        minWidth: minWidth.w,
+      );
 }
