@@ -12,6 +12,20 @@ class RSizedBox extends SizedBox {
   })  : _square = false,
         super(key: key, child: child, width: width, height: height);
 
+  const RSizedBox.vertical(
+    double? height, {
+    Key? key,
+    Widget? child,
+  })  : _square = false,
+        super(key: key, child: child, height: height);
+
+  const RSizedBox.horizontal(
+    double? width, {
+    Key? key,
+    Widget? child,
+  })  : _square = false,
+        super(key: key, child: child, width: width);
+
   const RSizedBox.square({
     Key? key,
     double? height,
