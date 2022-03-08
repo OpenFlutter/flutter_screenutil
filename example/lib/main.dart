@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
             child: widget,
           );
         },
-        home: const HomePage(title: 'FlutterScreenUtil Demo'),
+        home: HomePage(title: 'FlutterScreenUtil Demo'),
       ),
     );
   }
