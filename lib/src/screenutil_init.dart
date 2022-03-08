@@ -1,8 +1,10 @@
-part of flutter_screenutil;
+import 'package:flutter/cupertino.dart';
+
+import 'screen_util.dart';
 
 class ScreenUtilInit extends StatelessWidget {
   /// A helper widget that initializes [ScreenUtil]
-  ScreenUtilInit({
+  const ScreenUtilInit({
     required this.builder,
     this.designSize = ScreenUtil.defaultSize,
     this.splitScreenMode = false,

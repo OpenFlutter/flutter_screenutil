@@ -5,14 +5,8 @@
 
 library flutter_screenutil;
 
-import 'dart:math';
-import 'dart:ui' as ui;
-import 'dart:ui';
-
-import 'package:flutter/material.dart';
-
-part 'screen_util.dart';
-
-part 'screenutil_init.dart';
-
-part 'size_extension.dart';
+export 'src/r_padding.dart';
+export 'src/r_sizedbox.dart';
+export 'src/screen_util.dart';
+export 'src/screenutil_init.dart';
+export 'src/size_extension.dart';

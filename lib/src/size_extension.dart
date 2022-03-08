@@ -1,4 +1,8 @@
-part of flutter_screenutil;
+import 'dart:math';
+
+import 'package:flutter/material.dart';
+
+import 'screen_util.dart';
 
 extension SizeExtension on num {
   ///[ScreenUtil.setWidth]
@@ -43,4 +47,49 @@ extension SizeExtension on num {
   ///[ScreenUtil.radius]
   Widget get verticalSpacingRadius =>
       ScreenUtil().setVerticalSpacingRadius(this);
+}
+
+extension EdgeInsetsExtension on EdgeInsets {
+  /// Creates adapt insets using r [SizeExtension].
+  EdgeInsets get r => copyWith(
+        top: top.r,
+        bottom: bottom.r,
+        right: right.r,
+        left: left.r,
+      );
+}
+
+extension BorderRaduisExtension on BorderRadius {
+  /// Creates adapt BorderRadius using r [SizeExtension].
+  BorderRadius get r => copyWith(
+        bottomLeft: bottomLeft.r,
+        bottomRight: bottomLeft.r,
+        topLeft: topLeft.r,
+        topRight: topRight.r,
+      );
+}
+
+extension RaduisExtension on Radius {
+  /// Creates adapt Radius using r [SizeExtension].
+  Radius get r => this
+    ..x.r
+    ..y.r;
+}
+
+extension BoxConstraintsExtension on BoxConstraints {
+  /// Creates adapt BoxConstraints using r [SizeExtension].
+  BoxConstraints get r => this.copyWith(
+        maxHeight: maxHeight.r,
+        maxWidth: maxWidth.r,
+        minHeight: minHeight.r,
+        minWidth: minWidth.r,
+      );
+
+  /// Creates adapt BoxConstraints using h-w [SizeExtension].
+  BoxConstraints get hw => this.copyWith(
+        maxHeight: maxHeight.h,
+        maxWidth: maxWidth.w,
+        minHeight: minHeight.h,
+        minWidth: minWidth.w,
+      );
 }
