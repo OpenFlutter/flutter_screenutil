@@ -118,6 +118,7 @@ class MyApp extends StatelessWidget {
 
 ```
 #### The second way:Does not support font adaptation in the textTheme of MaterialApp's theme.
+**Hybrid development uses the second way**
 **(If it is not necessary, it is recommended to use the second)**
 
 not support this:

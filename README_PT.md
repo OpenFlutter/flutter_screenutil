@@ -85,6 +85,8 @@ class MyApp extends StatelessWidget {
 ```
 
 The second way:Does not support font adaptation in the textTheme of MaterialApp's theme.
+**Hybrid development uses the second way**
+
 ```
 class MyApp extends StatelessWidget {
   @override
