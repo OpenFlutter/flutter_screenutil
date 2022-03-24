@@ -3,9 +3,10 @@
  * email: zhuoyuan93@gmail.com
  */
 
-import 'dart:math';
+import 'dart:math' show min, max;
+import 'dart:ui' show SingletonFlutterWindow;
 
-import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ScreenUtil {
   static const Size defaultSize = Size(360, 690);
@@ -28,6 +29,16 @@ class ScreenUtil {
 
   factory ScreenUtil() {
     return _instance;
+  }
+
+  static Future<void> ensureScreenSize([
+    SingletonFlutterWindow? window,
+    Duration duration = const Duration(milliseconds: 10),
+  ]) async {
+    window ??= WidgetsFlutterBinding.ensureInitialized().window;
+    return window.viewConfiguration.geometry.isEmpty
+        ? Future.delayed(duration, () => ensureScreenSize(window, duration))
+        : Future.value();
   }
 
   static void setContext(BuildContext context) {

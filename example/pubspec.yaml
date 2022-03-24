@@ -17,13 +17,9 @@ dependencies:
     sdk: flutter
 
   flutter_screenutil:
+    path: ../
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   test: ^1.15.7
-
-dependency_overrides:
-  flutter_screenutil:
-    path: ../
-
