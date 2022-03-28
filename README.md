@@ -1,4 +1,5 @@
 # flutter_screenutil
+
 [![pub package](https://img.shields.io/pub/v/flutter_screenutil.svg)](https://pub.dev/packages/flutter_screenutil)
 [![pub points](https://badges.bar/flutter_screenutil/pub%20points)](https://pub.dev/packages/flutter_screenutil/score)
 [![popularity](https://badges.bar/flutter_screenutil/popularity)](https://pub.dev/packages/flutter_screenutil/score)
@@ -15,11 +16,13 @@
 
 [Update log](https://github.com/OpenFlutter/flutter_screenutil/blob/master/CHANGELOG.md)
 
-## Usage:
+## Usage
 
-### Add dependency：
+### Add dependency
+
 Please check the latest version before installation.
 If there is any problem with the new version, please use the previous version
+
 ```yaml
 dependencies:
   flutter:
@@ -27,61 +30,31 @@ dependencies:
   # add flutter_screenutil
   flutter_screenutil: ^{latest version}
 ```
-### Add the following imports to your Dart code:
+
+### Add the following imports to your Dart code
+
 ```dart
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 ```
 
 ### Property
-<table style="width:100%">
-	<tr>
-		<th>Property</th>
-		<th>Type</th>
-		<th>Default Value</th>
-		<th>Description</th>
-	</tr>
-	<tr>
-		<td>designSize</td>
-		<td>Size</td>
-		<td>Size(360, 690)</td>
-		<td>The size of the device screen in the design draft, in dp</td>
-	</tr>
-	<tr>
-		<td>builder</td>
-		<td>Widget Function()</td>
-		<td>Container()</td>
-		<td>Generally returning a Function of MaterialApp type</td>
-	</tr>
-	<tr>
-		<td>orientation</td>
-		<td>Orientation</td>
-		<td>portrait</td>
-		<td>screen orientation</td>
-	</tr>
-	<tr>
-		<td>splitScreenMode</td>
-		<td>bool</td>
-		<td>true</td>
-		<td>support for split screen</td>
-	</tr>
-	<tr>
-		<td>minTextAdapt</td>
-		<td>bool</td>
-		<td>false</td>
-		<td>Whether to adapt the text according to the minimum of width and height</td>
-	</tr>
-    <tr>
-		<td>context</td>
-		<td>BuildContext</td>
-		<td>null</td>
-		<td>If context!=null, screen changes will be more sensitive</td>
-	</tr>
-</table>
 
-### Initialize and set the fit size and font size to scale according to the system's "font size" accessibility option
+| Property        | Type          | Default Value  | Description                                                            |
+| --------------- | ------------- | -------------- | ---------------------------------------------------------------------- |
+| deviceSize      | Size          | null           | The size of the physical device                                        |
+| designSize      | Size          | Size(360, 690) | The size of the device screen in the design draft, in dp               |
+| builder         | WidgetBuilder | (*required*)   | Generally returning a Function of MaterialApp type                     |
+| orientation     | Orientation   | portrait       | screen orientation                                                     |
+| splitScreenMode | bool          | true           | support for split screen                                               |
+| minTextAdapt    | bool          | false          | Whether to adapt the text according to the minimum of width and height |
+| context         | BuildContext  | null           | Get physical device data if not provided, by MediaQuery.of(context)    |
+
+### Initialize and set the fit size and font size to scale according to the system's "font size" accessibility option |
+
 Please set the size of the design draft before use, the width and height of the design draft.
 
-#### The first way:
+#### The first way
+
 ```dart
 void main() => runApp(MyApp());
 
@@ -93,44 +66,66 @@ class MyApp extends StatelessWidget {
       designSize: Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: () =>
-          MaterialApp(
-            //... other code
-            builder: (context, widget) {
-              //add this line
-              ScreenUtil.setContext(context);
-              return MediaQuery(
-                //Setting font does not change with system font size
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                child: widget!,
-              );
-            },
-            theme: ThemeData(
-              textTheme: TextTheme(
-                //To support the following, you need to use the first initialization method
-                  button: TextStyle(fontSize: 45.sp)
-              ),
-            ),
+      builder: (_) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          // Use this line to prevent extra rebuilds
+          useInheritedMediaQuery: true,
+          title: 'First Method',
+          // You can use the library anywhere in the app even in theme
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            textTheme: TextTheme(bodyText2: TextStyle(fontSize: 30.sp)),
           ),
+          home: HomePage(title: 'First Method'),
+        );
+      },
     );
   }
 }
 
 ```
-#### The second way:Does not support font adaptation in the textTheme of MaterialApp's theme.
+
+#### The second way:You need a trick to support font adaptation in the textTheme of app theme
+
 **Hybrid development uses the second way**
 **(If it is not necessary, it is recommended to use the second)**
 
 not support this:
+
 ```dart
 MaterialApp(
   ...
+  //To support the following, you need to use the first initialization method
   theme: ThemeData(
-           textTheme: TextTheme(
-             //To support the following, you need to use the first initialization method
-             button: TextStyle(fontSize: 45.sp)
-             ),
-           ),
+    textTheme: TextTheme(
+      button: TextStyle(fontSize: 45.sp)
+    ),
+  ),
+)
+```
+
+but you can do this:
+
+```dart
+void main() async {
+  // Add this line
+  await ScreenUtil.ensureScreenSize();
+  runApp(MyApp());
+}
+...
+MaterialApp(
+  ...
+  builder: (ctx, child) {
+    ScreenUtil.init(ctx);
+    return Theme(
+      data: ThemeData(
+        primarySwatch: Colors.blue,
+        textTheme: TextTheme(bodyText2: TextStyle(fontSize: 30.sp)),
+      ),
+      child: HomePage(title: 'FlutterScreenUtil Demo'),
+    );
+  },
 )
 ```
 
@@ -161,21 +156,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    //Set the fit size (fill in the screen size of the device in the design) If the design is based on the size of the 360*690(dp)
-    ScreenUtil.init(
-        BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width,
-            maxHeight: MediaQuery.of(context).size.height),
-        designSize: Size(360, 690),
-        context: context,
-        minTextAdapt: true,
-        orientation: Orientation.portrait);
-    return Scaffold();
+    //Set the fit size (fill in the screen size of the device in the design) 
+    //If the design is based on the size of the 360*690(dp)
+    ScreenUtil.init(context, designSize: const Size(360, 690));
+    ...
   }
 }
 ```
-
-### Use：
 
 ### API
 
@@ -208,7 +195,7 @@ class _HomePageState extends State<HomePage> {
     EdgeInsets.only(left:8,right:8).r // EdgeInsets.only(left:8.r,right:8.r).
 ```
 
-#### Adapt screen size：
+#### Adapt screen size
 
 Pass the dp size of the design draft((The unit is the same as the unit at initialization))：
 
@@ -221,20 +208,24 @@ If your dart sdk>=2.6, you can use extension functions:
 example:
 
 instead of :
+
 ```dart
 Container(
-width: ScreenUtil().setWidth(50),
-height:ScreenUtil().setHeight(200),
+  width: ScreenUtil().setWidth(50),
+  height:ScreenUtil().setHeight(200),
 )
 ```
+
 you can use it like this:
+
 ```dart
 Container(
-width: 50.w,
-height:200.h
+  width: 50.w,
+  height:200.h
 )
 ```
-**Note** 
+
+#### `Note`
 
 The height can also use setWidth to ensure that it is not deformed(when you want a square)
 
@@ -245,29 +236,33 @@ Generally speaking, 50.w!=50.h.
 ```dart
 //for example:
 
-///If you want to display a square:
-///The UI may show a rectangle:
+//If you want to display a rectangle:
 Container(
-           width: 375.w,
-           height: 375.h,
-            ),
+  width: 375.w,
+  height: 375.h,
+),
             
-////If you want to display a square:
+//If you want to display a square based on width:
 Container(
-           width: 300.w,
-           height: 300.w,
-            ),
+  width: 300.w,
+  height: 300.w,
+),
 
-or
-
+//If you want to display a square based on height:
 Container(
-           width: 300.r,
-           height: 300.r,
-            ),
+  width: 300.h,
+  height: 300.h,
+),
+
+//If you want to display a square based on minimum(height, width):
+Container(
+  width: 300.r,
+  height: 300.r,
+),
 ```
 
+#### Adapter font
 
-#### Adapter font:
 ``` dart
 //Incoming font size(The unit is the same as the unit at initialization)
 ScreenUtil().setSp(28) 
@@ -275,60 +270,74 @@ ScreenUtil().setSp(28)
 
 //for example:
 Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  '16sp, will not change with the system.',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16.sp,
-                  ),
-                  textScaleFactor: 1.0,
-                ),
-                Text(
-                  '16sp,if data is not set in MediaQuery,my font size will change with the system.',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16.sp,
-                  ),
-                ),
-              ],
-            )
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: <Widget>[
+    Text(
+      '16sp, will not change with the system.',
+      style: TextStyle(
+        color: Colors.black,
+        fontSize: 16.sp,
+      ),
+      textScaleFactor: 1.0,
+    ),
+    Text(
+      '16sp,if data is not set in MediaQuery,my font size will change with the system.',
+      style: TextStyle(
+        color: Colors.black,
+        fontSize: 16.sp,
+      ),
+    ),
+  ],
+)
 ```
 
 #### Setting font does not change with system font size
 
 APP global:
+
 ```dart
- MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter_ScreenUtil',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        builder: (context, widget) {
-          return MediaQuery(
-            ///Setting font does not change with system font size
-            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-            child: widget,
-          );
-        },
-        home: HomePage(title: 'FlutterScreenUtil Demo'),
-      ),
+MaterialApp(
+  debugShowCheckedModeBanner: false,
+  title: 'Flutter_ScreenUtil',
+  theme: ThemeData(
+    primarySwatch: Colors.blue,
+  ),
+  builder: (context, widget) {
+    return MediaQuery(
+      ///Setting font does not change with system font size
+      data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+      child: widget,
+    );
+  },
+  home: HomePage(title: 'FlutterScreenUtil Demo'),
+),
 ```
 
-Separate Text:
+Specified Text:
+
 ```dart
 Text("text", textScaleFactor: 1.0)
 ```
 
+Specified Widget:
+
+```dart
+MediaQuery(
+  // If there is no context available you can wrap [MediaQuery] with [Builder]
+  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+  child: AnyWidget(),
+)
+```
+
 [widget test](https://github.com/OpenFlutter/flutter_screenutil/issues/115)
 
-### Example:
+### Example
 
-[example demo](https://github.com/OpenFlutter/flutter_screenutil/blob/master/example/lib/main.dart)
- 
-### Effect:
+[example demo](https://github.com/OpenFlutter/flutter_screenutil/blob/master/example/lib)
+
+To use second method run: `flutter run --dart-define=method=2`
+
+### Effect
 
 ![effect](demo_en.png)
 ![tablet effect](demo_tablet_en.png)
