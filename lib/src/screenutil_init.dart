@@ -1,4 +1,5 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter/rendering.dart';
 
 import 'screen_util.dart';
 
@@ -12,7 +13,7 @@ class ScreenUtilInit extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  final Widget Function() builder;
+  final WidgetBuilder builder;
   final bool splitScreenMode;
   final bool minTextAdapt;
 
@@ -20,24 +21,21 @@ class ScreenUtilInit extends StatelessWidget {
   final Size designSize;
 
   @override
-  Widget build(BuildContext context) {
-    return MediaQuery(
-      data: MediaQueryData.fromWindow(WidgetsBinding.instance!.window),
-      child: LayoutBuilder(builder: (_, BoxConstraints constraints) {
-        if (constraints.maxWidth != 0) {
-          final Orientation orientation =
-              constraints.maxWidth > constraints.maxHeight
-                  ? Orientation.landscape
-                  : Orientation.portrait;
-          ScreenUtil.init(constraints,
-              context: _,
-              orientation: orientation,
-              designSize: designSize,
-              splitScreenMode: splitScreenMode,
-              minTextAdapt: minTextAdapt);
-          return builder();
-        }
-        return Container();
+  Widget build(BuildContext _) {
+    RendererBinding.instance!.deferFirstFrame();
+
+    return MediaQuery.fromWindow(
+      child: Builder(builder: (context) {
+        if (MediaQuery.of(context).size == Size.zero) return const SizedBox();
+        ScreenUtil.init(
+          context,
+          designSize: designSize,
+          splitScreenMode: splitScreenMode,
+          minTextAdapt: minTextAdapt,
+        );
+
+        RendererBinding.instance!.allowFirstFrame();
+        return builder(context);
       }),
     );
   }

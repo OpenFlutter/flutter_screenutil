@@ -4,7 +4,7 @@
  */
 
 import 'dart:math' show min, max;
-import 'dart:ui' show SingletonFlutterWindow;
+import 'dart:ui' show FlutterWindow;
 
 import 'package:flutter/widgets.dart';
 
@@ -22,7 +22,7 @@ class ScreenUtil {
   late double _screenWidth;
   late double _screenHeight;
   late bool _minTextAdapt;
-  late BuildContext? context;
+  BuildContext? context;
   late bool _splitScreenMode;
 
   ScreenUtil._();
@@ -31,36 +31,74 @@ class ScreenUtil {
     return _instance;
   }
 
+  /// Manually wait for window size to be initialized
+  ///
+  /// `Recommended` to use before you need access window size
+  /// or in custom splash/bootstrap screen [FutureBuilder]
+  ///
+  /// example:
+  /// ```dart
+  /// ...
+  /// ScreenUtil.init(context, ...);
+  /// ...
+  ///   FutureBuilder(
+  ///     future: Future.wait([..., ensureScreenSize(), ...]),
+  ///     builder: (context, snapshot) {
+  ///       if (snapshot.hasData) return const HomeScreen();
+  ///       return Material(
+  ///         child: LayoutBuilder(
+  ///           ...
+  ///         ),
+  ///       );
+  ///     },
+  ///   )
+  /// ```
   static Future<void> ensureScreenSize([
-    SingletonFlutterWindow? window,
+    FlutterWindow? window,
     Duration duration = const Duration(milliseconds: 10),
   ]) async {
-    window ??= WidgetsFlutterBinding.ensureInitialized().window;
-    return window.viewConfiguration.geometry.isEmpty
-        ? Future.delayed(duration, () => ensureScreenSize(window, duration))
-        : Future.value();
+    final binding = WidgetsFlutterBinding.ensureInitialized();
+    window ??= binding.window;
+
+    if (window.viewConfiguration.geometry.isEmpty) {
+      return Future.delayed(duration, () async {
+        binding.deferFirstFrame();
+        await ensureScreenSize(window, duration);
+        return binding.allowFirstFrame();
+      });
+    }
   }
 
   static void setContext(BuildContext context) {
     _instance.context = context;
   }
 
+  /// Initializing the library.
   static void init(
-    BoxConstraints constraints, {
-    BuildContext? context,
-    Orientation orientation = Orientation.portrait,
+    BuildContext context, {
+    Orientation? orientation,
+    Size? deviceSize,
     Size designSize = defaultSize,
     bool splitScreenMode = false,
     bool minTextAdapt = false,
   }) {
+    print('init called');
+    final deviceData = MediaQuery.maybeOf(context).nonEmptySizeOrNull();
+
+    deviceSize ??= deviceData?.size ?? designSize;
+    orientation ??= deviceData?.orientation ??
+        (deviceSize.width > deviceSize.height
+            ? Orientation.landscape
+            : Orientation.portrait);
+
     _instance = ScreenUtil._()
       ..uiSize = designSize
       .._splitScreenMode = splitScreenMode
       .._minTextAdapt = minTextAdapt
       .._orientation = orientation
-      .._screenWidth = constraints.maxWidth
-      .._screenHeight = constraints.maxHeight;
-    if (context != null) setContext(context);
+      .._screenWidth = deviceSize.width
+      .._screenHeight = deviceSize.height
+      ..context = deviceData != null ? context : null;
   }
 
   ///获取屏幕方向
@@ -148,4 +186,13 @@ class ScreenUtil {
 
   Widget setVerticalSpacingRadius(num height) =>
       SizedBox(height: radius(height));
+}
+
+extension on MediaQueryData? {
+  MediaQueryData? nonEmptySizeOrNull() {
+    if (this?.size.isEmpty ?? true)
+      return null;
+    else
+      return this;
+  }
 }
