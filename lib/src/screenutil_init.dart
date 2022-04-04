@@ -22,6 +22,7 @@ class ScreenUtilInit extends StatelessWidget {
 
   @override
   Widget build(BuildContext _) {
+    bool firstFrameAllowed = false;
     RendererBinding.instance!.deferFirstFrame();
 
     return MediaQuery.fromWindow(
@@ -34,7 +35,11 @@ class ScreenUtilInit extends StatelessWidget {
           minTextAdapt: minTextAdapt,
         );
 
-        RendererBinding.instance!.allowFirstFrame();
+        if (!firstFrameAllowed) {
+          RendererBinding.instance!.allowFirstFrame();
+          firstFrameAllowed = true;
+        }
+
         return builder(context);
       }),
     );
