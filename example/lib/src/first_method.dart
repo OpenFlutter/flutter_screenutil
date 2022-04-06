@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
           // You can use the library anywhere in the app even in theme
           theme: ThemeData(
             primarySwatch: Colors.blue,
-            textTheme: TextTheme(bodyText2: TextStyle(fontSize: 30.sp)),
+            textTheme: TextTheme(bodyText2: TextStyle(fontSize: 16.sp)),
           ),
           home: HomePage(title: 'First Method'),
         );

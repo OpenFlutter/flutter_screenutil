@@ -84,18 +84,12 @@ class HomePageScaffold extends StatelessWidget {
             Text('Bottom safe zone distance:${ScreenUtil().bottomBarHeight}dp'),
             Text('Status bar height:${ScreenUtil().statusBarHeight}dp'),
             Text(
-              'The ratio of actual width to UI design:${ScreenUtil().scaleWidth}',
-              textAlign: TextAlign.center,
-            ),
+                'The ratio of actual width to UI design:${ScreenUtil().scaleWidth}'),
             Text(
-              'The ratio of actual height to UI design:${ScreenUtil().scaleHeight}',
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(
-              height: 10.h,
-            ),
+                'The ratio of actual height to UI design:${ScreenUtil().scaleHeight}'),
+            10.verticalSpace,
             Text('System font scaling factor:${ScreenUtil().textScaleFactor}'),
-            SizedBox(height: 5),
+            5.verticalSpace,
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
