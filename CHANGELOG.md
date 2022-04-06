@@ -1,3 +1,6 @@
+# 5.4.0
+- merge #352
+
 # 5.3.1
 - add num.verticalSpacingRadius
   num.horizontalSpaceRadius
