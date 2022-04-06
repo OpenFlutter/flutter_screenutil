@@ -45,7 +45,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 | designSize      | Size          | Size(360, 690) | The size of the device screen in the design draft, in dp               |
 | builder         | WidgetBuilder | (*required*)   | Generally returning a Function of MaterialApp type                     |
 | orientation     | Orientation   | portrait       | screen orientation                                                     |
-| splitScreenMode | bool          | true           | support for split screen                                               |
+| splitScreenMode | bool          | false           | support for split screen                                               |
 | minTextAdapt    | bool          | false          | Whether to adapt the text according to the minimum of width and height |
 | context         | BuildContext  | null           | Get physical device data if not provided, by MediaQuery.of(context)    |
 
