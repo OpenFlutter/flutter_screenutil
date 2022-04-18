@@ -82,7 +82,6 @@ class ScreenUtil {
     bool splitScreenMode = false,
     bool minTextAdapt = false,
   }) {
-    print('init called');
     final deviceData = MediaQuery.maybeOf(context).nonEmptySizeOrNull();
 
     deviceSize ??= deviceData?.size ?? designSize;
