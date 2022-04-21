@@ -29,7 +29,7 @@ class ScreenUtilInit extends StatelessWidget {
       child: Builder(builder: (context) {
         if (MediaQuery.of(context).size == Size.zero) return const SizedBox();
         ScreenUtil.init(
-          context,
+          context: context,
           designSize: designSize,
           splitScreenMode: splitScreenMode,
           minTextAdapt: minTextAdapt,
