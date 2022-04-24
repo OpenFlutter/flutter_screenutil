@@ -77,7 +77,6 @@ class ScreenUtil {
   static void init(
     BuildContext? context, {
     Orientation? orientation,
-    Size? deviceSize,
     Size designSize = defaultSize,
     bool splitScreenMode = false,
     bool minTextAdapt = false,
@@ -86,7 +85,7 @@ class ScreenUtil {
         ? MediaQuery.maybeOf(context).nonEmptySizeOrNull()
         : null;
 
-    deviceSize ??= deviceData?.size ?? designSize;
+    Size deviceSize = deviceData?.size ?? designSize;
     orientation ??= deviceData?.orientation ??
         (deviceSize.width > deviceSize.height
             ? Orientation.landscape
