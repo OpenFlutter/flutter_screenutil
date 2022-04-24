@@ -75,14 +75,16 @@ class ScreenUtil {
 
   /// Initializing the library.
   static void init(
-    BuildContext context, {
+    BuildContext? context, {
     Orientation? orientation,
     Size? deviceSize,
     Size designSize = defaultSize,
     bool splitScreenMode = false,
     bool minTextAdapt = false,
   }) {
-    final deviceData = MediaQuery.maybeOf(context).nonEmptySizeOrNull();
+    final deviceData = context != null
+        ? MediaQuery.maybeOf(context).nonEmptySizeOrNull()
+        : null;
 
     deviceSize ??= deviceData?.size ?? designSize;
     orientation ??= deviceData?.orientation ??
@@ -97,7 +99,7 @@ class ScreenUtil {
       .._orientation = orientation
       .._screenWidth = deviceSize.width
       .._screenHeight = deviceSize.height
-      ..context = deviceData != null ? context : null;
+      ..context = context;
   }
 
   ///获取屏幕方向
