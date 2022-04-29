@@ -31,6 +31,7 @@ class HomePageScaffold extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            TextField(),
             Row(
               children: <Widget>[
                 // Using Extensions
