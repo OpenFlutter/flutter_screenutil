@@ -121,43 +121,13 @@ class ScreenUtil {
 
   /// 当前设备宽度 dp
   /// The horizontal extent of this size.
-  double get screenWidth {
-    if (_orientation == Orientation.landscape) {
-      return (context != null
-          ? MediaQuery.of(context!).size.height
-          : _screenHeight);
-    }
-    return context != null ? MediaQuery.of(context!).size.width : _screenWidth;
-  }
+  double get screenWidth =>
+      context != null ? MediaQuery.of(context!).size.width : _screenWidth;
 
   ///当前设备高度 dp
   ///The vertical extent of this size. dp
-  double get screenHeight {
-    if (_orientation == Orientation.landscape) {
-      return context != null
-          ? MediaQuery.of(context!).size.width
-          : _screenWidth;
-    }
-    return context != null
-        ? MediaQuery.of(context!).size.height
-        : _screenHeight;
-  }
-
-  Size get screenSize {
-    if (_orientation == Orientation.landscape) {
-      double width = (context != null
-              ? MediaQuery.of(context!).size.height
-              : _screenHeight) +
-          bottomBarHeight;
-      double height =
-          (context != null ? MediaQuery.of(context!).size.width : _screenWidth);
-
-      return Size(width, height);
-    }
-    return Size(
-        context != null ? MediaQuery.of(context!).size.width : _screenWidth,
-        context != null ? MediaQuery.of(context!).size.height : _screenHeight);
-  }
+  double get screenHeight =>
+      context != null ? MediaQuery.of(context!).size.height : _screenHeight;
 
   /// 状态栏高度 dp 刘海屏会更高
   /// The offset from the top, in dp
