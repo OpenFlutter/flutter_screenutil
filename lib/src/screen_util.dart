@@ -10,7 +10,7 @@ import 'package:flutter/widgets.dart';
 
 class ScreenUtil {
   static const Size defaultSize = Size(360, 690);
-  static late ScreenUtil _instance;
+  static ScreenUtil? _instance;
 
   /// UI设计中手机尺寸 , dp
   /// Size of the phone in UI Design , dp
@@ -28,7 +28,7 @@ class ScreenUtil {
   ScreenUtil._();
 
   factory ScreenUtil() {
-    return _instance;
+    return _instance ??= ScreenUtil._();
   }
 
   /// Manually wait for window size to be initialized
@@ -70,7 +70,7 @@ class ScreenUtil {
   }
 
   static void setContext(BuildContext context) {
-    _instance.context = context;
+    _instance?.context = context;
   }
 
   /// Initializing the library.
@@ -81,19 +81,36 @@ class ScreenUtil {
     Size designSize = defaultSize,
     bool splitScreenMode = false,
     bool minTextAdapt = false,
+    void Function(Size? oldSize, Size size)? onDeviceSizeChange,
+    void Function(Orientation? oldOrientation, Orientation orientation)? onOrientationChange,
   }) {
     final mediaQueryContext =
         context?.getElementForInheritedWidgetOfExactType<MediaQuery>();
 
-    final deviceData = mediaQueryContext != null
-        ? MediaQuery.of(context!).nonEmptySizeOrNull()
+    final deviceData = context != null
+        ? MediaQuery.of(context).nonEmptySizeOrNull()
         : null;
 
     deviceSize ??= deviceData?.size ?? designSize;
+
     orientation ??= deviceData?.orientation ??
         (deviceSize.width > deviceSize.height
             ? Orientation.landscape
             : Orientation.portrait);
+
+    final oldDeviceSize = _instance != null
+        ? Size(_instance!._screenWidth, _instance!._screenHeight)
+        : null;
+
+    final oldOrientation = _instance?._orientation;
+
+    if(oldDeviceSize != deviceSize) {
+      onDeviceSizeChange?.call(oldDeviceSize, deviceSize);
+    }
+
+    if(oldOrientation != orientation) {
+      onOrientationChange?.call(oldOrientation, orientation);
+    }
 
     _instance = ScreenUtil._()
       ..uiSize = designSize
@@ -102,7 +119,7 @@ class ScreenUtil {
       .._orientation = orientation
       .._screenWidth = deviceSize.width
       .._screenHeight = deviceSize.height
-      ..context = mediaQueryContext;
+      ..context = context;
   }
 
   ///获取屏幕方向
