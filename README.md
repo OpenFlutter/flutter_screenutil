@@ -49,7 +49,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 | minTextAdapt    | bool          | false          | Whether to adapt the text according to the minimum of width and height |
 | context         | BuildContext  | null           | Get physical device data if not provided, by MediaQuery.of(context)    |
 
-### Initialize and set the fit size and font size to scale according to the system's "font size" accessibility option |
+### Initialize and set the fit size and font size to scale according to the system's "font size" accessibility option 
 
 Please set the size of the design draft before use, the width and height of the design draft.
 
