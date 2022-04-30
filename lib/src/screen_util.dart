@@ -69,8 +69,19 @@ class ScreenUtil {
     }
   }
 
-  static void setContext(BuildContext context) {
-    _instance.context = context;
+  /// ### Experimental
+  /// Register current page and all its descendants to rebuild
+  /// Helpful when building for web and desktop
+  static void registerToBuild(
+    BuildContext context, [
+    bool withDescendants = false,
+  ]) {
+    MediaQuery.maybeOf(context);
+    if (withDescendants) {
+      (context as Element).visitChildren((element) {
+        registerToBuild(element, true);
+      });
+    }
   }
 
   /// Initializing the library.
@@ -89,6 +100,8 @@ class ScreenUtil {
         ? MediaQuery.of(context!).nonEmptySizeOrNull()
         : null;
 
+    mediaQueryContext?.visitChildren((el) => context = el);
+
     deviceSize ??= deviceData?.size ?? designSize;
     orientation ??= deviceData?.orientation ??
         (deviceSize.width > deviceSize.height
@@ -102,7 +115,7 @@ class ScreenUtil {
       .._orientation = orientation
       .._screenWidth = deviceSize.width
       .._screenHeight = deviceSize.height
-      ..context = mediaQueryContext;
+      ..context = mediaQueryContext != null ? context : null;
   }
 
   ///获取屏幕方向

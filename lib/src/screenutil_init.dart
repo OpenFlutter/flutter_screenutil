@@ -6,14 +6,16 @@ import 'screen_util.dart';
 class ScreenUtilInit extends StatelessWidget {
   /// A helper widget that initializes [ScreenUtil]
   const ScreenUtilInit({
-    required this.builder,
+    this.builder,
+    this.child,
     this.designSize = ScreenUtil.defaultSize,
     this.splitScreenMode = false,
     this.minTextAdapt = false,
     Key? key,
   }) : super(key: key);
 
-  final WidgetBuilder builder;
+  final Widget Function(Widget? child)? builder;
+  final Widget? child;
   final bool splitScreenMode;
   final bool minTextAdapt;
 
@@ -25,11 +27,13 @@ class ScreenUtilInit extends StatelessWidget {
     bool firstFrameAllowed = false;
     RendererBinding.instance!.deferFirstFrame();
 
-    return MediaQuery.fromWindow(
-      child: Builder(builder: (context) {
-        if (MediaQuery.of(context).size == Size.zero) return const SizedBox();
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        if (constraints.biggest == Size.zero) return const SizedBox.shrink();
+
         ScreenUtil.init(
-          context,
+          null,
+          deviceSize: constraints.biggest,
           designSize: designSize,
           splitScreenMode: splitScreenMode,
           minTextAdapt: minTextAdapt,
@@ -40,8 +44,8 @@ class ScreenUtilInit extends StatelessWidget {
           firstFrameAllowed = true;
         }
 
-        return builder(context);
-      }),
+        return builder?.call(child) ?? child!;
+      },
     );
   }
 }

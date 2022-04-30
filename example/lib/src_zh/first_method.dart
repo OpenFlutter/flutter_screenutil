@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // In first method you only need to wrap [MaterialApp] with [ScreenUtilInit] and that's it
     return ScreenUtilInit(
-      builder: (context) {
+      builder: (child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           title: '第一种方法',
@@ -18,9 +18,10 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
             textTheme: TextTheme(bodyText2: TextStyle(fontSize: 30.sp)),
           ),
-          home: HomePage(title: '第一种方法'),
+          home: child,
         );
       },
+      child: HomePage(title: '第一种方法'),
     );
   }
 }
