@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:flutter/rendering.dart';
 
 import 'screen_util.dart';
 
@@ -12,7 +11,11 @@ class ScreenUtilInit extends StatelessWidget {
     this.splitScreenMode = false,
     this.minTextAdapt = false,
     Key? key,
-  }) : super(key: key);
+  })  : assert(
+          builder != null || child != null,
+          'You must either pass builder or child or both',
+        ),
+        super(key: key);
 
   final Widget Function(Widget? child)? builder;
   final Widget? child;
@@ -23,28 +26,37 @@ class ScreenUtilInit extends StatelessWidget {
   final Size designSize;
 
   @override
-  Widget build(BuildContext _) {
+  Widget build(BuildContext context) {
     bool firstFrameAllowed = false;
-    RendererBinding.instance!.deferFirstFrame();
+    final binding = WidgetsFlutterBinding.ensureInitialized();
+    binding.deferFirstFrame();
+
+    final rootMediaQueryData = (context
+            .getElementForInheritedWidgetOfExactType<MediaQuery>()
+            ?.widget as MediaQuery?)
+        ?.data;
 
     return LayoutBuilder(
-      builder: (context, constraints) {
+      builder: (_, constraints) {
         if (constraints.biggest == Size.zero) return const SizedBox.shrink();
 
-        ScreenUtil.init(
-          null,
-          deviceSize: constraints.biggest,
-          designSize: designSize,
-          splitScreenMode: splitScreenMode,
-          minTextAdapt: minTextAdapt,
-        );
-
         if (!firstFrameAllowed) {
-          RendererBinding.instance!.allowFirstFrame();
+          binding.allowFirstFrame();
           firstFrameAllowed = true;
         }
 
-        return builder?.call(child) ?? child!;
+        return MediaQuery(
+          data: rootMediaQueryData ?? MediaQueryData.fromWindow(binding.window),
+          child: Builder(builder: (_context) {
+            ScreenUtil.init(
+              _context,
+              designSize: designSize,
+              splitScreenMode: splitScreenMode,
+              minTextAdapt: minTextAdapt,
+            );
+            return builder?.call(child) ?? child!;
+          }),
+        );
       },
     );
   }
