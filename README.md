@@ -39,15 +39,16 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ### Property
 
-| Property        | Type          | Default Value  | Description                                                            |
-| --------------- | ------------- | -------------- | ---------------------------------------------------------------------- |
-| deviceSize      | Size          | null           | The size of the physical device                                        |
-| designSize      | Size          | Size(360, 690) | The size of the device screen in the design draft, in dp               |
-| builder         | WidgetBuilder | (*required*)   | Generally returning a Function of MaterialApp type                     |
-| orientation     | Orientation   | portrait       | screen orientation                                                     |
-| splitScreenMode | bool          | false           | support for split screen                                               |
-| minTextAdapt    | bool          | false          | Whether to adapt the text according to the minimum of width and height |
-| context         | BuildContext  | null           | Get physical device data if not provided, by MediaQuery.of(context)    |
+| Property        | Type         | Default Value | Description                                                            |
+| --------------- | ------------ | ------------- | ---------------------------------------------------------------------- |
+| deviceSize      | Size         | null          | The size of the physical device                                        |
+| designSize      | Size         | Size(360,690) | The size of the device screen in the design draft, in dp               |
+| builder         | Function     | null          | Generally returning a Function of MaterialApp type                     |
+| child           | Widget       | null          | A part of builder that never being rebuilt                             |
+| orientation     | Orientation  | portrait      | screen orientation                                                     |
+| splitScreenMode | bool         | false         | support for split screen                                               |
+| minTextAdapt    | bool         | false         | Whether to adapt the text according to the minimum of width and height |
+| context         | BuildContext | null          | Get physical device data if not provided, by MediaQuery.of(context)    |
 
 ### Initialize and set the fit size and font size to scale according to the system's "font size" accessibility option 
 
@@ -66,20 +67,19 @@ class MyApp extends StatelessWidget {
       designSize: Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: (_) {
+      builder: (child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          // Use this line to prevent extra rebuilds
-          useInheritedMediaQuery: true,
           title: 'First Method',
           // You can use the library anywhere in the app even in theme
           theme: ThemeData(
             primarySwatch: Colors.blue,
             textTheme: TextTheme(bodyText2: TextStyle(fontSize: 30.sp)),
           ),
-          home: HomePage(title: 'First Method'),
+          home: child,
         );
       },
+      child: HomePage(title: 'First Method'),
     );
   }
 }
