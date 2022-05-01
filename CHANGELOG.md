@@ -1,5 +1,6 @@
 # 5.5.0
 - Bug Fix: Reaching context that no longer used.
+- Some performance improvements and fixes
 
 # 5.4.0+1
 - delete log
