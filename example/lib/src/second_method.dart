@@ -57,6 +57,7 @@ class MyThemedApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'First Method (Themed)',
       builder: (ctx, child) {
+        ScreenUtil.init(ctx);
         return Theme(
           data: ThemeData(
             primarySwatch: Colors.blue,

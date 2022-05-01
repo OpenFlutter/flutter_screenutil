@@ -56,6 +56,7 @@ class MyThemedApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: '第二种方法（带主题）',
       builder: (ctx, child) {
+        ScreenUtil.init(ctx);
         return Theme(
           data: ThemeData(
             primarySwatch: Colors.blue,
