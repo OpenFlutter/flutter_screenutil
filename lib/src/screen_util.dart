@@ -10,11 +10,11 @@ import 'package:flutter/widgets.dart';
 
 class ScreenUtil {
   static const Size defaultSize = Size(360, 690);
-  static late ScreenUtil _instance;
+  static ScreenUtil _instance = ScreenUtil._();
 
   /// UI设计中手机尺寸 , dp
   /// Size of the phone in UI Design , dp
-  late Size uiSize;
+  late Size _uiSize;
 
   ///屏幕方向
   late Orientation _orientation;
@@ -22,7 +22,7 @@ class ScreenUtil {
   late double _screenWidth;
   late double _screenHeight;
   late bool _minTextAdapt;
-  BuildContext? context;
+  BuildContext? _context;
   late bool _splitScreenMode;
 
   ScreenUtil._();
@@ -69,16 +69,21 @@ class ScreenUtil {
     }
   }
 
+  Set<Element>? _elementsToRebuild;
+
   /// ### Experimental
-  /// Register current page and all its descendants to rebuild
+  /// Register current page and all its descendants to rebuild.
   /// Helpful when building for web and desktop
   static void registerToBuild(
     BuildContext context, [
     bool withDescendants = false,
   ]) {
-    MediaQuery.maybeOf(context);
+    final instance = ScreenUtil();
+    (instance._elementsToRebuild ??= {}).add(context as Element);
+
+    // MediaQuery.maybeOf(context);
     if (withDescendants) {
-      (context as Element).visitChildren((element) {
+      context.visitChildren((element) {
         registerToBuild(element, true);
       });
     }
@@ -108,14 +113,16 @@ class ScreenUtil {
             ? Orientation.landscape
             : Orientation.portrait);
 
-    _instance = ScreenUtil._()
-      ..uiSize = designSize
+    _instance
+      .._uiSize = designSize
       .._splitScreenMode = splitScreenMode
       .._minTextAdapt = minTextAdapt
       .._orientation = orientation
       .._screenWidth = deviceSize.width
       .._screenHeight = deviceSize.height
-      ..context = mediaQueryContext != null ? context : null;
+      .._context = context;
+
+    _instance._elementsToRebuild?.forEach((el) => el.markNeedsBuild());
   }
 
   ///获取屏幕方向
@@ -125,41 +132,41 @@ class ScreenUtil {
   /// 每个逻辑像素的字体像素数，字体的缩放比例
   /// The number of font pixels for each logical pixel.
   double get textScaleFactor =>
-      context != null ? MediaQuery.of(context!).textScaleFactor : 1;
+      _context != null ? MediaQuery.of(_context!).textScaleFactor : 1;
 
   /// 设备的像素密度
   /// The size of the media in logical pixels (e.g, the size of the screen).
   double? get pixelRatio =>
-      context != null ? MediaQuery.of(context!).devicePixelRatio : 1;
+      _context != null ? MediaQuery.of(_context!).devicePixelRatio : 1;
 
   /// 当前设备宽度 dp
   /// The horizontal extent of this size.
   double get screenWidth =>
-      context != null ? MediaQuery.of(context!).size.width : _screenWidth;
+      _context != null ? MediaQuery.of(_context!).size.width : _screenWidth;
 
   ///当前设备高度 dp
   ///The vertical extent of this size. dp
   double get screenHeight =>
-      context != null ? MediaQuery.of(context!).size.height : _screenHeight;
+      _context != null ? MediaQuery.of(_context!).size.height : _screenHeight;
 
   /// 状态栏高度 dp 刘海屏会更高
   /// The offset from the top, in dp
   double get statusBarHeight =>
-      context == null ? 0 : MediaQuery.of(context!).padding.top;
+      _context == null ? 0 : MediaQuery.of(_context!).padding.top;
 
   /// 底部安全区距离 dp
   /// The offset from the bottom, in dp
   double get bottomBarHeight =>
-      context == null ? 0 : MediaQuery.of(context!).padding.bottom;
+      _context == null ? 0 : MediaQuery.of(_context!).padding.bottom;
 
   /// 实际尺寸与UI设计的比例
   /// The ratio of actual width to UI design
-  double get scaleWidth => screenWidth / uiSize.width;
+  double get scaleWidth => screenWidth / _uiSize.width;
 
   ///  /// The ratio of actual height to UI design
   double get scaleHeight =>
       (_splitScreenMode ? max(screenHeight, 700) : screenHeight) /
-      uiSize.height;
+      _uiSize.height;
 
   double get scaleText =>
       _minTextAdapt ? min(scaleWidth, scaleHeight) : scaleWidth;

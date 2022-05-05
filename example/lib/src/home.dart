@@ -23,6 +23,10 @@ class HomePageScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     printScreenInformation();
 
+    /// Uncomment if you wanna force current widget to be rebuilt with updated values
+    /// Use it only if you use the second method, or if you use ScreenUtilInit's child.
+    /// Note: don't use it along with ScreenUtil.init()
+    // ScreenUtil.registerToBuild(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
