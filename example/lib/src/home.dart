@@ -23,6 +23,10 @@ class HomePageScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     printScreenInformation();
 
+    /// Uncomment if you wanna force current widget to be rebuilt with updated values
+    /// Must use it if you use the second method, or if you use ScreenUtilInit's child.
+    /// Note: don't use it along with ScreenUtil.init()
+    // ScreenUtil.registerToBuild(context);
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -78,38 +82,54 @@ class HomePageScaffold extends StatelessWidget {
                 ),
               ),
             ),
-            Text('Device width:${ScreenUtil().screenWidth}dp'),
-            Text('Device height:${ScreenUtil().screenHeight}dp'),
-            Text('Device pixel density:${ScreenUtil().pixelRatio}'),
-            Text('Bottom safe zone distance:${ScreenUtil().bottomBarHeight}dp'),
-            Text('Status bar height:${ScreenUtil().statusBarHeight}dp'),
-            Text(
-                'The ratio of actual width to UI design:${ScreenUtil().scaleWidth}'),
-            Text(
-                'The ratio of actual height to UI design:${ScreenUtil().scaleHeight}'),
-            10.verticalSpace,
-            Text('System font scaling factor:${ScreenUtil().textScaleFactor}'),
-            5.verticalSpace,
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  '16sp, will not change with the system.',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16.sp,
+            Padding(
+              padding: const EdgeInsets.all(18).r,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                    ),
                   ),
-                  textScaleFactor: 1.0,
-                ),
-                Text(
-                  '16sp,if data is not set in MediaQuery,my font size will change with the system.',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16.sp,
+                  18.verticalSpace,
+                  Text('Device width:${ScreenUtil().screenWidth}dp'),
+                  Text('Device height:${ScreenUtil().screenHeight}dp'),
+                  Text('Device pixel density:${ScreenUtil().pixelRatio}'),
+                  Text(
+                      'Bottom safe zone distance:${ScreenUtil().bottomBarHeight}dp'),
+                  Text('Status bar height:${ScreenUtil().statusBarHeight}dp'),
+                  Text(
+                      'The ratio of actual width to UI design:${ScreenUtil().scaleWidth}'),
+                  Text(
+                      'The ratio of actual height to UI design:${ScreenUtil().scaleHeight}'),
+                  10.verticalSpace,
+                  Text(
+                      'System font scaling factor:${ScreenUtil().textScaleFactor}'),
+                  5.verticalSpace,
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Text(
+                        '16sp, will not change with the system.',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16.sp,
+                        ),
+                        textScaleFactor: 1.0,
+                      ),
+                      Text(
+                        '16sp,if data is not set in MediaQuery,my font size will change with the system.',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 16.sp,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            )
+                ],
+              ),
+            ),
           ],
         ),
       ),
