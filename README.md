@@ -39,32 +39,37 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ### Property
 
-| Property        | Type         | Default Value | Description                                                            |
-| --------------- | ------------ | ------------- | ---------------------------------------------------------------------- |
-| deviceSize      | Size         | null          | The size of the physical device                                        |
-| designSize      | Size         | Size(360,690) | The size of the device screen in the design draft, in dp               |
-| builder         | Function     | null          | Generally returning a Function of MaterialApp type                     |
-| child           | Widget       | null          | A part of builder that never being rebuilt                             |
-| orientation     | Orientation  | portrait      | screen orientation                                                     |
-| splitScreenMode | bool         | false         | support for split screen                                               |
-| minTextAdapt    | bool         | false         | Whether to adapt the text according to the minimum of width and height |
-| context         | BuildContext | null          | Get physical device data if not provided, by MediaQuery.of(context)    |
+| Property        | Type         | Default Value | Description                                                                 |
+| --------------- | ------------ | ------------- | --------------------------------------------------------------------------- |
+| deviceSize      | Size         | null          | The size of the physical device                                             |
+| designSize      | Size         | Size(360,690) | The size of the device screen in the design draft, in dp                    |
+| builder         | Function     | null          | Return widget that uses the library in a property (ex: MaterialApp's theme) |
+| child           | Widget       | null          | A part of builder that its dependencies/properties don't use the library    |
+| rebuildFactor   | Function     | *default*     | Returns whether to rebuild or not when screen metrics changes.              |
+| orientation     | Orientation  | portrait      | screen orientation                                                          |
+| splitScreenMode | bool         | false         | support for split screen                                                    |
+| minTextAdapt    | bool         | false         | Whether to adapt the text according to the minimum of width and height      |
+| context         | BuildContext | null          | Get physical device data if not provided, by MediaQuery.of(context)         |
+
+**Note : You must either provide builder, child or both.**
 
 ### Initialize and set the fit size and font size to scale according to the system's "font size" accessibility option 
 
 Please set the size of the design draft before use, the width and height of the design draft.
 
-#### The first way
+#### The first way (Recommended)
 
 ```dart
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     //Set the fit size (Find your UI design, look at the dimensions of the device screen and fill it in,unit in dp)
     return ScreenUtilInit(
-      designSize: Size(360, 690),
+      designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (child) {
@@ -74,22 +79,20 @@ class MyApp extends StatelessWidget {
           // You can use the library anywhere in the app even in theme
           theme: ThemeData(
             primarySwatch: Colors.blue,
-            textTheme: TextTheme(bodyText2: TextStyle(fontSize: 30.sp)),
+            textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
           ),
           home: child,
         );
       },
-      child: HomePage(title: 'First Method'),
+      child: const HomePage(title: 'First Method'),
     );
   }
 }
-
 ```
 
 #### The second way:You need a trick to support font adaptation in the textTheme of app theme
 
 **Hybrid development uses the second way**
-**(If it is not necessary, it is recommended to use the second)**
 
 not support this:
 
