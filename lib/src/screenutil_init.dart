@@ -2,15 +2,21 @@ import 'package:flutter/widgets.dart';
 
 import 'screen_util.dart';
 
-class ScreenUtilInit extends StatelessWidget {
+typedef RebuildFactor = bool Function(MediaQueryData old, MediaQueryData data);
+
+bool defaultRebuildFactor(old, data) => old.size != data.size;
+
+class ScreenUtilInit extends StatefulWidget {
   /// A helper widget that initializes [ScreenUtil]
   const ScreenUtilInit({
+    Key? key,
     this.builder,
     this.child,
+    this.rebuildFactor = defaultRebuildFactor,
     this.designSize = ScreenUtil.defaultSize,
     this.splitScreenMode = false,
     this.minTextAdapt = false,
-    Key? key,
+    this.useInheritedMediaQuery = false,
   })  : assert(
           builder != null || child != null,
           'You must either pass builder or child or both',
@@ -21,43 +27,106 @@ class ScreenUtilInit extends StatelessWidget {
   final Widget? child;
   final bool splitScreenMode;
   final bool minTextAdapt;
+  final bool useInheritedMediaQuery;
+  final RebuildFactor rebuildFactor;
 
   /// The [Size] of the device in the design draft, in dp
   final Size designSize;
 
   @override
-  Widget build(BuildContext context) {
-    bool firstFrameAllowed = false;
-    final binding = WidgetsFlutterBinding.ensureInitialized();
-    binding.deferFirstFrame();
+  State<ScreenUtilInit> createState() => _ScreenUtilInitState();
+}
 
-    final rootMediaQueryData = (context
-            .getElementForInheritedWidgetOfExactType<MediaQuery>()
-            ?.widget as MediaQuery?)
-        ?.data;
+class _ScreenUtilInitState extends State<ScreenUtilInit>
+    with WidgetsBindingObserver {
+  late MediaQueryData mediaQueryData;
+  bool wrappedInMediaQuery = false;
 
-    return LayoutBuilder(
-      builder: (_, constraints) {
-        if (constraints.biggest == Size.zero) return const SizedBox.shrink();
+  WidgetsBinding get binding => WidgetsFlutterBinding.ensureInitialized();
 
-        if (!firstFrameAllowed) {
-          binding.allowFirstFrame();
-          firstFrameAllowed = true;
-        }
+  MediaQueryData get newData {
+    if (widget.useInheritedMediaQuery) {
+      final el = context.getElementForInheritedWidgetOfExactType<MediaQuery>();
+      final mq = el?.widget as MediaQuery?;
+      final data = mq?.data;
 
-        return MediaQuery(
-          data: rootMediaQueryData ?? MediaQueryData.fromWindow(binding.window),
-          child: Builder(builder: (_context) {
-            ScreenUtil.init(
-              _context,
-              designSize: designSize,
-              splitScreenMode: splitScreenMode,
-              minTextAdapt: minTextAdapt,
-            );
-            return builder?.call(child) ?? child!;
-          }),
-        );
-      },
+      if (data != null) {
+        wrappedInMediaQuery = true;
+        return data;
+      }
+    }
+
+    return MediaQueryData.fromWindow(binding.window);
+  }
+
+  Widget get child {
+    return SizedBox(
+      key: GlobalObjectKey(
+        hashValues(
+          mediaQueryData.size.width,
+          mediaQueryData.size.height,
+        ),
+      ),
+      child: widget.builder?.call(widget.child) ?? widget.child!,
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    mediaQueryData = newData;
+    binding.addObserver(this);
+  }
+
+  @override
+  void didChangeMetrics() {
+    final old = mediaQueryData;
+    final data = newData;
+
+    if (widget.rebuildFactor(old, data)) setState(() => mediaQueryData = data);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    didChangeMetrics();
+  }
+
+  @override
+  void dispose() {
+    binding.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext _context) {
+    if (mediaQueryData.size == Size.zero) return const SizedBox.shrink();
+
+    if (!wrappedInMediaQuery) {
+      return MediaQuery(
+        // key: GlobalObjectKey('mediaQuery'),
+        data: mediaQueryData,
+        child: Builder(
+          builder: (__context) {
+            ScreenUtil.init(
+              __context,
+              designSize: widget.designSize,
+              splitScreenMode: widget.splitScreenMode,
+              minTextAdapt: widget.minTextAdapt,
+            );
+            return child;
+          },
+        ),
+      );
+    }
+
+    ScreenUtil.init(
+      _context,
+      designSize: widget.designSize,
+      splitScreenMode: widget.splitScreenMode,
+      minTextAdapt: widget.minTextAdapt,
+    );
+
+    return child;
   }
 }
