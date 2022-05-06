@@ -1,3 +1,7 @@
+# 5.5.2
+- Add rebuildFactor property
+- Bug Fix: False sizes when resizing
+
 # 5.5.1
 - Bug Fix: Assertion Failed (Find MediaQuery in ancestors)
 - Some performance improvements and fixes
