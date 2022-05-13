@@ -63,6 +63,7 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
     return SizedBox(
       key: GlobalObjectKey(
         hashValues(
+          this,
           mediaQueryData.size.width,
           mediaQueryData.size.height,
         ),
@@ -101,7 +102,6 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
   @override
   Widget build(BuildContext _context) {
     if (mediaQueryData.size == Size.zero) return const SizedBox.shrink();
-
     if (!wrappedInMediaQuery) {
       return MediaQuery(
         // key: GlobalObjectKey('mediaQuery'),
