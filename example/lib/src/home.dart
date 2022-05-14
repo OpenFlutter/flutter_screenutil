@@ -93,6 +93,64 @@ class HomePageScaffold extends StatelessWidget {
                     ),
                   ),
                   18.verticalSpace,
+                  ElevatedButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (_) {
+                          return Dialog(
+                            child: Padding(
+                              padding: EdgeInsets.all(12.r),
+                              child: const Text('Dialog'),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: const Text('Show Dialog'),
+                  ),
+                  18.verticalSpace,
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) {
+                          return ScreenUtilInit(builder: (context) {
+                            return HomePageScaffold(title: title);
+                          });
+                        }),
+                      );
+                    },
+                    child: const Text('Go to next page'),
+                  ),
+                  18.verticalSpace,
+                  ElevatedButton(
+                    onPressed: () {
+                      showModalBottomSheet<void>(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return Container(
+                            height: 200.w,
+                            color: Colors.amber,
+                            child: Center(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: <Widget>[
+                                  const Text('Modal BottomSheet'),
+                                  ElevatedButton(
+                                    child: const Text('Close BottomSheet'),
+                                    onPressed: Navigator.of(context).pop,
+                                  )
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    child: const Text('Open BottomSheet'),
+                  ),
+                  18.verticalSpace,
                   Text('Device width:${ScreenUtil().screenWidth}dp'),
                   Text('Device height:${ScreenUtil().screenHeight}dp'),
                   Text('Device pixel density:${ScreenUtil().pixelRatio}'),

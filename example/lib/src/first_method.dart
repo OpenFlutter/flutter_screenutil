@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
     return ScreenUtilInit(
       builder: (child) {
         return MaterialApp(
+          key: const GlobalObjectKey('screen-util'),
           debugShowCheckedModeBanner: false,
           title: 'First Method',
           // You can use the library anywhere in the app even in theme
