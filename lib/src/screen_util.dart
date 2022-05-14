@@ -5,6 +5,7 @@
 
 import 'dart:math' show min, max;
 import 'dart:ui' show FlutterWindow;
+import 'dart:async' show Completer;
 
 import 'package:flutter/widgets.dart';
 
@@ -78,10 +79,8 @@ class ScreenUtil {
     BuildContext context, [
     bool withDescendants = false,
   ]) {
-    final instance = ScreenUtil();
-    (instance._elementsToRebuild ??= {}).add(context as Element);
+    (_instance._elementsToRebuild ??= {}).add(context as Element);
 
-    // MediaQuery.maybeOf(context);
     if (withDescendants) {
       context.visitChildren((element) {
         registerToBuild(element, true);
@@ -90,25 +89,27 @@ class ScreenUtil {
   }
 
   /// Initializing the library.
-  static void init(
-    BuildContext? context, {
-    Orientation? orientation,
-    Size? deviceSize,
+  static Future<void> init(
+    BuildContext context, {
     Size designSize = defaultSize,
     bool splitScreenMode = false,
     bool minTextAdapt = false,
-  }) {
+  }) async {
+    final navigatorContext = Navigator.maybeOf(context)?.context as Element?;
     final mediaQueryContext =
-        context?.getElementForInheritedWidgetOfExactType<MediaQuery>();
+        navigatorContext?.getElementForInheritedWidgetOfExactType<MediaQuery>();
 
-    final deviceData = mediaQueryContext != null
-        ? MediaQuery.of(context!).nonEmptySizeOrNull()
-        : null;
+    final initCompleter = Completer<void>();
 
-    mediaQueryContext?.visitChildren((el) => context = el);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      mediaQueryContext?.visitChildElements((el) => _instance._context = el);
+      if (_instance._context != null) initCompleter.complete();
+    });
 
-    deviceSize ??= deviceData?.size ?? designSize;
-    orientation ??= deviceData?.orientation ??
+    final deviceData = MediaQuery.maybeOf(context).nonEmptySizeOrNull();
+
+    final deviceSize = deviceData?.size ?? designSize;
+    final orientation = deviceData?.orientation ??
         (deviceSize.width > deviceSize.height
             ? Orientation.landscape
             : Orientation.portrait);
@@ -119,10 +120,11 @@ class ScreenUtil {
       .._minTextAdapt = minTextAdapt
       .._orientation = orientation
       .._screenWidth = deviceSize.width
-      .._screenHeight = deviceSize.height
-      .._context = context;
+      .._screenHeight = deviceSize.height;
 
     _instance._elementsToRebuild?.forEach((el) => el.markNeedsBuild());
+
+    return initCompleter.future;
   }
 
   ///获取屏幕方向
