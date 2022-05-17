@@ -1,3 +1,9 @@
+# 5.5.3
+- Bug Fix: Some widgets disapear because of parent rebuild.
+- Bug Fix: issue #362. Null check operator used on a null value when using ScreenUtil.init().
+- Re-add context to builder parameters **(users request)**.
+- Add some standard rebuild factors.
+
 # 5.5.2
 - Add rebuildFactor property
 - Bug Fix: False sizes when resizing

@@ -57,7 +57,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 Please set the size of the design draft before use, the width and height of the design draft.
 
-#### The first way (Recommended)
+#### The first way (You must use it once in your app)
 
 ```dart
 void main() => runApp(MyApp());
