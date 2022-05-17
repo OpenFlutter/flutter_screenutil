@@ -101,7 +101,7 @@ class ScreenUtil {
 
     final initCompleter = Completer<void>();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
       mediaQueryContext?.visitChildElements((el) => _instance._context = el);
       if (_instance._context != null) initCompleter.complete();
     });
