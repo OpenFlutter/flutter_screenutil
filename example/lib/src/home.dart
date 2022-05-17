@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomePageScaffold extends StatelessWidget {
-  const HomePageScaffold({Key? key, required this.title}) : super(key: key);
+  const HomePageScaffold({Key? key, this.title = ''}) : super(key: key);
 
   void printScreenInformation() {
     print('Device Size:${Size(1.sw, 1.sh)}');
@@ -114,9 +114,7 @@ class HomePageScaffold extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) {
-                          return ScreenUtilInit(builder: (context) {
-                            return HomePageScaffold(title: title);
-                          });
+                          return const HomePageScaffold();
                         }),
                       );
                     },

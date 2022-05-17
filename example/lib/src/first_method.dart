@@ -9,9 +9,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // In first method you only need to wrap [MaterialApp] with [ScreenUtilInit] and that's it
     return ScreenUtilInit(
-      builder: (child) {
+      builder: (_, child) {
         return MaterialApp(
-          key: const GlobalObjectKey('screen-util'),
           debugShowCheckedModeBanner: false,
           title: 'First Method',
           // You can use the library anywhere in the app even in theme

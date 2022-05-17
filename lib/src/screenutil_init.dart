@@ -4,26 +4,45 @@ import 'screen_util.dart';
 
 typedef RebuildFactor = bool Function(MediaQueryData old, MediaQueryData data);
 
-bool defaultRebuildFactor(old, data) => old.size != data.size;
+typedef ScreenUtilInitBuilder = Widget Function(
+  BuildContext context,
+  Widget? child,
+);
+
+class RebuildFactors {
+  const RebuildFactors._();
+
+  static bool size(MediaQueryData old, MediaQueryData data) {
+    return old.size != data.size;
+  }
+
+  static bool orientation(MediaQueryData old, MediaQueryData data) {
+    return old.orientation != data.orientation;
+  }
+
+  static bool sizeAndViewInsets(MediaQueryData old, MediaQueryData data) {
+    return old.viewInsets != data.viewInsets;
+  }
+
+  static bool all(MediaQueryData old, MediaQueryData data) {
+    return old != data;
+  }
+}
 
 class ScreenUtilInit extends StatefulWidget {
   /// A helper widget that initializes [ScreenUtil]
   const ScreenUtilInit({
     Key? key,
-    this.builder,
+    required this.builder,
     this.child,
-    this.rebuildFactor = defaultRebuildFactor,
+    this.rebuildFactor = RebuildFactors.size,
     this.designSize = ScreenUtil.defaultSize,
     this.splitScreenMode = false,
     this.minTextAdapt = false,
     this.useInheritedMediaQuery = false,
-  })  : assert(
-          builder != null || child != null,
-          'You must either pass builder or child or both',
-        ),
-        super(key: key);
+  }) : super(key: key);
 
-  final Widget Function(Widget? child)? builder;
+  final ScreenUtilInitBuilder builder;
   final Widget? child;
   final bool splitScreenMode;
   final bool minTextAdapt;
@@ -40,6 +59,7 @@ class ScreenUtilInit extends StatefulWidget {
 class _ScreenUtilInitState extends State<ScreenUtilInit>
     with WidgetsBindingObserver {
   late MediaQueryData mediaQueryData;
+
   bool wrappedInMediaQuery = false;
 
   WidgetsBinding get binding => WidgetsFlutterBinding.ensureInitialized();
@@ -60,16 +80,12 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
   }
 
   Widget get child {
-    return SizedBox(
-      key: GlobalObjectKey(
-        hashValues(
-          this,
-          mediaQueryData.size.width,
-          mediaQueryData.size.height,
-        ),
-      ),
-      child: widget.builder?.call(widget.child) ?? widget.child!,
-    );
+    return widget.builder.call(context, widget.child);
+  }
+
+  _updateTree(Element el) {
+    el.markNeedsBuild();
+    el.visitChildren(_updateTree);
   }
 
   @override
@@ -84,7 +100,10 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
     final old = mediaQueryData;
     final data = newData;
 
-    if (widget.rebuildFactor(old, data)) setState(() => mediaQueryData = data);
+    if (widget.rebuildFactor(old, data)) {
+      mediaQueryData = data;
+      _updateTree(context as Element);
+    }
   }
 
   @override
