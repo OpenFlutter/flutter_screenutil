@@ -63,7 +63,7 @@ extension BorderRaduisExtension on BorderRadius {
   /// Creates adapt BorderRadius using r [SizeExtension].
   BorderRadius get r => copyWith(
         bottomLeft: bottomLeft.r,
-        bottomRight: bottomLeft.r,
+        bottomRight: bottomRight.r,
         topLeft: topLeft.r,
         topRight: topRight.r,
       );
