@@ -115,6 +115,7 @@ class ScreenUtil {
             : Orientation.portrait);
 
     _instance
+      .._context = context
       .._uiSize = designSize
       .._splitScreenMode = splitScreenMode
       .._minTextAdapt = minTextAdapt

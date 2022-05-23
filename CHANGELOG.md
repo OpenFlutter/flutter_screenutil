@@ -1,3 +1,9 @@
+# 5.5.3+2
+- Fix #398
+
+# 5.5.3+1
+- Fix compatibility with flutter sdk 2.x
+
 # 5.5.3
 - Bug Fix: Some widgets disapear because of parent rebuild.
 - Bug Fix: issue #362. Null check operator used on a null value when using ScreenUtil.init().
