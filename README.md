@@ -194,7 +194,7 @@ class _HomePageState extends State<HomePage> {
     20.setVerticalSpacing  // SizedBox(height: 20 * scaleHeight)
     20.horizontalSpace  // SizedBox(height: 20 * scaleWidth)
     const RPadding.all(8)   // Padding.all(8.r) - take advantage of const key word
-    REdgeInsts.all(8)       // EdgeInsets.all(8.r)
+    REdgeInsets.all(8)       // EdgeInsets.all(8.r)
     EdgeInsets.only(left:8,right:8).r // EdgeInsets.only(left:8.r,right:8.r).
 ```
 
