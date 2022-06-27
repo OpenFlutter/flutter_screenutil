@@ -87,12 +87,6 @@ class HomePageScaffold extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                    ),
-                  ),
-                  18.verticalSpace,
                   ElevatedButton(
                     onPressed: () {
                       showDialog(
@@ -147,6 +141,12 @@ class HomePageScaffold extends StatelessWidget {
                       );
                     },
                     child: const Text('Open BottomSheet'),
+                  ),
+                  18.verticalSpace,
+                  TextField(
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                    ),
                   ),
                   18.verticalSpace,
                   Text('Device width:${ScreenUtil().screenWidth}dp'),
