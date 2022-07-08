@@ -4,10 +4,10 @@
 [![pub points](https://badges.bar/flutter_screenutil/pub%20points)](https://pub.dev/packages/flutter_screenutil/score)
 [![popularity](https://badges.bar/flutter_screenutil/popularity)](https://pub.dev/packages/flutter_screenutil/score)
 
-**flutter 屏幕适配方案，让你的UI在不同尺寸的屏幕上都能显示合理的布局!**
+**flutter 屏幕适配方案，用于调整屏幕和字体大小的flutter插件，让你的UI在不同尺寸的屏幕上都能显示合理的布局!**
 
 
-*注意*：此插件仍处于开发阶段，某些API可能尚未推出。
+*注意*：此插件仍处于开发阶段，某些API可能尚不可用。
 
 [README of English](https://github.com/OpenFlutter/flutter_ScreenUtil/blob/master/README.md)
 
@@ -24,7 +24,7 @@
 ### 安装依赖：
 
 安装之前请查看最新版本
-新版本如有问题请使用上一版
+新版本如有问题请使用以前的版本
 ```yaml
 dependencies:
   flutter:
@@ -51,12 +51,13 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 | child           | Widget       | null          | builder的一部分，其依赖项属性不使用该库    |
 | rebuildFactor   | Function     | *default*     | 返回屏幕指标更改时是否重建。          |
 
+注意：builder和child中必须填写至少一项
 
 ### 初始化并设置适配尺寸及字体大小是否根据系统的“字体大小”辅助选项来进行缩放
 在使用之前请设置好设计稿的宽度和高度，传入设计稿的宽度和高度(单位随意,但在使用过程中必须保持一致)
 一定要进行初始化(只需设置一次),以保证在每次使用之前设置好了适配尺寸:
 
-#### 方式一:
+#### 方式一（您必须在app中使用它一次）:
 ```dart
 void main() => runApp(MyApp());
 
@@ -65,39 +66,67 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //填入设计稿中设备的屏幕尺寸,单位dp
     return ScreenUtilInit(
-      designSize: Size(360, 690),
+      designSize: const Size(360, 690),
       minTextAdapt: true,
       splitScreenMode: true,
-      builder: () =>
-          MaterialApp(
-            //... other code
-            builder: (context, widget) {
-              //add this line
-              ScreenUtil.setContext(context);
-              return MediaQuery(
-                //Setting font does not change with system font size
-                data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-                child: widget!,
-              );
-            },
-            theme: ThemeData(
-              textTheme: TextTheme(
-                //要支持下面这个需要使用第一种初始化方式
-                button: TextStyle(fontSize: 45.sp)
-              ),
-            ),
+      builder: (context , child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'First Method',
+          // You can use the library anywhere in the app even in theme
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+            textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
           ),
+          home: child,
+        );
+      },
+      child: const HomePage(title: 'First Method'),
     );
   }
 }
 ```
 
-#### 方式二: 不支持在MaterialApp的theme的textTheme中使用字体适配
+#### 方式二: 你需要一个技巧来支持文字自适应主题
 
-**如非必要，建议使用第二种**
-**混合开发使用第二种方式**
-**ScreenUtil.init只需在home或者根路由（即第一个flutter页面）中调用一次即可。**
+**混合开发使用方式二**
+
+不支持这样做：
+```dart
+MaterialApp(
+  ...
+  //如果你想这样做，你应该选择方式一
+  theme: ThemeData(
+    textTheme: TextTheme(
+      button: TextStyle(fontSize: 45.sp)
+    ),
+  ),
+)
 ```
+
+正确的方法应当是这样：
+```dart
+void main() async {
+  // Add this line
+  await ScreenUtil.ensureScreenSize();
+  runApp(MyApp());
+}
+...
+MaterialApp(
+  ...
+  builder: (ctx, child) {
+    ScreenUtil.init(ctx);
+    return Theme(
+      data: ThemeData(
+        primarySwatch: Colors.blue,
+        textTheme: TextTheme(bodyText2: TextStyle(fontSize: 30.sp)),
+      ),
+      child: HomePage(title: 'FlutterScreenUtil Demo'),
+    );
+   },
+)
+```
+```dart
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -125,15 +154,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     //设置尺寸（填写设计中设备的屏幕尺寸）如果设计基于360dp * 690dp的屏幕
-    ScreenUtil.init(
-        BoxConstraints(
-            maxWidth: MediaQuery.of(context).size.width,
-            maxHeight: MediaQuery.of(context).size.height),
-        designSize: Size(360, 690),
-        context: context,
-        minTextAdapt: true,
-        orientation: Orientation.portrait);
-    return Scaffold();
+    ScreenUtil.init(context, designSize: const Size(360, 690));
+    ...
   }
 }
 ```
@@ -143,15 +165,15 @@ class _HomePageState extends State<HomePage> {
 ### API
 #### 传入设计稿的dp尺寸
 ```dart
-    ScreenUtil().setWidth(540)  (sdk>=2.6 : 540.w)   //根据屏幕宽度适配尺寸
-    ScreenUtil().setHeight(200) (sdk>=2.6 : 200.h)   //根据屏幕高度适配尺寸(一般根据宽度适配即可)
-    ScreenUtil().radius(200)    (sdk>=2.6 : 200.r)   //根据宽度或高度中的较小者进行调整
-    ScreenUtil().setSp(24)      (sdk>=2.6 : 24.sp)   //适配字体
+    ScreenUtil().setWidth(540)  (dart sdk>=2.6 : 540.w)   //根据屏幕宽度适配尺寸
+    ScreenUtil().setHeight(200) (dart sdk>=2.6 : 200.h)   //根据屏幕高度适配尺寸(一般根据宽度适配即可)
+    ScreenUtil().radius(200)    (dart sdk>=2.6 : 200.r)   //根据宽度或高度中的较小者进行调整
+    ScreenUtil().setSp(24)      (dart sdk>=2.6 : 24.sp)   //适配字体
     12.sm   // 取12和12.sp中的最小值
 
     ScreenUtil.pixelRatio       //设备的像素密度
-    ScreenUtil.screenWidth   (sdk>=2.6 : 1.sw)   //设备宽度
-    ScreenUtil.screenHeight  (sdk>=2.6 : 1.sh)   //设备高度
+    ScreenUtil.screenWidth   (dart sdk>=2.6 : 1.sw)   //设备宽度
+    ScreenUtil.screenHeight  (dart sdk>=2.6 : 1.sh)   //设备高度
     ScreenUtil.bottomBarHeight  //底部安全区距离，适用于全面屏下面有按键的
     ScreenUtil.statusBarHeight  //状态栏高度 刘海屏会更高
     ScreenUtil.textScaleFactor //系统字体缩放比例
@@ -165,7 +187,7 @@ class _HomePageState extends State<HomePage> {
     0.5.sh  //屏幕高度的50%
     20.setVerticalSpacing  // SizedBox(height: 20 * scaleHeight)
     20.horizontalSpace  // SizedBox(height: 20 * scaleWidth)
-    const RPadding.all(8)   // Padding.all(8.r) - take advantage of const key word
+    const RPadding.all(8)   // Padding.all(8.r) - 获取到const的优点
     REdgeInsts.all(8)       // EdgeInsets.all(8.r)
     EdgeInsets.only(left:8,right:8).r // EdgeInsets.only(left:8.r,right:8.r).
 
@@ -180,85 +202,96 @@ class _HomePageState extends State<HomePage> {
 
 根据屏幕高度适配 `height: ScreenUtil().setHeight(200)`, 一般来说，控件高度也根据宽度进行适配
 
-一般来说，50.w!=50.h
+如果您的 dart sdk>=2.6，则可以使用一些特殊的函数：
 
-**注意**
+例子：
+
+你不应当这样做：
+```dart
+Container(
+  width: ScreenUtil().setWidth(50),
+  height:ScreenUtil().setHeight(200),
+)
+```
+正确的方法应当是这样使用：
+```dart
+Container(
+  width: 50.w,
+  height:200.h
+)
+```
+
+`注意`
 
 高度也根据setWidth来做适配可以保证不变形(当你想要一个正方形的时候)
 
 setHeight方法主要是在高度上进行适配, 在你想控制UI上一屏的高度与实际中显示一样时使用.
 
+一般来说，50.w!=50.h
+
 例如:
 
 ```dart
-//UI可能显示长方形:
+//如果你想显示一个矩形:
 Container(
-           width: 375.w,
-           height: 375.h,
-            ),
-            
-//如果你想显示一个正方形:
+  width: 375.w,
+  height: 375.h,
+),
+
+//如果你想基于宽显示一个正方形:
 Container(
-           width: 300.r,
-           height: 300.r,
-            ),
+  width: 300.w,
+  height: 300.w,
+),
+
+//如果你想基于高显示一个正方形:
+Container(
+  width: 300.h,
+  height: 300.h,
+),
+
+//如果你想基于高或宽中的较小值显示一个正方形:
+Container(
+  width: 300.r,
+  height: 300.r,
+),
 ```
 
-如果你的dart sdk>=2.6,可以使用扩展函数:
-example:
-不用这个:
+**适配字体**
+
 ```dart
-Container(
-width: ScreenUtil().setWidth(50),
-height:ScreenUtil().setHeight(200),
-)
-```
-而是用这个:
-```dart
-Container(
-width: 50.w,
-height:200.h
-)
-```
+//输入字体大小（单位与初始化时的单位相同）
+ScreenUtil().setSp(28) 
+28.sp
 
-#### 适配字体:
-传入设计稿的字体大小：
-
-```dart 
-//传入字体大小(单位和初始化时的单位保持一致)
-ScreenUtil().setSp(28)
-或
-28.sp (dart sdk>=2.6)
-
-//for example:
-
+//例子:
 Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  '我的文字大小在设计稿上是16dp，因为设置了`textScaleFactor`,所以不会随着系统的文字缩放比例变化',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16.sp,
-                  ),
-                  textScaleFactor: 1.0,
-                ),
-                Text(
-                  '我的文字大小在设计稿上是16dp，会随着系统的文字缩放比例变化',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 16.sp,
-                  ),
-                ),
-              ],
-            )
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: <Widget>[
+    Text(
+      '16sp, 因为设置了`textScaleFactor`，不会随系统变化.',
+      style: TextStyle(
+        color: Colors.black,
+        fontSize: 16.sp,
+      ),
+      textScaleFactor: 1.0,
+    ),
+    Text(
+      '16sp,如果未设置，我的字体大小将随系统而变化.',
+      style: TextStyle(
+        color: Colors.black,
+        fontSize: 16.sp,
+      ),
+    ),
+  ],
+)
 ```
 
 #### 设置字体不随系统字体大小进行改变
 
 APP全局:
 ```dart
- MaterialApp(
+       MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter_ScreenUtil',
         theme: ThemeData(
@@ -279,12 +312,23 @@ APP全局:
 Text("text", textScaleFactor: 1.0)
 ```
 
-[widget test](https://github.com/OpenFlutter/flutter_screenutil/issues/115)
+指定的小部件：
+```dart
+MediaQuery(
+  // 如果这里context不可用，你可以新建一个 [Builder] 将 [MediaQuery] 放入其中
+  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+  child: AnyWidget(),
+)
+```
+
+[小部件测试](https://github.com/OpenFlutter/flutter_screenutil/issues/115)
 
 ### 使用示例:
 
-[example demo](https://github.com/OpenFlutter/flutter_ScreenUtil/blob/master/example/lib/main_zh.dart)
- 
+[示例演示](https://github.com/OpenFlutter/flutter_ScreenUtil/blob/master/example/lib/main_zh.dart)
+
+要使用第二种方法，请运行：`flutter run --dart-define=method=2`
+
 效果:
 
 ![手机效果](demo_zh.png)
