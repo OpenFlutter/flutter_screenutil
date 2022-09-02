@@ -1,3 +1,6 @@
+# 5.5.4
+- Bug Fix: False sizes when using DevicePreview
+
 # 5.5.3+2
 - Fix #398
 
