@@ -66,9 +66,7 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
 
   MediaQueryData get newData {
     if (widget.useInheritedMediaQuery) {
-      final el = context.getElementForInheritedWidgetOfExactType<MediaQuery>();
-      final mq = el?.widget as MediaQuery?;
-      final data = mq?.data;
+      final data = MediaQuery.maybeOf(context);
 
       if (data != null) {
         wrappedInMediaQuery = true;
