@@ -109,7 +109,7 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    If (_mediaQueryData == null) _mediaQueryData = newData;
+    if (_mediaQueryData == null) _mediaQueryData = newData;
     didChangeMetrics();
   }
 
