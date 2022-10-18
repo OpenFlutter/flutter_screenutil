@@ -97,7 +97,7 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
 
   @override
   void didChangeMetrics() {
-    final old = _mediaQueryData;
+    final old = _mediaQueryData!;
     final data = newData;
 
     if (widget.rebuildFactor(old, data)) {
