@@ -58,11 +58,13 @@ class ScreenUtilInit extends StatefulWidget {
 
 class _ScreenUtilInitState extends State<ScreenUtilInit>
     with WidgetsBindingObserver {
-  late MediaQueryData mediaQueryData;
+  MediaQueryData? _mediaQueryData;
 
   bool wrappedInMediaQuery = false;
 
   WidgetsBinding get binding => WidgetsFlutterBinding.ensureInitialized();
+
+  MediaQueryData get mediaQueryData => _mediaQueryData!;
 
   MediaQueryData get newData {
     if (widget.useInheritedMediaQuery) {
@@ -89,17 +91,17 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
   @override
   void initState() {
     super.initState();
-    mediaQueryData = newData;
+    // mediaQueryData = newData;
     binding.addObserver(this);
   }
 
   @override
   void didChangeMetrics() {
-    final old = mediaQueryData;
+    final old = _mediaQueryData;
     final data = newData;
 
     if (widget.rebuildFactor(old, data)) {
-      mediaQueryData = data;
+      _mediaQueryData = data;
       _updateTree(context as Element);
     }
   }
@@ -107,6 +109,7 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    If (_mediaQueryData == null) _mediaQueryData = newData;
     didChangeMetrics();
   }
 
