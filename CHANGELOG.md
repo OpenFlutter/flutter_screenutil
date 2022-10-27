@@ -1,3 +1,7 @@
+# 5.6.0
+- bug fix: #434
+- add w and h on EdgeInsets,Radius,BorderRadius,BoxConstraints
+
 # 5.5.4
 - Bug Fix: False sizes when using DevicePreview
 

@@ -60,10 +60,12 @@ class HomePageScaffold extends StatelessWidget {
               ],
             ),
             Container(
-              padding: EdgeInsets.all(ScreenUtil().setWidth(10)),
-              width: 100.r,
-              height: 100.r,
-              color: Colors.green,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(16)).w,
+                color: Colors.green,
+              ),
+              constraints: BoxConstraints(maxWidth: 100, minHeight: 100).r,
+              padding: EdgeInsets.all(10).w,
               child: Text(
                 '我是正方形,边长是100',
                 style: TextStyle(

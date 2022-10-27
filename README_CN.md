@@ -188,9 +188,12 @@ class _HomePageState extends State<HomePage> {
     20.setVerticalSpacing  // SizedBox(height: 20 * scaleHeight)
     20.horizontalSpace  // SizedBox(height: 20 * scaleWidth)
     const RPadding.all(8)   // Padding.all(8.r) - 获取到const的优点
-    REdgeInsts.all(8)       // EdgeInsets.all(8.r)
+    EdgeInsets.all(10).w    //EdgeInsets.all(10.w)
+    REdgeInsets.all(8)       // EdgeInsets.all(8.r)
     EdgeInsets.only(left:8,right:8).r // EdgeInsets.only(left:8.r,right:8.r).
-
+    BoxConstraints(maxWidth: 100, minHeight: 100).w    //BoxConstraints(maxWidth: 100.w, minHeight: 100.w)
+    Radius.circular(16).w          //Radius.circular(16.w)
+    BorderRadius.all(Radius.circular(16)).w  
 ```
 
 
