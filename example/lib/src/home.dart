@@ -54,10 +54,7 @@ class HomePageScaffold extends StatelessWidget {
                 ),
                 // Without using Extensions
                 Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(16).w),
-                    color: Colors.blue,
-                  ),
+                  color: Colors.blue,
                   constraints: BoxConstraints(maxWidth: 180, minHeight: 200).hw,
                   padding: EdgeInsets.all(10.w),
                   child: Text(
@@ -72,10 +69,13 @@ class HomePageScaffold extends StatelessWidget {
               ],
             ),
             Container(
-              padding: EdgeInsets.all(10.w),
+              padding: EdgeInsets.all(10).w,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(16).w),
+                color: Colors.green,
+              ),
               width: 100.r,
               height: 100.r,
-              color: Colors.green,
               child: Text(
                 'I am a square with a side length of 100',
                 style: TextStyle(
