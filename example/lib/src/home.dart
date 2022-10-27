@@ -58,7 +58,7 @@ class HomePageScaffold extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(16).w),
                     color: Colors.blue,
                   ),
-                  constraints: BoxConstraints(maxWidth: 100, minHeight: 100).w,
+                  constraints: BoxConstraints(maxWidth: 180, minHeight: 200).hw,
                   padding: EdgeInsets.all(10.w),
                   child: Text(
                     'My design draft width: 180dp\n\n'
