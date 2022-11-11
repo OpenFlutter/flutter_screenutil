@@ -94,6 +94,7 @@ class ScreenUtil {
     Size designSize = defaultSize,
     bool splitScreenMode = false,
     bool minTextAdapt = false,
+    bool scaleByHeight = false
   }) async {
     final navigatorContext = Navigator.maybeOf(context)?.context as Element?;
     final mediaQueryContext =
@@ -115,12 +116,13 @@ class ScreenUtil {
             : Orientation.portrait);
 
     _instance
-      .._context = context
+      .._context = scaleByHeight ? null : context
       .._uiSize = designSize
       .._splitScreenMode = splitScreenMode
       .._minTextAdapt = minTextAdapt
       .._orientation = orientation
-      .._screenWidth = deviceSize.width
+      .._screenWidth = scaleByHeight ? (deviceSize.height * designSize.width) /
+          designSize.height : deviceSize.width
       .._screenHeight = deviceSize.height;
 
     _instance._elementsToRebuild?.forEach((el) => el.markNeedsBuild());

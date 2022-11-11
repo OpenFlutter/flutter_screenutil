@@ -1,6 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import 'screen_util.dart';
+import 'dart:ui' show FlutterWindow;
 
 typedef RebuildFactor = bool Function(MediaQueryData old, MediaQueryData data);
 
@@ -40,6 +41,7 @@ class ScreenUtilInit extends StatefulWidget {
     this.splitScreenMode = false,
     this.minTextAdapt = false,
     this.useInheritedMediaQuery = false,
+    this.scaleByHeight = false
   }) : super(key: key);
 
   final ScreenUtilInitBuilder builder;
@@ -47,6 +49,7 @@ class ScreenUtilInit extends StatefulWidget {
   final bool splitScreenMode;
   final bool minTextAdapt;
   final bool useInheritedMediaQuery;
+  final bool scaleByHeight;
   final RebuildFactor rebuildFactor;
 
   /// The [Size] of the device in the design draft, in dp
@@ -100,7 +103,7 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
     final old = _mediaQueryData!;
     final data = newData;
 
-    if (widget.rebuildFactor(old, data)) {
+    if (widget.scaleByHeight || widget.rebuildFactor(old, data)) {
       _mediaQueryData = data;
       _updateTree(context as Element);
     }
@@ -128,25 +131,60 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
         data: mediaQueryData,
         child: Builder(
           builder: (__context) {
+            final deviceData = MediaQuery.maybeOf(__context);
+            final deviceSize = deviceData?.size ?? widget.designSize;
             ScreenUtil.init(
-              __context,
-              designSize: widget.designSize,
-              splitScreenMode: widget.splitScreenMode,
-              minTextAdapt: widget.minTextAdapt,
+                __context,
+                designSize: widget.designSize,
+                splitScreenMode: widget.splitScreenMode,
+                minTextAdapt: widget.minTextAdapt,
+                scaleByHeight: widget.scaleByHeight
             );
-            return child;
+            return Container(
+                width: deviceSize.width,
+                height: deviceSize.height,
+                child: FittedBox(
+                  fit: BoxFit.none,
+                  alignment: Alignment.center,
+                  child: Container(
+                    width: widget.scaleByHeight
+                        ? (deviceSize.height * widget.designSize.width) /
+                        widget.designSize.height
+                        : deviceSize.width,
+                    height: deviceSize.height,
+                    child: child,
+                  ),
+                )
+            );
           },
         ),
       );
     }
 
     ScreenUtil.init(
-      _context,
-      designSize: widget.designSize,
-      splitScreenMode: widget.splitScreenMode,
-      minTextAdapt: widget.minTextAdapt,
+        _context,
+        designSize: widget.designSize,
+        splitScreenMode: widget.splitScreenMode,
+        minTextAdapt: widget.minTextAdapt,
+        scaleByHeight: widget.scaleByHeight
     );
+    final deviceData = MediaQuery.maybeOf(_context);
 
-    return child;
+    final deviceSize = deviceData?.size ?? widget.designSize;
+    return Container(
+        width: deviceSize.width,
+        height: deviceSize.height,
+        child: FittedBox(
+          fit: BoxFit.none,
+          alignment: Alignment.center,
+          child: Container(
+            width: widget.scaleByHeight ? (deviceSize.height *
+                widget.designSize.width) / widget.designSize.height : deviceSize
+                .width,
+            height: deviceSize.height,
+            child: child,
+          ),
+        )
+    );
   }
 }
