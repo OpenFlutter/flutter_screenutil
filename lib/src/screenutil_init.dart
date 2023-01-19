@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
 import 'screen_util.dart';
-import 'dart:ui' show FlutterWindow;
+import 'dart:ui' show FlutterView ;
 
 typedef RebuildFactor = bool Function(MediaQueryData old, MediaQueryData data);
 
