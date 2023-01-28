@@ -1,6 +1,6 @@
 # 5.6.1
 
-- add smx => max(toDouble(), sp) , for example: 12.smx
+- add spMax => max(toDouble(), sp), and spMin, for example: 12.spMax
 
 # 5.6.0
 
