@@ -22,6 +22,8 @@ extension SizeExtension on num {
   ///I think that it is good for save size balance on big sizes of screen
   double get sm => min(toDouble(), sp);
 
+  double get smx => max(toDouble(), sp);
+
   ///屏幕宽度的倍数
   ///Multiple of screen width
   double get sw => ScreenUtil().screenWidth * this;

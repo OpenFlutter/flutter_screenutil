@@ -35,6 +35,7 @@ class HomePageScaffold extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            RSizedBox.square(dimension: 20),
             Row(
               children: <Widget>[
                 // Using Extensions
