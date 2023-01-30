@@ -1,6 +1,7 @@
 # 5.6.1
 
 - add spMax => max(toDouble(), sp), and spMin, for example: 12.spMax
+- FlutterView instead of FlutterWindow
 
 # 5.6.0
 
