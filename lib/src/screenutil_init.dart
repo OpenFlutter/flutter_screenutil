@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 
 import 'screen_util.dart';
-import 'dart:ui' show FlutterWindow;
 
 typedef RebuildFactor = bool Function(MediaQueryData old, MediaQueryData data);
 
@@ -32,17 +31,17 @@ class RebuildFactors {
 
 class ScreenUtilInit extends StatefulWidget {
   /// A helper widget that initializes [ScreenUtil]
-  const ScreenUtilInit({
-    Key? key,
-    required this.builder,
-    this.child,
-    this.rebuildFactor = RebuildFactors.size,
-    this.designSize = ScreenUtil.defaultSize,
-    this.splitScreenMode = false,
-    this.minTextAdapt = false,
-    this.useInheritedMediaQuery = false,
-    this.scaleByHeight = false
-  }) : super(key: key);
+  const ScreenUtilInit(
+      {Key? key,
+      required this.builder,
+      this.child,
+      this.rebuildFactor = RebuildFactors.size,
+      this.designSize = ScreenUtil.defaultSize,
+      this.splitScreenMode = false,
+      this.minTextAdapt = false,
+      this.useInheritedMediaQuery = false,
+      this.scaleByHeight = false})
+      : super(key: key);
 
   final ScreenUtilInitBuilder builder;
   final Widget? child;
@@ -133,13 +132,11 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
           builder: (__context) {
             final deviceData = MediaQuery.maybeOf(__context);
             final deviceSize = deviceData?.size ?? widget.designSize;
-            ScreenUtil.init(
-                __context,
+            ScreenUtil.init(__context,
                 designSize: widget.designSize,
                 splitScreenMode: widget.splitScreenMode,
                 minTextAdapt: widget.minTextAdapt,
-                scaleByHeight: widget.scaleByHeight
-            );
+                scaleByHeight: widget.scaleByHeight);
             return Container(
                 width: deviceSize.width,
                 height: deviceSize.height,
@@ -149,25 +146,22 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
                   child: Container(
                     width: widget.scaleByHeight
                         ? (deviceSize.height * widget.designSize.width) /
-                        widget.designSize.height
+                            widget.designSize.height
                         : deviceSize.width,
                     height: deviceSize.height,
                     child: child,
                   ),
-                )
-            );
+                ));
           },
         ),
       );
     }
 
-    ScreenUtil.init(
-        _context,
+    ScreenUtil.init(_context,
         designSize: widget.designSize,
         splitScreenMode: widget.splitScreenMode,
         minTextAdapt: widget.minTextAdapt,
-        scaleByHeight: widget.scaleByHeight
-    );
+        scaleByHeight: widget.scaleByHeight);
     final deviceData = MediaQuery.maybeOf(_context);
 
     final deviceSize = deviceData?.size ?? widget.designSize;
@@ -178,13 +172,13 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
           fit: BoxFit.none,
           alignment: Alignment.center,
           child: Container(
-            width: widget.scaleByHeight ? (deviceSize.height *
-                widget.designSize.width) / widget.designSize.height : deviceSize
-                .width,
+            width: widget.scaleByHeight
+                ? (deviceSize.height * widget.designSize.width) /
+                    widget.designSize.height
+                : deviceSize.width,
             height: deviceSize.height,
             child: child,
           ),
-        )
-    );
+        ));
   }
 }

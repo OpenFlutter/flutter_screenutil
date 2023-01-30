@@ -4,7 +4,7 @@
  */
 
 import 'dart:math' show min, max;
-import 'dart:ui' show FlutterWindow;
+import 'dart:ui' show FlutterView;
 import 'dart:async' show Completer;
 
 import 'package:flutter/widgets.dart';
@@ -55,7 +55,7 @@ class ScreenUtil {
   ///   )
   /// ```
   static Future<void> ensureScreenSize([
-    FlutterWindow? window,
+    FlutterView? window,
     Duration duration = const Duration(milliseconds: 10),
   ]) async {
     final binding = WidgetsFlutterBinding.ensureInitialized();
