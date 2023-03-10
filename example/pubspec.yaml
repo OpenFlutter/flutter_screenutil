@@ -19,7 +19,6 @@ dependencies:
 
   flutter_screenutil:
     path: ../
-  file: ^6.1.4
   device_preview: ^1.1.0
 
 dev_dependencies:

@@ -1,3 +1,6 @@
+# 5.7.0
+- merge #464
+
 # 5.6.1
 
 - add spMax => max(toDouble(), sp), and spMin, for example: 12.spMax
