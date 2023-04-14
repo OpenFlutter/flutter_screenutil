@@ -78,7 +78,7 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
       }
     }
 
-    return MediaQueryData.fromView(View.of(context));
+    return MediaQueryData.fromView(binding.renderView);
   }
 
   Widget get child {
