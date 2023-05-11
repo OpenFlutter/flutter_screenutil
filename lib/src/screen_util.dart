@@ -89,16 +89,17 @@ class ScreenUtil {
   }
 
   /// Initializing the library.
-  static Future<void> init(
-    BuildContext context, {
-    Size designSize = defaultSize,
-    bool splitScreenMode = false,
-    bool minTextAdapt = false,
-    bool scaleByHeight = false
-  }) async {
-    final navigatorContext = Navigator.maybeOf(context)?.context as Element?;
+  static Future<void> init(BuildContext context,
+      {Size designSize = defaultSize,
+      bool splitScreenMode = false,
+      bool minTextAdapt = false,
+      bool scaleByHeight = false}) async {
+    //todo 考虑直接使用context
+    // final navigatorContext = Navigator.maybeOf(context)?.context as Element?;
+    // final mediaQueryContext =
+    //     navigatorContext?.getElementForInheritedWidgetOfExactType<MediaQuery>();
     final mediaQueryContext =
-        navigatorContext?.getElementForInheritedWidgetOfExactType<MediaQuery>();
+        context.getElementForInheritedWidgetOfExactType<MediaQuery>();
 
     final initCompleter = Completer<void>();
 
@@ -121,8 +122,9 @@ class ScreenUtil {
       .._splitScreenMode = splitScreenMode
       .._minTextAdapt = minTextAdapt
       .._orientation = orientation
-      .._screenWidth = scaleByHeight ? (deviceSize.height * designSize.width) /
-          designSize.height : deviceSize.width
+      .._screenWidth = scaleByHeight
+          ? (deviceSize.height * designSize.width) / designSize.height
+          : deviceSize.width
       .._screenHeight = deviceSize.height;
 
     _instance._elementsToRebuild?.forEach((el) => el.markNeedsBuild());
