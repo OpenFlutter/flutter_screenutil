@@ -1,3 +1,6 @@
+# 5.8.0
+- mirage flutter 3.10
+
 # 5.7.0
 - merge #464
 
