@@ -1,3 +1,6 @@
+# 6.0.0
+- remove ScreenutilInit layout listener
+
 # 5.8.1
 - Limit flutter version > 3.10.0
 
