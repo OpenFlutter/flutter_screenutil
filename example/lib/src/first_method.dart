@@ -9,7 +9,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // In first method you only need to wrap [MaterialApp] with [ScreenUtilInit] and that's it
     return ScreenUtilInit(
-      useInheritedMediaQuery: true,
       builder: (_, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,

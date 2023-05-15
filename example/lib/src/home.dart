@@ -129,6 +129,7 @@ class HomePageScaffold extends StatelessWidget {
                       showModalBottomSheet<void>(
                         context: context,
                         builder: (BuildContext context) {
+                          print('BottomSheet build');
                           return Container(
                             height: 200.w +
                                 MediaQuery.of(context).viewInsets.bottom,

@@ -42,7 +42,6 @@ void main() {
         return MediaQuery(
           data: currentData,
           child: ScreenUtilInit(
-            useInheritedMediaQuery: true,
             designSize: designSize,
             builder: (context, child) => MaterialApp(
               home: Material(
