@@ -94,10 +94,6 @@ class ScreenUtil {
       bool splitScreenMode = false,
       bool minTextAdapt = false,
       bool scaleByHeight = false}) async {
-    //todo 考虑直接使用context
-    // final navigatorContext = Navigator.maybeOf(context)?.context as Element?;
-    // final mediaQueryContext =
-    //     navigatorContext?.getElementForInheritedWidgetOfExactType<MediaQuery>();
     final mediaQueryContext =
         context.getElementForInheritedWidgetOfExactType<MediaQuery>();
 
