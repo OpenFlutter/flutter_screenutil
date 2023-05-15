@@ -98,7 +98,13 @@ class HomePageScaffold extends StatelessWidget {
                           return Dialog(
                             child: Padding(
                               padding: EdgeInsets.all(12.r),
-                              child: const Text('Dialog'),
+                              child: Column(
+                                children: [
+                                  const Text('Dialog'),
+                                  Spacer(),
+                                  TextField(),
+                                ],
+                              ),
                             ),
                           );
                         },
@@ -124,7 +130,8 @@ class HomePageScaffold extends StatelessWidget {
                         context: context,
                         builder: (BuildContext context) {
                           return Container(
-                            height: 200.w,
+                            height: 200.w +
+                                MediaQuery.of(context).viewInsets.bottom,
                             color: Colors.amber,
                             child: Center(
                               child: Column(
@@ -132,10 +139,16 @@ class HomePageScaffold extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: <Widget>[
                                   const Text('Modal BottomSheet'),
+                                  Spacer(),
+                                  TextField(),
                                   ElevatedButton(
                                     child: const Text('Close BottomSheet'),
                                     onPressed: Navigator.of(context).pop,
-                                  )
+                                  ),
+                                  SizedBox(
+                                      height: MediaQuery.of(context)
+                                          .viewInsets
+                                          .bottom),
                                 ],
                               ),
                             ),
