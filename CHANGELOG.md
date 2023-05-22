@@ -1,8 +1,6 @@
-# 6.0.1 
+# 5.8.2
 - change useInheritedMediaQuery default value to true
 - update readme
-
-# 6.0.0
 - remove ScreenutilInit layout listener
 
 # 5.8.1
