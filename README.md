@@ -41,7 +41,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 ### Property
 
 | Property        | Type         | Default Value | Description                                                                 |
-| --------------- | ------------ | ------------- | --------------------------------------------------------------------------- |
+| --------------- |--------------|---------------|-----------------------------------------------------------------------------|
 | deviceSize      | Size         | null          | The size of the physical device                                             |
 | designSize      | Size         | Size(360,690) | The size of the device screen in the design draft, in dp                    |
 | builder         | Function     | null          | Return widget that uses the library in a property (ex: MaterialApp's theme) |
@@ -51,6 +51,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 | splitScreenMode | bool         | false         | support for split screen                                                    |
 | minTextAdapt    | bool         | false         | Whether to adapt the text according to the minimum of width and height      |
 | context         | BuildContext | null          | Get physical device data if not provided, by MediaQuery.of(context)         |
+| useInheritedMediaQuery         | bool         | true          | Set this to true for Flutter 3.10 to avoid keyboard overlay on TextField    |
 
 **Note : You must either provide builder, child or both.**
 
