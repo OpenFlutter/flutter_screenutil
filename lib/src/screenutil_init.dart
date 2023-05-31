@@ -39,7 +39,7 @@ class ScreenUtilInit extends StatefulWidget {
       this.designSize = ScreenUtil.defaultSize,
       this.splitScreenMode = false,
       this.minTextAdapt = false,
-      this.useInheritedMediaQuery = true,
+      this.useInheritedMediaQuery = false,
       this.scaleByHeight = false})
       : super(key: key);
 
@@ -76,13 +76,15 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
         wrappedInMediaQuery = true;
         return data;
       }
+    } else {
+      final data = MediaQuery.maybeOf(context);
+
+      if (data != null) {
+        return data;
+      }
     }
 
     return MediaQueryData.fromView(View.of(context));
-  }
-
-  Widget get child {
-    return widget.builder.call(context, widget.child);
   }
 
   _updateTree(Element el) {
@@ -148,7 +150,7 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
                             widget.designSize.height
                         : deviceSize.width,
                     height: deviceSize.height,
-                    child: child,
+                    child: widget.builder(__context, widget.child),
                   ),
                 ));
           },
@@ -176,7 +178,7 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
                     widget.designSize.height
                 : deviceSize.width,
             height: deviceSize.height,
-            child: child,
+            child: widget.builder(_context, widget.child),
           ),
         ));
   }
