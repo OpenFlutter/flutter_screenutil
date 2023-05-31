@@ -1,4 +1,7 @@
 # 5.8.2
+- Adapt to flutter3.10
+
+# 5.8.2
 - change useInheritedMediaQuery default value to true
 - update readme
 - remove ScreenutilInit layout listener
