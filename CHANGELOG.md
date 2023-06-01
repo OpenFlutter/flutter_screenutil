@@ -1,3 +1,6 @@
+# 5.8.4
+- bug fix
+
 # 5.8.3
 - Adapt to flutter3.10
 

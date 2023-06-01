@@ -1,20 +1,19 @@
-# .github/workflows/publish.yml
-name: Publish to pub.dev
+name: Publish to Pub.dev
 
-on:
-  push:
-    tags:
-      # must align with the tag-pattern configured on pub.dev, often just replace
-      #  with [0-9]+.[0-9]+.[0-9]+*
-      - 'v[0-9]+.[0-9]+.[0-9]+*' # tag-pattern on pub.dev: 'v'
-    # If you prefer tags like '1.2.3', without the 'v' prefix, then use:
-    # - '[0-9]+.[0-9]+.[0-9]+*' # tag-pattern on pub.dev: ''
-    # If your repository contains multiple packages consider a pattern like:
-    # - 'my_package_name-v[0-9]+.[0-9]+.[0-9]+*'
+# 流程触发时机，当有标签创建时触发，如 v1.0.0。当然也可以选择别的触发时机，如 push，release 等
+on: create
 
-# Publish using the reusable workflow from dart-lang.
 jobs:
-  publish:
-    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
-    # with:
-    #   working-directory: path/to/package/within/repository
+  publishing:
+    runs-on: ubuntu-latest
+    steps:
+      # 拉去仓库代码
+      - name: "Checkout"
+        uses: actions/checkout@v2
+      # 发布插件
+      - name: Dart and Flutter Package Publisher
+        uses: k-paxian/dart-package-publisher@v1.2
+        with:
+          # 设置发布插件需要的 Token
+          accessToken: ${{ secrets.OAUTH_ACCESS_TOKEN }}
+          refreshToken: ${{ secrets.OAUTH_REFRESH_TOKEN }}
