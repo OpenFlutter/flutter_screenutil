@@ -69,19 +69,13 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
   MediaQueryData get mediaQueryData => _mediaQueryData!;
 
   MediaQueryData get newData {
-    if (widget.useInheritedMediaQuery) {
-      final data = MediaQuery.maybeOf(context);
+    final data = MediaQuery.maybeOf(context);
 
-      if (data != null) {
+    if (data != null) {
+      if (widget.useInheritedMediaQuery) {
         wrappedInMediaQuery = true;
-        return data;
       }
-    } else {
-      final data = MediaQuery.maybeOf(context);
-
-      if (data != null) {
-        return data;
-      }
+      return data;
     }
 
     return MediaQueryData.fromView(View.of(context));
@@ -127,18 +121,21 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
     if (mediaQueryData.size == Size.zero) return const SizedBox.shrink();
     if (!wrappedInMediaQuery) {
       return MediaQuery(
-        // key: GlobalObjectKey('mediaQuery'),
         data: mediaQueryData,
         child: Builder(
           builder: (__context) {
+            ScreenUtil.init(
+              __context,
+              designSize: widget.designSize,
+              splitScreenMode: widget.splitScreenMode,
+              minTextAdapt: widget.minTextAdapt,
+              scaleByHeight: widget.scaleByHeight,
+            );
             final deviceData = MediaQuery.maybeOf(__context);
             final deviceSize = deviceData?.size ?? widget.designSize;
-            ScreenUtil.init(__context,
-                designSize: widget.designSize,
-                splitScreenMode: widget.splitScreenMode,
-                minTextAdapt: widget.minTextAdapt,
-                scaleByHeight: widget.scaleByHeight);
-            return Container(
+            return MediaQuery(
+              data: MediaQueryData.fromView(View.of(__context)),
+              child: Container(
                 width: deviceSize.width,
                 height: deviceSize.height,
                 child: FittedBox(
@@ -152,34 +149,38 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
                     height: deviceSize.height,
                     child: widget.builder(__context, widget.child),
                   ),
-                ));
+                ),
+              ),
+            );
           },
         ),
       );
     }
 
-    ScreenUtil.init(_context,
-        designSize: widget.designSize,
-        splitScreenMode: widget.splitScreenMode,
-        minTextAdapt: widget.minTextAdapt,
-        scaleByHeight: widget.scaleByHeight);
+    ScreenUtil.init(
+      _context,
+      designSize: widget.designSize,
+      splitScreenMode: widget.splitScreenMode,
+      minTextAdapt: widget.minTextAdapt,
+      scaleByHeight: widget.scaleByHeight,
+    );
     final deviceData = MediaQuery.maybeOf(_context);
-
     final deviceSize = deviceData?.size ?? widget.designSize;
     return Container(
-        width: deviceSize.width,
-        height: deviceSize.height,
-        child: FittedBox(
-          fit: BoxFit.none,
-          alignment: Alignment.center,
-          child: Container(
-            width: widget.scaleByHeight
-                ? (deviceSize.height * widget.designSize.width) /
-                    widget.designSize.height
-                : deviceSize.width,
-            height: deviceSize.height,
-            child: widget.builder(_context, widget.child),
-          ),
-        ));
+      width: deviceSize.width,
+      height: deviceSize.height,
+      child: FittedBox(
+        fit: BoxFit.none,
+        alignment: Alignment.center,
+        child: Container(
+          width: widget.scaleByHeight
+              ? (deviceSize.height * widget.designSize.width) /
+                  widget.designSize.height
+              : deviceSize.width,
+          height: deviceSize.height,
+          child: widget.builder(_context, widget.child),
+        ),
+      ),
+    );
   }
 }

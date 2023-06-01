@@ -1,8 +1,8 @@
 # flutter_screenutil
 
-[![pub package](https://img.shields.io/pub/v/flutter_screenutil.svg)](https://pub.dev/packages/flutter_screenutil)
-[![pub points](https://badges.bar/flutter_screenutil/pub%20points)](https://pub.dev/packages/flutter_screenutil/score)
-[![popularity](https://badges.bar/flutter_screenutil/popularity)](https://pub.dev/packages/flutter_screenutil/score)
+[![Flutter Package](https://img.shields.io/pub/v/flutter_screenutil.svg)](https://pub.dev/packages/flutter_screenutil)
+[![Pub Points](https://img.shields.io/pub/points/flutter_screenutil)](https://pub.dev/packages/flutter_screenutil/score)
+[![Popularity](https://img.shields.io/pub/popularity/flutter_screenutil)](https://pub.dev/packages/flutter_screenutil/score)
 [![CodeFactor](https://www.codefactor.io/repository/github/openflutter/flutter_screenutil/badge)](https://www.codefactor.io/repository/github/openflutter/flutter_screenutil)
 
 **A flutter plugin for adapting screen and font size.Let your UI display a reasonable layout on different screen sizes!**
@@ -40,18 +40,18 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ### Property
 
-| Property        | Type         | Default Value | Description                                                                 |
-| --------------- |--------------|---------------|-----------------------------------------------------------------------------|
-| deviceSize      | Size         | null          | The size of the physical device                                             |
-| designSize      | Size         | Size(360,690) | The size of the device screen in the design draft, in dp                    |
-| builder         | Function     | null          | Return widget that uses the library in a property (ex: MaterialApp's theme) |
-| child           | Widget       | null          | A part of builder that its dependencies/properties don't use the library    |
-| rebuildFactor   | Function     | *default*     | Returns whether to rebuild or not when screen metrics changes.              |
-| orientation     | Orientation  | portrait      | screen orientation                                                          |
-| splitScreenMode | bool         | false         | support for split screen                                                    |
-| minTextAdapt    | bool         | false         | Whether to adapt the text according to the minimum of width and height      |
-| context         | BuildContext | null          | Get physical device data if not provided, by MediaQuery.of(context)         |
-| useInheritedMediaQuery         | bool         | true          | Set this to true for Flutter 3.10 to avoid keyboard overlay on TextField    |
+| Property        | Type         | Default Value | Description                                                                                                                                   |
+| --------------- |--------------|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| deviceSize      | Size         | null          | The size of the physical device                                                                                                               |
+| designSize      | Size         | Size(360,690) | The size of the device screen in the design draft, in dp                                                                                      |
+| builder         | Function     | null          | Return widget that uses the library in a property (ex: MaterialApp's theme)                                                                   |
+| child           | Widget       | null          | A part of builder that its dependencies/properties don't use the library                                                                      |
+| rebuildFactor   | Function     | *default*     | Returns whether to rebuild or not when screen metrics changes.                                                                                |
+| orientation     | Orientation  | portrait      | screen orientation                                                                                                                            |
+| splitScreenMode | bool         | false         | support for split screen                                                                                                                      |
+| minTextAdapt    | bool         | false         | Whether to adapt the text according to the minimum of width and height                                                                        |
+| context         | BuildContext | null          | Get physical device data if not provided, by MediaQuery.of(context)                                                                           |
+| useInheritedMediaQuery         | bool         | false         | Recommended use `false` avoid rebuild very frequently <br/><br/> ~~Set this to true for Flutter 3.10 to avoid keyboard overlay on TextField~~ |
 
 **Note : You must either provide builder, child or both.**
 
