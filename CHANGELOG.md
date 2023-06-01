@@ -1,5 +1,6 @@
 # 5.8.4
 - bug fix
+- change useInheritedMediaQuery default value to false
 
 # 5.8.3
 - Adapt to flutter3.10
