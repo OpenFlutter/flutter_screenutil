@@ -4,8 +4,7 @@
  */
 
 import 'dart:math' show min, max;
-import 'dart:ui' show FlutterView;
-import 'dart:async' show Completer;
+import 'dart:ui' as ui show FlutterView;
 
 import 'package:flutter/widgets.dart';
 
@@ -20,15 +19,29 @@ class ScreenUtil {
   ///屏幕方向
   late Orientation _orientation;
 
-  late double _screenWidth;
-  late double _screenHeight;
   late bool _minTextAdapt;
-  BuildContext? _context;
+  late MediaQueryData _data;
   late bool _splitScreenMode;
 
   ScreenUtil._();
 
   factory ScreenUtil() {
+    return _instance;
+  }
+
+  factory ScreenUtil.init(
+    BuildContext context, {
+    Size designSize = defaultSize,
+    bool splitScreenMode = false,
+    bool minTextAdapt = false,
+  }) {
+    configure(
+      data: MediaQuery.maybeOf(context),
+      designSize: designSize,
+      minTextAdapt: minTextAdapt,
+      splitScreenMode: splitScreenMode,
+    );
+
     return _instance;
   }
 
@@ -55,19 +68,25 @@ class ScreenUtil {
   ///   )
   /// ```
   static Future<void> ensureScreenSize([
-    FlutterView? window,
+    ui.FlutterView? window,
     Duration duration = const Duration(milliseconds: 10),
   ]) async {
     final binding = WidgetsFlutterBinding.ensureInitialized();
-    window ??= WidgetsBinding.instance.platformDispatcher.implicitView;
+    binding.deferFirstFrame();
 
-    if (window?.physicalGeometry.isEmpty == true) {
-      return Future.delayed(duration, () async {
-        binding.deferFirstFrame();
-        await ensureScreenSize(window, duration);
-        return binding.allowFirstFrame();
-      });
-    }
+    await Future.doWhile(() {
+      if (window == null) {
+        window = binding.platformDispatcher.implicitView;
+      }
+
+      if (window == null || window!.physicalGeometry.isEmpty == true) {
+        return Future.delayed(duration, () => true);
+      }
+
+      return false;
+    });
+
+    binding.allowFirstFrame();
   }
 
   Set<Element>? _elementsToRebuild;
@@ -89,43 +108,30 @@ class ScreenUtil {
   }
 
   /// Initializing the library.
-  static Future<void> init(BuildContext context,
-      {Size designSize = defaultSize,
-      bool splitScreenMode = false,
-      bool minTextAdapt = false,
-      bool scaleByHeight = false}) async {
-    final mediaQueryContext =
-        context.getElementForInheritedWidgetOfExactType<MediaQuery>();
+  static void configure({
+    MediaQueryData? data,
+    Size? designSize,
+    bool? splitScreenMode,
+    bool? minTextAdapt,
+  }) {
+    if (data != null) _instance._data = data;
 
-    final initCompleter = Completer<void>();
+    final deviceData = _instance._data.nonEmptySizeOrNull();
+    final deviceSize = deviceData?.size ?? designSize ?? _instance._uiSize;
 
-    WidgetsFlutterBinding.ensureInitialized().addPostFrameCallback((_) {
-      mediaQueryContext?.visitChildElements((el) => _instance._context = el);
-      if (_instance._context != null) initCompleter.complete();
-    });
+    if (designSize != null) _instance._uiSize = designSize;
 
-    final deviceData = MediaQuery.maybeOf(context).nonEmptySizeOrNull();
-
-    final deviceSize = deviceData?.size ?? designSize;
     final orientation = deviceData?.orientation ??
         (deviceSize.width > deviceSize.height
             ? Orientation.landscape
             : Orientation.portrait);
 
     _instance
-      .._context = scaleByHeight ? null : context
-      .._uiSize = designSize
-      .._splitScreenMode = splitScreenMode
-      .._minTextAdapt = minTextAdapt
-      .._orientation = orientation
-      .._screenWidth = scaleByHeight
-          ? (deviceSize.height * designSize.width) / designSize.height
-          : deviceSize.width
-      .._screenHeight = deviceSize.height;
+      .._minTextAdapt = minTextAdapt ?? _instance._minTextAdapt
+      .._splitScreenMode = splitScreenMode ?? _instance._splitScreenMode
+      .._orientation = orientation;
 
     _instance._elementsToRebuild?.forEach((el) => el.markNeedsBuild());
-
-    return initCompleter.future;
   }
 
   ///获取屏幕方向
@@ -134,33 +140,27 @@ class ScreenUtil {
 
   /// 每个逻辑像素的字体像素数，字体的缩放比例
   /// The number of font pixels for each logical pixel.
-  double get textScaleFactor =>
-      _context != null ? MediaQuery.of(_context!).textScaleFactor : 1;
+  double get textScaleFactor => _data.textScaleFactor;
 
   /// 设备的像素密度
   /// The size of the media in logical pixels (e.g, the size of the screen).
-  double? get pixelRatio =>
-      _context != null ? MediaQuery.of(_context!).devicePixelRatio : 1;
+  double? get pixelRatio => _data.devicePixelRatio;
 
   /// 当前设备宽度 dp
   /// The horizontal extent of this size.
-  double get screenWidth =>
-      _context != null ? MediaQuery.of(_context!).size.width : _screenWidth;
+  double get screenWidth => _data.size.width;
 
   ///当前设备高度 dp
   ///The vertical extent of this size. dp
-  double get screenHeight =>
-      _context != null ? MediaQuery.of(_context!).size.height : _screenHeight;
+  double get screenHeight => _data.size.height;
 
   /// 状态栏高度 dp 刘海屏会更高
   /// The offset from the top, in dp
-  double get statusBarHeight =>
-      _context == null ? 0 : MediaQuery.of(_context!).padding.top;
+  double get statusBarHeight => _data.padding.top;
 
   /// 底部安全区距离 dp
   /// The offset from the bottom, in dp
-  double get bottomBarHeight =>
-      _context == null ? 0 : MediaQuery.of(_context!).padding.bottom;
+  double get bottomBarHeight => _data.padding.bottom;
 
   /// 实际尺寸与UI设计的比例
   /// The ratio of actual width to UI design

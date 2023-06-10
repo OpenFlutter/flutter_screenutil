@@ -139,3 +139,6 @@ doc
 .lock
 coverage*
 *.lock
+
+# Don't commit .fvm directory containing machine-specific symlink to sdk & flutter version
+**/.fvm
