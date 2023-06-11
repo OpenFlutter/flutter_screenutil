@@ -50,6 +50,7 @@ class ScreenUtilInit extends StatefulWidget {
     this.splitScreenMode = false,
     this.minTextAdapt = false,
     this.useInheritedMediaQuery = false,
+    this.ensureScreenSize,
     this.responsiveWidgets,
   }) : super(key: key);
 
@@ -58,6 +59,7 @@ class ScreenUtilInit extends StatefulWidget {
   final bool splitScreenMode;
   final bool minTextAdapt;
   final bool useInheritedMediaQuery;
+  final bool? ensureScreenSize;
   final RebuildFactor rebuildFactor;
 
   /// The [Size] of the device in the design draft, in dp
@@ -143,6 +145,7 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
       designSize: widget.designSize,
       splitScreenMode: widget.splitScreenMode,
       minTextAdapt: widget.minTextAdapt,
+      ensureScreenHasSize: widget.ensureScreenSize,
     );
 
     return widget.builder?.call(context, widget.child) ?? widget.child!;

@@ -25,25 +25,7 @@ class ScreenUtil {
 
   ScreenUtil._();
 
-  factory ScreenUtil() {
-    return _instance;
-  }
-
-  factory ScreenUtil.init(
-    BuildContext context, {
-    Size designSize = defaultSize,
-    bool splitScreenMode = false,
-    bool minTextAdapt = false,
-  }) {
-    configure(
-      data: MediaQuery.maybeOf(context),
-      designSize: designSize,
-      minTextAdapt: minTextAdapt,
-      splitScreenMode: splitScreenMode,
-    );
-
-    return _instance;
-  }
+  factory ScreenUtil() => _instance;
 
   /// Manually wait for window size to be initialized
   ///
@@ -79,7 +61,7 @@ class ScreenUtil {
         window = binding.platformDispatcher.implicitView;
       }
 
-      if (window == null || window!.physicalGeometry.isEmpty == true) {
+      if (window == null || window!.physicalGeometry.isEmpty) {
         return Future.delayed(duration, () => true);
       }
 
@@ -107,19 +89,32 @@ class ScreenUtil {
     }
   }
 
-  /// Initializing the library.
-  static void configure({
+  static Future<void> configure({
     MediaQueryData? data,
     Size? designSize,
     bool? splitScreenMode,
     bool? minTextAdapt,
-  }) {
-    if (data != null) _instance._data = data;
+    bool? ensureScreenHasSize,
+  }) async {
+    if (ensureScreenHasSize ?? false) await ScreenUtil.ensureScreenSize();
 
-    final deviceData = _instance._data.nonEmptySizeOrNull();
-    final deviceSize = deviceData?.size ?? designSize ?? _instance._uiSize;
+    try {
+      if (data != null)
+        _instance._data = data;
+      else
+        data = _instance._data;
 
-    if (designSize != null) _instance._uiSize = designSize;
+      if (designSize != null)
+        _instance._uiSize = designSize;
+      else
+        designSize = _instance._uiSize;
+    } catch (_) {
+      throw Exception(
+          'You must either use ScreenUtil.init or ScreenUtilInit first');
+    }
+
+    final MediaQueryData? deviceData = data.nonEmptySizeOrNull();
+    final Size deviceSize = deviceData?.size ?? designSize;
 
     final orientation = deviceData?.orientation ??
         (deviceSize.width > deviceSize.height
@@ -132,6 +127,23 @@ class ScreenUtil {
       .._orientation = orientation;
 
     _instance._elementsToRebuild?.forEach((el) => el.markNeedsBuild());
+  }
+
+  /// Initializing the library.
+  static Future<void> init(
+    BuildContext context, {
+    Size designSize = defaultSize,
+    bool splitScreenMode = false,
+    bool minTextAdapt = false,
+    bool ensureScreenSize = false,
+  }) {
+    return configure(
+      data: MediaQuery.maybeOf(context),
+      designSize: designSize,
+      minTextAdapt: minTextAdapt,
+      splitScreenMode: splitScreenMode,
+      ensureScreenHasSize: ensureScreenSize,
+    );
   }
 
   ///获取屏幕方向
@@ -166,7 +178,7 @@ class ScreenUtil {
   /// The ratio of actual width to UI design
   double get scaleWidth => screenWidth / _uiSize.width;
 
-  ///  /// The ratio of actual height to UI design
+  /// The ratio of actual height to UI design
   double get scaleHeight =>
       (_splitScreenMode ? max(screenHeight, 700) : screenHeight) /
       _uiSize.height;
