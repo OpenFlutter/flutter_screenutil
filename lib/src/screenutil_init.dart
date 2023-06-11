@@ -1,4 +1,7 @@
+import 'dart:collection';
+
 import 'package:flutter/widgets.dart';
+import './_flutter_widgets.dart';
 
 import 'screenutil_mixin.dart';
 import 'screen_util.dart';
@@ -67,13 +70,16 @@ class ScreenUtilInit extends StatefulWidget {
 
 class _ScreenUtilInitState extends State<ScreenUtilInit>
     with WidgetsBindingObserver {
-  late final Iterable<String>? _canMarkedToBuild;
+  final _canMarkedToBuild = HashSet<String>();
   MediaQueryData? _mediaQueryData;
-  final WidgetsBinding _binding = WidgetsBinding.instance;
+  final _binding = WidgetsBinding.instance;
 
   @override
   void initState() {
-    _canMarkedToBuild = widget.responsiveWidgets;
+    if (widget.responsiveWidgets != null) {
+      _canMarkedToBuild.addAll(widget.responsiveWidgets!);
+    }
+
     super.initState();
     _binding.addObserver(this);
   }
@@ -98,13 +104,12 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
   }
 
   void _markNeedsBuildIfAllowed(Element el) {
-    if (_canMarkedToBuild != null) {
-      final widget = el.widget, widgetName = el.widget.runtimeType.toString();
+    final widgetName = el.widget.runtimeType.toString();
+    final allowed = widget is SU ||
+        _canMarkedToBuild.contains(widgetName) ||
+        !(widgetName.startsWith('_') || flutterWidgets.contains(widgetName));
 
-      if (widget is! SU && !_canMarkedToBuild!.contains(widgetName)) return;
-    }
-
-    el.markNeedsBuild();
+    if (allowed) el.markNeedsBuild();
   }
 
   void _updateTree(Element el) {
