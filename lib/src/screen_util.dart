@@ -92,16 +92,13 @@ class ScreenUtil {
     }
   }
 
-  static Future<void> configure({
+  static void configure({
     MediaQueryData? data,
     Size? designSize,
     bool? splitScreenMode,
     bool? minTextAdapt,
-    bool? ensureScreenHasSize,
     FontSizeResolver? fontSizeResolver,
-  }) async {
-    if (ensureScreenHasSize ?? false) await ScreenUtil.ensureScreenSize();
-
+  }) {
     try {
       if (data != null)
         _instance._data = data;
@@ -135,22 +132,38 @@ class ScreenUtil {
   }
 
   /// Initializing the library.
-  static Future<void> init(
+  static void init(
     BuildContext context, {
     Size designSize = defaultSize,
     bool splitScreenMode = false,
     bool minTextAdapt = false,
-    bool ensureScreenSize = false,
     FontSizeResolver? fontSizeResolver,
   }) {
     return configure(
       data: MediaQuery.maybeOf(context),
       designSize: designSize,
-      minTextAdapt: minTextAdapt,
       splitScreenMode: splitScreenMode,
-      ensureScreenHasSize: ensureScreenSize,
+      minTextAdapt: minTextAdapt,
       fontSizeResolver: fontSizeResolver,
     );
+  }
+
+  static Future<void> ensureScreenSizeAndInit(
+    BuildContext context, {
+    Size designSize = defaultSize,
+    bool splitScreenMode = false,
+    bool minTextAdapt = false,
+    FontSizeResolver? fontSizeResolver,
+  }) {
+    return ScreenUtil.ensureScreenSize().then((_) {
+      return configure(
+        data: MediaQuery.maybeOf(context),
+        designSize: designSize,
+        minTextAdapt: minTextAdapt,
+        splitScreenMode: splitScreenMode,
+        fontSizeResolver: fontSizeResolver,
+      );
+    });
   }
 
   ///获取屏幕方向
