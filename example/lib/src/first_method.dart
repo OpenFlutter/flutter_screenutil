@@ -1,7 +1,6 @@
 import 'package:example/responsive_widgets.su.dart';
 import 'package:example/src/home.dart';
 import 'package:flutter/material.dart';
-// import 'package:example/allowed_classes.su.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyApp extends StatelessWidget {
