@@ -25,9 +25,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   test: ^1.15.7
-  build_runner:
-  flutter_screenutil_generator:
-    path: ../../flutter_screenutil_generator
 
 flutter:
   uses-material-design: true
