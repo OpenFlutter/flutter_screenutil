@@ -207,6 +207,12 @@ class ScreenUtil {
   ///Adapt according to the smaller of width or height
   double radius(num r) => r * min(scaleWidth, scaleHeight);
 
+  /// Adapt according to the both width and height
+  double diagonal(num d) => d * scaleHeight * scaleWidth;
+
+  /// Adapt according to the maximum value of scale width and scale height
+  double diameter(num d) => d * max(scaleWidth, scaleHeight);
+
   ///字体大小适配方法
   ///- [fontSize] UI设计上字体的大小,单位dp.
   ///Font size adaptation method
