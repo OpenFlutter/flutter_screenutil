@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter/widgets.dart';
@@ -99,12 +100,14 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
   final _canMarkedToBuild = HashSet<String>();
   MediaQueryData? _mediaQueryData;
   final _binding = WidgetsBinding.instance;
+  final _screenSizeCompleter = Completer<void>();
 
   @override
   void initState() {
     if (widget.responsiveWidgets != null) {
       _canMarkedToBuild.addAll(widget.responsiveWidgets!);
     }
+    _validateSize().then(_screenSizeCompleter.complete);
 
     super.initState();
     _binding.addObserver(this);
@@ -127,6 +130,10 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
     if (mq == null) mq = MediaQueryData.fromView(View.of(context));
 
     return mq;
+  }
+
+  Future<void> _validateSize() async {
+    if (widget.ensureScreenSize ?? false) return ScreenUtil.ensureScreenSize();
   }
 
   void _markNeedsBuildIfAllowed(Element el) {
@@ -162,18 +169,26 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
   Widget build(BuildContext context) {
     final mq = _mediaQueryData;
 
-    if (mq == null) return SizedBox.shrink();
+    if (mq == null) return const SizedBox.shrink();
 
-    ScreenUtil.configure(
-      data: mq,
-      designSize: widget.designSize,
-      splitScreenMode: widget.splitScreenMode,
-      minTextAdapt: widget.minTextAdapt,
-      ensureScreenHasSize: widget.ensureScreenSize,
-      fontSizeResolver: widget.fontSizeResolver,
+    return FutureBuilder<void>(
+      future: _screenSizeCompleter.future,
+      builder: (c, snapshot) {
+        ScreenUtil.configure(
+          data: mq,
+          designSize: widget.designSize,
+          splitScreenMode: widget.splitScreenMode,
+          minTextAdapt: widget.minTextAdapt,
+          fontSizeResolver: widget.fontSizeResolver,
+        );
+
+        if (snapshot.connectionState == ConnectionState.done) {
+          return widget.builder?.call(context, widget.child) ?? widget.child!;
+        }
+
+        return const SizedBox.shrink();
+      },
     );
-
-    return widget.builder?.call(context, widget.child) ?? widget.child!;
   }
 
   @override

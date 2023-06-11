@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
     // In first method you only need to wrap [MaterialApp] with [ScreenUtilInit] and that's it
     return ScreenUtilInit(
       responsiveWidgets: responsiveWidgets,
+      ensureScreenSize: true,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'First Method',
