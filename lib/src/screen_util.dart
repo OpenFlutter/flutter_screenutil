@@ -8,6 +8,8 @@ import 'dart:ui' as ui show FlutterView;
 
 import 'package:flutter/widgets.dart';
 
+typedef FontSizeResolver = double Function(num fontSize, ScreenUtil instance);
+
 class ScreenUtil {
   static const Size defaultSize = Size(360, 690);
   static ScreenUtil _instance = ScreenUtil._();
@@ -22,6 +24,7 @@ class ScreenUtil {
   late bool _minTextAdapt;
   late MediaQueryData _data;
   late bool _splitScreenMode;
+  FontSizeResolver? fontSizeResolver;
 
   ScreenUtil._();
 
@@ -95,6 +98,7 @@ class ScreenUtil {
     bool? splitScreenMode,
     bool? minTextAdapt,
     bool? ensureScreenHasSize,
+    FontSizeResolver? fontSizeResolver,
   }) async {
     if (ensureScreenHasSize ?? false) await ScreenUtil.ensureScreenSize();
 
@@ -122,6 +126,7 @@ class ScreenUtil {
             : Orientation.portrait);
 
     _instance
+      ..fontSizeResolver = fontSizeResolver ?? _instance.fontSizeResolver
       .._minTextAdapt = minTextAdapt ?? _instance._minTextAdapt
       .._splitScreenMode = splitScreenMode ?? _instance._splitScreenMode
       .._orientation = orientation;
@@ -136,6 +141,7 @@ class ScreenUtil {
     bool splitScreenMode = false,
     bool minTextAdapt = false,
     bool ensureScreenSize = false,
+    FontSizeResolver? fontSizeResolver,
   }) {
     return configure(
       data: MediaQuery.maybeOf(context),
@@ -143,6 +149,7 @@ class ScreenUtil {
       minTextAdapt: minTextAdapt,
       splitScreenMode: splitScreenMode,
       ensureScreenHasSize: ensureScreenSize,
+      fontSizeResolver: fontSizeResolver,
     );
   }
 
@@ -217,7 +224,8 @@ class ScreenUtil {
   ///- [fontSize] UI设计上字体的大小,单位dp.
   ///Font size adaptation method
   ///- [fontSize] The size of the font on the UI design, in dp.
-  double setSp(num fontSize) => fontSize * scaleText;
+  double setSp(num fontSize) =>
+      fontSizeResolver?.call(fontSize, _instance) ?? fontSize * scaleText;
 
   Widget setVerticalSpacing(num height) => SizedBox(height: setHeight(height));
 
