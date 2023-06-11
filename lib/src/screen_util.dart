@@ -64,7 +64,7 @@ class ScreenUtil {
         window = binding.platformDispatcher.implicitView;
       }
 
-      if (window == null || window!.physicalGeometry.isEmpty) {
+      if (window == null || window!.physicalSize.isEmpty) {
         return Future.delayed(duration, () => true);
       }
 
