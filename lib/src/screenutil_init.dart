@@ -39,6 +39,28 @@ abstract class RebuildFactors {
   }
 }
 
+abstract class FontSizeResolvers {
+  static double width(num fontSize, ScreenUtil instance) {
+    return instance.setWidth(fontSize);
+  }
+
+  static double height(num fontSize, ScreenUtil instance) {
+    return instance.setHeight(fontSize);
+  }
+
+  static double raduis(num fontSize, ScreenUtil instance) {
+    return instance.radius(fontSize);
+  }
+
+  static double diameter(num fontSize, ScreenUtil instance) {
+    return instance.diameter(fontSize);
+  }
+
+  static double diagonal(num fontSize, ScreenUtil instance) {
+    return instance.diagonal(fontSize);
+  }
+}
+
 class ScreenUtilInit extends StatefulWidget {
   /// A helper widget that initializes [ScreenUtil]
   const ScreenUtilInit({
@@ -52,6 +74,7 @@ class ScreenUtilInit extends StatefulWidget {
     this.useInheritedMediaQuery = false,
     this.ensureScreenSize,
     this.responsiveWidgets,
+    this.fontSizeResolver = FontSizeResolvers.width,
   }) : super(key: key);
 
   final ScreenUtilInitBuilder? builder;
@@ -61,6 +84,7 @@ class ScreenUtilInit extends StatefulWidget {
   final bool useInheritedMediaQuery;
   final bool? ensureScreenSize;
   final RebuildFactor rebuildFactor;
+  final FontSizeResolver fontSizeResolver;
 
   /// The [Size] of the device in the design draft, in dp
   final Size designSize;
@@ -146,6 +170,7 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
       splitScreenMode: widget.splitScreenMode,
       minTextAdapt: widget.minTextAdapt,
       ensureScreenHasSize: widget.ensureScreenSize,
+      fontSizeResolver: widget.fontSizeResolver,
     );
 
     return widget.builder?.call(context, widget.child) ?? widget.child!;
