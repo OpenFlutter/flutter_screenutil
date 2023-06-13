@@ -1,3 +1,10 @@
+# 5.9.0
+- ScreenUtilInit won't rebuild the whole widget tree
+- Add `fontSizeResolver` to specify how font size should be scaled
+- Add `diameter` & `diagonal` factors
+- `useInheritedMediaQuery` has not effect, and will be removed in next release
+- Fix `ensureScreenSize` in web platform
+
 # 5.8.4
 - bug fix
 - change useInheritedMediaQuery default value to false
