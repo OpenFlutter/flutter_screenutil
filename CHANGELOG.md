@@ -1,4 +1,4 @@
-# 5.9.0
+# 5.9.0-beta
 - ScreenUtilInit won't rebuild the whole widget tree
 - Add `fontSizeResolver` to specify how font size should be scaled
 - Add `diameter` & `diagonal` factors
