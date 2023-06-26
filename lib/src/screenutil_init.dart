@@ -1,5 +1,10 @@
-import 'package:flutter/widgets.dart';
+import 'dart:async';
+import 'dart:collection';
 
+import 'package:flutter/widgets.dart';
+import './_flutter_widgets.dart';
+
+import 'screenutil_mixin.dart';
 import 'screen_util.dart';
 
 typedef RebuildFactor = bool Function(MediaQueryData old, MediaQueryData data);
@@ -9,9 +14,7 @@ typedef ScreenUtilInitBuilder = Widget Function(
   Widget? child,
 );
 
-class RebuildFactors {
-  const RebuildFactors._();
-
+abstract class RebuildFactors {
   static bool size(MediaQueryData old, MediaQueryData data) {
     return old.size != data.size;
   }
@@ -24,35 +27,69 @@ class RebuildFactors {
     return old.viewInsets != data.viewInsets;
   }
 
-  static bool all(MediaQueryData old, MediaQueryData data) {
+  static bool change(MediaQueryData old, MediaQueryData data) {
     return old != data;
+  }
+
+  static bool always(MediaQueryData _, MediaQueryData __) {
+    return true;
+  }
+
+  static bool none(MediaQueryData _, MediaQueryData __) {
+    return false;
+  }
+}
+
+abstract class FontSizeResolvers {
+  static double width(num fontSize, ScreenUtil instance) {
+    return instance.setWidth(fontSize);
+  }
+
+  static double height(num fontSize, ScreenUtil instance) {
+    return instance.setHeight(fontSize);
+  }
+
+  static double raduis(num fontSize, ScreenUtil instance) {
+    return instance.radius(fontSize);
+  }
+
+  static double diameter(num fontSize, ScreenUtil instance) {
+    return instance.diameter(fontSize);
+  }
+
+  static double diagonal(num fontSize, ScreenUtil instance) {
+    return instance.diagonal(fontSize);
   }
 }
 
 class ScreenUtilInit extends StatefulWidget {
   /// A helper widget that initializes [ScreenUtil]
-  const ScreenUtilInit(
-      {Key? key,
-      required this.builder,
-      this.child,
-      this.rebuildFactor = RebuildFactors.size,
-      this.designSize = ScreenUtil.defaultSize,
-      this.splitScreenMode = false,
-      this.minTextAdapt = false,
-      this.useInheritedMediaQuery = false,
-      this.scaleByHeight = false})
-      : super(key: key);
+  const ScreenUtilInit({
+    Key? key,
+    this.builder,
+    this.child,
+    this.rebuildFactor = RebuildFactors.size,
+    this.designSize = ScreenUtil.defaultSize,
+    this.splitScreenMode = false,
+    this.minTextAdapt = false,
+    this.useInheritedMediaQuery = false,
+    this.ensureScreenSize,
+    this.responsiveWidgets,
+    this.fontSizeResolver = FontSizeResolvers.width,
+  }) : super(key: key);
 
-  final ScreenUtilInitBuilder builder;
+  final ScreenUtilInitBuilder? builder;
   final Widget? child;
   final bool splitScreenMode;
   final bool minTextAdapt;
   final bool useInheritedMediaQuery;
-  final bool scaleByHeight;
+  final bool? ensureScreenSize;
   final RebuildFactor rebuildFactor;
+  final FontSizeResolver fontSizeResolver;
 
   /// The [Size] of the device in the design draft, in dp
   final Size designSize;
+  final Iterable<String>? responsiveWidgets;
 
   @override
   State<ScreenUtilInit> createState() => _ScreenUtilInitState();
@@ -60,127 +97,103 @@ class ScreenUtilInit extends StatefulWidget {
 
 class _ScreenUtilInitState extends State<ScreenUtilInit>
     with WidgetsBindingObserver {
+  final _canMarkedToBuild = HashSet<String>();
   MediaQueryData? _mediaQueryData;
-
-  bool wrappedInMediaQuery = false;
-
-  WidgetsBinding get binding => WidgetsFlutterBinding.ensureInitialized();
-
-  MediaQueryData get mediaQueryData => _mediaQueryData!;
-
-  MediaQueryData get newData {
-    final data = MediaQuery.maybeOf(context);
-
-    if (data != null) {
-      if (widget.useInheritedMediaQuery) {
-        wrappedInMediaQuery = true;
-      }
-      return data;
-    }
-
-    return MediaQueryData.fromView(View.of(context));
-  }
-
-  _updateTree(Element el) {
-    el.markNeedsBuild();
-    el.visitChildren(_updateTree);
-  }
+  final _binding = WidgetsBinding.instance;
+  final _screenSizeCompleter = Completer<void>();
 
   @override
   void initState() {
+    if (widget.responsiveWidgets != null) {
+      _canMarkedToBuild.addAll(widget.responsiveWidgets!);
+    }
+    _validateSize().then(_screenSizeCompleter.complete);
+
     super.initState();
-    binding.addObserver(this);
+    _binding.addObserver(this);
   }
 
   @override
   void didChangeMetrics() {
-    final old = _mediaQueryData!;
-    final data = newData;
-
-    if (widget.scaleByHeight || widget.rebuildFactor(old, data)) {
-      _mediaQueryData = data;
-      _updateTree(context as Element);
-    }
+    super.didChangeMetrics();
+    _revalidate();
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    if (_mediaQueryData == null) _mediaQueryData = newData;
-    didChangeMetrics();
+    _revalidate();
+  }
+
+  MediaQueryData? _newData() {
+    MediaQueryData? mq = MediaQuery.maybeOf(context);
+    if (mq == null) mq = MediaQueryData.fromView(View.of(context));
+
+    return mq;
+  }
+
+  Future<void> _validateSize() async {
+    if (widget.ensureScreenSize ?? false) return ScreenUtil.ensureScreenSize();
+  }
+
+  void _markNeedsBuildIfAllowed(Element el) {
+    final widgetName = el.widget.runtimeType.toString();
+    final allowed = widget is SU ||
+        _canMarkedToBuild.contains(widgetName) ||
+        !(widgetName.startsWith('_') || flutterWidgets.contains(widgetName));
+
+    if (allowed) el.markNeedsBuild();
+  }
+
+  void _updateTree(Element el) {
+    _markNeedsBuildIfAllowed(el);
+    el.visitChildren(_updateTree);
+  }
+
+  void _revalidate([void Function()? callback]) {
+    final oldData = _mediaQueryData;
+    final newData = _newData();
+
+    if (newData == null) return;
+
+    if (oldData == null || widget.rebuildFactor(oldData, newData)) {
+      setState(() {
+        _mediaQueryData = newData;
+        _updateTree(context as Element);
+        callback?.call();
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final mq = _mediaQueryData;
+
+    if (mq == null) return const SizedBox.shrink();
+
+    return FutureBuilder<void>(
+      future: _screenSizeCompleter.future,
+      builder: (c, snapshot) {
+        ScreenUtil.configure(
+          data: mq,
+          designSize: widget.designSize,
+          splitScreenMode: widget.splitScreenMode,
+          minTextAdapt: widget.minTextAdapt,
+          fontSizeResolver: widget.fontSizeResolver,
+        );
+
+        if (snapshot.connectionState == ConnectionState.done) {
+          return widget.builder?.call(context, widget.child) ?? widget.child!;
+        }
+
+        return const SizedBox.shrink();
+      },
+    );
   }
 
   @override
   void dispose() {
-    binding.removeObserver(this);
+    _binding.removeObserver(this);
     super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext _context) {
-    if (mediaQueryData.size == Size.zero) return const SizedBox.shrink();
-    if (!wrappedInMediaQuery) {
-      return MediaQuery(
-        data: mediaQueryData,
-        child: Builder(
-          builder: (__context) {
-            ScreenUtil.init(
-              __context,
-              designSize: widget.designSize,
-              splitScreenMode: widget.splitScreenMode,
-              minTextAdapt: widget.minTextAdapt,
-              scaleByHeight: widget.scaleByHeight,
-            );
-            final deviceData = MediaQuery.maybeOf(__context);
-            final deviceSize = deviceData?.size ?? widget.designSize;
-            return MediaQuery(
-              data: MediaQueryData.fromView(View.of(__context)),
-              child: Container(
-                width: deviceSize.width,
-                height: deviceSize.height,
-                child: FittedBox(
-                  fit: BoxFit.none,
-                  alignment: Alignment.center,
-                  child: Container(
-                    width: widget.scaleByHeight
-                        ? (deviceSize.height * widget.designSize.width) /
-                            widget.designSize.height
-                        : deviceSize.width,
-                    height: deviceSize.height,
-                    child: widget.builder(__context, widget.child),
-                  ),
-                ),
-              ),
-            );
-          },
-        ),
-      );
-    }
-
-    ScreenUtil.init(
-      _context,
-      designSize: widget.designSize,
-      splitScreenMode: widget.splitScreenMode,
-      minTextAdapt: widget.minTextAdapt,
-      scaleByHeight: widget.scaleByHeight,
-    );
-    final deviceData = MediaQuery.maybeOf(_context);
-    final deviceSize = deviceData?.size ?? widget.designSize;
-    return Container(
-      width: deviceSize.width,
-      height: deviceSize.height,
-      child: FittedBox(
-        fit: BoxFit.none,
-        alignment: Alignment.center,
-        child: Container(
-          width: widget.scaleByHeight
-              ? (deviceSize.height * widget.designSize.width) /
-                  widget.designSize.height
-              : deviceSize.width,
-          height: deviceSize.height,
-          child: widget.builder(_context, widget.child),
-        ),
-      ),
-    );
   }
 }

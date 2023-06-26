@@ -43,7 +43,7 @@ void main() {
           data: currentData,
           child: ScreenUtilInit(
             designSize: designSize,
-            builder: (context, child) => MaterialApp(
+            child: MaterialApp(
               home: Material(
                 child: TextButton(
                   key: _key,
@@ -67,6 +67,9 @@ void main() {
 
     // Tests with initial screen size
     testSize(initialSize);
+
+    // Wait for FutureBuilder to be resolved
+    await tester.pumpAndSettle();
 
     // Click On button to simulate changing screen size
     await tap();

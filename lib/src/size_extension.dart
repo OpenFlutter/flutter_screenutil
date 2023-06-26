@@ -14,6 +14,12 @@ extension SizeExtension on num {
   ///[ScreenUtil.radius]
   double get r => ScreenUtil().radius(this);
 
+  ///[ScreenUtil.diagonal]
+  double get dg => ScreenUtil().diagonal(this);
+
+  ///[ScreenUtil.diameter]
+  double get dm => ScreenUtil().diameter(this);
+
   ///[ScreenUtil.setSp]
   double get sp => ScreenUtil().setSp(this);
 
@@ -36,22 +42,38 @@ extension SizeExtension on num {
   double get sh => ScreenUtil().screenHeight * this;
 
   ///[ScreenUtil.setHeight]
-  Widget get verticalSpace => ScreenUtil().setVerticalSpacing(this);
+  SizedBox get verticalSpace => ScreenUtil().setVerticalSpacing(this);
 
   ///[ScreenUtil.setVerticalSpacingFromWidth]
-  Widget get verticalSpaceFromWidth =>
+  SizedBox get verticalSpaceFromWidth =>
       ScreenUtil().setVerticalSpacingFromWidth(this);
 
   ///[ScreenUtil.setWidth]
-  Widget get horizontalSpace => ScreenUtil().setHorizontalSpacing(this);
+  SizedBox get horizontalSpace => ScreenUtil().setHorizontalSpacing(this);
 
   ///[ScreenUtil.radius]
-  Widget get horizontalSpaceRadius =>
+  SizedBox get horizontalSpaceRadius =>
       ScreenUtil().setHorizontalSpacingRadius(this);
 
   ///[ScreenUtil.radius]
-  Widget get verticalSpacingRadius =>
+  SizedBox get verticalSpacingRadius =>
       ScreenUtil().setVerticalSpacingRadius(this);
+
+  ///[ScreenUtil.diameter]
+  SizedBox get horizontalSpaceDiameter =>
+      ScreenUtil().setHorizontalSpacingDiameter(this);
+
+  ///[ScreenUtil.diameter]
+  SizedBox get verticalSpacingDiameter =>
+      ScreenUtil().setVerticalSpacingDiameter(this);
+
+  ///[ScreenUtil.diagonal]
+  SizedBox get horizontalSpaceDiagonal =>
+      ScreenUtil().setHorizontalSpacingDiagonal(this);
+
+  ///[ScreenUtil.diagonal]
+  SizedBox get verticalSpacingDiagonal =>
+      ScreenUtil().setVerticalSpacingDiagonal(this);
 }
 
 extension EdgeInsetsExtension on EdgeInsets {
@@ -61,6 +83,20 @@ extension EdgeInsetsExtension on EdgeInsets {
         bottom: bottom.r,
         right: right.r,
         left: left.r,
+      );
+
+  EdgeInsets get dm => copyWith(
+        top: top.dm,
+        bottom: bottom.dm,
+        right: right.dm,
+        left: left.dm,
+      );
+
+  EdgeInsets get dg => copyWith(
+        top: top.dg,
+        bottom: bottom.dg,
+        right: right.dg,
+        left: left.dg,
       );
 
   EdgeInsets get w => copyWith(
@@ -105,6 +141,10 @@ extension BorderRaduisExtension on BorderRadius {
 extension RaduisExtension on Radius {
   /// Creates adapt Radius using r [SizeExtension].
   Radius get r => Radius.elliptical(x.r, y.r);
+
+  Radius get dm => Radius.elliptical(x.dm, y.dm);
+
+  Radius get dg => Radius.elliptical(x.dg, y.dg);
 
   Radius get w => Radius.elliptical(x.w, y.w);
 
