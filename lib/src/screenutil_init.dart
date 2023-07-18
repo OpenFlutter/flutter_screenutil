@@ -49,7 +49,7 @@ abstract class FontSizeResolvers {
     return instance.setHeight(fontSize);
   }
 
-  static double raduis(num fontSize, ScreenUtil instance) {
+  static double radius(num fontSize, ScreenUtil instance) {
     return instance.radius(fontSize);
   }
 
