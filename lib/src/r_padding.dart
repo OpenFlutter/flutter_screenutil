@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 
 import 'size_extension.dart';
 
+@Deprecated('not used anymore')
 class RPadding extends SingleChildRenderObjectWidget {
   /// Creates a adapt widget that insets its child.
   ///
@@ -25,6 +26,7 @@ class RPadding extends SingleChildRenderObjectWidget {
   }
 }
 
+@Deprecated('not used anymore')
 class REdgeInsets extends EdgeInsets {
   /// Creates adapt insets from offsets from the left, top, right, and bottom.
   REdgeInsets.fromLTRB(double left, double top, double right, double bottom)
@@ -80,6 +82,7 @@ class REdgeInsets extends EdgeInsets {
         );
 }
 
+@Deprecated('not used anymore')
 class REdgeInsetsDirectional extends EdgeInsetsDirectional {
   /// Creates insets where all the offsets are `value`.
   ///

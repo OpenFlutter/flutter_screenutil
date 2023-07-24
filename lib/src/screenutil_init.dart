@@ -14,6 +14,7 @@ typedef ScreenUtilInitBuilder = Widget Function(
   Widget? child,
 );
 
+@Deprecated('not used anymore')
 abstract class RebuildFactors {
   static bool size(MediaQueryData old, MediaQueryData data) {
     return old.size != data.size;
@@ -40,6 +41,7 @@ abstract class RebuildFactors {
   }
 }
 
+@Deprecated('not used anymore')
 abstract class FontSizeResolvers {
   static double width(num fontSize, ScreenUtil instance) {
     return instance.setWidth(fontSize);
@@ -62,6 +64,7 @@ abstract class FontSizeResolvers {
   }
 }
 
+@Deprecated('not used anymore')
 class ScreenUtilInit extends StatefulWidget {
   /// A helper widget that initializes [ScreenUtil]
   const ScreenUtilInit({

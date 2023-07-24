@@ -10,6 +10,7 @@ import 'package:flutter/widgets.dart';
 
 typedef FontSizeResolver = double Function(num fontSize, ScreenUtil instance);
 
+@Deprecated('not used anymore')
 class ScreenUtil {
   static const Size defaultSize = Size(360, 690);
   static ScreenUtil _instance = ScreenUtil._();

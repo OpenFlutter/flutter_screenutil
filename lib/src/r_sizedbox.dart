@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 
 import 'size_extension.dart';
 
+@Deprecated('not used anymore')
 class RSizedBox extends SizedBox {
   const RSizedBox({
     Key? key,
