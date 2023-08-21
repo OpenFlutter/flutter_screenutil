@@ -3,6 +3,7 @@
  * email: zhuoyuan93@gmail.com
  */
 
+import 'dart:io';
 import 'dart:math' show min, max;
 import 'dart:ui' as ui show FlutterView;
 
@@ -240,6 +241,37 @@ class ScreenUtil {
   double setSp(num fontSize) =>
       fontSizeResolver?.call(fontSize, _instance) ?? fontSize * scaleText;
 
+  DeviceType deviceType() {
+    DeviceType deviceType;
+    switch (Platform.operatingSystem) {
+      case 'android':
+      case 'ios':
+        deviceType = DeviceType.mobile;
+        if ((orientation == Orientation.portrait && screenWidth < 600) ||
+            (orientation == Orientation.landscape && screenHeight < 600)) {
+          deviceType = DeviceType.mobile;
+        } else {
+          deviceType = DeviceType.tablet;
+        }
+        break;
+      case 'linux':
+        deviceType = DeviceType.linux;
+        break;
+      case 'macos':
+        deviceType = DeviceType.mac;
+        break;
+      case 'windows':
+        deviceType = DeviceType.windows;
+        break;
+      case 'fuchsia':
+        deviceType = DeviceType.fuchsia;
+        break;
+      default:
+        deviceType = DeviceType.web;
+    }
+    return deviceType;
+  }
+
   SizedBox setVerticalSpacing(num height) =>
       SizedBox(height: setHeight(height));
 
@@ -275,3 +307,5 @@ extension on MediaQueryData? {
       return this;
   }
 }
+
+enum DeviceType { mobile, tablet, web, mac, windows, linux, fuchsia }
