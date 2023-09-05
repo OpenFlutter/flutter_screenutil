@@ -73,7 +73,7 @@ class ScreenUtilInit extends StatefulWidget {
     this.splitScreenMode = false,
     this.minTextAdapt = false,
     this.useInheritedMediaQuery = false,
-    this.ensureScreenSize,
+    this.ensureScreenSize = false,
     this.responsiveWidgets,
     this.fontSizeResolver = FontSizeResolvers.width,
   }) : super(key: key);
@@ -83,7 +83,7 @@ class ScreenUtilInit extends StatefulWidget {
   final bool splitScreenMode;
   final bool minTextAdapt;
   final bool useInheritedMediaQuery;
-  final bool? ensureScreenSize;
+  final bool ensureScreenSize;
   final RebuildFactor rebuildFactor;
   final FontSizeResolver fontSizeResolver;
 
@@ -133,7 +133,7 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
   }
 
   Future<void> _validateSize() async {
-    if (widget.ensureScreenSize ?? false) return ScreenUtil.ensureScreenSize();
+    if (widget.ensureScreenSize) return ScreenUtil.ensureScreenSize();
   }
 
   void _markNeedsBuildIfAllowed(Element el) {
@@ -170,6 +170,18 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
     final mq = _mediaQueryData;
 
     if (mq == null) return const SizedBox.shrink();
+
+    if (!widget.ensureScreenSize) {
+      ScreenUtil.configure(
+        data: mq,
+        designSize: widget.designSize,
+        splitScreenMode: widget.splitScreenMode,
+        minTextAdapt: widget.minTextAdapt,
+        fontSizeResolver: widget.fontSizeResolver,
+      );
+
+      return widget.builder?.call(context, widget.child) ?? widget.child!;
+    }
 
     return FutureBuilder<void>(
       future: _screenSizeCompleter.future,
