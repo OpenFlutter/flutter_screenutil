@@ -50,7 +50,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 | minTextAdapt     | bool         | false         | Whether to adapt the text according to the minimum of width and height                                                                        |
 | context          | BuildContext | null          | Get physical device data if not provided, by MediaQuery.of(context)                                                                           |
 | fontSizeResolver | Function     | *default*     | Function that specify how font size should be adapted. Default is that font size scale with width of screen.                                  |
-| reponsiveWidgets | Iterable<String> | null      | List/Set of widget names that should be included in rebuilding tree. (See [How flutter_screenutil marks a widget needs build](#rebuild-list)) |
+| responsiveWidgets| Iterable<String> | null      | List/Set of widget names that should be included in rebuilding tree. (See [How flutter_screenutil marks a widget needs build](#rebuild-list)) |
 
 **Note : You must either provide builder, child or both.**
 
@@ -59,7 +59,7 @@ Starting from version 5.9.0, ScreenUtilInit won't rebuild the whole widget tree,
 - Widget is not a flutter widget (widgets are available in [Flutter Docs](https://docs.flutter.dev/reference/widgets))
 - Widget does not start with underscore (`_`)
 - Widget does not declare `SU` mixin
-- `reponsiveWidgets` does not contains widget name
+- `responsiveWidgets` does not contains widget name
 
 If you have a widget that uses the library and doesn't meet these options you can either add `SU` mixin or add widget name in responsiveWidgets list.
 
