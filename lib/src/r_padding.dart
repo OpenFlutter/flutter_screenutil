@@ -4,7 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'size_extension.dart';
 
 class RPadding extends SingleChildRenderObjectWidget {
-  /// Creates a adapt widget that insets its child.
+  /// Creates an adapt widget that insets its child.
   ///
   /// The [padding] argument must not be null.
   const RPadding({
