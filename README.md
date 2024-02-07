@@ -357,6 +357,30 @@ MediaQuery(
 
 To use second method run: `flutter run --dart-define=method=2`
 
+### Update for Version 5.9.0 (Tests)
+Reported as bug in [#515](https://github.com/OpenFlutter/flutter_screenutil/issues/515)
+
+
+In version 5.9.0, to ensure compatibility and proper functioning of your tests, it is crucial to use the method `tester.pumpAndSettle()`; when conducting widget tests that depend on animations or a settling time to complete their state.
+
+In the previous version, this step was not strictly necessary. However, to maintain consistency in your tests and avoid unexpected errors, it's strongly recommended incorporating await tester.pumpAndSettle(); in your widget tests if you are using version 5.9.0
+
+Example usage:
+```dart
+testWidgets('Should ensure widgets settle correctly', (WidgetTester tester) async {
+await tester.pumpWidget(
+  const MaterialApp(
+    home: ScreenUtilInit(
+      child: MyApp(),
+    ),  
+  ),
+);
+// Insertion of recommended method to prevent failures
+await tester.pumpAndSettle();
+// Continue with your assertions and tests
+});
+```
+
 ### Effect
 
 ![effect](demo_en.png)
