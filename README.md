@@ -357,6 +357,12 @@ MediaQuery(
 
 To use second method run: `flutter run --dart-define=method=2`
 
+### Effect
+
+![effect](demo_en.png)
+![tablet effect](demo_tablet_en.png)
+
+
 ### Update for Version 5.9.0 (Tests)
 Reported as bug in [#515](https://github.com/OpenFlutter/flutter_screenutil/issues/515)
 
@@ -380,8 +386,3 @@ await tester.pumpAndSettle();
 // Continue with your assertions and tests
 });
 ```
-
-### Effect
-
-![effect](demo_en.png)
-![tablet effect](demo_tablet_en.png)
