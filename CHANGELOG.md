@@ -21,9 +21,6 @@
 # 5.8.1
 - Limit flutter version > 3.10.0
 
-# 5.8.0
-- mirage flutter 3.10
-
 # 5.7.0
 - merge #464
 
