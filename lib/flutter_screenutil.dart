@@ -5,9 +5,16 @@
 
 library flutter_screenutil;
 
-export 'src/r_padding.dart';
-export 'src/r_sizedbox.dart';
-export 'src/screen_util.dart';
-export 'src/screenutil_init.dart';
-export 'src/size_extension.dart';
-export 'src/screenutil_mixin.dart';
+export 'src/models/view.dart';
+export 'src/models/data.dart';
+export 'src/models/scale.dart';
+export 'src/models/options.dart';
+
+export 'src/types/scale_strategy.dart';
+
+export 'src/utils/scaler.dart';
+export 'src/utils/extensions.dart';
+
+export 'src/widgets/screen_util.dart';
+export 'src/widgets/screen_util_provider.dart';
+export 'src/widgets/screen_util_singleton.dart';

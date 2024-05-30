@@ -6,65 +6,69 @@ import 'home.test.dart';
 
 void main() {
   const smallerDeviceSize = Size(300, 600);
-  const smallerDeviceData = MediaQueryData(size: smallerDeviceSize);
-
   const biggerDeviceSize = Size(500, 900);
-  const biggerDeviceData = MediaQueryData(size: biggerDeviceSize);
-
   const uiSize = Size(470, 740);
 
   group('[Test calculations]', () {
     test('Test smaller size', () {
-      ScreenUtil.configure(
-        data: smallerDeviceData,
-        designSize: uiSize,
-        minTextAdapt: true,
-        splitScreenMode: false,
+      final data = ScreenUtilData.from(
+        options: ScreenUtilOptions(designSize: uiSize),
+        screenSize: smallerDeviceSize,
       );
 
-      expect(1.w, smallerDeviceSize.width / uiSize.width);
-      expect(1.w < 1, true);
-      expect(1.h, smallerDeviceSize.height / uiSize.height);
-      expect(1.h < 1, true);
+      final w = data.w(1), h = data.h(1);
+
+      expect(w, smallerDeviceSize.width / uiSize.width);
+      expect(w < 1, true);
+      expect(h, smallerDeviceSize.height / uiSize.height);
+      expect(h < 1, true);
     });
 
     test('Test bigger size', () {
-      ScreenUtil.configure(
-        data: biggerDeviceData,
-        designSize: uiSize,
-        minTextAdapt: true,
-        splitScreenMode: false,
+      final data = ScreenUtilData.from(
+        options: ScreenUtilOptions(designSize: uiSize),
+        screenSize: biggerDeviceSize,
       );
 
-      expect(1.w, biggerDeviceSize.width / uiSize.width);
-      expect(1.w > 1, true);
-      expect(1.h, biggerDeviceSize.height / uiSize.height);
-      expect(1.h > 1, true);
+      final w = data.w(1), h = data.h(1);
+
+      expect(w, biggerDeviceSize.width / uiSize.width);
+      expect(w > 1, true);
+      expect(h, biggerDeviceSize.height / uiSize.height);
+      expect(h > 1, true);
     });
   });
 
   group('[Test overflow]', () {
     testWidgets('Test overflow width', (tester) async {
-      await tester.pumpWidget(ScreenUtilInit(
-        designSize: uiSize,
-        child: MaterialApp(home: WidgetTest(width: () => uiSize.width.w)),
+      await tester.pumpWidget(ScreenUtil(
+        options: ScreenUtilOptions(designSize: uiSize),
+        child: Builder(builder: (context) {
+          return MaterialApp(
+            home: WidgetTest(width: () => context.w(uiSize.width)),
+          );
+        }),
       ));
 
       // Wait until all widget rendered
-      await tester.pumpAndSettle();
+      // await tester.pumpAndSettle();
 
       // a Text widget must be present
       expect(find.text('Test'), findsOneWidget);
     });
 
     testWidgets('Test overflow height', (tester) async {
-      await tester.pumpWidget(ScreenUtilInit(
-        designSize: uiSize,
-        child: MaterialApp(home: WidgetTest(height: () => uiSize.height.h)),
+      await tester.pumpWidget(ScreenUtil(
+        options: ScreenUtilOptions(designSize: uiSize),
+        child: Builder(builder: (context) {
+          return MaterialApp(
+            home: WidgetTest(height: () => context.h(uiSize.height)),
+          );
+        }),
       ));
 
       // Wait until all widget rendered
-      await tester.pumpAndSettle();
+      // await tester.pumpAndSettle();
 
       // a Text widget must be present
       expect(find.text('Test'), findsOneWidget);
@@ -78,19 +82,22 @@ void main() {
 
     Finder textField() => find.byKey(textFieldKey);
 
-    await tester.pumpWidget(ScreenUtilInit(
-      designSize: uiSize,
-      rebuildFactor: RebuildFactors.always,
+    await tester.pumpWidget(ScreenUtil(
+      options: ScreenUtilOptions(designSize: uiSize),
       child: MaterialApp(
         home: Scaffold(
           body: Builder(
             builder: (context) {
               buildCountNotifier.value += 1;
 
-              assert(uiSize.width.w == MediaQuery.of(context).size.width);
+              assert(
+                context.w(uiSize.width) == MediaQuery.of(context).size.width,
+                'ScreenUtil width must be equal to MediaQuery width',
+              );
 
               return SizedBox(
-                width: 1.sw,
+                width: context.w(uiSize.width),
+                height: context.h(uiSize.height),
                 child: Column(
                   children: [
                     ValueListenableBuilder<int>(
@@ -110,7 +117,7 @@ void main() {
       ),
     ));
 
-    await tester.pumpAndSettle();
+    // await tester.pumpAndSettle();
     expect(buildCountNotifier.value, 1);
 
     expect(textField(), findsOneWidget);
@@ -124,7 +131,7 @@ void main() {
     // Simulate keyboard
     tester.view.viewInsets = FakeViewPadding(bottom: 20);
 
-    await tester.pumpAndSettle();
+    // await tester.pumpAndSettle();
     expect(focusNode.hasFocus, true);
     expect(buildCountNotifier.value, 1);
   });

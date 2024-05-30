@@ -1,3 +1,13 @@
+# 6.0.0-alpha.1
+*Note: This package has been completely rewritten to address several issues. Please refer to the documentation for instructions on how to use the new version*
+### Breaking changes
+- Replace Singleton Pattern by InheritedModel for high performance
+- ScreenUtil.init is removed
+- ScreenUtil is now an InheritedModel
+- ScreenUtilInit replaced by ScreenUtil(recommended)/ScreenUtilSingleton(experimental)
+- API is changed (see documentation). We will add old functionnalities in next versions
+- Use only MediaQuery.sizeOf and MediaQuery.orientationOf
+
 # 5.9.3
 feat: support for disabling scaling
 

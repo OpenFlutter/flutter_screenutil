@@ -12,17 +12,20 @@ class WidgetTest extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (_, c) {
-        final w = width(), h = height();
+    final w = width(), h = height();
+    final screenSize = MediaQuery.sizeOf(context);
 
-        if (c.biggest >= Size(w, h)) {
-          return const Text('Test');
-        }
+    if (w == 0) {
+      if (h <= screenSize.height) {
+        return const Text('Test');
+      }
+    } else if (h == 0) {
+      if (w <= screenSize.width) {
+        return const Text('Test');
+      }
+    }
 
-        throw Error();
-      },
-    );
+    throw AssertionError('Overflow detected! ($w, $h) <= $screenSize');
   }
 
   static double _zero() => 0;

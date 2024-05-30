@@ -7,7 +7,9 @@
 
 **A flutter plugin for adapting screen and font size.Let your UI display a reasonable layout on different screen sizes!**
 
-*Note*: This plugin is still under development, and some APIs might not be available yet.
+**Note**: *Starting from version 6, support for <u>singleton</u> usage will be experimental and might be removed. We recommend use <u>context</u> way*
+
+**Note**: *This plugin is still under development, and some APIs might not be available yet.*
 
 [中文文档](https://github.com/OpenFlutter/flutter_screenutil/blob/master/README_CN.md)  
 
@@ -17,9 +19,12 @@
 
 [Update log](https://github.com/OpenFlutter/flutter_screenutil/blob/master/CHANGELOG.md)
 
+## Compatibility
+This package is compatible with flutter 3.13+
+
 ## Usage
 
-### Add dependency
+### 1) Add dependency
 
 Please check the latest version before installation.
 If there is any problem with the new version, please use the previous version
@@ -32,380 +37,176 @@ dependencies:
   flutter_screenutil: ^{latest version}
 ```
 
-### Add the following imports to your Dart code
+### 2) Add the following imports to your Dart code
 
 ```dart
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 ```
 
-### Properties
-
-| Property          | Type             | Default Value | Description                                                                                                                                   |
-| ----------------- | ---------------- | ------------- |-----------------------------------------------------------------------------------------------------------------------------------------------|
-| designSize        | Size             | Size(360,690) | The size of the device screen in the design draft, in dp                                                                                      |
-| builder           | Function         | null          | Return widget that uses the library in a property (ex: MaterialApp's theme)                                                                   |
-| child             | Widget           | null          | A part of builder that its dependencies/properties don't use the library                                                                      |
-| rebuildFactor     | Function         | _default_     | Function that take old and new screen metrics and returns whether to rebuild or not when changes.                                             |
-| splitScreenMode   | bool             | false         | support for split screen                                                                                                                      |
-| minTextAdapt      | bool             | false         | Whether to adapt the text according to the minimum of width and height                                                                        |
-| context           | BuildContext     | null          | Get physical device data if not provided, by MediaQuery.of(context)                                                                           |
-| fontSizeResolver  | Function         | _default_     | Function that specify how font size should be adapted. Default is that font size scale with width of screen.                                  |
-| responsiveWidgets | Iterable<String> | null          | List/Set of widget names that should be included in rebuilding tree. (See [How flutter_screenutil marks a widget needs build](#rebuild-list)) |
-| excludeWidgets    | Iterable<String> | null          | List/Set of widget names that should be excluded from rebuilding tree.                                                                        |
-| enableScaleWH    | Function | null          | Support enable scale width and height.                                                                                                        |
-| enableScaleText    | Function | null          | Support enable scale text.                                                                                                                    |
-
-
-**Note : You must either provide builder, child or both.**
-
-### Rebuild list
-Starting from version 5.9.0, ScreenUtilInit won't rebuild the whole widget tree, instead it will mark widget needs build only if:
-- Widget is not a flutter widget (widgets are available in [Flutter Docs](https://docs.flutter.dev/reference/widgets))
-- Widget does not start with underscore (`_`)
-- Widget does not declare `SU` mixin
-- `responsiveWidgets` does not contains widget name
-
-If you have a widget that uses the library and doesn't meet these options you can either add `SU` mixin or add widget name in responsiveWidgets list.
-
-### Initialize and set the fit size and font size to scale according to the system's "font size" accessibility option 
-
-Please set the size of the design draft before use, the width and height of the design draft.
-
-#### The first way (You should use it once in your app)
-
+*Note: if you want to use version 5, add:*
 ```dart
-void main() => runApp(MyApp());
+import 'package:flutter_screenutil/v5/flutter_screenutil.dart';
+```
+
+### 3) Declare ScreenUtil on top of widget hierarchy
+
+#### Use ScreenUtil directly (recommended)
+```dart
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    //Set the fit size (Find your UI design, look at the dimensions of the device screen and fill it in,unit in dp)
-    return ScreenUtilInit(
-      designSize: const Size(360, 690),
-      minTextAdapt: true,
-      splitScreenMode: true,
-      // Use builder only if you need to use library outside ScreenUtilInit context
-      builder: (_ , child) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'First Method',
-          // You can use the library anywhere in the app even in theme
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-            textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
-          ),
-          home: child,
+    @override
+    Widget build(BuildContext context) {
+        return ScreenUtil(
+            options: const ScreenUtilOptions(
+                designSize: Size(360, 690),
+                fontFactorByWidth: 2.0,
+                fontFactorByHeight: 1.0,
+                flipSizeWhenLandscape: true,
+            ),
+            child: MaterialApp(
+                ...,
+                child: const MyAwesomeWidget(),
+            ),
         );
-      },
-      child: const HomePage(title: 'First Method'),
-    );
-  }
+    }
+}
+
+class MyAwesomeWidget extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+        return SafeArea(
+            child: Padding(
+                padding: EdgeInsets.all(context.i(20)),
+                child: Text(
+                    'This is awesome',
+                    style: TextStyle(fontSize: context.sp(18)),
+                ),
+            ),
+        );
+    }
 }
 ```
 
-#### The second way:You need a trick to support font adaptation in the textTheme of app theme
-
-**Hybrid development uses the second way**
-
-not support this:
-
+#### Usage of ScreenUtilSingleton (You must add `ScreenUtilSingleton.addDependent(context)` or `context.su()` for each widget that use this package)
 ```dart
-MaterialApp(
-  ...
-  //To support the following, you need to use the first initialization method
-  theme: ThemeData(
-    textTheme: TextTheme(
-      button: TextStyle(fontSize: 45.sp)
-    ),
-  ),
-)
-```
-
-but you can do this:
-
-```dart
-void main() async {
-  // Add this line
-  await ScreenUtil.ensureScreenSize();
-  runApp(MyApp());
-}
-...
-MaterialApp(
-  ...
-  builder: (ctx, child) {
-    ScreenUtil.init(ctx);
-    return Theme(
-      data: ThemeData(
-        primarySwatch: Colors.blue,
-        textTheme: TextTheme(bodyText2: TextStyle(fontSize: 30.sp)),
-      ),
-      child: HomePage(title: 'FlutterScreenUtil Demo'),
-    );
-  },
-)
-```
-
-```dart
-class MyApp extends StatelessWidget {
+class MyAppWithSingleton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter_ScreenUtil',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return ScreenUtilSingleton(
+      options: const ScreenUtilOptions(
+        enable: true,
+        designSize: Size(360, 690),
+        fontFactorByWidth: 2.0,
+        fontFactorByHeight: 1.0,
+        flipSizeWhenLandscape: true,
       ),
-      home: HomePage(title: 'FlutterScreenUtil Demo'),
+      child: MaterialApp(
+        ...,
+        home: const MyHomeWithSingletonPage(),
+      ),
     );
   }
 }
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class MyHomeWithSingletonPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    //Set the fit size (fill in the screen size of the device in the design) 
-    //If the design is based on the size of the 360*690(dp)
-    ScreenUtil.init(context, designSize: const Size(360, 690));
-    ...
+    // THIS IS REQUIRED FOR EVERY WIDGET THAT USES ScreenUtilSingleton
+    ScreenUtilSingleton.addDependent(context); // or context.su();
+
+    return SafeArea(
+        child: Padding(
+            padding: EdgeInsets.all(context.i(20)),
+            child: Text(
+              'This is Awesome !',
+              style: TextStyle(fontSize: 20.sp),
+            ),
+        ),
+    );
   }
 }
 ```
 
-**Note: calling ScreenUtil.init second time, any non-provided parameter will not be replaced with default value. Use ScreenUtil.configure instead**
+### Options
+
+#### enable (boolean, default: true)
+Either to enable or disable scaling
+
+#### designSize (Size)
+The size of the device screen in the design draft, in dp. This property is **required**.
+
+#### minTextScale (double, default: 0.2)
+Minimum text scale factor
+
+#### maxTextScale (double, default: 4.0)
+Maximum text scale factor
+
+#### fontFactorByWidth (double, default 1.0)
+The weighting factor for scaling fonts by the width of the screen
+
+#### fontFactorByHeight (double, default: 1.0)
+The weighting factor for scaling fonts by the height of the screen.
+
+#### flipSizeWhenLandscape (boolean, default: false)
+Whether to flip the size dimensions when the device is in landscape orientation.
+
+#### fontScaleStrategy (ScreenUtilScaleStrategy, default: ScreenUtilScaleStrategy.both)
+The strategy used for scaling fonts, which can be based on width, height, or both.
+
+#### paddingScaleStrategy (ScreenUtilScaleStrategy, default: ScreenUtilScaleStrategy.both)
+The strategy used for scaling padding, which can be based on width, height, or both.
+
+#### widthScaleStrategy (ScreenUtilScaleStrategy, default: ScreenUtilScaleStrategy.width)
+The strategy used for scaling widths, which can be based on width or height.
+
+#### heightScaleStrategy (ScreenUtilScaleStrategy, default: ScreenUtilScaleStrategy.height)
+The strategy used for scaling heights, which can be based on width or height.
+
+### Why switch to InheritedModel instead of Singleton pattern ?
+Well, the main reason, scaling factors keeps changing and we need to notify widgets for that change. Singleton method will trigger a rebuild for all of your widgets as it don't know which one to rebuild. That's why we recommend using the new way: InheritedModel. It keeps track of widgets you really need to rebuild and not the whole widget hierarchy.
+
+#### &gt; Benifits:
+- Minimize rebuilds
+- You can use diffrent design size for each case, if you have widgets from other designs
+- Very high performance, skipping all checks and loops through hierarchy
 
 ### API
-
-#### Enable or disable scale
-
+Here some examples:
+#### with ScreenUtil (recommended)
 ```dart
-  Widget build(BuildContext context) {
-    return ScreenUtilInit(
-      enableScaleWH: ()=>false,
-      enableScaleText: ()=>false,
-      //...
-    );
-  }
+// Without extensions
+ScreenUtil.sp(context, 18)  // Font Size
+ScreenUtil.w(context, 18)   // Width
+ScreenUtil.h(context, 18)   // Height
+ScreenUtil.r(context, 18)   // radiusScaleOf <=> min(widthScaleOf, heightScaleOf)
+ScreenUtil.i(context, 18)   // Insets
+
+// With extensions
+context.sp(18) // Font Size
+context.w(18)  // Width
+context.h(18)  // Height
+context.r(18)  // radiusScaleOf <=> min(widthScaleOf, heightScaleOf)
+context.i(18)  // Insets
 ```
 
-or
-
+#### with ScreenUtilSingleton (Experimental and can be removed in the future)
+- **FOR EACH WIDGET THAT USE THIS PACKAGE, YOU MUST EITHER:**
+    - use one of `ScreenUtil` methods/extensions above at least once
+    - add `ScreenUtilSingleton.addDependent(context)`
+    - add `context.su()` (extension)
 ```dart
-ScreenUtil.enableScale(enableWH: () => false, enableText: () => false);
-```
+// Without extensions
+ScreenUtilSingleton.sp(18)
+ScreenUtilSingleton.w(18)
+ScreenUtilSingleton.h(18)
+ScreenUtilSingleton.r(18)
+ScreenUtilSingleton.i(18)
 
-
-#### Pass the dp size of the design draft
-
-```dart
-    ScreenUtil().setWidth(540)  (dart sdk>=2.6 : 540.w) //Adapted to screen width
-    ScreenUtil().setHeight(200) (dart sdk>=2.6 : 200.h) //Adapted to screen height , under normal circumstances, the height still uses x.w
-    ScreenUtil().radius(200)    (dart sdk>=2.6 : 200.r)    //Adapt according to the smaller of width or height
-    ScreenUtil().setSp(24)      (dart sdk>=2.6 : 24.sp) //Adapter font
-    12.sm   //return min(12,12.sp)
-
-    ScreenUtil().pixelRatio       //Device pixel density
-    ScreenUtil().screenWidth   (dart sdk>=2.6 : 1.sw)    //Device width
-    ScreenUtil().screenHeight  (dart sdk>=2.6 : 1.sh)    //Device height
-    ScreenUtil().bottomBarHeight  //Bottom safe zone distance, suitable for buttons with full screen
-    ScreenUtil().statusBarHeight  //Status bar height , Notch will be higher
-    ScreenUtil().textScaleFactor  //System font scaling factor
-
-    ScreenUtil().scaleWidth //The ratio of actual width to UI design
-    ScreenUtil().scaleHeight //The ratio of actual height to UI design
-
-    ScreenUtil().orientation  //Screen orientation
-    0.2.sw  //0.2 times the screen width
-    0.5.sh  //50% of screen height
-    20.setVerticalSpacing  // SizedBox(height: 20 * scaleHeight)
-    20.horizontalSpace  // SizedBox(height: 20 * scaleWidth)
-    const RPadding.all(8)   // Padding.all(8.r) - take advantage of const key word
-    EdgeInsets.all(10).w    //EdgeInsets.all(10.w)
-    REdgeInsets.all(8)       // EdgeInsets.all(8.r)
-    EdgeInsets.only(left:8,right:8).r // EdgeInsets.only(left:8.r,right:8.r).
-    BoxConstraints(maxWidth: 100, minHeight: 100).w    //BoxConstraints(maxWidth: 100.w, minHeight: 100.w)
-    Radius.circular(16).w          //Radius.circular(16.w)
-    BorderRadius.all(Radius.circular(16)).w  
-```
-
-#### Adapt screen size
-
-Pass the dp size of the design draft((The unit is the same as the unit at initialization))：
-
-Adapted to screen width: `ScreenUtil().setWidth(540)`,
-
-Adapted to screen height: `ScreenUtil().setHeight(200)`, In general, the height is best to adapt to the width
-
-If your dart sdk>=2.6, you can use extension functions:
-
-example:
-
-instead of :
-
-```dart
-Container(
-  width: ScreenUtil().setWidth(50),
-  height:ScreenUtil().setHeight(200),
-)
-```
-
-you can use it like this:
-
-```dart
-Container(
-  width: 50.w,
-  height:200.h
-)
-```
-
-#### `Note`
-
-The height can also use setWidth to ensure that it is not deformed(when you want a square)
-
-The setHeight method is mainly to adapt to the height, which is used when you want to control the height of a screen on the UI to be the same as the actual display.
-
-Generally speaking, 50.w!=50.h.
-
-```dart
-//for example:
-
-//If you want to display a rectangle:
-Container(
-  width: 375.w,
-  height: 375.h,
-),
-            
-//If you want to display a square based on width:
-Container(
-  width: 300.w,
-  height: 300.w,
-),
-
-//If you want to display a square based on height:
-Container(
-  width: 300.h,
-  height: 300.h,
-),
-
-//If you want to display a square based on minimum(height, width):
-Container(
-  width: 300.r,
-  height: 300.r,
-),
-```
-
-#### Adapter font
-
-``` dart
-//Incoming font size(The unit is the same as the unit at initialization)
-ScreenUtil().setSp(28) 
-28.sp
-
-//for example:
-Column(
-  crossAxisAlignment: CrossAxisAlignment.start,
-  children: <Widget>[
-    Text(
-      '16sp, will not change with the system.',
-      style: TextStyle(
-        color: Colors.black,
-        fontSize: 16.sp,
-      ),
-      textScaleFactor: 1.0,
-    ),
-    Text(
-      '16sp,if data is not set in MediaQuery,my font size will change with the system.',
-      style: TextStyle(
-        color: Colors.black,
-        fontSize: 16.sp,
-      ),
-    ),
-  ],
-)
-```
-
-#### Setting font does not change with system font size
-
-APP global:
-
-```dart
-MaterialApp(
-  debugShowCheckedModeBanner: false,
-  title: 'Flutter_ScreenUtil',
-  theme: ThemeData(
-    primarySwatch: Colors.blue,
-  ),
-  builder: (context, widget) {
-    return MediaQuery(
-      ///Setting font does not change with system font size
-      data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-      child: widget,
-    );
-  },
-  home: HomePage(title: 'FlutterScreenUtil Demo'),
-),
-```
-
-Specified Text:
-
-```dart
-Text("text", textScaleFactor: 1.0)
-```
-
-Specified Widget:
-
-```dart
-MediaQuery(
-  // If there is no context available you can wrap [MediaQuery] with [Builder]
-  data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-  child: AnyWidget(),
-)
-```
-
-[widget test](https://github.com/OpenFlutter/flutter_screenutil/issues/115)
-
-### Example
-
-[example demo](https://github.com/OpenFlutter/flutter_screenutil/blob/master/example/lib)
-
-To use second method run: `flutter run --dart-define=method=2`
-
-### Effect
-
-![effect](demo_en.png)
-![tablet effect](demo_tablet_en.png)
-
-
-### Update for Version 5.9.0 (Tests)
-Reported as bug in [#515](https://github.com/OpenFlutter/flutter_screenutil/issues/515)
-
-
-In version 5.9.0, to ensure compatibility and proper functioning of your tests, it is crucial to use the method `tester.pumpAndSettle()`; when conducting widget tests that depend on animations or a settling time to complete their state.
-
-In the previous version, this step was not strictly necessary. However, to maintain consistency in your tests and avoid unexpected errors, it's strongly recommended incorporating await tester.pumpAndSettle(); in your widget tests if you are using version 5.9.0
-
-Example usage:
-```dart
-testWidgets('Should ensure widgets settle correctly', (WidgetTester tester) async {
-await tester.pumpWidget(
-  const MaterialApp(
-    home: ScreenUtilInit(
-      child: MyApp(),
-    ),  
-  ),
-);
-// Insertion of recommended method to prevent failures
-await tester.pumpAndSettle();
-// Continue with your assertions and tests
-});
+// With extensions
+18.sp
+18.w
+18.h
+18.r
+18.i
 ```
