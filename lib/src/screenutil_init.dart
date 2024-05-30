@@ -75,6 +75,7 @@ class ScreenUtilInit extends StatefulWidget {
     this.useInheritedMediaQuery = false,
     this.ensureScreenSize = false,
     this.responsiveWidgets,
+    this.excludeWidgets,
     this.fontSizeResolver = FontSizeResolvers.width,
   }) : super(key: key);
 
@@ -90,6 +91,7 @@ class ScreenUtilInit extends StatefulWidget {
   /// The [Size] of the device in the design draft, in dp
   final Size designSize;
   final Iterable<String>? responsiveWidgets;
+  final Iterable<String>? excludeWidgets;
 
   @override
   State<ScreenUtilInit> createState() => _ScreenUtilInitState();
@@ -98,6 +100,7 @@ class ScreenUtilInit extends StatefulWidget {
 class _ScreenUtilInitState extends State<ScreenUtilInit>
     with WidgetsBindingObserver {
   final _canMarkedToBuild = HashSet<String>();
+  final _excludedWidgets = HashSet<String>();
   MediaQueryData? _mediaQueryData;
   final _binding = WidgetsBinding.instance;
   final _screenSizeCompleter = Completer<void>();
@@ -137,6 +140,7 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
 
   void _markNeedsBuildIfAllowed(Element el) {
     final widgetName = el.widget.runtimeType.toString();
+    if (_excludedWidgets.contains(widgetName)) return;
     final allowed = widget is SU ||
         _canMarkedToBuild.contains(widgetName) ||
         !(widgetName.startsWith('_') || flutterWidgets.contains(widgetName));
