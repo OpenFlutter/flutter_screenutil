@@ -5,16 +5,21 @@ on:
   push:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+*' # tag pattern on pub.dev: 'v'
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+*' # tag pattern on pub.dev: 'v'
 
 jobs:
   publishing:
     runs-on: ubuntu-latest
     steps:
       # 拉去仓库代码
-      - name: "Checkout"
-        uses: actions/checkout@main
+      - name: 'Checkout'
+        uses: actions/checkout@main # required!
+
       # 发布插件
-      - name: Dart and Flutter Package Publisher
+      - name: '>> Publich package to pub.dev <<'
         uses: k-paxian/dart-package-publisher@master
         with:
           # 设置发布插件需要的 Token
