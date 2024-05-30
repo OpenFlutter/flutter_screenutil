@@ -7,7 +7,7 @@
 
 **A flutter plugin for adapting screen and font size.Let your UI display a reasonable layout on different screen sizes!**
 
-**Note**: *Starting from version 6, support for <u>singleton</u> usage will be experimental and might be removed. We recommend use <u>context</u> way*
+**Note**: *Starting from version 6, support for singleton usage will be experimental and might be removed. We recommend use context way*
 
 **Note**: *This plugin is still under development, and some APIs might not be available yet.*
 
