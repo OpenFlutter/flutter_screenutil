@@ -141,8 +141,9 @@ class ScreenUtil {
     bool minTextAdapt = false,
     FontSizeResolver? fontSizeResolver,
   }) {
+    final view = View.maybeOf(context);
     return configure(
-      data: MediaQuery.maybeOf(context),
+      data: view != null ? MediaQueryData.fromView(view) : null,
       designSize: designSize,
       splitScreenMode: splitScreenMode,
       minTextAdapt: minTextAdapt,
@@ -158,8 +159,8 @@ class ScreenUtil {
     FontSizeResolver? fontSizeResolver,
   }) {
     return ScreenUtil.ensureScreenSize().then((_) {
-      return configure(
-        data: MediaQuery.maybeOf(context),
+      return init(
+        context,
         designSize: designSize,
         minTextAdapt: minTextAdapt,
         splitScreenMode: splitScreenMode,
@@ -251,8 +252,11 @@ class ScreenUtil {
     if (kIsWeb) {
       deviceType = DeviceType.web;
     } else {
-      bool isMobile = defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.android;
-      bool isTablet = (orientation == Orientation.portrait && screenWidth >= 600) || (orientation == Orientation.landscape && screenHeight >= 600);
+      bool isMobile = defaultTargetPlatform == TargetPlatform.iOS ||
+          defaultTargetPlatform == TargetPlatform.android;
+      bool isTablet =
+          (orientation == Orientation.portrait && screenWidth >= 600) ||
+              (orientation == Orientation.landscape && screenHeight >= 600);
 
       if (isMobile) {
         deviceType = isTablet ? DeviceType.tablet : DeviceType.mobile;
