@@ -74,6 +74,8 @@ class ScreenUtilInit extends StatefulWidget {
     this.minTextAdapt = false,
     this.useInheritedMediaQuery = false,
     this.ensureScreenSize = false,
+    this.enableScaleWH,
+    this.enableScaleText,
     this.responsiveWidgets,
     this.excludeWidgets,
     this.fontSizeResolver = FontSizeResolvers.width,
@@ -85,6 +87,8 @@ class ScreenUtilInit extends StatefulWidget {
   final bool minTextAdapt;
   final bool useInheritedMediaQuery;
   final bool ensureScreenSize;
+  final bool Function()? enableScaleWH;
+  final bool Function()? enableScaleText;
   final RebuildFactor rebuildFactor;
   final FontSizeResolver fontSizeResolver;
 
@@ -97,8 +101,7 @@ class ScreenUtilInit extends StatefulWidget {
   State<ScreenUtilInit> createState() => _ScreenUtilInitState();
 }
 
-class _ScreenUtilInitState extends State<ScreenUtilInit>
-    with WidgetsBindingObserver {
+class _ScreenUtilInitState extends State<ScreenUtilInit> with WidgetsBindingObserver {
   final _canMarkedToBuild = HashSet<String>();
   final _excludedWidgets = HashSet<String>();
   MediaQueryData? _mediaQueryData;
@@ -110,6 +113,9 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
     if (widget.responsiveWidgets != null) {
       _canMarkedToBuild.addAll(widget.responsiveWidgets!);
     }
+
+    ScreenUtil.enableScale(enableWH: widget.enableScaleWH, enableText: widget.enableScaleText);
+
     _validateSize().then(_screenSizeCompleter.complete);
 
     super.initState();
