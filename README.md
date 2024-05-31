@@ -43,11 +43,6 @@ dependencies:
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 ```
 
-*Note: if you want to use version 5, add:*
-```dart
-import 'package:flutter_screenutil/v5/flutter_screenutil.dart';
-```
-
 ### 3) Declare ScreenUtil on top of widget hierarchy
 
 #### Use ScreenUtil directly (recommended)
