@@ -41,7 +41,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 ### Properties
 
 | Property          | Type             | Default Value | Description                                                                                                                                   |
-| ----------------- | ---------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| ----------------- | ---------------- | ------------- |-----------------------------------------------------------------------------------------------------------------------------------------------|
 | designSize        | Size             | Size(360,690) | The size of the device screen in the design draft, in dp                                                                                      |
 | builder           | Function         | null          | Return widget that uses the library in a property (ex: MaterialApp's theme)                                                                   |
 | child             | Widget           | null          | A part of builder that its dependencies/properties don't use the library                                                                      |
@@ -52,6 +52,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 | fontSizeResolver  | Function         | _default_     | Function that specify how font size should be adapted. Default is that font size scale with width of screen.                                  |
 | responsiveWidgets | Iterable<String> | null          | List/Set of widget names that should be included in rebuilding tree. (See [How flutter_screenutil marks a widget needs build](#rebuild-list)) |
 | excludeWidgets    | Iterable<String> | null          | List/Set of widget names that should be excluded from rebuilding tree.                                                                        |
+| enableScaleWH    | Function | null          | Support enable scale width and height.                                                                                                        |
+| enableScaleText    | Function | null          | Support enable scale text.                                                                                                                    |
 
 
 **Note : You must either provide builder, child or both.**
@@ -183,6 +185,25 @@ class _HomePageState extends State<HomePage> {
 **Note: calling ScreenUtil.init second time, any non-provided parameter will not be replaced with default value. Use ScreenUtil.configure instead**
 
 ### API
+
+#### Enable or disable scale
+
+```dart
+  Widget build(BuildContext context) {
+    return ScreenUtilInit(
+      enableScaleWH: ()=>false,
+      enableScaleText: ()=>false,
+      //...
+    );
+  }
+```
+
+or
+
+```dart
+ScreenUtil.enableScale(enableWH: () => false, enableText: () => false);
+```
+
 
 #### Pass the dp size of the design draft
 
