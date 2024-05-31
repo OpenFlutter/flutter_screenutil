@@ -1,7 +1,8 @@
 import 'package:example/responsive_widgets.su.dart';
-import 'package:example/src/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+import '../src_zh/home.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

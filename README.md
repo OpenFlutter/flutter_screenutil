@@ -40,17 +40,19 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 ### Properties
 
-| Property         | Type         | Default Value | Description                                                                                                                                   |
-| ---------------- |--------------|---------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| designSize       | Size         | Size(360,690) | The size of the device screen in the design draft, in dp                                                                                      |
-| builder          | Function     | null          | Return widget that uses the library in a property (ex: MaterialApp's theme)                                                                   |
-| child            | Widget       | null          | A part of builder that its dependencies/properties don't use the library                                                                      |
-| rebuildFactor    | Function     | *default*     | Function that take old and new screen metrics and returns whether to rebuild or not when changes.                                             |
-| splitScreenMode  | bool         | false         | support for split screen                                                                                                                      |
-| minTextAdapt     | bool         | false         | Whether to adapt the text according to the minimum of width and height                                                                        |
-| context          | BuildContext | null          | Get physical device data if not provided, by MediaQuery.of(context)                                                                           |
-| fontSizeResolver | Function     | *default*     | Function that specify how font size should be adapted. Default is that font size scale with width of screen.                                  |
-| responsiveWidgets| Iterable<String> | null      | List/Set of widget names that should be included in rebuilding tree. (See [How flutter_screenutil marks a widget needs build](#rebuild-list)) |
+| Property          | Type             | Default Value | Description                                                                                                                                   |
+| ----------------- | ---------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| designSize        | Size             | Size(360,690) | The size of the device screen in the design draft, in dp                                                                                      |
+| builder           | Function         | null          | Return widget that uses the library in a property (ex: MaterialApp's theme)                                                                   |
+| child             | Widget           | null          | A part of builder that its dependencies/properties don't use the library                                                                      |
+| rebuildFactor     | Function         | _default_     | Function that take old and new screen metrics and returns whether to rebuild or not when changes.                                             |
+| splitScreenMode   | bool             | false         | support for split screen                                                                                                                      |
+| minTextAdapt      | bool             | false         | Whether to adapt the text according to the minimum of width and height                                                                        |
+| context           | BuildContext     | null          | Get physical device data if not provided, by MediaQuery.of(context)                                                                           |
+| fontSizeResolver  | Function         | _default_     | Function that specify how font size should be adapted. Default is that font size scale with width of screen.                                  |
+| responsiveWidgets | Iterable<String> | null          | List/Set of widget names that should be included in rebuilding tree. (See [How flutter_screenutil marks a widget needs build](#rebuild-list)) |
+| excludeWidgets    | Iterable<String> | null          | List/Set of widget names that should be excluded from rebuilding tree.                                                                        |
+
 
 **Note : You must either provide builder, child or both.**
 
@@ -361,3 +363,28 @@ To use second method run: `flutter run --dart-define=method=2`
 
 ![effect](demo_en.png)
 ![tablet effect](demo_tablet_en.png)
+
+
+### Update for Version 5.9.0 (Tests)
+Reported as bug in [#515](https://github.com/OpenFlutter/flutter_screenutil/issues/515)
+
+
+In version 5.9.0, to ensure compatibility and proper functioning of your tests, it is crucial to use the method `tester.pumpAndSettle()`; when conducting widget tests that depend on animations or a settling time to complete their state.
+
+In the previous version, this step was not strictly necessary. However, to maintain consistency in your tests and avoid unexpected errors, it's strongly recommended incorporating await tester.pumpAndSettle(); in your widget tests if you are using version 5.9.0
+
+Example usage:
+```dart
+testWidgets('Should ensure widgets settle correctly', (WidgetTester tester) async {
+await tester.pumpWidget(
+  const MaterialApp(
+    home: ScreenUtilInit(
+      child: MyApp(),
+    ),  
+  ),
+);
+// Insertion of recommended method to prevent failures
+await tester.pumpAndSettle();
+// Continue with your assertions and tests
+});
+```

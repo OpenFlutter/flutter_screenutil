@@ -1,3 +1,12 @@
+# 5.9.2
+- Add ability to exclude widgets from from rebuild list
+- Depend on View instead of MediaQuery
+- update readme
+
+# 5.9.1
+- merge pr #550 #555 #556
+- update readme
+
 # 5.9.0
 - ScreenUtilInit won't rebuild the whole widget tree
 - Add `fontSizeResolver` to specify how font size should be scaled

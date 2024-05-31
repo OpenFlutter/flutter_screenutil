@@ -114,7 +114,7 @@ extension EdgeInsetsExtension on EdgeInsets {
       );
 }
 
-extension BorderRaduisExtension on BorderRadius {
+extension BorderRadiusExtension on BorderRadius {
   /// Creates adapt BorderRadius using r [SizeExtension].
   BorderRadius get r => copyWith(
         bottomLeft: bottomLeft.r,
@@ -138,7 +138,7 @@ extension BorderRaduisExtension on BorderRadius {
       );
 }
 
-extension RaduisExtension on Radius {
+extension RadiusExtension on Radius {
   /// Creates adapt Radius using r [SizeExtension].
   Radius get r => Radius.elliptical(x.r, y.r);
 

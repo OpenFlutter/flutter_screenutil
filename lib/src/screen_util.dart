@@ -3,7 +3,8 @@
  * email: zhuoyuan93@gmail.com
  */
 
-import 'dart:io';
+import 'package:flutter/foundation.dart' show kIsWeb, defaultTargetPlatform;
+
 import 'dart:math' show min, max;
 import 'dart:ui' as ui show FlutterView;
 
@@ -154,8 +155,9 @@ class ScreenUtil {
     bool minTextAdapt = false,
     FontSizeResolver? fontSizeResolver,
   }) {
+    final view = View.maybeOf(context);
     return configure(
-      data: MediaQuery.maybeOf(context),
+      data: view != null ? MediaQueryData.fromView(view) : null,
       designSize: designSize,
       splitScreenMode: splitScreenMode,
       minTextAdapt: minTextAdapt,
@@ -171,8 +173,8 @@ class ScreenUtil {
     FontSizeResolver? fontSizeResolver,
   }) {
     return ScreenUtil.ensureScreenSize().then((_) {
-      return configure(
-        data: MediaQuery.maybeOf(context),
+      return init(
+        context,
         designSize: designSize,
         minTextAdapt: minTextAdapt,
         splitScreenMode: splitScreenMode,
@@ -255,34 +257,43 @@ class ScreenUtil {
   double setSp(num fontSize) =>
       fontSizeResolver?.call(fontSize, _instance) ?? fontSize * scaleText;
 
-  DeviceType deviceType() {
-    DeviceType deviceType;
-    switch (Platform.operatingSystem) {
-      case 'android':
-      case 'ios':
-        deviceType = DeviceType.mobile;
-        if ((orientation == Orientation.portrait && screenWidth < 600) ||
-            (orientation == Orientation.landscape && screenHeight < 600)) {
-          deviceType = DeviceType.mobile;
-        } else {
-          deviceType = DeviceType.tablet;
+  DeviceType deviceType(BuildContext context) {
+    var deviceType = DeviceType.web;
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+    final orientation = MediaQuery.of(context).orientation;
+
+    if (kIsWeb) {
+      deviceType = DeviceType.web;
+    } else {
+      bool isMobile = defaultTargetPlatform == TargetPlatform.iOS ||
+          defaultTargetPlatform == TargetPlatform.android;
+      bool isTablet =
+          (orientation == Orientation.portrait && screenWidth >= 600) ||
+              (orientation == Orientation.landscape && screenHeight >= 600);
+
+      if (isMobile) {
+        deviceType = isTablet ? DeviceType.tablet : DeviceType.mobile;
+      } else {
+        switch (defaultTargetPlatform) {
+          case TargetPlatform.linux:
+            deviceType = DeviceType.linux;
+            break;
+          case TargetPlatform.macOS:
+            deviceType = DeviceType.mac;
+            break;
+          case TargetPlatform.windows:
+            deviceType = DeviceType.windows;
+            break;
+          case TargetPlatform.fuchsia:
+            deviceType = DeviceType.fuchsia;
+            break;
+          default:
+            break;
         }
-        break;
-      case 'linux':
-        deviceType = DeviceType.linux;
-        break;
-      case 'macos':
-        deviceType = DeviceType.mac;
-        break;
-      case 'windows':
-        deviceType = DeviceType.windows;
-        break;
-      case 'fuchsia':
-        deviceType = DeviceType.fuchsia;
-        break;
-      default:
-        deviceType = DeviceType.web;
+      }
     }
+
     return deviceType;
   }
 
