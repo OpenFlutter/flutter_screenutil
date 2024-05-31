@@ -1,3 +1,6 @@
+# 5.9.3
+feat: support for disabling scaling
+
 # 5.9.2
 - Add ability to exclude widgets from from rebuild list
 - Depend on View instead of MediaQuery
