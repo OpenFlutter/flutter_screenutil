@@ -1,7 +1,10 @@
 name: Publish to Pub.dev
 
 # 流程触发时机，当有标签创建时触发，如 v1.0.0。当然也可以选择别的触发时机，如 push，release 等
-on: create
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+*' # tag pattern on pub.dev: 'v'
 
 jobs:
   publishing:
@@ -9,10 +12,10 @@ jobs:
     steps:
       # 拉去仓库代码
       - name: "Checkout"
-        uses: actions/checkout@v2
+        uses: actions/checkout@main
       # 发布插件
       - name: Dart and Flutter Package Publisher
-        uses: k-paxian/dart-package-publisher@v1.2
+        uses: k-paxian/dart-package-publisher@master
         with:
           # 设置发布插件需要的 Token
           accessToken: ${{ secrets.OAUTH_ACCESS_TOKEN }}
