@@ -302,6 +302,10 @@ Container(
   width: 300.r,
   height: 300.r,
 ),
+// if you want to display a Horizontal space based on minimum(height, width):
+SizedBox(
+  width: 30.w,
+),
 ```
 
 #### Adapter font
