@@ -60,6 +60,11 @@ abstract class FontSizeResolvers {
   static double diagonal(num fontSize, ScreenUtil instance) {
     return instance.diagonal(fontSize);
   }
+
+  /// This uses the [scaleText] logic that respects [minTextAdapt]
+  static double auto(num fontSize, ScreenUtil instance) {
+    return fontSize * instance.scaleText;
+  }
 }
 
 class ScreenUtilInit extends StatefulWidget {
@@ -78,7 +83,7 @@ class ScreenUtilInit extends StatefulWidget {
     this.enableScaleText,
     this.responsiveWidgets,
     this.excludeWidgets,
-    this.fontSizeResolver = FontSizeResolvers.width,
+    this.fontSizeResolver = FontSizeResolvers.auto,
   }) : super(key: key);
 
   final ScreenUtilInitBuilder? builder;
@@ -101,7 +106,8 @@ class ScreenUtilInit extends StatefulWidget {
   State<ScreenUtilInit> createState() => _ScreenUtilInitState();
 }
 
-class _ScreenUtilInitState extends State<ScreenUtilInit> with WidgetsBindingObserver {
+class _ScreenUtilInitState extends State<ScreenUtilInit>
+    with WidgetsBindingObserver {
   final _canMarkedToBuild = HashSet<String>();
   final _excludedWidgets = HashSet<String>();
   MediaQueryData? _mediaQueryData;
@@ -114,7 +120,8 @@ class _ScreenUtilInitState extends State<ScreenUtilInit> with WidgetsBindingObse
       _canMarkedToBuild.addAll(widget.responsiveWidgets!);
     }
 
-    ScreenUtil.enableScale(enableWH: widget.enableScaleWH, enableText: widget.enableScaleText);
+    ScreenUtil.enableScale(
+        enableWH: widget.enableScaleWH, enableText: widget.enableScaleText);
 
     _validateSize().then(_screenSizeCompleter.complete);
 
