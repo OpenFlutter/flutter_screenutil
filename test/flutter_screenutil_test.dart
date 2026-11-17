@@ -44,7 +44,19 @@ void main() {
   });
 
   group('[Test overflow]', () {
+    // Fork: điện thoại dọc / màn lớn scale đều theo rate cố định 375x812 của app,
+    // nên kiểm tra overflow với designSize 375x812.
+    const uiSize = Size(375, 812);
+    // Mặc định surface test là 800x600 (landscape >= 600) → rơi vào khung tablet ngang của fork,
+    // nên dùng kích thước điện thoại để kiểm tra logic scale cũ.
+    void usePhoneSurface(WidgetTester tester) {
+      tester.view.physicalSize = const Size(400, 800);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.reset);
+    }
+
     testWidgets('Test overflow width', (tester) async {
+      usePhoneSurface(tester);
       await tester.pumpWidget(ScreenUtilInit(
         designSize: uiSize,
         child: MaterialApp(home: WidgetTest(width: () => uiSize.width.w)),
@@ -58,6 +70,7 @@ void main() {
     });
 
     testWidgets('Test overflow height', (tester) async {
+      usePhoneSurface(tester);
       await tester.pumpWidget(ScreenUtilInit(
         designSize: uiSize,
         child: MaterialApp(home: WidgetTest(height: () => uiSize.height.h)),
